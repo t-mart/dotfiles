@@ -14,6 +14,11 @@ the majority of files that exist in a home directory. We only care about a speci
 
 ## Installing onto a new system
 
+0. Install prerequisites
+
+    - git (need for dotfiles)
+    - zsh (needed for shell)
+
 1. Clone and alias
 
     ```zsh
