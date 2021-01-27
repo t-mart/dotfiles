@@ -1,0 +1,58 @@
+[user]
+  name = Tim Martin
+  email = timothy_r_martin@homedepot.com
+
+[color]
+  ui = auto
+
+[push]
+  default = upstream
+  followTags = true
+
+[pull]
+  ff = only
+  rebase = true
+
+[branch]
+  autosetuprebase = always
+
+[merge]
+  conflictstyle = diff3
+  tool = vimdiff
+
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+
+[grep]
+  #always show line numbers
+  lineNumber = true
+  #use robust regex patterns
+  extendedRegexp = true
+
+[github]
+  user = t-mart
+
+[alias]
+  logg = "log --graph --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%cr)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an (%G?)%C(reset)'"
+  reflogg = "reflog --format=format:'%C(bold green)%h%C(reset) - %C(bold yellow)%gd%C(reset) %C(auto)%gs%C(reset) - %C(cyan)(%cr) %C(reset)%C(auto)%d%C(reset)%n  ↳ %C(white)%s%C(reset) %C(dim white)- %gn'"
+  fix = "!f() { ${EDITOR} `git diff --name-only | uniq`; }; f"
+
+[rerere]
+  enabled = true
+
+[grep]
+  lineNumber = true
+  patternType = extended
+
+[rebase]
+  autosquash = true
+
+[diff]
+  compactionHeuristic = true
+
+[commit]
+  ; gpgSign = true
+
+[gpg]
+  ; program = gpg1
