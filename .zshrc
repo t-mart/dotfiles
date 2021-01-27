@@ -1,1 +1,1 @@
-source .zsh-tim/init.zsh
+source $HOME/.zsh-tim/init.zsh
