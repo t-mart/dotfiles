@@ -2,3 +2,6 @@
 .venv
 .mypy_cache
 .pytest_cache
+
+# for my dotfile configuration
+.dotfile_config
