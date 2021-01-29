@@ -9,6 +9,7 @@ ADDITIONAL_PATHS=(
     "/usr/local/opt/rsync/bin"
     "/usr/local/opt/openssh/bin"
     "$HOME/.jenv/bin"
+    "$HOME/.pyenv/bin"
 )
 
 
