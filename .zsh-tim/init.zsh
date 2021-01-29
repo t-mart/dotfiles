@@ -19,9 +19,9 @@ compinit -i -C -d "${ZSH_COMPDUMP}"
 
 source "$ZSH_TIM_DIR/env.zsh"
 source "$ZSH_TIM_DIR/zstyle.zsh"
+source "$ZSH_TIM_DIR/path.zsh"
 source "$ZSH_TIM_DIR/completion.zsh"
 source "$ZSH_TIM_DIR/theme.zsh"
-source "$ZSH_TIM_DIR/path.zsh"
 source "$ZSH_TIM_DIR/alias.zsh"
 
 # Load all of the oh-my-zsh libraries
