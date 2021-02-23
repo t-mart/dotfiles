@@ -23,6 +23,7 @@ source "$ZSH_TIM_DIR/path.zsh"
 source "$ZSH_TIM_DIR/completion.zsh"
 source "$ZSH_TIM_DIR/theme.zsh"
 source "$ZSH_TIM_DIR/alias.zsh"
+source "$ZSH_TIM_DIR/misc.zsh"
 
 # Load all of the oh-my-zsh libraries
 for lib_file ($ZSH_TIM_DIR/oh-my-zsh-lib/*.zsh); do
