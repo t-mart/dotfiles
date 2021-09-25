@@ -56,3 +56,6 @@
 
 [gpg]
   ; program = gpg1
+
+[init]
+  defaultBranch = master

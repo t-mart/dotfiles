@@ -1,7 +1,7 @@
 export ZSH_TIM_DIR="$HOME/.zsh-tim"
 
-# add a function path
-fpath=($ZSH_TIM_DIR/functions $ZSH_TIM_DIR/completions $fpath)
+# Uncomment to enable profiling (and see below too)
+zmodload zsh/zprof
 
 # Load all stock functions (from $fpath files) called below.
 autoload -U compaudit compinit
@@ -20,10 +20,13 @@ compinit -i -C -d "${ZSH_COMPDUMP}"
 source "$ZSH_TIM_DIR/env.zsh"
 source "$ZSH_TIM_DIR/zstyle.zsh"
 source "$ZSH_TIM_DIR/path.zsh"
-source "$ZSH_TIM_DIR/completion.zsh"
 source "$ZSH_TIM_DIR/theme.zsh"
 source "$ZSH_TIM_DIR/alias.zsh"
-source "$ZSH_TIM_DIR/misc.zsh"
+
+# Source all the tool setup files
+for tool_setup_file ($ZSH_TIM_DIR/tools/*.zsh); do
+    source $tool_setup_file
+done
 
 # Load all of the oh-my-zsh libraries
 for lib_file ($ZSH_TIM_DIR/oh-my-zsh-lib/*.zsh); do
@@ -34,3 +37,6 @@ done
 for plugin ($ZSH_TIM_DIR/oh-my-zsh-plugins/**/*.plugin.zsh); do
     source $plugin
 done
+
+# Uncomment to enable profiling (and see above too)
+zprof
