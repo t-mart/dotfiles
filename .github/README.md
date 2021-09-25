@@ -6,6 +6,7 @@ For posterity, some of that reference article will be repeated here.
 ## How it works
 
 The trick is that we:
+
 - treat our whole home directory as a repository (a bare one).
 - alias git with our shell to `dfconfig`. The alias also adds options to set where the bare
 repository lives (`$HOME/.dotfile_config`) and to set the work tree path to `$HOME`.
@@ -51,6 +52,8 @@ PRO TIP: If you are simply updating/deleting files git already knows about, use
 `git commit -a -m <message>` to commit only changed files (not untracked files)
 
 ## Starting from scratch
+
+*You won't need to run this unless you want to start a whole new repo! Just to remember...*
 
 ```zsh
 git init --bare $HOME/.dotfile_config
