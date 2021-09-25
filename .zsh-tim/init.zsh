@@ -1,7 +1,11 @@
 export ZSH_TIM_DIR="$HOME/.zsh-tim"
 
-# Uncomment to enable profiling (and see below too)
-zmodload zsh/zprof
+# Set to 1 to enable profiling
+ENABLE_ZSH_PROFILING=0
+# See https://stevenvanbael.com/profiling-zsh-startup for tutorial
+if [ "$ENABLE_ZSH_PROFILING" -eq 1 ]; then
+    zmodload zsh/zprof
+fi
 
 # Load all stock functions (from $fpath files) called below.
 autoload -U compaudit compinit
@@ -38,5 +42,6 @@ for plugin ($ZSH_TIM_DIR/oh-my-zsh-plugins/**/*.plugin.zsh); do
     source $plugin
 done
 
-# Uncomment to enable profiling (and see above too)
-zprof
+if [ "$ENABLE_ZSH_PROFILING" -eq 1 ]; then
+    zprof
+fi
