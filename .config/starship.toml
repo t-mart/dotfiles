@@ -1,0 +1,43 @@
+format = """$username@$hostname $time $git_branch$git_state$git_status
+$directory $character % """
+
+[username]
+style_user = "fg:#e377c2 bold"
+style_root = "fg:#d62728 bold"
+format = "[$user]($style)"
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "fg:#e377c2 bold"
+format =  "[$hostname]($style)"
+trim_at = ""
+
+[time]
+disabled = false
+format = "[$time]($style)"
+time_format = "%Y-%m-%dT%H:%M:%S%:z"
+style = "white bold"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "fg:#ff7f0e bold"
+
+[git_state]
+format = ':[$state]($style)'
+style = "fg:#ff7f0e bold"
+
+[git_status]
+format = ':[$all_status]($style)'
+style = "fg:#ff7f0e bold"
+
+[directory]
+format = '[$path]($style)'
+style = "fg:#1f77b4 bold underline"
+truncate_to_repo = false
+truncation_length = 0
+
+[character]
+success_symbol = "[↳[✓](fg:#2ca02c)](bold)"
+error_symbol = "[↳[✘](fg:#d62728)](bold)"
+format = '[$symbol]($style)'
