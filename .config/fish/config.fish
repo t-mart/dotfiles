@@ -109,8 +109,8 @@ end
 set -gx PYENV_ROOT $HOME/.pyenv
 if test -d $PYENV_ROOT
     fish_add_path $PYENV_ROOT/bin
-    status is-login; and pyenv init --path | source
-    status is-interactive; and pyenv init - | source
+    fish_add_path $PYENV_ROOT/shims
+    pyenv init - | source
 else
     set -ge PYENV_ROOT
 end
