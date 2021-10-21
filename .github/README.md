@@ -14,10 +14,7 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
 
 ## Installing onto a new system
 
-0. Install prerequisites
-
-    - git (need for dotfiles)
-    - zsh (needed for shell)
+0. Install git
 
 1. Clone and alias
 
