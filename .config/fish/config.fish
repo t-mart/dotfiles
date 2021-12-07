@@ -120,3 +120,11 @@ end
 if type -q pip
     pip completion --fish | source
 end
+
+# rust
+set -gx CARGO_HOME $HOME/.cargo
+if test -d $CARGO_HOME
+    fish_add_path $CARGO_HOME/bin
+else
+    set -ge CARGO_HOME
+end
