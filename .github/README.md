@@ -20,10 +20,25 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
 
     ```sh
     git clone --bare git@github.com:t-mart/dotfiles.git $HOME/.dotfile_config
+    ```
+
+    If on Linux-ish, do this:
+
+    ```sh
+    # LINUX ONLY
     alias dfgit='git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME'
     ```
 
-    (The alias command is in my shell startup files, so this is just a bootstrap until deployment.)
+    Or on Windows, do this:
+
+    ```powershell
+    # WINDOWS/POWERSHELL ONLY
+    function dfgit {
+        git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME $args
+    }
+    ```
+
+    (This alias/function is in shell startup files, so this is just a bootstrap until deployment.)
 
 2. Checkout out the dotfiles
 
@@ -44,12 +59,20 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
 
 Just treat the `dfgit` command like git and do your adds and commits like normal.
 
+```sh
+# examples
+dfgit add .config/foo
+dfgit commit -m "Add new config file foo"
+dfgit push
+```
+
 PRO TIP: If you are simply updating/deleting files git already knows about, use
 `git commit -a -m <message>` to commit only changed files (not untracked files)
 
 ## Starting from scratch
 
-*You won't need to run this unless you want to start a whole new repo! Just to remember...*
+*You won't need to run this unless you want to start a whole new repo! This is just to record how
+this method is initialized.*
 
 ```zsh
 git init --bare $HOME/.dotfile_config
