@@ -12,5 +12,5 @@
 .vscode
 .venv
 
-# for my dotfile configuration
+# for my deployed bare repo
 .dotfile_config
