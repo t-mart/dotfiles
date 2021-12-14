@@ -5,8 +5,8 @@ These are my dotfiles.
 ## System deployment concepts
 
 - Treat our whole home directory as a repository (a bare one).
-- Alias git with our shell to `dfgit`. The alias also adds options to set where the bare
-repository lives (`$HOME/.dotfile_config`) and to set the work tree path to `$HOME`.
+- Alias git with our shell to `dfgit`. The alias also sets where the bare repository lives
+(`$HOME/.dotfile_config`) and the work tree path to `$HOME`.
 - Finally, for quality of life, we configure the repository to not show untracked files, which are
 the majority of files that exist in a home directory. We only care about a specific few.
 
@@ -16,11 +16,13 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
 
 0. Install git
 
-1. Clone and alias
+1. Clone
 
     ```sh
     git clone --bare git@github.com:t-mart/dotfiles.git $HOME/.dotfile_config
     ```
+
+2. Bootstrap `dfgit`
 
     If on Linux-ish, do this:
 
@@ -38,18 +40,22 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     }
     ```
 
-    (This alias/function is in shell startup files, so this is just a bootstrap until deployment.)
+    (This alias/function is in shell startup files, so this is just a bootstrap
+    for this session.)
 
-2. Checkout out the dotfiles
+3. Checkout out the dotfiles
 
     ```sh
     dfgit checkout
     ```
 
-    The step above might fail because the checkout might overwrite some existing files. Delete these
-    or back them up somewhere. Rerun the command until it succeeds.
+    **This step might fail** because the checkout might doesn't want to overwrite files that already
+    exist. So, delete the ones listed or back them up somewhere. Rerun the command until it
+    succeeds.
 
-3. Don't show untracked files
+4. Don't show untracked files
+
+    This ensures that `git status` doesn't show us a ton of files that we're not interested in.
 
     ```sh
     dfgit config --local status.showUntrackedFiles no
@@ -64,6 +70,7 @@ Just treat the `dfgit` command like git and do your adds and commits like normal
 dfgit add .config/foo
 dfgit commit -m "Add new config file foo"
 dfgit push
+dfgit pull
 ```
 
 PRO TIP: If you are simply updating/deleting files git already knows about, use
