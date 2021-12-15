@@ -4,11 +4,12 @@ These are my dotfiles.
 
 ## System deployment concepts
 
-- Treat our whole home directory as a repository (a bare one).
-- Alias git with our shell to `dfgit`. The alias also sets where the bare repository lives
-(`$HOME/.dotfile_config`) and the work tree path to `$HOME`.
-- Finally, for quality of life, we configure the repository to not show untracked files, which are
-the majority of files that exist in a home directory. We only care about a specific few.
+The basic idea is to:
+
+- Designate our whole home directory as a *bare* repository, which allows us to place the typical
+  `.git` directory in a custom spot (`$HOME/.dotfile_config`). Inside this bare repository, we
+  selectively choose which files are version-controlled and ignore those that are not.
+- Alias `dfgit` to a specially-flavored invocation of git that is aware of this bare repository.
 
 This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotfiles>.
 
@@ -24,24 +25,25 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
 
 2. Bootstrap `dfgit`
 
-    If on Linux-ish, do this:
+    We need to perform an initial checkout of this repository with a custom
+    invocation of git. This is just to bootstrap our current session. Later,
+    this alias/function will be present in our shell startup files.
 
-    ```sh
-    # LINUX ONLY
-    alias dfgit='git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME'
-    ```
+    - If on Linux-ish, do this:
 
-    Or on Windows, do this:
+        ```sh
+        # LINUX ONLY
+        alias dfgit='git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME'
+        ```
 
-    ```powershell
-    # WINDOWS/POWERSHELL ONLY
-    function dfgit {
-        git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME $args
-    }
-    ```
+    - Or on Windows, do this:
 
-    (This alias/function is in shell startup files, so this is just a bootstrap
-    for this session.)
+        ```powershell
+        # WINDOWS/POWERSHELL ONLY
+        function dfgit {
+            git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME $args
+        }
+        ```
 
 3. Checkout out the dotfiles
 
@@ -56,14 +58,38 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
 4. Don't show untracked files
 
     This ensures that `git status` doesn't show us a ton of files that we're not interested in.
+    (Conversely, you will not be notified of a new file that you may want to commit, so remember
+    to explicitly add them.)
 
     ```sh
     dfgit config --local status.showUntrackedFiles no
     ```
 
+5. (Windows only) Set up junctions
+
+    To sorta "symlink" some files on Windows, create Junctions. This shoe-horns some applications
+    into an XDG-like layout (i.e `~/.config`, etc).
+
+    ```powershell
+    # Get home
+    cd ~
+
+    # powershell configuration
+    New-Item -ItemType Junction -Path "Documents\PowerShell" -Value ".config\powershell\"
+
+    # scoop does portable installations that expect config somewhere relative to the
+    # executable. the following junctions place those configs in the right scoop location
+
+    # mpv.net configuration.
+    New-Item -ItemType Junction -Path "scoop\persist\mpv.net\portable_config" -Value ".config\mpv.net\"
+
+    # similar, but for mpv
+    New-Item -ItemType Junction -Path "scoop\persist\mpv\portable_config" -Value ".config\mpv\"
+    ```
+
 ## Changing dotfiles
 
-Just treat the `dfgit` command like git and do your adds and commits like normal.
+Just pretend that `dfgit` = `git`, and do your adds and commits like normal.
 
 ```sh
 # examples
