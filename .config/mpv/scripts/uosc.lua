@@ -647,6 +647,31 @@ function delete_file(file_path)
 	return mp.command_native({name = 'subprocess', args = args, playback_only = false, capture_stdout = true, capture_stderr = true})
 end
 
+-- https://stackoverflow.com/a/27028488/235992
+function dump(o)
+	if type(o) == 'table' then
+		 local s = '{ '
+		 for k,v in pairs(o) do
+				if type(k) ~= 'number' then k = '"'..k..'"' end
+				s = s .. '['..k..'] = ' .. dump(v) .. ','
+		 end
+		 return s .. '} '
+	else
+		 return tostring(o)
+	end
+end
+
+function log_command(command)
+	msg.info(dump(command))
+	-- msg.info(command, "args:", table.concat(command.args, " "))
+	if command.stdout ~= nil then
+		msg.info(command, "stdout:", command.stdout)
+	end
+	if command.stderr ~= nil then
+		msg.info(command, "stderr:", command.stderr)
+	end
+end
+
 -- Create a directory in the file's directory called 'mpv_moved', and move this file there.
 -- Good for like 'delete_file', but with a recycling bin.
 function move_file(file_path)
@@ -655,12 +680,14 @@ function move_file(file_path)
 	local mkdir_args = {'mkdir', '-p', move_root_path}
 	local move_args = {'mv', file_path, move_root_path}
 	if state.os == 'windows' then
-		mkdir_args = {'pwsh', '-Command', 'New-Item -Path ' .. move_root_path .. ' -ItemType directory -Force'}
-		move_args = {'pwsh', '-Command', 'Move-Item -Path ' .. file_path .. ' -Destination ' .. move_root_path}
+		mkdir_args = {'pwsh', '-Command', 'New-Item -Path \'' .. move_root_path:gsub("'", "''") .. '\' -ItemType directory -Force'}
+		move_args = {'pwsh', '-Command', 'Move-Item -LiteralPath \'' .. file_path:gsub("'", "''") .. '\' -Destination \'' .. move_root_path:gsub("'", "''") .. '\''}
 	end
 
 	local mkdir = mp.command_native({name = 'subprocess', args = mkdir_args, playback_only = false, capture_stdout = true, capture_stderr = true})
+	msg.info(dump(mkdir))
 	local move = mp.command_native({name = 'subprocess', args = move_args, playback_only = false, capture_stdout = true, capture_stderr = true})
+	msg.info(dump(move))
 
 	return move
 end
@@ -3433,6 +3460,12 @@ end)
 mp.add_key_binding(nil, 'first-file', function() load_file_in_current_directory(1) end)
 mp.add_key_binding(nil, 'last-file', function() load_file_in_current_directory(-1) end)
 
+-- Return a function that:
+-- - Removes current file from playlist (if playlist exists),
+-- - Plays next file or stop player
+-- - Then, calls operation_fn
+-- This function is designed to permit destructive operations on the current file, such as deleting
+-- or moving.
 function create_file_next_fn(operation_fn)
 	return function ()
 		local playlist_count = mp.get_property_native('playlist-count')
