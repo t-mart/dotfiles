@@ -642,9 +642,41 @@ end
 
 -- Can't use `os.remove()` as it fails on paths with unicode characters.
 -- Returns `result, error`, result is table of `status:number(<0=error), stdout, stderr, error_string, killed_by_us:boolean`
-function move_file(file_path)
+function delete_file(file_path)
 	local args = state.os == 'windows' and {'cmd', '/C', 'del', file_path} or {'rm', file_path}
 	return mp.command_native({name = 'subprocess', args = args, playback_only = false, capture_stdout = true, capture_stderr = true})
+end
+
+function dump(o)
+	if type(o) == 'table' then
+		 local s = '{ '
+		 for k,v in pairs(o) do
+				if type(k) ~= 'number' then k = '"'..k..'"' end
+				s = s .. '['..k..'] = ' .. dump(v) .. ','
+		 end
+		 return s .. '} '
+	else
+		 return tostring(o)
+	end
+end
+
+function move_file(file_path)
+	local move_root_path = serialize_path(file_path).dirname .. (state.os == 'windows' and '\\' or '/') .. "mpv_moved"
+	print("move_root_path: ", dump(move_root_path))
+
+	local mkdir_args = {'mkdir', '-p', move_root_path}
+	local move_args = {'mv', file_path, move_root_path}
+	if state.os == 'windows' then
+		mkdir_args = {'pwsh', '-Command', 'New-Item -Path ' .. move_root_path .. ' -ItemType directory -Force'}
+		move_args = {'pwsh', '-Command', 'Move-Item -Path ' .. file_path .. ' -Destination ' .. move_root_path}
+	end
+
+	local mkdir = mp.command_native({name = 'subprocess', args = mkdir_args, playback_only = false, capture_stdout = true, capture_stderr = true})
+	local move = mp.command_native({name = 'subprocess', args = move_args, playback_only = false, capture_stdout = true, capture_stderr = true})
+	print("mkdir: ", dump(mkdir))
+	print("move: ", dump(move))
+
+	return move
 end
 
 -- Ensures chapters are in chronological order
@@ -3414,40 +3446,46 @@ mp.add_key_binding(nil, 'last', function()
 end)
 mp.add_key_binding(nil, 'first-file', function() load_file_in_current_directory(1) end)
 mp.add_key_binding(nil, 'last-file', function() load_file_in_current_directory(-1) end)
-mp.add_key_binding(nil, 'delete-file-next', function()
-	local playlist_count = mp.get_property_native('playlist-count')
 
-	if playlist_count > 1 then
-		mp.commandv('playlist-remove', 'current')
-	end
+function create_file_next_fn(operation_fn)
+	return function ()
+		local playlist_count = mp.get_property_native('playlist-count')
 
-	local next_file = nil
-
-	local path = mp.get_property_native('path')
-	local is_local_file = path and not is_protocol(path)
-
-	if is_local_file then
-		path = normalize_path(path)
-
-		next_file = get_adjacent_file(path, 'forward', options.media_types)
-
-		if menu:is_open('open-file') then
-			elements.menu:delete_value(path)
+		if playlist_count > 1 then
+			mp.commandv('playlist-remove', 'current')
 		end
-	end
 
-	if next_file then
-		mp.commandv('loadfile', next_file)
-	else
-		mp.commandv('stop')
-	end
+		local next_file = nil
 
-	if is_local_file then move_file(path) end
-end)
+		local path = mp.get_property_native('path')
+		local is_local_file = path and not is_protocol(path)
+
+		if is_local_file then
+			path = normalize_path(path)
+
+			next_file = get_adjacent_file(path, 'forward', options.media_types)
+
+			if menu:is_open('open-file') then
+				elements.menu:delete_value(path)
+			end
+		end
+
+		if next_file then
+			mp.commandv('loadfile', next_file)
+		else
+			mp.commandv('stop')
+		end
+
+		if is_local_file then operation_fn(path) end
+	end
+end
+
+mp.add_key_binding(nil, 'delete-file-next', create_file_next_fn(delete_file))
+mp.add_key_binding(nil, 'move-file-next', create_file_next_fn(move_file))
 mp.add_key_binding(nil, 'delete-file-quit', function()
 	local path = mp.get_property_native('path')
 	mp.command('stop')
-	if path and not is_protocol(path) then move_file(normalize_path(path)) end
+	if path and not is_protocol(path) then delete_file(normalize_path(path)) end
 	mp.command('quit')
 end)
 mp.add_key_binding(nil, 'open-config-directory', function()
