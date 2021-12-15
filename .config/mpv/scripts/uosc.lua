@@ -647,22 +647,10 @@ function delete_file(file_path)
 	return mp.command_native({name = 'subprocess', args = args, playback_only = false, capture_stdout = true, capture_stderr = true})
 end
 
-function dump(o)
-	if type(o) == 'table' then
-		 local s = '{ '
-		 for k,v in pairs(o) do
-				if type(k) ~= 'number' then k = '"'..k..'"' end
-				s = s .. '['..k..'] = ' .. dump(v) .. ','
-		 end
-		 return s .. '} '
-	else
-		 return tostring(o)
-	end
-end
-
+-- Create a directory in the file's directory called 'mpv_moved', and move this file there.
+-- Good for like 'delete_file', but with a recycling bin.
 function move_file(file_path)
 	local move_root_path = serialize_path(file_path).dirname .. (state.os == 'windows' and '\\' or '/') .. "mpv_moved"
-	print("move_root_path: ", dump(move_root_path))
 
 	local mkdir_args = {'mkdir', '-p', move_root_path}
 	local move_args = {'mv', file_path, move_root_path}
@@ -673,8 +661,6 @@ function move_file(file_path)
 
 	local mkdir = mp.command_native({name = 'subprocess', args = mkdir_args, playback_only = false, capture_stdout = true, capture_stderr = true})
 	local move = mp.command_native({name = 'subprocess', args = move_args, playback_only = false, capture_stdout = true, capture_stderr = true})
-	print("mkdir: ", dump(mkdir))
-	print("move: ", dump(move))
 
 	return move
 end
