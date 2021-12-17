@@ -1,3 +1,11 @@
+-- sleeptimer
+-- ----------
+-- Registers the "cycle-sleep-timer" function to set (and unset) a sleep timer for a number of
+-- seconds. After this number of seconds has elapsed, MPV will exit.
+--
+-- Only one sleep timer will be active at a time. If one is set, it's duration may be queried with
+-- the "show-sleep-timer" function.
+
 -- TODO: option for stop vs exit
 -- TODO configurable seconds
 

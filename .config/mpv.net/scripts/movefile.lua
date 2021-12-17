@@ -1,3 +1,14 @@
+-- movefile
+-- --------
+-- Registers a function "move-file-next" that will move the currently playing file to a special
+-- directory after skipping past it in the playlist (or stopping if there is no playlist). The
+-- directory will exist in the same parent directory as the file and will be named "mpv_movefile".
+-- If this directory does not exist, it will be created.
+--
+-- The goal of this script is to designate files for deletion (or some other treatment) after
+-- reviewing them in MPV.  Deletion is forever, so we just place them in a nearby directory for a
+-- final chance.
+
 -- TODO configurable directory name (ensure safe name? or at least fails with decent error)
 
 local utils = require('mp.utils')
@@ -29,13 +40,6 @@ local function run_pwsh_command(command_str)
     })
 end
 
--- For the currently playing file, play the file after it and move the file to a special directory.
--- The name of the directory is "mpv_movefile". It will be created in the same directory as the file
--- if it does not exist.
---
--- The goal of this function is to designate files for deletion (or some other treatment) after
--- reviewing them. Deletion is forever, so we just place them in a nearby directory for a final
--- chance.
 local function move_file_next()
     local file_path = mp.get_property_native('path')
 
