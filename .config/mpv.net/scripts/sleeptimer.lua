@@ -1,10 +1,17 @@
 -- sleeptimer
 -- ----------
--- Registers the "cycle-sleep-timer" function to set (and unset) a sleep timer for a number of
--- seconds. After this number of seconds has elapsed, MPV will exit.
+-- Registers the "cycle-sleep-timer" function to set a sleep timer for a preset duration of time.
+-- This time will be shown as a message on the OSD. Subsequent invocations of the function will
+-- reset the timer and cycle to another larger preset  duration. (Only one sleep timer will be
+-- active at a time.)
 --
--- Only one sleep timer will be active at a time. If one is set, it's duration may be queried with
--- the "show-sleep-timer" function.
+-- When the duration elapses, MPV will stop.
+--
+-- To disable the sleep timer after it has been set, continue invoking the function until it reaches
+-- the "unset" state.
+--
+-- If a sleep timer is set, it's remaining duration may be queried with the "show-sleep-timer"
+-- function, which will show it on the OSD.
 
 -- TODO: option for stop vs exit
 -- TODO configurable seconds

@@ -5,9 +5,8 @@
 -- directory will exist in the same parent directory as the file and will be named "mpv_movefile".
 -- If this directory does not exist, it will be created.
 --
--- The goal of this script is to designate files for deletion (or some other treatment) after
--- reviewing them in MPV.  Deletion is forever, so we just place them in a nearby directory for a
--- final chance.
+-- The goal of this script is to separate away certain files (for deletion, for keeping, for
+-- whatever) to a common directory after reviewing them in MPV.
 
 -- TODO configurable directory name (ensure safe name? or at least fails with decent error)
 
