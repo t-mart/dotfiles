@@ -1,3 +1,5 @@
+-- TODO configurable directory name (ensure safe name? or at least fails with decent error)
+
 local utils = require('mp.utils')
 local msg = require('mp.msg')
 
