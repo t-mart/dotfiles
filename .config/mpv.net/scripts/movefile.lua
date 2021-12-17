@@ -4,22 +4,6 @@ local msg = require('mp.msg')
 -- Check if path is a protocol, such as `http://...`
 local function is_protocol(path) return path:match('^%a[%a%d-_]+://') end
 
--- Dump a lua object to a string. recurses through tables
--- for debugging during development
--- https://stackoverflow.com/a/27028488/235992
-function dump(o)
-    if type(o) == 'table' then
-        local s = '{ '
-        for k, v in pairs(o) do
-            if type(k) ~= 'number' then k = '"' .. k .. '"' end
-            s = s .. '[' .. k .. '] = ' .. dump(v) .. ','
-        end
-        return s .. '} '
-    else
-        return tostring(o)
-    end
-end
-
 -- remove the currently playing file from the playlist, or stop the player. this frees the
 -- filesystem to do some destructive operation (e.g. moving) on the file.
 local function playlist_remove_or_stop()
@@ -72,6 +56,9 @@ local function move_file_next()
     run_pwsh_command('Move-Item -LiteralPath \'' .. file_path:gsub("'", "''") ..
                          '\' -Destination \'' ..
                          move_to_dir_path:gsub("'", "''") .. '\'')
+
+
+    mp.osd_message("Moved file")
 end
 
 -- make the function available for use.
