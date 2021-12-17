@@ -74,16 +74,16 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     # Get home
     cd ~
 
-    # powershell configuration
+    # powershell
     New-Item -ItemType Junction -Path "Documents\PowerShell" -Value ".config\powershell\"
 
+    # streamlink
+    New-Item -ItemType Junction -Path "AppData\Roaming\streamlink" -Value ".config\streamlink\"
+
+    # scoop
     # scoop does portable installations that expect config somewhere relative to the
     # executable. the following junctions place those configs in the right scoop location
-
-    # mpv.net configuration.
     New-Item -ItemType Junction -Path "scoop\persist\mpv.net\portable_config" -Value ".config\mpv.net\"
-
-    # similar, but for mpv
     New-Item -ItemType Junction -Path "scoop\persist\mpv\portable_config" -Value ".config\mpv\"
     ```
 
