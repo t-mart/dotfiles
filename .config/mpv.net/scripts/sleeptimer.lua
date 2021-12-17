@@ -18,7 +18,6 @@
 
 local durations = {
     0, -- not set. keep this, important for being to disable
-    5, -- 5 seconds
     60, -- 1 minute
     5 * 60, -- 5 minutes
     15 * 60, -- 15 minutes
@@ -41,7 +40,7 @@ local function humanize_duration(seconds)
     units = {}
     if hours > 0 then table.insert(units, string.format("%dh", hours)) end
     if minutes > 0 then table.insert(units, string.format("%dm", minutes)) end
-    if seconds > 0 then table.insert(units, string.format("%.2fs", seconds)) end
+    if seconds > 0 then table.insert(units, string.format("%.0fs", seconds)) end
 
     return table.concat(units, " ")
 end
@@ -80,7 +79,7 @@ local function show_sleep_timer()
 
     local diff = timer_expire - mp.get_time()
 
-    mp.osd_message("Will sleep in " .. humanize_duration(diff))
+    mp.osd_message("Will sleep in " .. humanize_duration(math.floor(diff)))
 end
 
 -- make the functions available for use.
