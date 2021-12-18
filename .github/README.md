@@ -80,6 +80,9 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     # streamlink
     New-Item -ItemType Junction -Path "AppData\Roaming\streamlink" -Value ".config\streamlink\"
 
+    # flameshot
+    New-Item -ItemType Junction -Path "AppData\Roaming\flameshot" -Value ".config\flameshot\"
+
     # scoop
     # scoop does portable installations that expect config somewhere relative to the
     # executable. the following junctions place those configs in the right scoop location
