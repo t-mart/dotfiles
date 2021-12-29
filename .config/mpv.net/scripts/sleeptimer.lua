@@ -5,7 +5,7 @@
 -- reset the timer and cycle to another larger preset  duration. (Only one sleep timer will be
 -- active at a time.)
 --
--- When the duration elapses, MPV will stop.
+-- When the duration elapses, MPV will quit-watch-later.
 --
 -- To disable the sleep timer after it has been set, continue invoking the function until it reaches
 -- the "unset" state.
@@ -13,8 +13,8 @@
 -- If a sleep timer is set, it's remaining duration may be queried with the "show-sleep-timer"
 -- function, which will show it on the OSD.
 
--- TODO: option for stop vs exit
--- TODO configurable seconds
+-- TODO: option for stop vs quit vs quit-watch-later
+-- TODO: configurable seconds
 
 local durations = {
     0, -- not set. keep this, important for being to disable
@@ -63,7 +63,7 @@ local function cycle_sleep_timer()
     if timer ~= nil then timer:kill() end
 
     timer = mp.add_timeout(durations[duration_index],
-                           function() mp.command_native({name = "stop"}) end)
+                           function() mp.command_native({name = "quit-watch-later"}) end)
     timer_expire = mp.get_time() + durations[duration_index]
 
     mp.osd_message("Will sleep in " ..
