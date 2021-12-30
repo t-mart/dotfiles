@@ -68,6 +68,9 @@ set -gx EDITOR 'vim'
 # no prompt mucking for virtual envs
 set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
 
+# use this local manpath, plus anything from man-db
+set -gx MANPATH ".local/share/man:"
+
 ###############
 # Special Paths
 ###############
@@ -127,4 +130,11 @@ if test -d $CARGO_HOME
     fish_add_path $CARGO_HOME/bin
 else
     set -ge CARGO_HOME
+end
+
+# exa
+if type -q exa
+    function ls
+        exa $argv
+    end
 end
