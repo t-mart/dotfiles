@@ -83,6 +83,9 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     # flameshot
     New-Item -ItemType Junction -Path "AppData\Roaming\flameshot" -Value ".config\flameshot\"
 
+    # yt-dlp
+    New-Item -ItemType Junction -Path "AppData\Roaming\yt-dlp" -Value ".config\yt-dlp\"
+
     # scoop
     # scoop does portable installations that expect config somewhere relative to the
     # executable. the following junctions place those configs in the right scoop location
