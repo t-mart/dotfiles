@@ -86,6 +86,9 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     # yt-dlp
     New-Item -ItemType Junction -Path "AppData\Roaming\yt-dlp" -Value ".config\yt-dlp\"
 
+    # beets
+    New-Item -ItemType Junction -Path "AppData\Roaming\beets" -Value ".config\beets\"
+
     # scoop
     # scoop does portable installations that expect config somewhere relative to the
     # executable. the following junctions place those configs in the right scoop location

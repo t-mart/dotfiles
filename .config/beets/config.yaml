@@ -1,0 +1,14 @@
+directory: D:\Music
+
+# may have to make this parent dir if it does not exist?
+library: ~\.local\share\beets\library.db
+statefile: ~\.local\share\beets\state.pickle
+
+plugins: fetchart lastgenre fromfilename
+# make sure to install these dependencies for these plugins
+# - requests
+# - pylast
+# (can put them in the pipx venv)
+
+paths:
+    default: $albumartist/$album ($original_year)/$albumartist - $album - $track $title
