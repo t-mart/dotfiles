@@ -11,4 +11,4 @@ plugins: fetchart lastgenre fromfilename
 # (can put them in the pipx venv)
 
 paths:
-    default: $albumartist/$album ($original_year)/$albumartist - $album - $track $title
+    default: $albumartist/$album ($original_year)/$albumartist - $album - $track - $title
