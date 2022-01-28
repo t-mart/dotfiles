@@ -94,6 +94,7 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     # executable. the following junctions place those configs in the right scoop location
     New-Item -ItemType Junction -Path "scoop\persist\mpv.net\portable_config" -Value ".config\mpv.net\"
     New-Item -ItemType Junction -Path "scoop\persist\mpv\portable_config" -Value ".config\mpv\"
+    New-Item -ItemType Junction -Path "scoop\persist\jpegview" -Value ".config\jpegview\"
     ```
 
 ## Changing dotfiles
