@@ -59,3 +59,5 @@
 
 [init]
   defaultBranch = master
+[credential "helperselector"]
+	selected = store
