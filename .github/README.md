@@ -71,30 +71,32 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     into an XDG-like layout (i.e `~/.config`, etc).
 
     ```powershell
-    # Get home
-    cd ~
 
     # powershell
-    New-Item -ItemType Junction -Path "Documents\PowerShell" -Value ".config\powershell\"
+    New-Item -ItemType Junction -Path "$HOME\Documents\PowerShell" -Value "$HOME\.config\powershell\"
 
     # streamlink
-    New-Item -ItemType Junction -Path "AppData\Roaming\streamlink" -Value ".config\streamlink\"
+    New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\streamlink" -Value "$HOME\.config\streamlink\"
 
     # flameshot
-    New-Item -ItemType Junction -Path "AppData\Roaming\flameshot" -Value ".config\flameshot\"
+    New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\flameshot" -Value "$HOME\.config\flameshot\"
 
     # yt-dlp
-    New-Item -ItemType Junction -Path "AppData\Roaming\yt-dlp" -Value ".config\yt-dlp\"
+    New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\yt-dlp" -Value "$HOME\.config\yt-dlp\"
 
     # beets
-    New-Item -ItemType Junction -Path "AppData\Roaming\beets" -Value ".config\beets\"
+    New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\beets" -Value "$HOME\.config\beets\"
+
+    # nushell
+    New-Item "$HOME\AppData\Roaming\nushell\nu" -ItemType Directory -ea 0
+    New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\nushell\nu\config" -Value "$HOME\.config\nu\"
 
     # scoop
     # scoop does portable installations that expect config somewhere relative to the
     # executable. the following junctions place those configs in the right scoop location
-    New-Item -ItemType Junction -Path "scoop\persist\mpv.net\portable_config" -Value ".config\mpv.net\"
-    New-Item -ItemType Junction -Path "scoop\persist\mpv\portable_config" -Value ".config\mpv\"
-    New-Item -ItemType Junction -Path "scoop\persist\jpegview" -Value ".config\jpegview\"
+    New-Item -ItemType Junction -Path "$HOME\scoop\persist\mpv.net\portable_config" -Value "$HOME\.config\mpv.net\"
+    New-Item -ItemType Junction -Path "$HOME\scoop\persist\mpv\portable_config" -Value "$HOME\.config\mpv\"
+    New-Item -ItemType Junction -Path "$HOME\scoop\persist\jpegview" -Value "$HOME\.config\jpegview\"
     ```
 
 ## Changing dotfiles
