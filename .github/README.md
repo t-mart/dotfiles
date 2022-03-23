@@ -2,62 +2,50 @@
 
 These are my dotfiles.
 
-## System deployment concepts
+## How it works
 
 The basic idea is to:
 
-- Designate our whole home directory as a *bare* repository, which allows us to place the typical
-  `.git` directory in a custom spot (`$HOME/.dotfile_config`). Inside this bare repository, we
-  selectively choose which files are version-controlled and ignore those that are not.
-- Alias `dfgit` to a specially-flavored invocation of git that is aware of this bare repository.
+- Use a *bare* repository, which lets us put the usual `.git` directory somewhere else. If we used a
+  *non-bare* repository, git would create `$HOME/.git`, which would cause any git command run in a
+  path under the home directory to erroneously believe it was in a repository (git commands traverse
+  the file path hierarchy to find this directory).
+- In our shell, alias `dfgit` to a specially-flavored invocation of git that is uses this bare
+  repository.
 
 This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotfiles>.
 
 ## Installing onto a new system
 
-0. Install git
+1. Install git (and private keys, etc)
 
-1. Clone
+2. Clone
 
     ```sh
-    git clone --bare git@github.com:t-mart/dotfiles.git $HOME/.dotfile_config
+    git clone --bare git@github.com:t-mart/dotfiles.git "$HOME/.dotfile_config"
     ```
-
-2. Bootstrap `dfgit`
-
-    We need to perform an initial checkout of this repository with a custom
-    invocation of git. This is just to bootstrap our current session. Later,
-    this alias/function will be present in our shell startup files.
-
-    - If on Linux-ish, do this:
-
-        ```sh
-        # LINUX ONLY
-        alias dfgit='git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME'
-        ```
-
-    - Or on Windows, do this:
-
-        ```powershell
-        # WINDOWS/POWERSHELL ONLY
-        function dfgit {
-            git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME $args
-        }
-        ```
 
 3. Checkout out the dotfiles
 
+    This gnarly command only needs to be used once on a fresh machine. After checkout, we'll use a
+    shell alias.
+
     ```sh
-    dfgit checkout
+    git --git-dir="$HOME/.dotfile_config/" --work-tree="$HOME" checkout
     ```
 
     **This step might fail** because the checkout might doesn't want to overwrite files that already
     exist. So, delete the ones listed or back them up somewhere. Rerun the command until it
     succeeds.
 
-4. Don't show untracked files
+4. Create a new shell
 
-    This ensures that `git status` doesn't show us a ton of files that we're not interested in.
+    So that way, the dotfiles take effect and load the `dfgit` alias of our various shells. `dfgit`
+    can now be used for all interactions with the dotfile repository.
+
+5. Hide untracked files
+
+    This ensures that `dfgit status` doesn't show us a ton of files that we're not interested in.
     (Conversely, you will not be notified of a new file that you may want to commit, so remember
     to explicitly add them.)
 
@@ -65,10 +53,10 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     dfgit config --local status.showUntrackedFiles no
     ```
 
-5. (Windows only) Set up junctions
+6. (Windows only) Set up junctions
 
-    To sorta "symlink" some files on Windows, create Junctions. This shoe-horns some applications
-    into an XDG-like layout (i.e `~/.config`, etc).
+    To sorta "symlink" some files on Windows, create the following junctions. This shoe-horns some
+    applications into an XDG-like layout (i.e `~/.config`, etc).
 
     ```powershell
 
@@ -88,8 +76,7 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\beets" -Value "$HOME\.config\beets\"
 
     # nushell
-    New-Item "$HOME\AppData\Roaming\nushell\nu" -ItemType Directory -ea 0
-    New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\nushell\nu\config" -Value "$HOME\.config\nu\"
+    New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\nushell\" -Value "$HOME\.config\nushell\"
 
     # scoop
     # scoop does portable installations that expect config somewhere relative to the
@@ -99,28 +86,42 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     New-Item -ItemType Junction -Path "$HOME\scoop\persist\jpegview" -Value "$HOME\.config\jpegview\"
     ```
 
-## Changing dotfiles
+    (This method could hypothetically be used on any platform to fix inconvenient config locations.)
 
-Just pretend that `dfgit` = `git`, and do your adds and commits like normal.
+## Adding/commiting/pushing/pulling/etc
+
+Just pretend that `dfgit` = `git`, and interact like normal.
 
 ```sh
 # examples
 dfgit add .config/foo
-dfgit commit -m "Add new config file foo"
+dfgit commit -m "Add foo"
 dfgit push
 dfgit pull
 ```
 
 PRO TIP: If you are simply updating/deleting files git already knows about, use
-`git commit -a -m <message>` to commit only changed files (not untracked files)
+`dfgit commit -a -m <message>` to commit only changed files (not untracked files)
+
+## Aliases for new shell configs
+
+If configuring a new shell, an alias/mapping/function/etc should be configured so that running:
+
+```sh
+dfgit <...other args>
+```
+
+is the same as
+
+```sh
+git --git-dir="$HOME/.dotfile_config/" --work-tree="$HOME" <...other args>
+```
 
 ## Starting from scratch
 
 *You won't need to run this unless you want to start a whole new repo! This is just to record how
 this method is initialized.*
 
-```zsh
-git init --bare $HOME/.dotfile_config
-alias dfgit='git --git-dir=$HOME/.dotfile_config/ --work-tree=$HOME'
-dfgit config --local status.showUntrackedFiles no
+```sh
+git init --bare "$HOME/.dotfile_config"
 ```
