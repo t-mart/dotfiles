@@ -78,6 +78,9 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     # nushell
     New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\nushell\" -Value "$HOME\.config\nushell\"
 
+    # aria2
+    New-Item -ItemType Junction -Path "$HOME\.aria2" -Value "$HOME\.config\aria2\"
+
     # scoop
     # scoop does portable installations that expect config somewhere relative to the
     # executable. the following junctions place those configs in the right scoop location
