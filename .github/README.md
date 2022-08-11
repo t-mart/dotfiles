@@ -38,22 +38,7 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     exist. So, delete the ones listed or back them up somewhere. Rerun the command until it
     succeeds.
 
-4. Create a new shell
-
-    So that way, the dotfiles take effect and load the `dfgit` alias of our various shells. `dfgit`
-    can now be used for all interactions with the dotfile repository.
-
-5. Hide untracked files
-
-    This ensures that `dfgit status` doesn't show us a ton of files that we're not interested in.
-    (Conversely, you will not be notified of a new file that you may want to commit, so remember
-    to explicitly add them.)
-
-    ```sh
-    dfgit config --local status.showUntrackedFiles no
-    ```
-
-6. (Windows only) Set up junctions
+4. (Windows only) Set up junctions
 
     To sorta "symlink" some files on Windows, create the following junctions. This shoe-horns some
     applications into an XDG-like layout (i.e `~/.config`, etc).
@@ -90,6 +75,21 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
     ```
 
     (This method could hypothetically be used on any platform to fix inconvenient config locations.)
+
+5. Create a new shell
+
+    So that way, the dotfiles take effect and load the `dfgit` alias of our various shells. `dfgit`
+    can now be used for all interactions with the dotfile repository.
+
+6. Hide untracked files
+
+    This ensures that `dfgit status` doesn't show us a ton of files that we're not interested in.
+    (Conversely, you will not be notified of a new file that you may want to commit, so remember
+    to explicitly add them.)
+
+    ```sh
+    dfgit config --local status.showUntrackedFiles no
+    ```
 
 ## Adding/commiting/pushing/pulling/etc
 
