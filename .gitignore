@@ -1,5 +1,5 @@
-# This is not my user-level ignore file. This is for the bare-repo
-# checkout that I use to manage my dotfiles.
+# This is not my user-level ignore file. This is for my dotfiles repository
 #
-# The actual ignore file is in ~/.config/git/ignore
+# The user-level ignore file is in ~/.config/git/ignore
 .dotfile_config
+.config/nushell/history.txt
