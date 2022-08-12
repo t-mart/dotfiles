@@ -1,0 +1,6 @@
+cd
+ls
+cd
+cd code\
+ls
+pnpm --version
