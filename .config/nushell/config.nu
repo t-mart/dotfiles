@@ -502,3 +502,18 @@ let-env config = {
     }
   ]
 }
+
+# Manage the dotfiles git repository, just like the normal git command
+alias dfgit = git --git-dir ~\.dotfile_config\ --work-tree ~
+
+# Downloads a Youtube Music playlist file and imports it into my beets collection
+# (The beet import will ask for musicbrainz album id for metadata lookup)
+def yt-beet-import [
+  playlist-url: string      # The URL of the Youtube Music playlist
+] {
+  let download-dir = "yt-beet-import-tmp-" + (date format %s%.f)
+  mkdir $download-dir
+  yt-dlp --output $"($download-dir)/%\(playlist)s/%\(title)s.%\(ext)s" --extract-audio --format "bestaudio*[acodec=opus]/bestaudio*" $playlist-url
+  beet import $download-dir
+  rm --recursive $download-dir
+}
