@@ -38,6 +38,6 @@ truncate_to_repo = false
 truncation_length = 0
 
 [character]
-success_symbol = "[↳[✓](fg:#2ca02c)](bold)"
-error_symbol = "[↳[✘](fg:#d62728)](bold)"
+success_symbol = "[[✓](fg:#2ca02c)](bold)"
+error_symbol = "[[✘](fg:#d62728)](bold)"
 format = '[$symbol]($style)'
