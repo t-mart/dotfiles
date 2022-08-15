@@ -3,3 +3,4 @@
 # The user-level ignore file is in ~/.config/git/ignore
 .dotfile_config
 .config/nushell/history.txt
+.config/git/windows

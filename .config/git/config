@@ -1,6 +1,7 @@
 [user]
   name = Tim Martin
   email = tim@timmart.in
+  signingkey = 19A52622B91D5DE3
 
 [color]
   ui = auto
@@ -51,13 +52,37 @@
 [diff]
   compactionHeuristic = true
 
-[commit]
-  ; gpgSign = true
-
-[gpg]
-  ; program = gpg1
-
 [init]
   defaultBranch = master
-[credential "helperselector"]
-	selected = store
+
+[commit]
+  gpgSign = true
+
+[tag]
+  gpgSign = true
+
+[push]
+  gpgSign = if-asked
+
+[include]
+  ; Include another file, it it exists. If it does not exist, git fortunately
+  ; does not complain. Tested on git version 2.37.1.
+  ;
+  ; We use this for "platform specific" configuration. Really, it's
+  ; just based off of file existence, but that'll do. And, by the way, the
+  ; builtin "includeif" mechanism is too limited because it only offers
+  ; per-repo predicates.
+  ;
+  ; For now, we use this to set gpg.program on Windows, where the default
+  ; does not work well (perhaps because windows executables have .exe
+  ; suffixes). Other platforms do not need this setting.
+  ;
+  ; The format for this file should be like:
+  ;
+  ; [gpg]
+  ;   program = C:/Users/tim/scoop/apps/gpg/current/bin/gpg.exe
+  ;
+  ; This file should _not_ be commited to the dotfile repository because, then,
+  ; every dotfile installation would get it -- indeed, we have .gitignore-d it.
+  ; Therefore, it must be manually (unfortunately) created when needed.
+  path = ~/.config/git/windows
