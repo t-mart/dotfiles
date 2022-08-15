@@ -37,10 +37,15 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
    **This step might fail** because the checkout might doesn't want to overwrite files that already
    exist. So, delete the ones listed or back them up somewhere. Rerun the command until it succeeds.
 
-4. (Windows only) Set up junctions
+4. Windows-specific setup
 
-   To sorta "symlink" some files on Windows, create the following junctions. This shoe-horns some
-   applications into an XDG-like layout (i.e `~/.config`, etc).
+   Some stuff that windows in particular needs:
+
+   - Junction (like symlink) some files.This shoe-horns some applications into an XDG-like layout
+     (i.e `~/.config`, etc).
+   - Create the Windows-specific git config file
+
+   To do all that, run the following in powershell:
 
    ```powershell
 
@@ -81,6 +86,9 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
    # to
    #   StoreToEXEPath=false
    New-Item -ItemType Junction -Path "$env:APPDATA\jpegview" -Value "$HOME\.config\jpegview\"
+
+   # GPG program setting. Obviously, make sure to install gpg (with scoop) too.
+   "[gpg]`n  program = C:/Users/tim/scoop/apps/gpg/current/bin/gpg.exe`n" | Out-File -FilePath "$HOME\.config\git\windows"
    ```
 
    (This method could hypothetically be used on any platform to fix inconvenient config locations.)
