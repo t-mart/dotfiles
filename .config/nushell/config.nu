@@ -233,13 +233,14 @@ let light_theme = {
 
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
+  show_banner: false
   filesize_metric: false
   table_mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
   use_ls_colors: true
   rm_always_trash: false
   color_config: $dark_theme   # if you want a light theme, replace `$dark_theme` to `$light_theme`
   use_grid_icons: true
-  footer_mode: "25" # always, never, number_of_rows, auto
+  footer_mode: "never" # always, never, number_of_rows, auto
   quick_completions: true  # set this to false to prevent auto-selecting completions when only one remains
   partial_completions: true  # set this to false to prevent partial filling of the prompt
   completion_algorithm: "prefix"  # prefix, fuzzy
@@ -509,11 +510,11 @@ alias dfgit = git --git-dir ~\.dotfile_config\ --work-tree ~
 # Downloads a Youtube Music playlist file and imports it into my beets collection
 # (The beet import will ask for musicbrainz album id for metadata lookup)
 def yt-beet-import [
-  playlist-url: string      # The URL of the Youtube Music playlist
+  playlist_url: string      # The URL of the Youtube Music playlist
 ] {
-  let download-dir = "yt-beet-import-tmp-" + (date format %s%.f)
-  mkdir $download-dir
-  yt-dlp --output $"($download-dir)/%\(playlist)s/%\(title)s.%\(ext)s" --extract-audio --format "bestaudio*[acodec=opus]/bestaudio*" $playlist-url
-  beet import $download-dir
-  rm --recursive $download-dir
+  let download_dir = "yt-beet-import-tmp-" + (date format %s%.f)
+  mkdir $download_dir
+  yt-dlp --output $"($download_dir)/%\(playlist)s/%\(title)s.%\(ext)s" --extract-audio --format "bestaudio*[acodec=opus]/bestaudio*" $playlist_url
+  beet import $download_dir
+  rm --recursive $download_dir
 }
