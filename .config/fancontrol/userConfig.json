@@ -1,0 +1,294 @@
+{
+  "Main": {
+    "Controls": [
+      {
+        "Enable": true,
+        "Identifier": "/lpc/nct6793d/control/1",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MatchingFanSensor": {
+          "Identifier": "/lpc/nct6793d/fan/1",
+          "IsHidden": true,
+          "Name": "Fan #2",
+          "NickName": "Fan #2"
+        },
+        "Name": "Fan Control #2",
+        "NickName": "CPU",
+        "SelectedCommandStepDown": 8.0,
+        "SelectedCommandStepUp": 8.0,
+        "SelectedFanCurve": {
+          "Deadband": 3.0,
+          "IdleTemperature": 35.0,
+          "LoadTemperature": 70.0,
+          "MaxFanSpeed": 80,
+          "MinFanSpeed": 30,
+          "Name": "Auto CPU",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "/intelcpu/0/temperature/9",
+            "IsHidden": false,
+            "Name": "Core Max",
+            "NickName": "Core Max"
+          },
+          "Step": 2.0
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Enable": true,
+        "Identifier": "NVApiWrapper/256/control/0",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MatchingFanSensor": {
+          "Identifier": "NVApiWrapper/256/fan/0",
+          "IsHidden": true,
+          "Name": "Fan 1 - NVIDIA GeForce GTX 1080",
+          "NickName": "Fan 1 - NVIDIA GeForce GTX 1080"
+        },
+        "Name": "Control 1 - NVIDIA GeForce GTX 1080",
+        "NickName": "NVIDIA GeForce GTX 1080",
+        "SelectedCommandStepDown": 8.0,
+        "SelectedCommandStepUp": 8.0,
+        "SelectedFanCurve": {
+          "Deadband": 3.0,
+          "IdleTemperature": 35.0,
+          "LoadTemperature": 70.0,
+          "MaxFanSpeed": 80,
+          "MinFanSpeed": 50,
+          "Name": "Auto GPU",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "NVApiWrapper/256/sensor/0",
+            "IsHidden": false,
+            "Name": "GPU",
+            "NickName": "GPU"
+          },
+          "Step": 2.0
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 9,
+        "SelectedStop": 0
+      },
+      {
+        "Enable": true,
+        "Identifier": "/lpc/nct6793d/control/0",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MatchingFanSensor": {
+          "Identifier": "/lpc/nct6793d/fan/0",
+          "IsHidden": true,
+          "Name": "Fan #1",
+          "NickName": "Fan #1"
+        },
+        "Name": "Fan Control #1",
+        "NickName": "Back",
+        "SelectedCommandStepDown": 8.0,
+        "SelectedCommandStepUp": 8.0,
+        "SelectedFanCurve": {
+          "Name": "Flat",
+          "Percent": 40
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 45,
+        "SelectedStop": 28
+      },
+      {
+        "Enable": true,
+        "Identifier": "/lpc/nct6793d/control/2",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MatchingFanSensor": {
+          "Identifier": "/lpc/nct6793d/fan/2",
+          "IsHidden": true,
+          "Name": "Fan #3",
+          "NickName": "Fan #3"
+        },
+        "Name": "Fan Control #3",
+        "NickName": "Bottom",
+        "SelectedCommandStepDown": 8.0,
+        "SelectedCommandStepUp": 8.0,
+        "SelectedFanCurve": {
+          "Name": "Flat",
+          "Percent": 40
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 54,
+        "SelectedStop": 25
+      },
+      {
+        "Enable": true,
+        "Identifier": "/lpc/nct6793d/control/5",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 37,
+        "MatchingFanSensor": {
+          "Identifier": "/lpc/nct6793d/fan/5",
+          "IsHidden": true,
+          "Name": "Fan #6",
+          "NickName": "Fan #6"
+        },
+        "Name": "Fan Control #6",
+        "NickName": "Left",
+        "SelectedCommandStepDown": 8.0,
+        "SelectedCommandStepUp": 8.0,
+        "SelectedFanCurve": {
+          "Name": "Flat",
+          "Percent": 40
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 45,
+        "SelectedStop": 28
+      },
+      {
+        "Enable": false,
+        "Identifier": "/lpc/nct6793d/control/3",
+        "IsHidden": true,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MatchingFanSensor": null,
+        "Name": "Fan Control #4",
+        "NickName": "Fan Control #4",
+        "SelectedCommandStepDown": 8.0,
+        "SelectedCommandStepUp": 8.0,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Enable": false,
+        "Identifier": "/lpc/nct6793d/control/4",
+        "IsHidden": true,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MatchingFanSensor": null,
+        "Name": "Fan Control #5",
+        "NickName": "Fan Control #5",
+        "SelectedCommandStepDown": 8.0,
+        "SelectedCommandStepUp": 8.0,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      }
+    ],
+    "CustomSensors": [],
+    "DisplayTrayIconTemperature": true,
+    "FanCurves": [
+      {
+        "Deadband": 3.0,
+        "IdleTemperature": 35.0,
+        "LoadTemperature": 70.0,
+        "MaxFanSpeed": 80,
+        "MinFanSpeed": 30,
+        "Name": "Auto CPU",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "/intelcpu/0/temperature/9",
+          "IsHidden": false,
+          "Name": "Core Max",
+          "NickName": "Core Max"
+        },
+        "Step": 2.0
+      },
+      {
+        "Deadband": 3.0,
+        "IdleTemperature": 35.0,
+        "LoadTemperature": 70.0,
+        "MaxFanSpeed": 80,
+        "MinFanSpeed": 50,
+        "Name": "Auto GPU",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "NVApiWrapper/256/sensor/0",
+          "IsHidden": false,
+          "Name": "GPU",
+          "NickName": "GPU"
+        },
+        "Step": 2.0
+      },
+      {
+        "Name": "Flat",
+        "Percent": 40
+      }
+    ],
+    "FanSensors": [
+      {
+        "Identifier": "/lpc/nct6793d/fan/0",
+        "IsHidden": true,
+        "Name": "Fan #1",
+        "NickName": "Fan #1"
+      },
+      {
+        "Identifier": "/lpc/nct6793d/fan/1",
+        "IsHidden": true,
+        "Name": "Fan #2",
+        "NickName": "Fan #2"
+      },
+      {
+        "Identifier": "/lpc/nct6793d/fan/2",
+        "IsHidden": true,
+        "Name": "Fan #3",
+        "NickName": "Fan #3"
+      },
+      {
+        "Identifier": "/lpc/nct6793d/fan/3",
+        "IsHidden": false,
+        "Name": "Fan #4",
+        "NickName": "Fan #4"
+      },
+      {
+        "Identifier": "/lpc/nct6793d/fan/4",
+        "IsHidden": false,
+        "Name": "Fan #5",
+        "NickName": "Fan #5"
+      },
+      {
+        "Identifier": "/lpc/nct6793d/fan/5",
+        "IsHidden": true,
+        "Name": "Fan #6",
+        "NickName": "Fan #6"
+      },
+      {
+        "Identifier": "NVApiWrapper/256/fan/0",
+        "IsHidden": true,
+        "Name": "Fan 1 - NVIDIA GeForce GTX 1080",
+        "NickName": "Fan 1 - NVIDIA GeForce GTX 1080"
+      }
+    ],
+    "HideFanSpeedCards": false,
+    "HorizontalUIOrientation": false,
+    "PrimaryColor": "#FF607D8B",
+    "SecondaryColor": "#FFAEEA00",
+    "SelectedTheme": "",
+    "SelectedTrayIconColor": "Light",
+    "SelectedTrayIconSensor": null,
+    "ShowHiddenCards": true,
+    "StartMinimized": false,
+    "SyncThemeWithWindows": false,
+    "TemperatureSensors": []
+  },
+  "Sensors": {
+    "DisabledPlugins": [],
+    "DisableStorageSensors": false,
+    "LibreHardwareMonitorSettings": {
+      "Controller": false,
+      "CPU": true,
+      "GPU": true,
+      "Memory": true,
+      "Motherboard": true,
+      "PSU": false,
+      "Storage": true
+    },
+    "NvAPIWrapperSettings": {
+      "Enabled": true
+    },
+    "SensorCount": 32
+  }
+}
