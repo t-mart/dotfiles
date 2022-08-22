@@ -88,6 +88,7 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
    New-Item -ItemType Junction -Path "$env:APPDATA\jpegview" -Value "$HOME\.config\jpegview\"
 
    # GPG program setting. Obviously, make sure to install gpg (with scoop) too.
+   # see .config/git/config for more info
    "[gpg]`n  program = C:/Users/tim/scoop/apps/gpg/current/bin/gpg.exe`n" | Out-File -FilePath "$HOME\.config\git\windows"
    ```
 
