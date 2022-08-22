@@ -19,17 +19,22 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 35.0,
+          "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
+          "MaxFanSpeed": 90,
           "MinFanSpeed": 30,
           "Name": "Auto CPU",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "/intelcpu/0/temperature/9",
-            "IsHidden": false,
-            "Name": "Core Max",
-            "NickName": "Core Max"
+            "Identifier": "Time/CPU Average / 5 second",
+            "Name": "CPU Average / 5 second",
+            "SelectedTempSource": {
+              "Identifier": "/intelcpu/0/temperature/10",
+              "IsHidden": false,
+              "Name": "Core Average",
+              "NickName": "Core Average"
+            },
+            "SelectedTime": 5
           },
           "Step": 2.0
         },
@@ -55,17 +60,22 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 35.0,
+          "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
-          "MinFanSpeed": 50,
+          "MaxFanSpeed": 90,
+          "MinFanSpeed": 30,
           "Name": "Auto GPU",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "NVApiWrapper/256/sensor/0",
-            "IsHidden": false,
-            "Name": "GPU",
-            "NickName": "GPU"
+            "Identifier": "Time/GPU Average / 5 second",
+            "Name": "GPU Average / 5 second",
+            "SelectedTempSource": {
+              "Identifier": "NVApiWrapper/256/sensor/0",
+              "IsHidden": false,
+              "Name": "GPU",
+              "NickName": "GPU"
+            },
+            "SelectedTime": 5
           },
           "Step": 2.0
         },
@@ -90,8 +100,43 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
-          "Name": "Flat",
-          "Percent": 40
+          "Deadband": 3.0,
+          "IdleTemperature": 30.0,
+          "LoadTemperature": 70.0,
+          "MaxFanSpeed": 80,
+          "MinFanSpeed": 30,
+          "Name": "Auto CPU/GPU Average",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "Mix/Average CPU/GPU",
+            "Name": "Average CPU/GPU",
+            "SelectedMixFunction": 0,
+            "SelectedSensors": [
+              {
+                "Identifier": "Time/CPU Average / 5 second",
+                "Name": "CPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "/intelcpu/0/temperature/10",
+                  "IsHidden": false,
+                  "Name": "Core Average",
+                  "NickName": "Core Average"
+                },
+                "SelectedTime": 5
+              },
+              {
+                "Identifier": "Time/GPU Average / 5 second",
+                "Name": "GPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "IsHidden": false,
+                  "Name": "GPU",
+                  "NickName": "GPU"
+                },
+                "SelectedTime": 5
+              }
+            ]
+          },
+          "Step": 2.0
         },
         "SelectedOffset": 0,
         "SelectedStart": 45,
@@ -114,8 +159,43 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
-          "Name": "Flat",
-          "Percent": 40
+          "Deadband": 3.0,
+          "IdleTemperature": 30.0,
+          "LoadTemperature": 70.0,
+          "MaxFanSpeed": 80,
+          "MinFanSpeed": 30,
+          "Name": "Auto CPU/GPU Average",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "Mix/Average CPU/GPU",
+            "Name": "Average CPU/GPU",
+            "SelectedMixFunction": 0,
+            "SelectedSensors": [
+              {
+                "Identifier": "Time/CPU Average / 5 second",
+                "Name": "CPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "/intelcpu/0/temperature/10",
+                  "IsHidden": false,
+                  "Name": "Core Average",
+                  "NickName": "Core Average"
+                },
+                "SelectedTime": 5
+              },
+              {
+                "Identifier": "Time/GPU Average / 5 second",
+                "Name": "GPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "IsHidden": false,
+                  "Name": "GPU",
+                  "NickName": "GPU"
+                },
+                "SelectedTime": 5
+              }
+            ]
+          },
+          "Step": 2.0
         },
         "SelectedOffset": 0,
         "SelectedStart": 54,
@@ -138,8 +218,43 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
-          "Name": "Flat",
-          "Percent": 40
+          "Deadband": 3.0,
+          "IdleTemperature": 30.0,
+          "LoadTemperature": 70.0,
+          "MaxFanSpeed": 80,
+          "MinFanSpeed": 30,
+          "Name": "Auto CPU/GPU Average",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "Mix/Average CPU/GPU",
+            "Name": "Average CPU/GPU",
+            "SelectedMixFunction": 0,
+            "SelectedSensors": [
+              {
+                "Identifier": "Time/CPU Average / 5 second",
+                "Name": "CPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "/intelcpu/0/temperature/10",
+                  "IsHidden": false,
+                  "Name": "Core Average",
+                  "NickName": "Core Average"
+                },
+                "SelectedTime": 5
+              },
+              {
+                "Identifier": "Time/GPU Average / 5 second",
+                "Name": "GPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "IsHidden": false,
+                  "Name": "GPU",
+                  "NickName": "GPU"
+                },
+                "SelectedTime": 5
+              }
+            ]
+          },
+          "Step": 2.0
         },
         "SelectedOffset": 0,
         "SelectedStart": 45,
@@ -157,8 +272,43 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
-          "Name": "Flat",
-          "Percent": 40
+          "Deadband": 3.0,
+          "IdleTemperature": 30.0,
+          "LoadTemperature": 70.0,
+          "MaxFanSpeed": 80,
+          "MinFanSpeed": 30,
+          "Name": "Auto CPU/GPU Average",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "Mix/Average CPU/GPU",
+            "Name": "Average CPU/GPU",
+            "SelectedMixFunction": 0,
+            "SelectedSensors": [
+              {
+                "Identifier": "Time/CPU Average / 5 second",
+                "Name": "CPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "/intelcpu/0/temperature/10",
+                  "IsHidden": false,
+                  "Name": "Core Average",
+                  "NickName": "Core Average"
+                },
+                "SelectedTime": 5
+              },
+              {
+                "Identifier": "Time/GPU Average / 5 second",
+                "Name": "GPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "IsHidden": false,
+                  "Name": "GPU",
+                  "NickName": "GPU"
+                },
+                "SelectedTime": 5
+              }
+            ]
+          },
+          "Step": 2.0
         },
         "SelectedOffset": 0,
         "SelectedStart": 0,
@@ -176,52 +326,236 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
-          "Name": "Flat",
-          "Percent": 40
+          "Deadband": 3.0,
+          "IdleTemperature": 30.0,
+          "LoadTemperature": 70.0,
+          "MaxFanSpeed": 80,
+          "MinFanSpeed": 30,
+          "Name": "Auto CPU/GPU Average",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "Mix/Average CPU/GPU",
+            "Name": "Average CPU/GPU",
+            "SelectedMixFunction": 0,
+            "SelectedSensors": [
+              {
+                "Identifier": "Time/CPU Average / 5 second",
+                "Name": "CPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "/intelcpu/0/temperature/10",
+                  "IsHidden": false,
+                  "Name": "Core Average",
+                  "NickName": "Core Average"
+                },
+                "SelectedTime": 5
+              },
+              {
+                "Identifier": "Time/GPU Average / 5 second",
+                "Name": "GPU Average / 5 second",
+                "SelectedTempSource": {
+                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "IsHidden": false,
+                  "Name": "GPU",
+                  "NickName": "GPU"
+                },
+                "SelectedTime": 5
+              }
+            ]
+          },
+          "Step": 2.0
         },
         "SelectedOffset": 0,
         "SelectedStart": 0,
         "SelectedStop": 0
       }
     ],
-    "CustomSensors": [],
-    "DisplayTrayIconTemperature": true,
-    "FanCurves": [
+    "CustomSensors": [
       {
-        "Deadband": 3.0,
-        "IdleTemperature": 35.0,
-        "LoadTemperature": 70.0,
-        "MaxFanSpeed": 80,
-        "MinFanSpeed": 30,
-        "Name": "Auto CPU",
-        "SelectedResponseTime": 2,
-        "SelectedTempSource": {
-          "Identifier": "/intelcpu/0/temperature/9",
-          "IsHidden": false,
-          "Name": "Core Max",
-          "NickName": "Core Max"
-        },
-        "Step": 2.0
+        "Identifier": "Mix/CPU Core #1",
+        "Name": "CPU Core #1",
+        "SelectedMixFunction": 0,
+        "SelectedSensors": [
+          {
+            "Identifier": "/intelcpu/0/temperature/0",
+            "IsHidden": false,
+            "Name": "CPU Core #1",
+            "NickName": "CPU Core #1"
+          }
+        ]
       },
       {
-        "Deadband": 3.0,
-        "IdleTemperature": 35.0,
-        "LoadTemperature": 70.0,
-        "MaxFanSpeed": 80,
-        "MinFanSpeed": 50,
-        "Name": "Auto GPU",
-        "SelectedResponseTime": 2,
+        "Identifier": "Mix/CPU Core #2",
+        "Name": "CPU Core #2",
+        "SelectedMixFunction": 0,
+        "SelectedSensors": [
+          {
+            "Identifier": "/intelcpu/0/temperature/1",
+            "IsHidden": false,
+            "Name": "CPU Core #2",
+            "NickName": "CPU Core #2"
+          }
+        ]
+      },
+      {
+        "Identifier": "Mix/CPU Core #3",
+        "Name": "CPU Core #3",
+        "SelectedMixFunction": 0,
+        "SelectedSensors": [
+          {
+            "Identifier": "/intelcpu/0/temperature/2",
+            "IsHidden": false,
+            "Name": "CPU Core #3",
+            "NickName": "CPU Core #3"
+          }
+        ]
+      },
+      {
+        "Identifier": "Mix/CPU Core #4",
+        "Name": "CPU Core #4",
+        "SelectedMixFunction": 0,
+        "SelectedSensors": [
+          {
+            "Identifier": "/intelcpu/0/temperature/3",
+            "IsHidden": false,
+            "Name": "CPU Core #4",
+            "NickName": "CPU Core #4"
+          }
+        ]
+      },
+      {
+        "Identifier": "Time/CPU Average / 5 second",
+        "Name": "CPU Average / 5 second",
+        "SelectedTempSource": {
+          "Identifier": "/intelcpu/0/temperature/10",
+          "IsHidden": false,
+          "Name": "Core Average",
+          "NickName": "Core Average"
+        },
+        "SelectedTime": 5
+      },
+      {
+        "Identifier": "Time/GPU Average / 5 second",
+        "Name": "GPU Average / 5 second",
         "SelectedTempSource": {
           "Identifier": "NVApiWrapper/256/sensor/0",
           "IsHidden": false,
           "Name": "GPU",
           "NickName": "GPU"
         },
+        "SelectedTime": 5
+      },
+      {
+        "Identifier": "Mix/Average CPU/GPU",
+        "Name": "Average CPU/GPU",
+        "SelectedMixFunction": 0,
+        "SelectedSensors": [
+          {
+            "Identifier": "Time/CPU Average / 5 second",
+            "Name": "CPU Average / 5 second",
+            "SelectedTempSource": {
+              "Identifier": "/intelcpu/0/temperature/10",
+              "IsHidden": false,
+              "Name": "Core Average",
+              "NickName": "Core Average"
+            },
+            "SelectedTime": 5
+          },
+          {
+            "Identifier": "Time/GPU Average / 5 second",
+            "Name": "GPU Average / 5 second",
+            "SelectedTempSource": {
+              "Identifier": "NVApiWrapper/256/sensor/0",
+              "IsHidden": false,
+              "Name": "GPU",
+              "NickName": "GPU"
+            },
+            "SelectedTime": 5
+          }
+        ]
+      }
+    ],
+    "DisplayTrayIconTemperature": true,
+    "FanCurves": [
+      {
+        "Deadband": 3.0,
+        "IdleTemperature": 30.0,
+        "LoadTemperature": 70.0,
+        "MaxFanSpeed": 90,
+        "MinFanSpeed": 30,
+        "Name": "Auto CPU",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "Time/CPU Average / 5 second",
+          "Name": "CPU Average / 5 second",
+          "SelectedTempSource": {
+            "Identifier": "/intelcpu/0/temperature/10",
+            "IsHidden": false,
+            "Name": "Core Average",
+            "NickName": "Core Average"
+          },
+          "SelectedTime": 5
+        },
         "Step": 2.0
       },
       {
-        "Name": "Flat",
-        "Percent": 40
+        "Deadband": 3.0,
+        "IdleTemperature": 30.0,
+        "LoadTemperature": 70.0,
+        "MaxFanSpeed": 90,
+        "MinFanSpeed": 30,
+        "Name": "Auto GPU",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "Time/GPU Average / 5 second",
+          "Name": "GPU Average / 5 second",
+          "SelectedTempSource": {
+            "Identifier": "NVApiWrapper/256/sensor/0",
+            "IsHidden": false,
+            "Name": "GPU",
+            "NickName": "GPU"
+          },
+          "SelectedTime": 5
+        },
+        "Step": 2.0
+      },
+      {
+        "Deadband": 3.0,
+        "IdleTemperature": 30.0,
+        "LoadTemperature": 70.0,
+        "MaxFanSpeed": 80,
+        "MinFanSpeed": 30,
+        "Name": "Auto CPU/GPU Average",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "Mix/Average CPU/GPU",
+          "Name": "Average CPU/GPU",
+          "SelectedMixFunction": 0,
+          "SelectedSensors": [
+            {
+              "Identifier": "Time/CPU Average / 5 second",
+              "Name": "CPU Average / 5 second",
+              "SelectedTempSource": {
+                "Identifier": "/intelcpu/0/temperature/10",
+                "IsHidden": false,
+                "Name": "Core Average",
+                "NickName": "Core Average"
+              },
+              "SelectedTime": 5
+            },
+            {
+              "Identifier": "Time/GPU Average / 5 second",
+              "Name": "GPU Average / 5 second",
+              "SelectedTempSource": {
+                "Identifier": "NVApiWrapper/256/sensor/0",
+                "IsHidden": false,
+                "Name": "GPU",
+                "NickName": "GPU"
+              },
+              "SelectedTime": 5
+            }
+          ]
+        },
+        "Step": 2.0
       }
     ],
     "FanSensors": [
