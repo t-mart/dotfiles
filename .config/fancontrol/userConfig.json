@@ -21,7 +21,7 @@
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 90,
+          "MaxFanSpeed": 80,
           "MinFanSpeed": 30,
           "Name": "Auto CPU",
           "SelectedResponseTime": 2,
@@ -61,8 +61,8 @@
         "SelectedFanCurve": {
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
-          "LoadTemperature": 70.0,
-          "MaxFanSpeed": 90,
+          "LoadTemperature": 60.0,
+          "MaxFanSpeed": 80,
           "MinFanSpeed": 30,
           "Name": "Auto GPU",
           "SelectedResponseTime": 2,
@@ -105,12 +105,12 @@
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 80,
           "MinFanSpeed": 30,
-          "Name": "Auto CPU/GPU Average",
+          "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "Mix/Average CPU/GPU",
-            "Name": "Average CPU/GPU",
-            "SelectedMixFunction": 0,
+            "Identifier": "Mix/Max CPU/GPU",
+            "Name": "Max CPU/GPU",
+            "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
                 "Identifier": "Time/CPU Average / 5 second",
@@ -164,12 +164,12 @@
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 80,
           "MinFanSpeed": 30,
-          "Name": "Auto CPU/GPU Average",
+          "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "Mix/Average CPU/GPU",
-            "Name": "Average CPU/GPU",
-            "SelectedMixFunction": 0,
+            "Identifier": "Mix/Max CPU/GPU",
+            "Name": "Max CPU/GPU",
+            "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
                 "Identifier": "Time/CPU Average / 5 second",
@@ -223,12 +223,12 @@
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 80,
           "MinFanSpeed": 30,
-          "Name": "Auto CPU/GPU Average",
+          "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "Mix/Average CPU/GPU",
-            "Name": "Average CPU/GPU",
-            "SelectedMixFunction": 0,
+            "Identifier": "Mix/Max CPU/GPU",
+            "Name": "Max CPU/GPU",
+            "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
                 "Identifier": "Time/CPU Average / 5 second",
@@ -277,12 +277,12 @@
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 80,
           "MinFanSpeed": 30,
-          "Name": "Auto CPU/GPU Average",
+          "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "Mix/Average CPU/GPU",
-            "Name": "Average CPU/GPU",
-            "SelectedMixFunction": 0,
+            "Identifier": "Mix/Max CPU/GPU",
+            "Name": "Max CPU/GPU",
+            "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
                 "Identifier": "Time/CPU Average / 5 second",
@@ -331,12 +331,12 @@
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 80,
           "MinFanSpeed": 30,
-          "Name": "Auto CPU/GPU Average",
+          "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "Mix/Average CPU/GPU",
-            "Name": "Average CPU/GPU",
-            "SelectedMixFunction": 0,
+            "Identifier": "Mix/Max CPU/GPU",
+            "Name": "Max CPU/GPU",
+            "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
                 "Identifier": "Time/CPU Average / 5 second",
@@ -423,6 +423,24 @@
         ]
       },
       {
+        "Identifier": "Mix/GPU",
+        "Name": "GPU",
+        "SelectedMixFunction": 0,
+        "SelectedSensors": [
+          {
+            "Identifier": "Time/GPU Average / 5 second",
+            "Name": "GPU Average / 5 second",
+            "SelectedTempSource": {
+              "Identifier": "NVApiWrapper/256/sensor/0",
+              "IsHidden": false,
+              "Name": "GPU",
+              "NickName": "GPU"
+            },
+            "SelectedTime": 5
+          }
+        ]
+      },
+      {
         "Identifier": "Time/CPU Average / 5 second",
         "Name": "CPU Average / 5 second",
         "SelectedTempSource": {
@@ -445,9 +463,9 @@
         "SelectedTime": 5
       },
       {
-        "Identifier": "Mix/Average CPU/GPU",
-        "Name": "Average CPU/GPU",
-        "SelectedMixFunction": 0,
+        "Identifier": "Mix/Max CPU/GPU",
+        "Name": "Max CPU/GPU",
+        "SelectedMixFunction": 1,
         "SelectedSensors": [
           {
             "Identifier": "Time/CPU Average / 5 second",
@@ -480,7 +498,7 @@
         "Deadband": 3.0,
         "IdleTemperature": 30.0,
         "LoadTemperature": 70.0,
-        "MaxFanSpeed": 90,
+        "MaxFanSpeed": 80,
         "MinFanSpeed": 30,
         "Name": "Auto CPU",
         "SelectedResponseTime": 2,
@@ -500,8 +518,8 @@
       {
         "Deadband": 3.0,
         "IdleTemperature": 30.0,
-        "LoadTemperature": 70.0,
-        "MaxFanSpeed": 90,
+        "LoadTemperature": 60.0,
+        "MaxFanSpeed": 80,
         "MinFanSpeed": 30,
         "Name": "Auto GPU",
         "SelectedResponseTime": 2,
@@ -524,12 +542,12 @@
         "LoadTemperature": 70.0,
         "MaxFanSpeed": 80,
         "MinFanSpeed": 30,
-        "Name": "Auto CPU/GPU Average",
+        "Name": "Auto CPU/GPU Max",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
-          "Identifier": "Mix/Average CPU/GPU",
-          "Name": "Average CPU/GPU",
-          "SelectedMixFunction": 0,
+          "Identifier": "Mix/Max CPU/GPU",
+          "Name": "Max CPU/GPU",
+          "SelectedMixFunction": 1,
           "SelectedSensors": [
             {
               "Identifier": "Time/CPU Average / 5 second",
