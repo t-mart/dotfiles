@@ -146,9 +146,9 @@
         "SelectedStop": 28
       },
       {
-        "Enable": false,
+        "Enable": true,
         "Identifier": "/lpc/nct6793d/control/3",
-        "IsHidden": true,
+        "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
         "MatchingFanSensor": null,
@@ -156,15 +156,18 @@
         "NickName": "Fan Control #4",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
-        "SelectedFanCurve": null,
+        "SelectedFanCurve": {
+          "Name": "Flat",
+          "Percent": 40
+        },
         "SelectedOffset": 0,
         "SelectedStart": 0,
         "SelectedStop": 0
       },
       {
-        "Enable": false,
+        "Enable": true,
         "Identifier": "/lpc/nct6793d/control/4",
-        "IsHidden": true,
+        "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
         "MatchingFanSensor": null,
@@ -172,7 +175,10 @@
         "NickName": "Fan Control #5",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
-        "SelectedFanCurve": null,
+        "SelectedFanCurve": {
+          "Name": "Flat",
+          "Percent": 40
+        },
         "SelectedOffset": 0,
         "SelectedStart": 0,
         "SelectedStop": 0
@@ -262,7 +268,7 @@
         "NickName": "Fan 1 - NVIDIA GeForce GTX 1080"
       }
     ],
-    "HideFanSpeedCards": false,
+    "HideFanSpeedCards": true,
     "HorizontalUIOrientation": false,
     "PrimaryColor": "#FF607D8B",
     "SecondaryColor": "#FFAEEA00",
@@ -270,7 +276,7 @@
     "SelectedTrayIconColor": "Light",
     "SelectedTrayIconSensor": null,
     "ShowHiddenCards": true,
-    "StartMinimized": false,
+    "StartMinimized": true,
     "SyncThemeWithWindows": false,
     "TemperatureSensors": []
   },
