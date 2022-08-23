@@ -4,3 +4,4 @@
 .dotfile_config
 .config/nushell/history.txt
 .config/git/windows
+.config/mpv.net/settings.xml
