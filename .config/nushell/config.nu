@@ -507,6 +507,22 @@ let-env config = {
 # Manage the dotfiles git repository, just like the normal git command
 alias dfgit = git --git-dir ~\.dotfile_config\ --work-tree ~
 
+def tiktok-dl [
+  video_url: string
+] {
+  let max_title_length = 80
+  let clipped_marker = "…" # U+2026 HORIZONTAL ELLIPSIS
+  # we've encountered failure from what I expect to be too long of filename. the title contributes most -- as of now, it's just the description which can be really long
+  let raw_title = (yt-dlp $video_url --print "title")
+  let raw_title_length = ($raw_title | str length)
+  let title = (if ($raw_title | str length) > $max_title_length {
+    ($raw_title | str substring [0 ($max_title_length - ($clipped_marker | str length))]) + $clipped_marker
+  } else {
+    $raw_title
+  } | str trim)  # trim important, i think newlines were getting in
+  yt-dlp --output $"%\(uploader)s - %\(id)s - ($title).%\(ext)s" $video_url
+}
+
 # Downloads a Youtube Music playlist file and imports it into my beets collection
 # (The beet import will ask for musicbrainz album id for metadata lookup)
 def yt-beet-import [
