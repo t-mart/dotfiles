@@ -1,5 +1,5 @@
 format = """$username@$hostname $time $git_branch$git_state$git_status
-$directory $character % """
+$directory $status % """
 
 [username]
 style_user = "fg:#e377c2 bold"
@@ -37,7 +37,11 @@ style = "fg:#1f77b4 bold underline"
 truncate_to_repo = false
 truncation_length = 0
 
-[character]
-success_symbol = "[[✓](fg:#2ca02c)](bold)"
-error_symbol = "[[✘](fg:#d62728)](bold)"
-format = '[$symbol]($style)'
+[status]
+# it always stays on success for powershell currently:
+# https://github.com/starship/starship/issues/4299
+symbol = "[✘](bold red) "
+success_symbol = "[✓](bold green)"
+format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
+map_symbol = true
+disabled = false

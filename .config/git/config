@@ -86,3 +86,9 @@
   ; every dotfile installation would get it -- indeed, we have .gitignore-d it.
   ; Therefore, it must be manually (unfortunately) created when needed.
   path = ~/.config/git/windows
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

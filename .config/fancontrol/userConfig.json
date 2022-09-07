@@ -3,6 +3,7 @@
     "Controls": [
       {
         "Enable": true,
+        "ForceApply": false,
         "Identifier": "/lpc/nct6793d/control/1",
         "IsHidden": false,
         "ManualControl": false,
@@ -13,7 +14,7 @@
           "Name": "Fan #2",
           "NickName": "Fan #2"
         },
-        "Name": "Fan Control #2",
+        "Name": "Fan #2",
         "NickName": "CPU",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
@@ -21,20 +22,20 @@
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
+          "MaxFanSpeed": 90,
           "MinFanSpeed": 30,
           "Name": "Auto CPU",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "Time/CPU Average / 5 second",
-            "Name": "CPU Average / 5 second",
+            "Identifier": "Time/CPU Average Over Time",
+            "Name": "CPU Average Over Time",
             "SelectedTempSource": {
               "Identifier": "/intelcpu/0/temperature/10",
               "IsHidden": false,
               "Name": "Core Average",
               "NickName": "Core Average"
             },
-            "SelectedTime": 5
+            "SelectedTime": 30
           },
           "Step": 0.5
         },
@@ -44,6 +45,7 @@
       },
       {
         "Enable": true,
+        "ForceApply": false,
         "Identifier": "NVApiWrapper/256/control/0",
         "IsHidden": false,
         "ManualControl": false,
@@ -67,15 +69,15 @@
           "Name": "Auto GPU",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
-            "Identifier": "Time/GPU Average / 5 second",
-            "Name": "GPU Average / 5 second",
+            "Identifier": "Time/GPU Average Over Time",
+            "Name": "GPU Average Over Time",
             "SelectedTempSource": {
               "Identifier": "NVApiWrapper/256/sensor/0",
               "IsHidden": false,
               "Name": "GPU",
               "NickName": "GPU"
             },
-            "SelectedTime": 5
+            "SelectedTime": 30
           },
           "Step": 0.5
         },
@@ -85,6 +87,7 @@
       },
       {
         "Enable": true,
+        "ForceApply": false,
         "Identifier": "/lpc/nct6793d/control/0",
         "IsHidden": false,
         "ManualControl": false,
@@ -95,7 +98,7 @@
           "Name": "Fan #1",
           "NickName": "Fan #1"
         },
-        "Name": "Fan Control #1",
+        "Name": "Fan #1",
         "NickName": "Back",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
@@ -103,7 +106,7 @@
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
+          "MaxFanSpeed": 90,
           "MinFanSpeed": 30,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
@@ -113,26 +116,26 @@
             "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
-                "Identifier": "Time/CPU Average / 5 second",
-                "Name": "CPU Average / 5 second",
+                "Identifier": "Time/CPU Average Over Time",
+                "Name": "CPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "/intelcpu/0/temperature/10",
                   "IsHidden": false,
                   "Name": "Core Average",
                   "NickName": "Core Average"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               },
               {
-                "Identifier": "Time/GPU Average / 5 second",
-                "Name": "GPU Average / 5 second",
+                "Identifier": "Time/GPU Average Over Time",
+                "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "NVApiWrapper/256/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               }
             ]
           },
@@ -144,6 +147,7 @@
       },
       {
         "Enable": true,
+        "ForceApply": false,
         "Identifier": "/lpc/nct6793d/control/2",
         "IsHidden": false,
         "ManualControl": false,
@@ -154,7 +158,7 @@
           "Name": "Fan #3",
           "NickName": "Fan #3"
         },
-        "Name": "Fan Control #3",
+        "Name": "Fan #3",
         "NickName": "Bottom",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
@@ -162,7 +166,7 @@
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
+          "MaxFanSpeed": 90,
           "MinFanSpeed": 30,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
@@ -172,26 +176,26 @@
             "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
-                "Identifier": "Time/CPU Average / 5 second",
-                "Name": "CPU Average / 5 second",
+                "Identifier": "Time/CPU Average Over Time",
+                "Name": "CPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "/intelcpu/0/temperature/10",
                   "IsHidden": false,
                   "Name": "Core Average",
                   "NickName": "Core Average"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               },
               {
-                "Identifier": "Time/GPU Average / 5 second",
-                "Name": "GPU Average / 5 second",
+                "Identifier": "Time/GPU Average Over Time",
+                "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "NVApiWrapper/256/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               }
             ]
           },
@@ -203,6 +207,7 @@
       },
       {
         "Enable": true,
+        "ForceApply": false,
         "Identifier": "/lpc/nct6793d/control/5",
         "IsHidden": false,
         "ManualControl": false,
@@ -213,7 +218,7 @@
           "Name": "Fan #6",
           "NickName": "Fan #6"
         },
-        "Name": "Fan Control #6",
+        "Name": "Fan #6",
         "NickName": "Left",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
@@ -221,7 +226,7 @@
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
+          "MaxFanSpeed": 90,
           "MinFanSpeed": 30,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
@@ -231,26 +236,26 @@
             "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
-                "Identifier": "Time/CPU Average / 5 second",
-                "Name": "CPU Average / 5 second",
+                "Identifier": "Time/CPU Average Over Time",
+                "Name": "CPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "/intelcpu/0/temperature/10",
                   "IsHidden": false,
                   "Name": "Core Average",
                   "NickName": "Core Average"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               },
               {
-                "Identifier": "Time/GPU Average / 5 second",
-                "Name": "GPU Average / 5 second",
+                "Identifier": "Time/GPU Average Over Time",
+                "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "NVApiWrapper/256/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               }
             ]
           },
@@ -262,12 +267,13 @@
       },
       {
         "Enable": true,
+        "ForceApply": false,
         "Identifier": "/lpc/nct6793d/control/3",
         "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
         "MatchingFanSensor": null,
-        "Name": "Fan Control #4",
+        "Name": "Fan #4",
         "NickName": "Fan Control #4",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
@@ -275,7 +281,7 @@
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
+          "MaxFanSpeed": 90,
           "MinFanSpeed": 30,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
@@ -285,26 +291,26 @@
             "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
-                "Identifier": "Time/CPU Average / 5 second",
-                "Name": "CPU Average / 5 second",
+                "Identifier": "Time/CPU Average Over Time",
+                "Name": "CPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "/intelcpu/0/temperature/10",
                   "IsHidden": false,
                   "Name": "Core Average",
                   "NickName": "Core Average"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               },
               {
-                "Identifier": "Time/GPU Average / 5 second",
-                "Name": "GPU Average / 5 second",
+                "Identifier": "Time/GPU Average Over Time",
+                "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "NVApiWrapper/256/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               }
             ]
           },
@@ -316,12 +322,13 @@
       },
       {
         "Enable": true,
+        "ForceApply": false,
         "Identifier": "/lpc/nct6793d/control/4",
         "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
         "MatchingFanSensor": null,
-        "Name": "Fan Control #5",
+        "Name": "Fan #5",
         "NickName": "Fan Control #5",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
@@ -329,7 +336,7 @@
           "Deadband": 3.0,
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
-          "MaxFanSpeed": 80,
+          "MaxFanSpeed": 90,
           "MinFanSpeed": 30,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
@@ -339,26 +346,26 @@
             "SelectedMixFunction": 1,
             "SelectedSensors": [
               {
-                "Identifier": "Time/CPU Average / 5 second",
-                "Name": "CPU Average / 5 second",
+                "Identifier": "Time/CPU Average Over Time",
+                "Name": "CPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "/intelcpu/0/temperature/10",
                   "IsHidden": false,
                   "Name": "Core Average",
                   "NickName": "Core Average"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               },
               {
-                "Identifier": "Time/GPU Average / 5 second",
-                "Name": "GPU Average / 5 second",
+                "Identifier": "Time/GPU Average Over Time",
+                "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
                   "Identifier": "NVApiWrapper/256/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
                 },
-                "SelectedTime": 5
+                "SelectedTime": 30
               }
             ]
           },
@@ -428,39 +435,39 @@
         "SelectedMixFunction": 0,
         "SelectedSensors": [
           {
-            "Identifier": "Time/GPU Average / 5 second",
-            "Name": "GPU Average / 5 second",
+            "Identifier": "Time/GPU Average Over Time",
+            "Name": "GPU Average Over Time",
             "SelectedTempSource": {
               "Identifier": "NVApiWrapper/256/sensor/0",
               "IsHidden": false,
               "Name": "GPU",
               "NickName": "GPU"
             },
-            "SelectedTime": 5
+            "SelectedTime": 30
           }
         ]
       },
       {
-        "Identifier": "Time/CPU Average / 5 second",
-        "Name": "CPU Average / 5 second",
+        "Identifier": "Time/CPU Average Over Time",
+        "Name": "CPU Average Over Time",
         "SelectedTempSource": {
           "Identifier": "/intelcpu/0/temperature/10",
           "IsHidden": false,
           "Name": "Core Average",
           "NickName": "Core Average"
         },
-        "SelectedTime": 5
+        "SelectedTime": 30
       },
       {
-        "Identifier": "Time/GPU Average / 5 second",
-        "Name": "GPU Average / 5 second",
+        "Identifier": "Time/GPU Average Over Time",
+        "Name": "GPU Average Over Time",
         "SelectedTempSource": {
           "Identifier": "NVApiWrapper/256/sensor/0",
           "IsHidden": false,
           "Name": "GPU",
           "NickName": "GPU"
         },
-        "SelectedTime": 5
+        "SelectedTime": 30
       },
       {
         "Identifier": "Mix/Max CPU/GPU",
@@ -468,26 +475,26 @@
         "SelectedMixFunction": 1,
         "SelectedSensors": [
           {
-            "Identifier": "Time/CPU Average / 5 second",
-            "Name": "CPU Average / 5 second",
+            "Identifier": "Time/CPU Average Over Time",
+            "Name": "CPU Average Over Time",
             "SelectedTempSource": {
               "Identifier": "/intelcpu/0/temperature/10",
               "IsHidden": false,
               "Name": "Core Average",
               "NickName": "Core Average"
             },
-            "SelectedTime": 5
+            "SelectedTime": 30
           },
           {
-            "Identifier": "Time/GPU Average / 5 second",
-            "Name": "GPU Average / 5 second",
+            "Identifier": "Time/GPU Average Over Time",
+            "Name": "GPU Average Over Time",
             "SelectedTempSource": {
               "Identifier": "NVApiWrapper/256/sensor/0",
               "IsHidden": false,
               "Name": "GPU",
               "NickName": "GPU"
             },
-            "SelectedTime": 5
+            "SelectedTime": 30
           }
         ]
       }
@@ -498,20 +505,20 @@
         "Deadband": 3.0,
         "IdleTemperature": 30.0,
         "LoadTemperature": 70.0,
-        "MaxFanSpeed": 80,
+        "MaxFanSpeed": 90,
         "MinFanSpeed": 30,
         "Name": "Auto CPU",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
-          "Identifier": "Time/CPU Average / 5 second",
-          "Name": "CPU Average / 5 second",
+          "Identifier": "Time/CPU Average Over Time",
+          "Name": "CPU Average Over Time",
           "SelectedTempSource": {
             "Identifier": "/intelcpu/0/temperature/10",
             "IsHidden": false,
             "Name": "Core Average",
             "NickName": "Core Average"
           },
-          "SelectedTime": 5
+          "SelectedTime": 30
         },
         "Step": 0.5
       },
@@ -524,15 +531,15 @@
         "Name": "Auto GPU",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
-          "Identifier": "Time/GPU Average / 5 second",
-          "Name": "GPU Average / 5 second",
+          "Identifier": "Time/GPU Average Over Time",
+          "Name": "GPU Average Over Time",
           "SelectedTempSource": {
             "Identifier": "NVApiWrapper/256/sensor/0",
             "IsHidden": false,
             "Name": "GPU",
             "NickName": "GPU"
           },
-          "SelectedTime": 5
+          "SelectedTime": 30
         },
         "Step": 0.5
       },
@@ -540,7 +547,7 @@
         "Deadband": 3.0,
         "IdleTemperature": 30.0,
         "LoadTemperature": 70.0,
-        "MaxFanSpeed": 80,
+        "MaxFanSpeed": 90,
         "MinFanSpeed": 30,
         "Name": "Auto CPU/GPU Max",
         "SelectedResponseTime": 2,
@@ -550,26 +557,26 @@
           "SelectedMixFunction": 1,
           "SelectedSensors": [
             {
-              "Identifier": "Time/CPU Average / 5 second",
-              "Name": "CPU Average / 5 second",
+              "Identifier": "Time/CPU Average Over Time",
+              "Name": "CPU Average Over Time",
               "SelectedTempSource": {
                 "Identifier": "/intelcpu/0/temperature/10",
                 "IsHidden": false,
                 "Name": "Core Average",
                 "NickName": "Core Average"
               },
-              "SelectedTime": 5
+              "SelectedTime": 30
             },
             {
-              "Identifier": "Time/GPU Average / 5 second",
-              "Name": "GPU Average / 5 second",
+              "Identifier": "Time/GPU Average Over Time",
+              "Name": "GPU Average Over Time",
               "SelectedTempSource": {
                 "Identifier": "NVApiWrapper/256/sensor/0",
                 "IsHidden": false,
                 "Name": "GPU",
                 "NickName": "GPU"
               },
-              "SelectedTime": 5
+              "SelectedTime": 30
             }
           ]
         },
@@ -647,6 +654,6 @@
     "NvAPIWrapperSettings": {
       "Enabled": true
     },
-    "SensorCount": 32
+    "SensorCount": 89
   }
 }

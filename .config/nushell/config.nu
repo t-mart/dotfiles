@@ -530,7 +530,7 @@ def yt-beet-import [
 ] {
   let download_dir = "yt-beet-import-tmp-" + (date format %s%.f)
   mkdir $download_dir
-  yt-dlp --output $"($download_dir)/%\(artist)s/%\(album,playlist)s/%\(track_number,playlist_index)02d - %\(track)s.%\(ext)s" --concurrent-fragments 3 --extract-audio --format "bestaudio*[acodec=opus]/bestaudio*" $playlist_url
+  yt-dlp --output $"($download_dir)/%\(track_number,playlist_index)02d - %\(artist)s - %\(album,playlist)s - %\(track)s.%\(ext)s" --concurrent-fragments 3 --extract-audio --format "bestaudio*[acodec=opus]/bestaudio*" $playlist_url
   beet import $download_dir
   rm --recursive $download_dir
 }
