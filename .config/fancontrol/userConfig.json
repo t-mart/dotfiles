@@ -23,7 +23,7 @@
           "IdleTemperature": 30.0,
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 90,
-          "MinFanSpeed": 30,
+          "MinFanSpeed": 15,
           "Name": "Auto CPU",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -62,10 +62,10 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 40.0,
           "LoadTemperature": 60.0,
           "MaxFanSpeed": 80,
-          "MinFanSpeed": 30,
+          "MinFanSpeed": 15,
           "Name": "Auto GPU",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -104,10 +104,10 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 40.0,
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 90,
-          "MinFanSpeed": 30,
+          "MinFanSpeed": 20,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -164,10 +164,10 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 40.0,
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 90,
-          "MinFanSpeed": 30,
+          "MinFanSpeed": 20,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -224,10 +224,10 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 40.0,
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 90,
-          "MinFanSpeed": 30,
+          "MinFanSpeed": 20,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -279,10 +279,10 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 40.0,
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 90,
-          "MinFanSpeed": 30,
+          "MinFanSpeed": 20,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -334,10 +334,10 @@
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 40.0,
           "LoadTemperature": 70.0,
           "MaxFanSpeed": 90,
-          "MinFanSpeed": 30,
+          "MinFanSpeed": 20,
           "Name": "Auto CPU/GPU Max",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -506,7 +506,7 @@
         "IdleTemperature": 30.0,
         "LoadTemperature": 70.0,
         "MaxFanSpeed": 90,
-        "MinFanSpeed": 30,
+        "MinFanSpeed": 15,
         "Name": "Auto CPU",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
@@ -524,10 +524,10 @@
       },
       {
         "Deadband": 3.0,
-        "IdleTemperature": 30.0,
+        "IdleTemperature": 40.0,
         "LoadTemperature": 60.0,
         "MaxFanSpeed": 80,
-        "MinFanSpeed": 30,
+        "MinFanSpeed": 15,
         "Name": "Auto GPU",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
@@ -545,10 +545,10 @@
       },
       {
         "Deadband": 3.0,
-        "IdleTemperature": 30.0,
+        "IdleTemperature": 40.0,
         "LoadTemperature": 70.0,
         "MaxFanSpeed": 90,
-        "MinFanSpeed": 30,
+        "MinFanSpeed": 20,
         "Name": "Auto CPU/GPU Max",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
@@ -654,6 +654,6 @@
     "NvAPIWrapperSettings": {
       "Enabled": true
     },
-    "SensorCount": 89
+    "SensorCount": 32
   }
 }
