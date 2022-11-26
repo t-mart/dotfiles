@@ -1,4 +1,5 @@
 {
+  "__VERSION__": "135",
   "Main": {
     "Controls": [
       {
@@ -649,10 +650,12 @@
       "Memory": true,
       "Motherboard": true,
       "PSU": false,
-      "Storage": true
+      "Storage": true,
+      "ZeroRPMOverride": false
     },
     "NvAPIWrapperSettings": {
-      "Enabled": true
+      "Enabled": true,
+      "ZeroRPMOverride": false
     },
     "SensorCount": 32
   }

@@ -63,6 +63,7 @@
 
 [push]
   gpgSign = if-asked
+  autoSetupRemote = true
 
 [include]
   ; Include another file, it it exists. If it does not exist, git fortunately
