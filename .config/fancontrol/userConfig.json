@@ -1,5 +1,5 @@
 {
-  "__VERSION__": "135",
+  "__VERSION__": "141",
   "Main": {
     "Controls": [
       {
@@ -15,6 +15,7 @@
           "Name": "Fan #2",
           "NickName": "Fan #2"
         },
+        "MinimumPercent": 0,
         "Name": "Fan #2",
         "NickName": "CPU",
         "SelectedCommandStepDown": 8.0,
@@ -47,16 +48,17 @@
       {
         "Enable": true,
         "ForceApply": false,
-        "Identifier": "NVApiWrapper/256/control/0",
+        "Identifier": "NVApiWrapper/0-GP104-A/control/0",
         "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
         "MatchingFanSensor": {
-          "Identifier": "NVApiWrapper/256/fan/0",
+          "Identifier": "NVApiWrapper/0-GP104-A/fan/0",
           "IsHidden": true,
           "Name": "Fan 1 - NVIDIA GeForce GTX 1080",
           "NickName": "Fan 1 - NVIDIA GeForce GTX 1080"
         },
+        "MinimumPercent": 0,
         "Name": "Control 1 - NVIDIA GeForce GTX 1080",
         "NickName": "NVIDIA GeForce GTX 1080",
         "SelectedCommandStepDown": 8.0,
@@ -73,7 +75,7 @@
             "Identifier": "Time/GPU Average Over Time",
             "Name": "GPU Average Over Time",
             "SelectedTempSource": {
-              "Identifier": "NVApiWrapper/256/sensor/0",
+              "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
               "IsHidden": false,
               "Name": "GPU",
               "NickName": "GPU"
@@ -99,6 +101,7 @@
           "Name": "Fan #1",
           "NickName": "Fan #1"
         },
+        "MinimumPercent": 0,
         "Name": "Fan #1",
         "NickName": "Back",
         "SelectedCommandStepDown": 8.0,
@@ -131,7 +134,7 @@
                 "Identifier": "Time/GPU Average Over Time",
                 "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
-                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
@@ -159,6 +162,7 @@
           "Name": "Fan #3",
           "NickName": "Fan #3"
         },
+        "MinimumPercent": 0,
         "Name": "Fan #3",
         "NickName": "Bottom",
         "SelectedCommandStepDown": 8.0,
@@ -191,7 +195,7 @@
                 "Identifier": "Time/GPU Average Over Time",
                 "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
-                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
@@ -219,6 +223,7 @@
           "Name": "Fan #6",
           "NickName": "Fan #6"
         },
+        "MinimumPercent": 0,
         "Name": "Fan #6",
         "NickName": "Left",
         "SelectedCommandStepDown": 8.0,
@@ -251,7 +256,7 @@
                 "Identifier": "Time/GPU Average Over Time",
                 "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
-                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
@@ -274,6 +279,7 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MatchingFanSensor": null,
+        "MinimumPercent": 0,
         "Name": "Fan #4",
         "NickName": "Fan Control #4",
         "SelectedCommandStepDown": 8.0,
@@ -306,7 +312,7 @@
                 "Identifier": "Time/GPU Average Over Time",
                 "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
-                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
@@ -329,6 +335,7 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MatchingFanSensor": null,
+        "MinimumPercent": 0,
         "Name": "Fan #5",
         "NickName": "Fan Control #5",
         "SelectedCommandStepDown": 8.0,
@@ -361,7 +368,7 @@
                 "Identifier": "Time/GPU Average Over Time",
                 "Name": "GPU Average Over Time",
                 "SelectedTempSource": {
-                  "Identifier": "NVApiWrapper/256/sensor/0",
+                  "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
                   "IsHidden": false,
                   "Name": "GPU",
                   "NickName": "GPU"
@@ -439,7 +446,7 @@
             "Identifier": "Time/GPU Average Over Time",
             "Name": "GPU Average Over Time",
             "SelectedTempSource": {
-              "Identifier": "NVApiWrapper/256/sensor/0",
+              "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
               "IsHidden": false,
               "Name": "GPU",
               "NickName": "GPU"
@@ -463,7 +470,7 @@
         "Identifier": "Time/GPU Average Over Time",
         "Name": "GPU Average Over Time",
         "SelectedTempSource": {
-          "Identifier": "NVApiWrapper/256/sensor/0",
+          "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
           "IsHidden": false,
           "Name": "GPU",
           "NickName": "GPU"
@@ -490,7 +497,7 @@
             "Identifier": "Time/GPU Average Over Time",
             "Name": "GPU Average Over Time",
             "SelectedTempSource": {
-              "Identifier": "NVApiWrapper/256/sensor/0",
+              "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
               "IsHidden": false,
               "Name": "GPU",
               "NickName": "GPU"
@@ -500,7 +507,6 @@
         ]
       }
     ],
-    "DisplayTrayIconTemperature": true,
     "FanCurves": [
       {
         "Deadband": 3.0,
@@ -535,7 +541,7 @@
           "Identifier": "Time/GPU Average Over Time",
           "Name": "GPU Average Over Time",
           "SelectedTempSource": {
-            "Identifier": "NVApiWrapper/256/sensor/0",
+            "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
             "IsHidden": false,
             "Name": "GPU",
             "NickName": "GPU"
@@ -572,7 +578,7 @@
               "Identifier": "Time/GPU Average Over Time",
               "Name": "GPU Average Over Time",
               "SelectedTempSource": {
-                "Identifier": "NVApiWrapper/256/sensor/0",
+                "Identifier": "NVApiWrapper/0-GP104-A/sensor/0",
                 "IsHidden": false,
                 "Name": "GPU",
                 "NickName": "GPU"
@@ -622,7 +628,7 @@
         "NickName": "Fan #6"
       },
       {
-        "Identifier": "NVApiWrapper/256/fan/0",
+        "Identifier": "NVApiWrapper/0-GP104-A/fan/0",
         "IsHidden": true,
         "Name": "Fan 1 - NVIDIA GeForce GTX 1080",
         "NickName": "Fan 1 - NVIDIA GeForce GTX 1080"
@@ -632,13 +638,13 @@
     "HorizontalUIOrientation": false,
     "PrimaryColor": "#FF607D8B",
     "SecondaryColor": "#FFAEEA00",
-    "SelectedTheme": "",
+    "SelectedTheme": "Dark",
     "SelectedTrayIconColor": "Light",
-    "SelectedTrayIconSensor": null,
     "ShowHiddenCards": true,
     "StartMinimized": true,
     "SyncThemeWithWindows": false,
-    "TemperatureSensors": []
+    "TemperatureSensors": [],
+    "TrayIcons": []
   },
   "Sensors": {
     "DisabledPlugins": [],
