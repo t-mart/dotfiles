@@ -48,6 +48,6 @@ let-env NU_PLUGIN_DIRS = [
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 # windows fix for tab completion, https://github.com/nushell/nushell/issues/6072
-if not 'PATH' in (env).name and 'Path' in (env).name {
+if not 'PATH' in $env and 'Path' in $env {
   let-env PATH = $env.Path
 }
