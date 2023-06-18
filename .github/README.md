@@ -41,52 +41,19 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
 
    Some stuff that windows in particular needs:
 
-   - Junction (like symlink) some files.This shoe-horns some applications into an XDG-like layout
-     (i.e `~/.config`, etc).
+   - Junction some files/directories. This lets us place config files for applications that wouldn't
+     be looking to where this repository places them (for example, `.AppData`).
    - Create the Windows-specific git config file
 
    To do all that, run the following in powershell:
 
    ```powershell
+   .\.config\link.ps1
+   ```
 
-   # powershell
-   New-Item -ItemType Junction -Path "$HOME\Documents\PowerShell" -Value "$HOME\.config\powershell\"
+   Also, do this:
 
-   # streamlink
-   New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\streamlink" -Value "$HOME\.config\streamlink\"
-
-   # flameshot
-   New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\flameshot" -Value "$HOME\.config\flameshot\"
-
-   # yt-dlp
-   New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\yt-dlp" -Value "$HOME\.config\yt-dlp\"
-
-   # beets
-   New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\beets" -Value "$HOME\.config\beets\"
-
-   # nushell
-   New-Item -ItemType Junction -Path "$HOME\AppData\Roaming\nushell\" -Value "$HOME\.config\nushell\"
-
-   # aria2
-   New-Item -ItemType Junction -Path "$HOME\.aria2" -Value "$HOME\.config\aria2\"
-
-   # scoop
-   # scoop does portable installations that expect config somewhere relative to the
-   # executable. the following junctions place those configs in the right scoop location
-   New-Item -ItemType Junction -Path "$HOME\scoop\persist\mpv.net\portable_config" -Value "$HOME\.config\mpv.net\"
-   New-Item -ItemType Junction -Path "$HOME\scoop\persist\mpv\portable_config" -Value "$HOME\.config\mpv\"
-
-   # jpegview
-   # this is installed with scoop and uses the `persist/` dir to store config. but, it doesn't seem
-   # to work. jpegview doesn't seem to care about the persist dir -- you'd have to force the
-   # application to look there, somehow. Instead, we place the settings in the user-override
-   # location at `$env:APPDATA\jpegview`. ADDITIONALLY: it might be necessary to go into the
-   # `scoop\apps\jpegview\current\JPEGView.ini` file and change
-   #   StoreToEXEPath=true
-   # to
-   #   StoreToEXEPath=false
-   New-Item -ItemType Junction -Path "$env:APPDATA\jpegview" -Value "$HOME\.config\jpegview\"
-
+   ```powershell
    # GPG program setting. Obviously, make sure to install gpg (with scoop) too.
    # see .config/git/config for more info
    "[gpg]`n  program = C:/Users/tim/scoop/apps/gpg/current/bin/gpg.exe`n" | Out-File -FilePath "$HOME\.config\git\windows"
