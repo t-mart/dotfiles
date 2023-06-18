@@ -24,6 +24,7 @@ $linksTargets = @(
     @{ 'Link' = '%APPDATA%\beets'; 'Target' = '%USERPROFILE%\.config\beets\' },
     @{ 'Link' = '%APPDATA%\nushell'; 'Target' = '%USERPROFILE%\.config\nushell\' },
     @{ 'Link' = '%USERPROFILE%\.aria2'; 'Target' = '%USERPROFILE%\.config\aria2\' }
+    @{ 'Link' = '%USERPROFILE%\scoop\persist\mpv.net\portable_config'; 'Target' = '%USERPROFILE%\.config\mpv.net\' }
 )
 
 # Iterate through each link-target pair
