@@ -17,7 +17,6 @@ parent directory.
 # Target = path to which link refers (file/dir that already exists)
 # Link = path to new link
 $linksTargets = @(
-    @{ 'Link' = '%APPDATA%\flameshot'; 'Target' = '%USERPROFILE%\.config\flameshot\' },
     @{ 'Link' = '%USERPROFILE%\Documents\PowerShell'; 'Target' = '%USERPROFILE%\.config\powershell\' },
     @{ 'Link' = '%APPDATA%\streamlink'; 'Target' = '%USERPROFILE%\.config\streamlink\' },
     @{ 'Link' = '%APPDATA%\yt-dlp'; 'Target' = '%USERPROFILE%\.config\yt-dlp\' },
@@ -25,6 +24,8 @@ $linksTargets = @(
     @{ 'Link' = '%APPDATA%\nushell'; 'Target' = '%USERPROFILE%\.config\nushell\' },
     @{ 'Link' = '%USERPROFILE%\.aria2'; 'Target' = '%USERPROFILE%\.config\aria2\' }
     @{ 'Link' = '%USERPROFILE%\scoop\persist\mpv.net\portable_config'; 'Target' = '%USERPROFILE%\.config\mpv.net\' }
+    @{ 'Link' = '%APPDATA%\JPEGView\'; 'Target' = '%USERPROFILE%\.config\jpegview\' }
+    @{ 'Link' = '%USERPROFILE%\Documents\My Games\Path of Exile\production_Config.ini'; 'Target' = '%USERPROFILE%\.config\Path of Exile\production_Config.ini' }
 )
 
 # Iterate through each link-target pair
