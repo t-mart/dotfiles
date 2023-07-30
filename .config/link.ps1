@@ -24,7 +24,7 @@ $linksTargets = @(
     @{ 'Link' = '%APPDATA%\nushell'; 'Target' = '%USERPROFILE%\.config\nushell\' },
     @{ 'Link' = '%USERPROFILE%\.aria2'; 'Target' = '%USERPROFILE%\.config\aria2\' }
     @{ 'Link' = '%USERPROFILE%\scoop\persist\mpv.net\portable_config'; 'Target' = '%USERPROFILE%\.config\mpv.net\' }
-    @{ 'Link' = '%APPDATA%\JPEGView\'; 'Target' = '%USERPROFILE%\.config\jpegview\' }
+    @{ 'Link' = '%USERPROFILE%\scoop\persist\JPEGView-fork'; 'Target' = '%USERPROFILE%\.config\jpegview\' }
     @{ 'Link' = '%USERPROFILE%\Documents\My Games\Path of Exile\production_Config.ini'; 'Target' = '%USERPROFILE%\.config\Path of Exile\production_Config.ini' }
 )
 
