@@ -2,17 +2,18 @@
 -- --------------
 -- This script registers a function "move-file-next" that:
 -- 1. moves the currently playing file to a subdirectory in the same path named
---    "mpv_movefile"
+--    "!mpv_movefile"
 -- 2. skips past the file in the playlist (or stops if there are no more files
 --    in the playlist)
 --
 -- Specifically for me, I use this categorize files to keep or delete. For
--- example, after using this script, I can quickly delete all files in the
--- "mpv_movefile" directory.
+-- example, after playing through a directory and using this function on some
+-- files, I can quickly delete all files in the "!mpv_movefile" directory.
 --
--- To use this script, place it in your scripts location (https://mpv.io/manual/stable/#script-location)
--- and the assign `move-file-next/move-file-next` to a keybinding in your input.conf, such as:
---     Shift+DEL    script-binding move-file-next/move-file-next
+-- To use this script, place it in your scripts location
+-- (https://mpv.io/manual/stable/#script-location) and the assign
+--     `move-file-next/move-file-next` to a keybinding in your input.conf, such
+--     as: Shift+DEL    script-binding move-file-next/move-file-next
 
 -- not technically necessary because mp is preloaded, but lets static analyzers
 -- know we're using it.
@@ -20,7 +21,7 @@ local mp = require('mp')
 local utils = require('mp.utils')
 local msg = require('mp.msg')
 
-local move_dir_name = "mpv_movefile"
+local move_dir_name = "!mpv_movefile"
 
 -- Check if path is a protocol, such as `http://...`
 local function is_protocol(path) return path:match('^%a[%a%d-_]+://') end
@@ -78,6 +79,7 @@ local function log_and_osd_message(msg, level)
     mp.osd_message(msg)
 end
 
+-- skip the currently playing file and move it to the "!mpv_movefile" subdirectory
 local function move_file_next()
     local file_path = mp.get_property('path')
 
