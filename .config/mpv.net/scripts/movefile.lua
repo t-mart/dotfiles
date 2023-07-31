@@ -12,8 +12,12 @@
 --
 -- To use this script, place it in your scripts location
 -- (https://mpv.io/manual/stable/#script-location) and the assign
---     `move-file-next/move-file-next` to a keybinding in your input.conf, such
---     as: Shift+DEL    script-binding move-file-next/move-file-next
+-- `move-file-next/move-file-next` to a keybinding in your input.conf, such
+--  as:
+--
+--  ```
+--  Shift+DEL    script-binding move-file-next/move-file-next
+--  ```
 
 -- not technically necessary because mp is preloaded, but lets static analyzers
 -- know we're using it.
