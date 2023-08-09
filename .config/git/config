@@ -93,5 +93,7 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
-[credential "helperselector"]
-	selected = manager-core
+
+; for other identities
+[includeIf "gitdir:~/code-non-main/"]
+    path = ~/code-non-main/.gitconfig
