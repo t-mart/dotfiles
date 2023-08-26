@@ -51,16 +51,6 @@ This system is heavily inspired by <https://www.atlassian.com/git/tutorials/dotf
    .\.config\link.ps1
    ```
 
-   Also, do this:
-
-   ```powershell
-   # GPG program setting. Obviously, make sure to install gpg (with scoop) too.
-   # see .config/git/config for more info
-   "[gpg]`n  program = C:/Users/tim/scoop/apps/gpg/current/bin/gpg.exe`n" | Out-File -FilePath "$HOME\.config\git\windows"
-   ```
-
-   (This method could hypothetically be used on any platform to fix inconvenient config locations.)
-
 5. Create a new shell
 
    So that way, the dotfiles take effect and load the `dfgit` alias of our various shells. `dfgit`
