@@ -6,3 +6,5 @@
 .config/git/windows
 .config/mpv.net/settings.xml
 .config/scoop/config.json
+.config/foobar2000/
+!.config/foobar2000/profile/theme.fth

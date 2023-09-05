@@ -577,7 +577,7 @@ def tiktok-dl [
 def yt-beet-import [
   playlist_url: string      # The URL of the Youtube Music playlist
 ] {
-  let download_dir = "yt-beet-import-tmp-" + (date now | date format %s%.f)
+  let download_dir = "yt-beet-import-tmp-" + (date now | format date %s%.f)
   mkdir $download_dir
   yt-dlp --output $"($download_dir)/%\(album,playlist)s/%\(track_number,playlist_index)02d - %\(artist)s - %\(track)s.%\(ext)s" --concurrent-fragments 3 --extract-audio --format "bestaudio*[acodec=opus]/bestaudio*" $playlist_url
   beet import $download_dir

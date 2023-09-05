@@ -26,6 +26,13 @@ $linksTargets = @(
     @{ 'Link' = '%USERPROFILE%\scoop\persist\mpv.net\portable_config'; 'Target' = '%USERPROFILE%\.config\mpv.net\' }
     @{ 'Link' = '%USERPROFILE%\scoop\persist\JPEGView-fork'; 'Target' = '%USERPROFILE%\.config\jpegview\' }
     @{ 'Link' = '%USERPROFILE%\Documents\My Games\Path of Exile\production_Config.ini'; 'Target' = '%USERPROFILE%\.config\Path of Exile\production_Config.ini' }
+    @{ 'Link' = '%USERPROFILE%\scoop\persist\fancontrol\Configurations\2023 build.json'; 'Target' = '%USERPROFILE%\.config\fancontrol\2023 build.json' }
+    # this links more than we want because foobar2000 deletes the theme, and then
+    # rewrites. to workaround, we add its parent dir, then gitignore everything
+    # but the theme
+    @{ 'Link' = '%USERPROFILE%\scoop\persist\foobar2000'; 'Target' = '%USERPROFILE%\.config\foobar2000\' }
+    @{ 'Link' = '%USERPROFILE%\scoop\persist\systeminformer-nightly'; 'Target' = '%USERPROFILE%\.config\systeminformer-nightly\' }
+    @{ 'Link' = '%USERPROFILE%\scoop\persist\greenshot-unstable'; 'Target' = '%USERPROFILE%\.config\greenshot-unstable\' }
 )
 
 # Iterate through each link-target pair
