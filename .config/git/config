@@ -74,3 +74,5 @@
 ; for other identities
 [includeIf "gitdir:~/code-non-main/"]
     path = ~/code-non-main/.gitconfig
+[credential "helperselector"]
+	selected = <no helper>

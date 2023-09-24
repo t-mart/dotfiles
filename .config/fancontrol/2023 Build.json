@@ -1,5 +1,5 @@
 {
-  "__VERSION__": "168",
+  "__VERSION__": "170",
   "Main": {
     "Controls": [
       {
@@ -9,15 +9,15 @@
         "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": {
+        "MinimumPercent": 0,
+        "Name": "Fan #1",
+        "NickName": "CPU",
+        "PairedFanSensor": {
           "Identifier": "/lpc/it8689e/fan/0",
           "IsHidden": false,
           "Name": "Fan #1",
-          "NickName": "Fan #1"
+          "NickName": "CPU"
         },
-        "MinimumPercent": 0,
-        "Name": "Fan #1",
-        "NickName": "CPU Fan",
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
@@ -48,15 +48,15 @@
         "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": {
-          "Identifier": "/lpc/it8689e/fan/1",
-          "IsHidden": false,
-          "Name": "Fan #2",
-          "NickName": "Fan #2"
-        },
         "MinimumPercent": 0,
         "Name": "Fan #2",
         "NickName": "Case Intake",
+        "PairedFanSensor": {
+          "Identifier": "/lpc/it8689e/fan/1",
+          "IsHidden": false,
+          "Name": "Fan #2",
+          "NickName": "Case Intake"
+        },
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
@@ -111,15 +111,15 @@
         "IsHidden": false,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": {
-          "Identifier": "/lpc/it8689e/fan/2",
-          "IsHidden": false,
-          "Name": "Fan #3",
-          "NickName": "Fan #3"
-        },
         "MinimumPercent": 0,
         "Name": "Fan #3",
         "NickName": "Case Exhaust",
+        "PairedFanSensor": {
+          "Identifier": "/lpc/it8689e/fan/2",
+          "IsHidden": false,
+          "Name": "Fan #3",
+          "NickName": "Case Exhaust"
+        },
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
@@ -171,18 +171,18 @@
         "Enable": false,
         "ForceApply": false,
         "Identifier": "NVApiWrapper/0-AD104-A/control/0",
-        "IsHidden": false,
+        "IsHidden": true,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": {
-          "Identifier": "NVApiWrapper/0-AD104-A/fan/0",
-          "IsHidden": false,
-          "Name": "Fan 1 - NVIDIA GeForce RTX 4070",
-          "NickName": "Fan 1 - NVIDIA GeForce RTX 4070"
-        },
         "MinimumPercent": 0,
         "Name": "Control 1 - NVIDIA GeForce RTX 4070",
         "NickName": "Control 1 - NVIDIA GeForce RTX 4070",
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-AD104-A/fan/0",
+          "IsHidden": false,
+          "Name": "Fan 1 - NVIDIA GeForce RTX 4070",
+          "NickName": "GPU `"
+        },
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": null,
@@ -194,18 +194,18 @@
         "Enable": false,
         "ForceApply": false,
         "Identifier": "NVApiWrapper/0-AD104-A/control/1",
-        "IsHidden": false,
+        "IsHidden": true,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": {
-          "Identifier": "NVApiWrapper/0-AD104-A/fan/1",
-          "IsHidden": false,
-          "Name": "Fan 2 - NVIDIA GeForce RTX 4070",
-          "NickName": "Fan 2 - NVIDIA GeForce RTX 4070"
-        },
         "MinimumPercent": 0,
         "Name": "Control 2 - NVIDIA GeForce RTX 4070",
         "NickName": "Control 2 - NVIDIA GeForce RTX 4070",
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-AD104-A/fan/1",
+          "IsHidden": false,
+          "Name": "Fan 2 - NVIDIA GeForce RTX 4070",
+          "NickName": "GPU 0"
+        },
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": null,
@@ -220,10 +220,10 @@
         "IsHidden": true,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": null,
         "MinimumPercent": 0,
         "Name": "Fan #4",
         "NickName": "Fan #4",
+        "PairedFanSensor": null,
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": null,
@@ -238,10 +238,10 @@
         "IsHidden": true,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": null,
         "MinimumPercent": 0,
         "Name": "Fan #5",
         "NickName": "Fan #5",
+        "PairedFanSensor": null,
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": null,
@@ -253,13 +253,13 @@
         "Enable": false,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/5",
-        "IsHidden": false,
+        "IsHidden": true,
         "ManualControl": false,
         "ManualControlValue": 50,
-        "MatchingFanSensor": null,
         "MinimumPercent": 0,
         "Name": "Fan #6",
         "NickName": "Fan #6",
+        "PairedFanSensor": null,
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": null,
@@ -351,31 +351,31 @@
         "Identifier": "/lpc/it8689e/fan/0",
         "IsHidden": false,
         "Name": "Fan #1",
-        "NickName": "Fan #1"
+        "NickName": "CPU"
       },
       {
         "Identifier": "/lpc/it8689e/fan/1",
         "IsHidden": false,
         "Name": "Fan #2",
-        "NickName": "Fan #2"
+        "NickName": "Case Intake"
       },
       {
         "Identifier": "/lpc/it8689e/fan/2",
         "IsHidden": false,
         "Name": "Fan #3",
-        "NickName": "Fan #3"
+        "NickName": "Case Exhaust"
       },
       {
         "Identifier": "NVApiWrapper/0-AD104-A/fan/0",
         "IsHidden": false,
         "Name": "Fan 1 - NVIDIA GeForce RTX 4070",
-        "NickName": "Fan 1 - NVIDIA GeForce RTX 4070"
+        "NickName": "GPU `"
       },
       {
         "Identifier": "NVApiWrapper/0-AD104-A/fan/1",
         "IsHidden": false,
         "Name": "Fan 2 - NVIDIA GeForce RTX 4070",
-        "NickName": "Fan 2 - NVIDIA GeForce RTX 4070"
+        "NickName": "GPU 0"
       },
       {
         "Identifier": "/lpc/it8689e/fan/3",
@@ -398,10 +398,10 @@
     ],
     "HideFanSpeedCards": false,
     "HorizontalUIOrientation": false,
-    "PrimaryColor": "#FF607D8B",
+    "PrimaryColor": "#FF006190",
     "SecondaryColor": "#FFAEEA00",
     "SelectedTheme": "Dark",
-    "ShowHiddenCards": true,
+    "ShowHiddenCards": false,
     "SyncThemeWithWindows": true,
     "TemperatureSensors": [],
     "TrayIconColor": "#FFFFFFFF",
