@@ -95,7 +95,7 @@ local smoothMouse = true
 
 local scaling   = 'linear'
 
-
+ 
 local in_stereo  = 'sbs'
 local outputMode = '2d'
 local out_stereo = '2d'
@@ -151,7 +151,7 @@ local writeHeadPositionChange = function()
 
 	if file_object == nil then
 		return
-	else
+	else		
 		local initPass=false
 		if lasttimePos == nil then
 			lasttimePos = mp.get_property("time-pos")
@@ -175,23 +175,23 @@ local writeHeadPositionChange = function()
 
 		if initPass or pitch ~= last_pitch or maximumTimeoutReached then
 			changedValues[#changedValues+1]= string.format(", [expr] v360 pitch 'lerp(%.3f,%.3f,(T-%.3f)/%.3f)'",last_pitch,pitch,lasttimePos,movementDuration)
-		end
+		end 
 		last_pitch=pitch
 
 		if initPass or yaw ~= last_yaw or maximumTimeoutReached then
 			changedValues[#changedValues+1]= string.format(", [expr] v360 yaw 'lerp(%.3f,%.3f,(T-%.3f)/%.3f)'",last_yaw,yaw,lasttimePos,movementDuration)
-		end
+		end 
 		last_yaw=yaw
 
 
 		if initPass or roll ~= last_roll or maximumTimeoutReached then
 			changedValues[#changedValues+1]= string.format(", [expr] v360 roll 'lerp(%.3f,%.3f,(T-%.3f)/%.3f)'",last_roll,roll,lasttimePos,movementDuration)
-		end
+		end 
 		last_roll=roll
 
 		if initPass or dfov ~= last_dfov or maximumTimeoutReached then
 			changedValues[#changedValues+1]= string.format(", [expr] v360 d_fov 'lerp(%.3f,%.3f,(T-%.3f)/%.3f)'",last_dfov,dfov,lasttimePos,movementDuration)
-		end
+		end 
 		last_dfov=dfov
 
 		if initPass then
@@ -211,7 +211,7 @@ local writeHeadPositionChange = function()
 
 			commandString = outputTs .. commandString .. ';'
 
-			file_object:write(commandString .. '\n')
+			file_object:write(commandString .. '\n')	
 			lasttimePos = newTimePos
 		end
 	end
@@ -247,7 +247,7 @@ local mouse_btn0_cb = function ()
 		mp.set_property("cursor-autohide", "always")
 	else
 		mp.set_property("cursor-autohide", saved_props["cursor-autohide"])
-	end
+	end 
 end
 
 local mouse_pan = function ()
@@ -283,12 +283,12 @@ local mouse_pan = function ()
 				updateCrop=true
 			end
 		else
-			if yaw ~= yawpc then
+			if yaw ~= yawpc then 
 				yaw  = yawpc
 				yaw = math.max(-180,math.min(180,yaw))
 				updateCrop=true
 			end
-			if pitch ~= pitchpc then
+			if pitch ~= pitchpc then 
 				pitch  = pitchpc
 				pitch = math.max(-180,math.min(180,pitch))
 				updateCrop=true
@@ -538,10 +538,10 @@ local closeCurrentLog = function()
 
 		local closingCommandComment = string.format(
 			'ffmpeg -y -ss %s -i "%s" -to %s -copyts -filter_complex "%sv360=%s:%s:in_stereo=%s:out_stereo=%s:reset_rot=1:id_fov=%s:d_fov=%.3f:yaw=%.3f:pitch=%.3f:roll=%.3f:w=1920.0:h=1080.0:interp=cubic:h_flip=%s,setsar=sar=%.3f,sendcmd=filename=%s_3dViewHistory_%s.txt" -avoid_negative_ts make_zero -preset slower -crf 17 "%s_2d_%03d.mp4"',
-			startTime,filename,finalTimeStamp,in_flip,inputProjection,outputProjection,in_stereo,out_stereo,idfov,init_dfov,init_yaw,init_pitch,init_roll,h_flip,videofilename,fileobjectNumber,videofilename,fileobjectNumber,sarOutput
+			startTime, filename, finalTimeStamp, in_flip, inputProjection, outputProjection, in_stereo, out_stereo, idfov, init_dfov, init_yaw, init_pitch, init_roll, h_flip, sarOutput, videofilename, fileobjectNumber, videofilename, fileobjectNumber
 		)
 
-
+				
 		file_object:write('# ' .. closingCommandComment .. '\n')
 		file_object:write('#\n')
 
@@ -599,7 +599,7 @@ local save_props = function()
 
 		if k == "hwdec" and propv ~= "no" then
 			-- Workaround: hardware acceleration rarely works well, so we have to disable it.
-			-- Error: [ffmpeg] Impossible to convert between the formats supported by
+			-- Error: [ffmpeg] Impossible to convert between the formats supported by 
 			-- the filter 'mpv_src_default_in' and the filter 'auto_scaler_0'
 			mp.osd_message("Temporarily turning off hardware decoding.", 1.5)
 			mp.set_property("hwdec", "no")
@@ -704,7 +704,7 @@ bindings = {
 	[opts.switch_stereo]	=	{name="switch_stereo",		fn=switchStereoMode		},
 	[opts.switch_eye]		=	{name="switch_eye",			fn=switchEye			},
 	[opts.switch_scaler]	=	{name="switch_scaler",		fn=switchScaler			},
-	[opts.switch_output_sbs]=	{name="switch_output_sbs",	fn=switchoutputsbs		},
+	[opts.switch_output_sbs]=	{name="switch_output_sbs",	fn=switchoutputsbs		},	
 	[opts.toggle_smooth]	=	{name="toggle_smooth",		fn=toggleSmoothMouse	},
 	[opts.switch_bounds]	=	{name="switch_bounds",		fn=switchInputFovBounds	},
 	[opts.new_log_session]	=	{name="new_log_session",	fn=startNewLogSession	},

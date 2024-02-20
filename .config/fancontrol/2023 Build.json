@@ -1,5 +1,5 @@
 {
-  "__VERSION__": "170",
+  "__VERSION__": "179",
   "Main": {
     "Controls": [
       {
@@ -21,6 +21,7 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
+          "IgnoreHysteresisAtLimits": true,
           "IsHidden": false,
           "MaximumFanSpeed": 100,
           "MaximumTemperature": 70.0,
@@ -64,6 +65,7 @@
           "Name": "max(CPU + GPU)",
           "SelectedFanCurves": [
             {
+              "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
               "MaximumTemperature": 70.0,
@@ -81,6 +83,7 @@
               }
             },
             {
+              "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
               "MaximumTemperature": 70.0,
@@ -127,6 +130,7 @@
           "Name": "max(CPU + GPU)",
           "SelectedFanCurves": [
             {
+              "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
               "MaximumTemperature": 70.0,
@@ -144,6 +148,7 @@
               }
             },
             {
+              "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
               "MaximumTemperature": 70.0,
@@ -271,6 +276,7 @@
     "CustomSensors": [],
     "FanCurves": [
       {
+        "IgnoreHysteresisAtLimits": true,
         "IsHidden": false,
         "MaximumFanSpeed": 100,
         "MaximumTemperature": 70.0,
@@ -288,6 +294,7 @@
         }
       },
       {
+        "IgnoreHysteresisAtLimits": true,
         "IsHidden": false,
         "MaximumFanSpeed": 100,
         "MaximumTemperature": 70.0,
@@ -309,6 +316,7 @@
         "Name": "max(CPU + GPU)",
         "SelectedFanCurves": [
           {
+            "IgnoreHysteresisAtLimits": true,
             "IsHidden": false,
             "MaximumFanSpeed": 100,
             "MaximumTemperature": 70.0,
@@ -326,6 +334,7 @@
             }
           },
           {
+            "IgnoreHysteresisAtLimits": true,
             "IsHidden": false,
             "MaximumFanSpeed": 100,
             "MaximumTemperature": 70.0,
@@ -400,9 +409,10 @@
     "HorizontalUIOrientation": false,
     "PrimaryColor": "#FF006190",
     "SecondaryColor": "#FFAEEA00",
-    "SelectedTheme": "Dark",
+    "SelectedTheme": "Inherit",
     "ShowHiddenCards": false,
     "SyncThemeWithWindows": true,
+    "SyncTrayIconColorWithWindows": true,
     "TemperatureSensors": [],
     "TrayIconColor": "#FFFFFFFF",
     "TrayIcons": []
