@@ -1,10 +1,10 @@
-# This is my user-level .gitignore
-# Only files that are specific to me should go in here.
+# This is my user-level .gitignore Only files that are specific to me should go
+# in here.
 #
-# Litmus test: If an arbitrary other developer were to work on a repo of mine, would
-# would they necessarily generate this file during development?
-# - If yes, put it in the project .gitignore. It's an expected part of developer
-#   operations and should be ignored
+# Litmus test: If an another developer were to work on this repo, would would
+# they _also_ generate this file (that should be ignored)?
+# - If yes, put it in the project .gitignore. It's an expected part
+#   working on the project.
 # - If no, put it here. It's something specific to my workflow.
 #
 # For example, things specific to my editor/workflow/etc belong here.
