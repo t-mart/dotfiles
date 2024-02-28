@@ -7,29 +7,25 @@
   ui = auto
 
 [push]
-  default = upstream
+  default = current
   followTags = true
-
-[pull]
-  ff = only
-  rebase = true
+  gpgSign = if-asked
+  autoSetupRemote = true
 
 [branch]
   autosetuprebase = always
 
 [merge]
-  conflictstyle = diff3
-  tool = vimdiff
+  conflictstyle = zdiff3
 
 [core]
   editor = vim
   autocrlf = input
+  pager = less
 
 [grep]
-  #always show line numbers
   lineNumber = true
-  #use robust regex patterns
-  extendedRegexp = true
+  patternType = extended
 
 [github]
   user = t-mart
@@ -37,20 +33,15 @@
 [alias]
   logg = "log --graph --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%cr)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an (%G?)%C(reset)'"
   reflogg = "reflog --format=format:'%C(bold green)%h%C(reset) - %C(bold yellow)%gd%C(reset) %C(auto)%gs%C(reset) - %C(cyan)(%cr) %C(reset)%C(auto)%d%C(reset)%n  ↳ %C(white)%s%C(reset) %C(dim white)- %gn'"
-  fix = "!f() { ${EDITOR} `git diff --name-only | uniq`; }; f"
 
 [rerere]
   enabled = true
-
-[grep]
-  lineNumber = true
-  patternType = extended
 
 [rebase]
   autosquash = true
 
 [diff]
-  compactionHeuristic = true
+  algorithm = histogram
 
 [init]
   defaultBranch = master
@@ -61,18 +52,8 @@
 [tag]
   gpgSign = true
 
-[push]
-  gpgSign = if-asked
-  autoSetupRemote = true
-
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
-
-; for other identities
-[includeIf "gitdir:~/code-non-main/"]
-    path = ~/code-non-main/.gitconfig
-[credential "helperselector"]
-	selected = <no helper>
