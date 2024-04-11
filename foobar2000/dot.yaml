@@ -1,0 +1,4 @@
+windows:
+  links:
+    theme.fth: ~/scoop/persist/foobar2000/Configurations/theme.fth
+  

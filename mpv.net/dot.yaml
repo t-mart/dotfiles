@@ -1,0 +1,7 @@
+windows:
+  links:
+    script-opts: ~/scoop/persist/mpv.net/portable_config/script-opts
+    scripts: ~/scoop/persist/mpv.net/portable_config/scripts
+    input.conf: ~/scoop/persist/mpv.net/portable_config/input.conf
+    mpv.conf: ~/scoop/persist/mpv.net/portable_config/mpv.conf
+    mpvnet.conf: ~/scoop/persist/mpv.net/portable_config/mpvnet.conf

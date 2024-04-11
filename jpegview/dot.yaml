@@ -1,0 +1,4 @@
+windows:
+  links:
+    JPEGView.ini: ~/scoop/persist/JPEGView-fork/JPEGView.ini
+    KeyMap.txt: ~/scoop/persist/JPEGView-fork/KeyMap.txt

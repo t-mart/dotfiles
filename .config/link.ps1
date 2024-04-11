@@ -20,7 +20,7 @@ $linksTargets = @(
     @{ 'Link' = '%USERPROFILE%\Documents\PowerShell'; 'Target' = '%USERPROFILE%\.config\powershell\' },
     @{ 'Link' = '%APPDATA%\streamlink'; 'Target' = '%USERPROFILE%\.config\streamlink\' },
     @{ 'Link' = '%APPDATA%\yt-dlp'; 'Target' = '%USERPROFILE%\.config\yt-dlp\' },
-    @{ 'Link' = '%APPDATA%\beets'; 'Target' = '%USERPROFILE%\.config\beets\' },
+    @{ 'Link' = '~\beets'; 'Target' = '%USERPROFILE%\.config\beets\' },
     @{ 'Link' = '%APPDATA%\nushell'; 'Target' = '%USERPROFILE%\.config\nushell\' },
     @{ 'Link' = '%USERPROFILE%\.aria2'; 'Target' = '%USERPROFILE%\.config\aria2\' }
     @{ 'Link' = '%USERPROFILE%\scoop\persist\mpv.net\portable_config'; 'Target' = '%USERPROFILE%\.config\mpv.net\' }

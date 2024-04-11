@@ -1,6 +1,4 @@
 # This is not my user-level ignore file. This is for my dotfiles repository
-#
-# The user-level ignore file is in ~/.config/git/ignore
 .dotfile_config
 .config/nushell/history.txt
 .config/git/windows
