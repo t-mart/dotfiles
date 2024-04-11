@@ -111,3 +111,9 @@ this method is initialized._
 ```sh
 git init --bare "$HOME/.dotfile_config"
 ```
+
+## TODO
+
+- Take a look at [Rotz](https://volllly.github.io/rotz/). It's cross-platform,
+  symlinking, templating, and more. It might be a good fit for this project
+  instead of my homebrewed `dfgit` and `link.ps1` system.
