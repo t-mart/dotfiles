@@ -1,8 +1,9 @@
 {
-  "__VERSION__": "179",
+  "__VERSION__": "185",
   "Main": {
     "Controls": [
       {
+        "Calibration": null,
         "Enable": true,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/0",
@@ -21,6 +22,7 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
+          "CommandMode": 0,
           "IgnoreHysteresisAtLimits": true,
           "IsHidden": false,
           "MaximumFanSpeed": 100,
@@ -43,6 +45,7 @@
         "SelectedStop": 0
       },
       {
+        "Calibration": null,
         "Enable": true,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/1",
@@ -61,10 +64,12 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
+          "CommandMode": 0,
           "IsHidden": false,
           "Name": "max(CPU + GPU)",
           "SelectedFanCurves": [
             {
+              "CommandMode": 0,
               "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
@@ -83,6 +88,7 @@
               }
             },
             {
+              "CommandMode": 0,
               "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
@@ -108,6 +114,7 @@
         "SelectedStop": 0
       },
       {
+        "Calibration": null,
         "Enable": true,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/2",
@@ -126,10 +133,12 @@
         "SelectedCommandStepDown": 8.0,
         "SelectedCommandStepUp": 8.0,
         "SelectedFanCurve": {
+          "CommandMode": 0,
           "IsHidden": false,
           "Name": "max(CPU + GPU)",
           "SelectedFanCurves": [
             {
+              "CommandMode": 0,
               "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
@@ -148,6 +157,7 @@
               }
             },
             {
+              "CommandMode": 0,
               "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
@@ -173,6 +183,7 @@
         "SelectedStop": 0
       },
       {
+        "Calibration": null,
         "Enable": false,
         "ForceApply": false,
         "Identifier": "NVApiWrapper/0-AD104-A/control/0",
@@ -196,6 +207,7 @@
         "SelectedStop": 0
       },
       {
+        "Calibration": null,
         "Enable": false,
         "ForceApply": false,
         "Identifier": "NVApiWrapper/0-AD104-A/control/1",
@@ -219,6 +231,7 @@
         "SelectedStop": 0
       },
       {
+        "Calibration": null,
         "Enable": false,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/3",
@@ -237,6 +250,7 @@
         "SelectedStop": 0
       },
       {
+        "Calibration": null,
         "Enable": false,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/4",
@@ -255,6 +269,7 @@
         "SelectedStop": 0
       },
       {
+        "Calibration": null,
         "Enable": false,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/5",
@@ -276,6 +291,7 @@
     "CustomSensors": [],
     "FanCurves": [
       {
+        "CommandMode": 0,
         "IgnoreHysteresisAtLimits": true,
         "IsHidden": false,
         "MaximumFanSpeed": 100,
@@ -294,6 +310,7 @@
         }
       },
       {
+        "CommandMode": 0,
         "IgnoreHysteresisAtLimits": true,
         "IsHidden": false,
         "MaximumFanSpeed": 100,
@@ -312,10 +329,12 @@
         }
       },
       {
+        "CommandMode": 0,
         "IsHidden": false,
         "Name": "max(CPU + GPU)",
         "SelectedFanCurves": [
           {
+            "CommandMode": 0,
             "IgnoreHysteresisAtLimits": true,
             "IsHidden": false,
             "MaximumFanSpeed": 100,
@@ -334,6 +353,7 @@
             }
           },
           {
+            "CommandMode": 0,
             "IgnoreHysteresisAtLimits": true,
             "IsHidden": false,
             "MaximumFanSpeed": 100,
@@ -405,6 +425,7 @@
         "NickName": "Fan #6"
       }
     ],
+    "HideCalibration": false,
     "HideFanSpeedCards": false,
     "HorizontalUIOrientation": false,
     "PrimaryColor": "#FF006190",

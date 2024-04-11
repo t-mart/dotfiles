@@ -8,3 +8,4 @@
 .config/scoop/config.json
 .config/foobar2000/
 !.config/foobar2000/profile/theme.fth
+.config/mpv.net/cache/
