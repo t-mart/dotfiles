@@ -143,7 +143,7 @@ let light_theme = {
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
-    show_banner: true # true or false to enable or disable the welcome banner at startup
+    show_banner: false # true or false to enable or disable the welcome banner at startup
 
     ls: {
         use_ls_colors: true # use the LS_COLORS environment variable to colorize output
@@ -382,13 +382,13 @@ $env.config = {
                 ]
             }
         }
-        {
-            name: history_menu
-            modifier: control
-            keycode: char_r
-            mode: [emacs, vi_insert, vi_normal]
-            event: { send: menu name: history_menu }
-        }
+        # {
+        #     name: history_menu
+        #     modifier: control
+        #     keycode: char_r
+        #     mode: [emacs, vi_insert, vi_normal]
+        #     event: { send: menu name: history_menu }
+        # }
         {
             name: help_menu
             modifier: none
@@ -464,18 +464,18 @@ $env.config = {
             mode: [emacs, vi_normal, vi_insert]
             event: { send: openeditor }
         }
-        {
-            name: move_up
-            modifier: none
-            keycode: up
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
-                until: [
-                    { send: menuup }
-                    { send: up }
-                ]
-            }
-        }
+        # {
+        #     name: move_up
+        #     modifier: none
+        #     keycode: up
+        #     mode: [emacs, vi_normal, vi_insert]
+        #     event: {
+        #         until: [
+        #             { send: menuup }
+        #             { send: up }
+        #         ]
+        #     }
+        # }
         {
             name: move_down
             modifier: none
