@@ -1,0 +1,70 @@
+{
+  "files.autoSave": "afterDelay",
+  "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.scrollback": 10000,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
+  "terminal.integrated.profiles.windows": {
+    "Windows PowerShell": {
+      "path": "pwsh.exe"
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Nushell",
+  "security.workspace.trust.untrustedFiles": "open",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+      "editor.tabSize": 2
+  },
+  "svelte.enable-ts-plugin": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[rust]": {
+    "editor.rulers": [
+      100
+    ]
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.rulers": [
+      88
+    ]
+},
+  "files.eol": "\n",
+  "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "github.gitProtocol": "ssh",
+  "github.gitAuthentication": false,
+  "[svelte]": {
+    "editor.defaultFormatter": "svelte.svelte-vscode"
+  },
+  "git.confirmSync": false,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "python.analysis.typeCheckingMode": "strict",
+  "git.autofetch": true,
+  "debug.allowBreakpointsEverywhere": true,
+  "rust-analyzer.check.command": "clippy",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.editor.enablePreview": false,
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.proseWrap": "always",
+  "prettier.printWidth": 80
+}

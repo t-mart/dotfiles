@@ -1,0 +1,4 @@
+windows:
+  links:
+    settings.json: ~/AppData/Roaming/Code/User/settings.json
+    keybindings.json: ~/AppData/Roaming/Code/User/keybindings.json
