@@ -2,6 +2,9 @@
 #
 # version = "0.92.2"
 
+# source scripts (found in $env.NU_LIB_DIRS)
+source import-album.nu
+
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
