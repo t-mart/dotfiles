@@ -70,16 +70,32 @@ $env.NU_PLUGIN_DIRS = [
 # $env.PATH = ($env.PATH | uniq)
 
 # Put scoop shims at the front of the $env.Path (on Windows). This specifically
-# allows us to prefer these shims over Windows-built-in commands, like curl.
-let scoop_shims = "~/scoop/shims" | path expand
-if $scoop_shims in ($env.Path | path expand) {
-    # prepend to path, then uniq. we also run a `path expand` to ensure uniq
-    # actually finds the dupe (it might not be in a canonical form otherwise)
-    $env.Path = ($env.Path | path expand | prepend $scoop_shims | uniq)
+# allows us to prefer these shim executables over Windows-built-in executables,
+# like curl.
+if ($nu.os-info.family) == "windows" {
+    let scoop_shims = ("~/scoop/shims" | path expand)
+    if $scoop_shims in $env.Path {
+        $env.Path = ($env.Path | split row (char esep) | prepend $scoop_shims | uniq)
+    }
 }
+
+# XDG defaults, if not already set
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+{
+    XDG_CACHE_HOME: ($nu.home-path | path join ".cache"),
+    XDG_CONFIG_HOME: ($nu.home-path | path join ".config"),
+    XDG_DATA_HOME: ($nu.home-path | path join ".local" "share"),
+    XDG_STATE_HOME: ($nu.home-path | path join ".local" "state"),
+} | transpose key value | reduce --fold {} { |it, acc| 
+    {
+        ...$acc,
+        $it.key: ($env | get --ignore-errors $it.key | default $it.value)
+    }
+} | load-env
+
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
 $env.ATUIN_NOBIND = true
-source ~/.local/share/atuin/init.nu
+source ~/.local/share/atuin/init.nu # TODO: use XDG 
