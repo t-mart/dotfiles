@@ -1,12 +1,13 @@
 windows:
   links:
-    config.nu: 
-      # default location
-      - ~/AppData/Roaming/nushell/config.nu
+    config.nu: ~/AppData/Roaming/nushell/config.nu
+    env.nu: ~/AppData/Roaming/nushell/env.nu
+    scripts: ~/AppData/Roaming/nushell/scripts
 
-      # if XDG_CONFIG_HOME is set
-      - ~/.config/nushell/config.nu
-
-    env.nu:
-      - ~/AppData/Roaming/nushell/env.nu
-      - ~/.config/nushell/env.nu
+# on windows, do this general symlink mapping too. This will be used if
+# XDG_CONFIG_HOME is set.
+general:
+  links:
+    config.nu: ~/.config/nushell/config.nu
+    env.nu: ~/.config/nushell/env.nu
+    scripts: ~/.config/nushell/scripts
