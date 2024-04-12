@@ -86,12 +86,14 @@ if ($nu.os-info.family) == "windows" {
     XDG_CONFIG_HOME: ($nu.home-path | path join ".config"),
     XDG_DATA_HOME: ($nu.home-path | path join ".local" "share"),
     XDG_STATE_HOME: ($nu.home-path | path join ".local" "state"),
-} | transpose key value | reduce --fold {} { |it, acc| 
+} | items { |name, value|
     {
-        ...$acc,
-        $it.key: ($env | get --ignore-errors $it.key | default $it.value)
+        name: $name,
+
+        # use the existing value if it's already set
+        value: ($env | get --ignore-errors $name | default $value)
     }
-} | load-env
+} | transpose --ignore-titles -d -r | load-env
 
 
 # To load from a custom file you can use:
