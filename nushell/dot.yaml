@@ -1,4 +1,12 @@
 windows:
   links:
-    config.nu: ~/AppData/Roaming/nushell/config.nu
-    env.nu: ~/AppData/Roaming/nushell/env.nu
+    config.nu: 
+      # default location
+      - ~/AppData/Roaming/nushell/config.nu
+
+      # if XDG_CONFIG_HOME is set
+      - ~/.config/nushell/config.nu
+
+    env.nu:
+      - ~/AppData/Roaming/nushell/env.nu
+      - ~/.config/nushell/env.nu
