@@ -98,4 +98,4 @@ if ($nu.os-info.family) == "windows" {
 # source ($nu.default-config-dir | path join 'custom.nu')
 
 $env.ATUIN_NOBIND = true
-source ~/.local/share/atuin/init.nu # TODO: use XDG 
+source ~/.local/share/atuin/init.nu
