@@ -42,6 +42,6 @@ truncation_length = 0
 # https://github.com/starship/starship/issues/4299
 symbol = "[✘](bold red) "
 success_symbol = "[✓](bold green)"
-format = '[$symbol$common_meaning$signal_name$maybe_int]($style) '
+format = '[$symbol$common_meaning$signal_name$maybe_int]($style)'
 map_symbol = true
 disabled = false
