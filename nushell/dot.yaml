@@ -6,7 +6,7 @@ windows:
 
 # on windows, do this general symlink mapping too. This will be used if
 # XDG_CONFIG_HOME is set.
-general:
+global:
   links:
     config.nu: ~/.config/nushell/config.nu
     env.nu: ~/.config/nushell/env.nu
