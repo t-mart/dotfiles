@@ -1,5 +1,5 @@
 format = """$username@$hostname $time $git_branch$git_state$git_status
-$directory $status % """
+$directory \\($status $cmd_duration\\) """
 
 [username]
 style_user = "fg:#e377c2 bold"
@@ -45,3 +45,7 @@ success_symbol = "[✓](bold green)"
 format = '[$symbol$common_meaning$signal_name$maybe_int]($style)'
 map_symbol = true
 disabled = false
+
+[cmd_duration]
+min_time = 0
+format = '[$duration]($style)'
