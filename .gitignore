@@ -1,9 +1,3 @@
 # This is not my user-level ignore file. This is for my dotfiles repository
-.dotfile_config
-.config/nushell/history.txt
-.config/git/windows
-.config/mpv.net/settings.xml
-.config/scoop/config.json
-.config/foobar2000/
-!.config/foobar2000/profile/theme.fth
-.config/mpv.net/cache/
+
+nushell/scripts/vendor
