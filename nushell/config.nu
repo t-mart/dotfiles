@@ -868,7 +868,6 @@ $env.config = {
     ]
 }
 
-
 ## CARAPACE CONFIG ##
 let carapace_completer = {|spans|
   # if the current command is an alias, get it's expansion
