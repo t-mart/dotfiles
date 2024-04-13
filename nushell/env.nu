@@ -56,12 +56,11 @@ if ($nu.os-info.family) == "windows" {
 } | transpose --ignore-titles -d -r | load-env
 
 
-# To load from a custom file you can use:
-# source ($nu.default-config-dir | path join 'custom.nu')
-
+## ATUIN CONFIG ##
 $env.ATUIN_NOBIND = true
 source ~/.local/share/atuin/init.nu
 
+## STARSHIP CONFIG ##
 def create_left_prompt [] {
     starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
 }
@@ -74,3 +73,29 @@ $env.PROMPT_COMMAND_RIGHT = ""
 $env.PROMPT_INDICATOR_VI_INSERT = $'(ansi green_bold)+(ansi reset) '
 $env.PROMPT_INDICATOR_VI_NORMAL = $'(ansi yellow_bold)Δ(ansi reset) '
 $env.PROMPT_MULTILINE_INDICATOR = $'(ansi grey)↵(ansi reset) '
+
+
+## CARAPACE CONFIG ##
+let carapace_completer = {|spans|
+  # if the current command is an alias, get it's expansion
+  let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+
+  # overwrite
+  let spans = (if $expanded_alias != null  {
+    # put the first word of the expanded alias first in the span
+    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+  } else {
+    $spans
+  })
+
+  carapace $spans.0 nushell ...$spans
+  | from json
+}
+
+mut current = (($env | default {} config).config | default {} completions)
+$current.completions = ($current.completions | default {} external)
+$current.completions.external = ($current.completions.external
+| default true enable
+| default $carapace_completer completer)
+
+$env.config = $current

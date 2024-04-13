@@ -1,4 +1,4 @@
-format = """$username@$hostname $time $git_branch$git_state$git_status
+format = """$username@$hostname $git_branch$git_state$git_status
 $directory \\($status $cmd_duration\\) """
 
 [username]
@@ -17,7 +17,7 @@ trim_at = ""
 disabled = false
 format = "[$time]($style)"
 time_format = "%Y-%m-%dT%H:%M:%S%:z"
-style = "white bold"
+style = "white"
 
 [git_branch]
 format = "[$branch]($style)"
@@ -49,3 +49,4 @@ disabled = false
 [cmd_duration]
 min_time = 0
 format = '[$duration]($style)'
+style = "yellow"
