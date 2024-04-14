@@ -19,6 +19,9 @@ use std *
     }
 } | transpose --ignore-titles -d -r | load-env
 
+# Add .local/bin
+path add ($nu.home-path | path join ".local" "bin")
+
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
 # - converted from a value back to a string when running external commands (to_string)
@@ -79,8 +82,10 @@ $env.NU_PLUGIN_DIRS = [
 # like curl.
 if ($nu.os-info.name) == "windows" {
     let scoop_shims = ("~/scoop/shims" | path expand)
-    if $scoop_shims in $env.Path {
-        $env.Path = ($env.Path | split row (char esep) | prepend $scoop_shims | uniq)
+    # only if it's in the path already
+    if $scoop_shims in ($env.Path | split row (char esep) | path expand) {
+        # this will prepend it, making it appear twice (and we will dedupe at end of file)
+        path add $scoop_shims
     }
 }
 
@@ -163,3 +168,17 @@ init zoxide {
 init carapace {
     carapace _carapace nushell
 }
+
+# Get the name of the path variable (which is `PATH` on Unix and `Path` on Windows)
+def get_path_name [] {
+    if "PATH" in $env { "PATH" } else { "Path" }
+}
+
+# dedupe and expand items in path
+# this should be LAST to ensure its effects
+load-env {(get_path_name): (
+    $env
+        | get (get_path_name)
+        | split row (char esep)
+        | path expand
+)}
