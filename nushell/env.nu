@@ -58,13 +58,6 @@ if ($nu.os-info.family) == "windows" {
     }
 } | transpose --ignore-titles -d -r | load-env
 
-# Check if a program is installed
-def is-installed [
-    app: string  # the name of the app to check
-] {
-  ((which $app | length) > 0)
-}
-
 # Initialize a tool named `name`, or more specifically, iff `name` is present on
 # the system, load the environment variables in `env_record` and save the output of `init_cmd` to 
 # file in `$env.NU_LIB_VENDOR_DIR` / `<name>_init.nu`  (to be sourced later in
