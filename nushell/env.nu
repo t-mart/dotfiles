@@ -3,23 +3,24 @@
 # use nu standard library
 use std *
 
-# XDG defaults, if not already set
+# XDG env vars
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 {
     XDG_CACHE_HOME: ($nu.home-path | path join ".cache"),
     XDG_CONFIG_HOME: ($nu.home-path | path join ".config"),
     XDG_DATA_HOME: ($nu.home-path | path join ".local" "share"),
     XDG_STATE_HOME: ($nu.home-path | path join ".local" "state"),
-} | items { |name, value|
+} | items { |name, path|
+    # use the existing path if it's already set
+    let path = ($env | get --ignore-errors $name | default $path)
+    mkdir $path
     {
         name: $name,
-
-        # use the existing value if it's already set
-        value: ($env | get --ignore-errors $name | default $value)
+        path: $path
     }
 } | transpose --ignore-titles -d -r | load-env
 
-# Add .local/bin (XDG requirement)
+# Add .local/bin
 export-env {
     let local_bin = ($nu.home-path | path join ".local" "bin")
     mkdir $local_bin
