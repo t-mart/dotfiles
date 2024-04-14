@@ -75,6 +75,18 @@ def --env init [
         $env_record | load-env
         do $init_cmd
     } else {
+        # show a warning once a day if a tool is not installed.
+        let warn_path = ($env.XDG_CACHE_HOME | path join $"nu_warn_($name)")
+        # exists? | age > 1day? | result
+        # T       | T           | warn & touch
+        # T       | F           | (noop)
+        # F       | T           | warn & touch
+        # F       | F           | warn & touch
+        if not ($warn_path | path exists) or (ls $warn_path).modified.0 > 1day {
+            echo "The loaded Nu configs want to use ($name), but is not installed."
+            "This is a marker file to prevent this warning from showing up too often.\n" | save --force $warn_path
+        }
+
         $"# This is a placeholder for the ($name) init script, which is not yet installed.\n"
     } | save -f ($env.NU_LIB_VENDOR_DIR | path join $"($name)_init.nu")
 }
