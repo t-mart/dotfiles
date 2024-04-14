@@ -14,8 +14,10 @@ Managed with [Rotz](https://volllly.github.io/rotz/).
 2. Clone and deploy:
 
    ```shell
-   rotz clone
+   rotz clone git@github.com:t-mart/dotfiles.git
    ```
+
+   *People that aren't me should use `https://github.com/t-mart/dotfiles.git`.*
 
 3. (Windows only) Set environment variables:
 
