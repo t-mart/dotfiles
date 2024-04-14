@@ -11,9 +11,14 @@ $env.config = {
     edit_mode: vi
 }
 
-# source scripts
+# source-controlled scripts
 source import-album.nu
+
+# generated scripts
 overlay use starship_init.nu # starship init can be an overlay
 source atuin_init.nu
 source zoxide_init.nu
 source carapace_init.nu
+
+# local env (see env.nu for details)
+source-env local_env.nu
