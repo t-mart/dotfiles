@@ -20,7 +20,5 @@ source atuin_init.nu
 source zoxide_init.nu
 source carapace_init.nu
 
-# local env (see env.nu for details)
-source-env local_env.nu
-
+# do this again, just in case the above scripts have added new paths
 dedupe_and_expand_path

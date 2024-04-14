@@ -3,6 +3,16 @@
 # use nu standard library
 use std *
 
+# `~/.profile.nu` is for nushell configuration that is *not* source-controlled.
+# It is useful for things that are local to this user or this machine. Examples
+# include `PATH` modifications or any other environment variable.
+#
+# Its name is modeled after the `.profile` file for bash.
+#
+# QUIRK: Due to nushell's must-already-exist requirement for sourced files, it must
+# be manually created *before* is run.
+source-env ($nu.home-path | path join ".profile.nu")
+
 # XDG env vars
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 {
@@ -20,7 +30,7 @@ use std *
     }
 } | transpose --ignore-titles -d -r | load-env
 
-# Add .local/bin
+# Add .local/bin (according to XDG spec)
 export-env {
     let local_bin = ($nu.home-path | path join ".local" "bin")
     mkdir $local_bin
@@ -46,31 +56,10 @@ $env.ENV_CONVERSIONS = {
 $env.GENERATED_SCRIPTS_DIR = ($nu.default-config-dir | path join 'scripts_generated')
 mkdir $env.GENERATED_SCRIPTS_DIR
 
-# A place to put local scripts (local to this machine/user) that aren't version controlled.
-# Of specific note, we create a local_env.nu file here, and `source-env` it by default in
-# config.nu. Other scripts will need to be manually `source`d.
-$env.LOCAL_SCRIPTS_DIR = ($nu.default-config-dir | path join 'local_env')
-mkdir $env.LOCAL_SCRIPTS_DIR
-do {
-    let local_env_file = ($env.LOCAL_SCRIPTS_DIR | path join 'local_env.nu')
-    if not ($local_env_file | path exists) {
-        [
-            "# This file is for setting environment variables local to this user/machine."
-            "# E.g.:"
-            "#   use std \"path add\"  # to use path add command"
-            "#   path add /some/path"
-            ""
-        ] | str join "\n" | save $local_env_file
-    }
-}
-
 # Directories to search for scripts when calling source or use
 $env.NU_LIB_DIRS = [
     # source-controlled scripts
     ($nu.default-config-dir | path join 'scripts')
-
-    # local scripts
-    $env.LOCAL_SCRIPTS_DIR
 
     # tool-generated scripts
     $env.GENERATED_SCRIPTS_DIR
@@ -99,18 +88,17 @@ if ($nu.os-info.name) == "windows" {
 # file in `$env.GENERATED_SCRIPTS_DIR` / `<name>_init.nu`  (to be sourced later in
 # config.nu).
 #
-# Note that `env_record` is loaded into the environment before the `init_cmd` is run.
-# This allows you to set environment variables that the `init_cmd` might need.
+# This command uses `which` on `$name` to check if the tool is installed. Therefore, it must
+# be present in your PATH variable.
 def --env init [
-    name: string,             # the name of the tool
-    init_cmd: closure,        # the command to run to initialize the tool
-    env_record: record = {},  # An optional record of environment variables to set
-                              # before running the init command
+    name: string,             # the name of the tool (will be checked with `which`)
+    init_cmd: closure,        # the command to run to initialize the tool iff the tool is installed
+    env_record: record = {},  # An optional record of environment variables to set iff the tool is installed
 ] {
     let warn_path = ($env.XDG_CACHE_HOME | path join $"nu_warn_($name)")
-    if ((which $name | length) > 0) {
+    if (which $name | length) > 0 {
         $env_record | load-env
-        rm --force $warn_path
+        rm --force $warn_path  # remove dangling warning file
         
         # this must be last: it's our script output
         do $init_cmd
@@ -122,10 +110,11 @@ def --env init [
         # F       | T           | warn & touch
         # F       | F           | warn & touch
         if (not ($warn_path | path exists)) or (date now) - (ls $warn_path).modified.0 > 1day {
-            print $"The loaded Nu configs want to use ($name), but is not installed."
+            print $"The loaded nushell config wants to use `($name)`, but is not installed."
             echo "This is a marker file to prevent this warning from showing up too often.\n" | save --force $warn_path
         }
 
+        # placeholder contents, so that the `source` command doesn't fail in config.nu
         $"# This is a placeholder for the ($name) init script, which is not yet installed.\n"
     } | save -f ($env.GENERATED_SCRIPTS_DIR | path join $"($name)_init.nu")
 }
