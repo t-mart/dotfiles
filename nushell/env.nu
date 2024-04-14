@@ -19,8 +19,12 @@ use std *
     }
 } | transpose --ignore-titles -d -r | load-env
 
-# Add .local/bin
-path add ($nu.home-path | path join ".local" "bin")
+# Add .local/bin (XDG requirement)
+export-env {
+    let local_bin = ($nu.home-path | path join ".local" "bin")
+    mkdir $local_bin
+    path add $local_bin
+}
 
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
