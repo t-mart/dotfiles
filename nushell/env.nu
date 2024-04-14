@@ -110,7 +110,7 @@ def --env init [
         # F       | T           | warn & touch
         # F       | F           | warn & touch
         if (not ($warn_path | path exists)) or (date now) - (ls $warn_path).modified.0 > 1day {
-            print "The loaded Nu configs want to use ($name), but is not installed."
+            print $"The loaded Nu configs want to use ($name), but is not installed."
             "This is a marker file to prevent this warning from showing up too often.\n" | save --force $warn_path
         }
 
