@@ -179,11 +179,19 @@ def get_path_name [] {
     if "PATH" in $env { "PATH" } else { "Path" }
 }
 
-# dedupe and expand items in path
-# this should be LAST to ensure its effects
-load-env {(get_path_name): (
-    $env
-        | get (get_path_name)
-        | split row (char esep)
-        | path expand
-)}
+# Dedupe and expand the path variable
+def --env dedupe_and_expand_path [] {
+    let path_name = if "PATH" in $env { "PATH" } else { "Path" }
+    load-env {
+        $path_name: (
+        $env
+            | get $path_name
+            | split row (char esep)
+            | path expand
+            | uniq
+        )
+    }
+}
+
+# do this last to ensure its effects
+dedupe_and_expand_path

@@ -22,3 +22,5 @@ source carapace_init.nu
 
 # local env (see env.nu for details)
 source-env local_env.nu
+
+dedupe_and_expand_path
