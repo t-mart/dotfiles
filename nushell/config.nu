@@ -1,10 +1,7 @@
 # Nushell Config File
-#
-# version = "0.92.2"
 
-# The default config record. This is where much of your global configuration is setup.
 $env.config = {
-    show_banner: false 
+    show_banner: false
 
     rm: {
         # always put in trash (e.g., Recycle Bin)
@@ -16,6 +13,7 @@ $env.config = {
 
 # source scripts
 source import-album.nu
-source vendor/atuin_init.nu
-source vendor/zoxide_init.nu
-source vendor/carapace_init.nu
+overlay use starship_init.nu # starship init can be an overlay
+source atuin_init.nu
+source zoxide_init.nu
+source carapace_init.nu

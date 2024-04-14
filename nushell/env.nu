@@ -1,6 +1,4 @@
 # Nushell Environment Config File
-#
-# version = "0.92.2"
 
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
@@ -60,20 +58,6 @@ if ($nu.os-info.family) == "windows" {
     }
 } | transpose --ignore-titles -d -r | load-env
 
-## PROMPT CONFIG ##
-def create_left_prompt [] {
-    starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
-}
-
-$env.PROMPT_COMMAND = { || create_left_prompt }
-$env.PROMPT_COMMAND_RIGHT = ""
-
-# these characters show up in certain modes. note: some complex codepoints (non-ascii)
-# render with wrong spacing in vscode terminal. try to keep simple.
-$env.PROMPT_INDICATOR_VI_INSERT = $'(ansi green_bold)+(ansi reset) '
-$env.PROMPT_INDICATOR_VI_NORMAL = $'(ansi yellow_bold)Δ(ansi reset) '
-$env.PROMPT_MULTILINE_INDICATOR = $'(ansi grey)↵(ansi reset) '
-
 # Check if a program is installed
 def is-installed [
     app: string  # the name of the app to check
@@ -81,13 +65,47 @@ def is-installed [
   ((which $app | length) > 0)
 }
 
+# Initialize a tool named `name`, or more specifically, iff `name` is present on
+# the system, load the environment variables in `env_record` and save the output of `init_cmd` to 
+# file in `$env.NU_LIB_VENDOR_DIR` / `<name>_init.nu`  (to be sourced later in
+# config.nu).
+#
+# Note that `env_record` is loaded into the environment before the `init_cmd` is run.
+# This allows you to set environment variables that the `init_cmd` might need.
+def --env init [
+    name: string,             # the name of the tool
+    init_cmd: closure,        # the command to run to initialize the tool
+    env_record: record = {},  # An optional record of environment variables to set
+                              # before running the init command
+] {
+    if ((which $name | length) > 0) {
+        $env_record | load-env
+        do $init_cmd
+    } else {
+        $"# This is a placeholder for the ($name) init script, which is not yet installed.\n"
+    } | save -f ($env.NU_LIB_VENDOR_DIR | path join $"($name)_init.nu")
+}
+
+## STARSHIP ##
+# The minimal, blazing-fast, and infinitely customizable prompt for any shell!
+# https://starship.rs/
+init starship {
+    starship init nu
+} {
+    # these characters show up in certain modes. note: some complex codepoints (non-ascii)
+    # render with wrong spacing in vscode terminal. try to keep simple.
+    PROMPT_INDICATOR_VI_INSERT: $'(ansi green_bold)+(ansi reset) '
+    PROMPT_INDICATOR_VI_NORMAL: $'(ansi yellow_bold)Δ(ansi reset) '
+    PROMPT_MULTILINE_INDICATOR: $'(ansi grey)↵(ansi reset) '
+}
+
 ## ATUIN ##
 # Atuin replaces your existing shell history with a SQLite database
 # https://docs.atuin.sh/
 # Press up or Ctrl-R to bring up interactive history search. Type query and/or
 # navigate with arrow keys or Ctrl-P/Ctrl-N.
-if (is-installed "atuin") {
-    atuin init nu | save -f ($env.NU_LIB_VENDOR_DIR | path join "atuin_init.nu")
+init atuin {
+    atuin init nu
 }
 
 ## ZOXIDE ##
@@ -97,16 +115,17 @@ if (is-installed "atuin") {
 # directories.
 # Use `cdi` (ditto, but for `zi`) to bring up a menu. Use arrow keys or
 # Ctrl-P/Ctrl-N to navigate.
-if (is-installed "zoxide") {
-    zoxide init nushell --cmd cd | save -f ($env.NU_LIB_VENDOR_DIR | path join "zoxide_init.nu")
-    $env._ZO_DATA_DIR = ($env.XDG_DATA_HOME | path join "zoxide")
+init zoxide {
     mkdir $env._ZO_DATA_DIR
+    zoxide init nushell --cmd cd
+} {
+    _ZO_DATA_DIR: ($env.XDG_DATA_HOME | path join "zoxide")
 }
 
 ## CARAPACE ##
 # Carapace-bin provides argument completion for multiple CLI commands
 # https://github.com/carapace-sh/carapace-bin
 # Press tab to get completions after typing a command
-if (is-installed "carapace") {
-    carapace _carapace nushell | save -f ($env.NU_LIB_VENDOR_DIR | path join "carapace_init.nu")
+init carapace {
+    carapace _carapace nushell
 }
