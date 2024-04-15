@@ -15,7 +15,7 @@ $env.config = {
 source import-album.nu
 
 # generated scripts
-overlay use starship_init.nu # starship init can be an overlay
+source starship_init.nu
 source atuin_init.nu
 source zoxide_init.nu
 source carapace_init.nu
