@@ -13,6 +13,7 @@ $env.config = {
 
 # source-controlled scripts
 source import-album.nu
+source ls-colors.nu
 
 # generated scripts
 source starship_init.nu

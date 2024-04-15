@@ -83,6 +83,13 @@ if ($nu.os-info.name) == "windows" {
     }
 }
 
+# Return true if the tool named `name` is installed on the system.
+def is-installed [
+    name: string,
+] {
+    (which $name | length) > 0
+}
+
 # Initialize a tool named `name`, or more specifically, iff `name` is present on
 # the system, load the environment variables in `env_record` and save the output of `init_cmd` to 
 # file in `$env.GENERATED_SCRIPTS_DIR` / `<name>_init.nu`  (to be sourced later in
@@ -96,7 +103,7 @@ def --env init [
     env_record: record = {},  # An optional record of environment variables to set iff the tool is installed
 ] {
     let warn_path = ($env.XDG_CACHE_HOME | path join $"nu_warn_($name)")
-    if (which $name | length) > 0 {
+    if (is-installed $name) {
         $env_record | load-env
         rm --force $warn_path  # remove dangling warning file
         
