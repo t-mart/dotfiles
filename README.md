@@ -25,7 +25,7 @@ Managed with [Rotz](https://volllly.github.io/rotz/).
    touch ~/profile.nu
    ```
 
-   See [below](#profile.nu) for more details
+   See [below](#profilenu) for more details
 
 4. (Windows only) Set environment variables:
 
