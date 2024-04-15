@@ -1,2 +1,2 @@
 links:
-  aria2.conf: ~/.aria2/aria2.conf
+  aria2.conf: ~/.config/aria2/aria2.conf

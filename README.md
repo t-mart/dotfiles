@@ -33,6 +33,10 @@ Managed with [Rotz](https://volllly.github.io/rotz/).
    launched from the desktop environment), global environment variables should
    be set according to the operating system's methods.
 
+   This step is important because the dotfiles may be deployed to paths
+   that correlated to these environment variables (e.g., `XDG_CONFIG_HOME`).
+   See [XDG Variables](#xdg-variables) for the values that should be set.
+
    - Windows:
 
       ```sh
@@ -57,3 +61,15 @@ Managed with [Rotz](https://volllly.github.io/rotz/).
 
 Rotz puts this repository in `~/.dotfiles`. It can be managed just like any
 other git repository (e.g., `git pull` or `git push`).
+
+## XDG Variables
+
+XDG variables should be set to the following values:
+
+- `XDG_CACHE_HOME`: `<HOME_DIR>/.cache`
+- `XDG_CONFIG_HOME`: `<HOME_DIR>/.config`
+- `XDG_DATA_HOME`: `<HOME_DIR>/.local/share`
+- `XDG_STATE_HOME`: `<HOME_DIR>/.local/state`
+
+`<HOME_DIR>` should be replaced with the absolute path to the user's home
+directory.
