@@ -5,12 +5,15 @@ use std *
 
 # `~/.profile.nu` is for nushell configuration that is *not* source-controlled.
 # It is useful for things that are local to this user or this machine. Examples
-# include `PATH` modifications or any other environment variable.
+# include `PATH` modifications or any other environment variable. This is not a
+# standard Nushell convention -- it is of my own design.
 #
 # Its name is modeled after the `.profile` file for bash.
 #
 # QUIRK: Due to nushell's must-already-exist requirement for sourced files, it must
-# be manually created *before* is run.
+# be manually created *before* is Nushell is run. Nushell does not currently support
+# a way to detect if a file exists before sourcing it, so there is no way to print
+# a helpful message: the parse will just fail.
 source-env ($nu.home-path | path join ".profile.nu")
 
 # XDG env vars
@@ -142,10 +145,12 @@ init starship {
 ## ATUIN ##
 # Atuin replaces your existing shell history with a SQLite database
 # https://docs.atuin.sh/
-# Press up or Ctrl-R to bring up interactive history search. Type query and/or
+# Press Ctrl-R to bring up interactive history search. Type query and/or
 # navigate with arrow keys or Ctrl-P/Ctrl-N.
 init atuin {
-    atuin init nu
+    # --disable-up-arrow: disable up arrow key to navigate history, but retain
+    # Ctrl-R.
+    atuin init nu --disable-up-arrow
 }
 
 ## ZOXIDE ##
