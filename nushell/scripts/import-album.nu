@@ -4,7 +4,7 @@
 # import command will run to apply metadata.
 def import-album [ 
     yt_music_url: string # The URL of the album on YouTube Music.
-] {
+]: nothing -> nothing {
     # get a namespaced temporary directory
     let temp_dir = $nu.temp-path | path join "nu-album-import" (random uuid)
 

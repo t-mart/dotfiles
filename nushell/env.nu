@@ -89,7 +89,7 @@ if ($nu.os-info.name) == "windows" {
 # Return true if the tool named `name` is installed on the system.
 def is-installed [
     name: string,
-] {
+]: nothing -> bool {
     (which $name | length) > 0
 }
 
@@ -104,7 +104,7 @@ def --env init [
     name: string,             # the name of the tool (will be checked with `which`)
     init_cmd: closure,        # the command to run to initialize the tool iff the tool is installed
     env_record: record = {},  # An optional record of environment variables to set iff the tool is installed
-] {
+]: nothing -> nothing {
     let warn_path = ($env.XDG_CACHE_HOME | path join $"nu_warn_($name)")
     if (is-installed $name) {
         $env_record | load-env
@@ -178,7 +178,7 @@ init carapace {
 }
 
 # Dedupe and expand the path variable
-def --env dedupe_and_expand_path [] {
+def --env dedupe_and_expand_path []: nothing -> nothing {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
     load-env {
         $path_name: (
