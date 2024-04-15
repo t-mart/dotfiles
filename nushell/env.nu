@@ -111,7 +111,7 @@ def --env init [
         # F       | F           | warn & touch
         if (not ($warn_path | path exists)) or (date now) - (ls $warn_path).modified.0 > 1day {
             print $"The loaded nushell config wants to use `($name)`, but is not installed."
-            echo "This is a marker file to prevent this warning from showing up too often.\n" | save --force $warn_path
+            "This is a marker file to prevent this warning from showing up too often.\n" | save --force $warn_path
         }
 
         # placeholder contents, so that the `source` command doesn't fail in config.nu
