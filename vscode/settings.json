@@ -16,10 +16,12 @@
   "terminal.integrated.defaultProfile.windows": "Nushell",
   "security.workspace.trust.untrustedFiles": "open",
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
   },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
