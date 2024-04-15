@@ -161,6 +161,8 @@ init zoxide {
 # Press tab to get completions after typing a command
 init carapace {
     carapace _carapace nushell
+} {
+    CARAPACE_BRIDGES: 'zsh,fish,bash,inshellisense'
 }
 
 # Dedupe and expand the path variable
