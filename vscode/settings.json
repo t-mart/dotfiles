@@ -30,23 +30,22 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[yaml]": {
-      "editor.tabSize": 2
+    "editor.tabSize": 2
   },
   "svelte.enable-ts-plugin": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[rust]": {
-    "editor.rulers": [
-      100
-    ]
+    "editor.rulers": [100]
   },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.rulers": [
-      88
-    ]
-},
+    "editor.rulers": [88]
+  },
+  "[nushell]": {
+    "editor.rulers": [80]
+  },
   "files.eol": "\n",
   "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
   "editor.fontSize": 13,
