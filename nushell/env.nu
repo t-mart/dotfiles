@@ -163,11 +163,6 @@ init carapace {
     carapace _carapace nushell
 }
 
-# Get the name of the path variable (which is `PATH` on Unix and `Path` on Windows)
-def get_path_name [] {
-    if "PATH" in $env { "PATH" } else { "Path" }
-}
-
 # Dedupe and expand the path variable
 def --env dedupe_and_expand_path [] {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
