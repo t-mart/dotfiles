@@ -1,10 +1,12 @@
-# Windows environment variables are "mastered" by Windows itself. While we can set
-# them for a particular shell session, they will not persist, nor be accessible to
-# applications that are not started from that shell session (e.g., double-clicked
-# in Explorer).
+# Permenantly set some environment variables on Windows.
 #
-# Therefore, it is necessary to use Windows APIs to set them permanently. One way
-# to do this is with PowerShell's
+# Windows environment variables are "mastered" by Windows itself. While we can
+# set them for a particular shell session, they will not persist, nor be
+# accessible to applications that are not started from that shell session (e.g.,
+# double-clicked in Explorer).
+#
+# Therefore, it is desirable to set them permanently at the "Windows" level. One
+# way to do this is with PowerShell's
 # [SetEnvironmentVariable](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-powershell-1.0/ff730964(v=technet.10))
 # function, which we use in this script.
 

@@ -6,10 +6,10 @@ Managed with [Rotz](https://volllly.github.io/rotz/).
 
 ## Installation
 
-1. Prerequisites:
+1. Prerequisites programs:
 
-   - Have `git` installed
-   - Have `rotz` installed (e.g., `cargo install rotz`)
+   - `git`
+   - `rotz`
 
 2. Clone and deploy:
 
@@ -25,17 +25,29 @@ Managed with [Rotz](https://volllly.github.io/rotz/).
    touch ~/profile.nu
    ```
 
-   See [below](#profilenu) for more details
+   See relevant section in [env.nu](nushell/env.nu) for more details.
 
-4. (Windows only) Set environment variables:
+4. (Optional) Set "global" environment variables:
 
-   ```sh
-   pwsh ~/.dotfiles/env-var-set.ps1
-   ```
+   To set environment variables permanently for programs (including those
+   launched from the desktop environment), global environment variables should
+   be set according to the operating system's methods.
 
-   (see [source](env-var-set.ps1) for details)
+   - Windows:
 
-5. Link:
+      ```sh
+      pwsh ~/.dotfiles/env/windows.ps1
+      ```
+
+      (see [source](env/windows.ps1) for details)
+
+   - Others
+
+     Not yet implemented. On Ubuntu,
+     [`~/.profile`](https://help.ubuntu.com/community/EnvironmentVariables#A.2BAH4-.2F.profile)
+     would be a good place to put these.
+
+5. Deploy (symlink):
 
    ```sh
    rotz link
@@ -44,24 +56,4 @@ Managed with [Rotz](https://volllly.github.io/rotz/).
 ## Workflow
 
 Rotz puts this repository in `~/.dotfiles`. It can be managed just like any
-other git repository (e.g., `git pull`, `git push`, etc.).
-
-## profile.nu
-
-This file is for nushell configuration that is *not* source-controlled.
-It is useful for things that are local to this user or this machine. Examples
-include `PATH` modifications or any other environment variable.
-
-Its name is modeled after the `~/.profile` file for bash.
-
-This file is sourced by nushell on startup in `env.nu`. Due to nushell's
-must-already-exist requirement for sourced files, it must be manually created
-*before* nushell is run.
-
-Here's an example of what the file may contain:
-
-```nushell
-use std "path add"
-
-path add ~/.cargo/bin/
-```
+other git repository (e.g., `git pull` or `git push`).
