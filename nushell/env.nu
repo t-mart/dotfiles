@@ -117,7 +117,7 @@ def is-installed [
 #
 # Of particular note, `env_record` is applied *before* `init_cmd` is run. This
 # can be helpful if `init_cmd` relies on environment variables.
-def --env init [
+def --env init-tool [
     name: string,             # the name of the tool (will be checked with
                               # `which`)
     init_cmd: closure,        # the command to run to initialize the tool iff
@@ -152,7 +152,7 @@ def --env init [
 ## STARSHIP ##
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://starship.rs/
-init starship {
+init-tool starship {
     starship init nu
 } {
     # these characters show up in certain modes. note: some complex codepoints
@@ -170,7 +170,7 @@ init starship {
 #
 # Press Ctrl-R to bring up interactive history search. Type query and/or
 # navigate with arrow keys or Ctrl-P/Ctrl-N.
-init atuin {
+init-tool atuin {
     # --disable-up-arrow: disable up arrow key to navigate history, but retain
     # Ctrl-R.
     atuin init nu --disable-up-arrow
@@ -185,7 +185,7 @@ init atuin {
 # directories.
 # Use `cdi` (ditto, but for `zi`) to bring up a menu. Use arrow keys or
 # Ctrl-P/Ctrl-N to navigate.
-init zoxide {
+init-tool zoxide {
     mkdir $env._ZO_DATA_DIR
     zoxide init nushell --cmd cd
 } {
@@ -198,7 +198,7 @@ init zoxide {
 # https://github.com/carapace-sh/carapace-bin
 #
 # Press tab to get completions after typing a command
-init carapace {
+init-tool carapace {
     carapace _carapace nushell
 } {
     # use completions from other shells
