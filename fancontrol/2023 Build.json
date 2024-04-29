@@ -1,9 +1,18 @@
 {
-  "__VERSION__": "185",
+  "__VERSION__": "187",
   "Main": {
     "Controls": [
       {
-        "Calibration": null,
+        "Calibration": [
+          [
+            0,
+            0
+          ],
+          [
+            100,
+            1890
+          ]
+        ],
         "Enable": true,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/0",
@@ -45,7 +54,16 @@
         "SelectedStop": 0
       },
       {
-        "Calibration": null,
+        "Calibration": [
+          [
+            0,
+            0
+          ],
+          [
+            100,
+            1383
+          ]
+        ],
         "Enable": true,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/1",
@@ -114,7 +132,16 @@
         "SelectedStop": 0
       },
       {
-        "Calibration": null,
+        "Calibration": [
+          [
+            0,
+            0
+          ],
+          [
+            100,
+            1380
+          ]
+        ],
         "Enable": true,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/2",
