@@ -102,9 +102,32 @@ if ($nu.os-info.name) == "windows" {
 
 # Return true if the tool named `name` is installed on the system.
 def is-installed [
-    name: string,
+    name: string,  # the name of the tool
 ]: nothing -> bool {
     (which $name | length) > 0
+}
+
+# Like `is-installed`, but also prints a warning if the tool is not installed at
+# a frequency of at most once a day.
+def is-installed-warn [
+    name: string,  # the name of the tool
+]: nothing -> bool {
+    let warn_path = ($env.XDG_CACHE_HOME | path join $"nu_warn_($name)")
+    if (is-installed $name) {
+        rm --force $warn_path  # remove dangling warning file
+        true
+    } else {
+        # show a warning at most once a day if a tool is not installed.
+        let doesnt_exist = not ($warn_path | path exists)
+        let too_old = {|p| (date now) - (ls $p).modified.0 > 1day}
+        if $doesnt_exist or (do $too_old $warn_path) {
+            $"The nushell config wants to use `($name)`, but is not installed" |
+                print
+
+            "Marker file, can be deleted.\n" | save --force $warn_path
+        }
+        false
+    }
 }
 
 # Initialize a tool named `name`, or more specifically, iff `name` is present on
@@ -116,7 +139,8 @@ def is-installed [
 # Therefore, it must be present in your PATH variable.
 #
 # Of particular note, `env_record` is applied *before* `init_cmd` is run. This
-# can be helpful if `init_cmd` relies on environment variables.
+# can be helpful if `init_cmd` behaves differently based on environment
+# variables.
 def --env init-tool [
     name: string,             # the name of the tool (will be checked with
                               # `which`)
@@ -125,24 +149,14 @@ def --env init-tool [
     env_record: record = {},  # An optional record of environment variables to 
                               # set iff the tool is installed
 ]: nothing -> nothing {
-    let warn_path = ($env.XDG_CACHE_HOME | path join $"nu_warn_($name)")
-    if (is-installed $name) {
+
+    if (is-installed-warn $name) {
+        # first load environment
         $env_record | load-env
-        rm --force $warn_path  # remove dangling warning file
-        
-        # this must be last: it's our script output
+
+        # then pipe forward init command output
         do $init_cmd
     } else {
-        # show a warning at most once a day if a tool is not installed.
-        let doesnt_exist = not ($warn_path | path exists)
-        let too_old = {|p| (date now) - (ls $p).modified.0 > 1day}
-        if $doesnt_exist or (do $too_old $warn_path) {
-            $"The nushell config wants to use `($name)`, but is not installed" |
-                print
-
-            "Marker file, can be deleted.\n" | save --force $warn_path
-        }
-
         # placeholder contents, so that the `source` command doesn't fail in
         # config.nu
         $"# Placeholder for the not-yet-installed `($name)` init script\n"
