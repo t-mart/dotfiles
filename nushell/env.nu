@@ -11,9 +11,9 @@ use std *
 # Its name is modeled after the `.profile` file for bash.
 #
 # QUIRK: Due to nushell's must-already-exist requirement for sourced files, it
-# must # be manually created *before* is Nushell is run. Nushell does not
-# currently support a way to detect if a file exists before sourcing it, s
-# there is no way to print a helpful message: the parse will just fail.
+# must be manually created *before* is Nushell is run because source paths are
+# compile-time checked. Therefore, there is no way to gracefully handle/detect
+# this -- the parse will just fail.
 source-env ($nu.home-path | path join ".profile.nu")
 
 # XDG env vars
