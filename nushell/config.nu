@@ -49,6 +49,8 @@ if (is-installed-warn fzf) {
             }
         } else {
             # otherwise, just use fzf as is
+            # if we have es, we've already set FZF_DEFAULT_COMMAND, and if not,
+            # walker-root is cwd by default
             $line = $line + "fzf"
         }
 
