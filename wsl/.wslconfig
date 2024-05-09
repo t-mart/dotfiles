@@ -1,0 +1,7 @@
+# https://docs.microsoft.com/en-us/windows/wsl/wsl-config
+
+[experimental]
+
+# When set to true, any newly created VHD will be set to sparse automatically.
+# For existing distros, use `wsl --manage <distro> --set-sparse true`
+sparseVhd=true
