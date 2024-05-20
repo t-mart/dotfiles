@@ -1,0 +1,4 @@
+--sub-langs "en.*"
+--write-sub
+--write-auto-sub
+--sponsorblock-mark all

@@ -67,5 +67,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.proseWrap": "always",
-  "prettier.printWidth": 80
+  "prettier.printWidth": 80,
+  "[lua]": {
+    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+  }
 }
