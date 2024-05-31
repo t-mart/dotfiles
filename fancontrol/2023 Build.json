@@ -1,5 +1,5 @@
 {
-  "__VERSION__": "187",
+  "__VERSION__": "191",
   "Main": {
     "Controls": [
       {
@@ -110,7 +110,7 @@
               "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
-              "MaximumTemperature": 70.0,
+              "MaximumTemperature": 60.0,
               "MinimumFanSpeed": 0,
               "MinimumTemperature": 35.0,
               "Name": "GPU",
@@ -188,7 +188,7 @@
               "IgnoreHysteresisAtLimits": true,
               "IsHidden": false,
               "MaximumFanSpeed": 100,
-              "MaximumTemperature": 70.0,
+              "MaximumTemperature": 60.0,
               "MinimumFanSpeed": 0,
               "MinimumTemperature": 35.0,
               "Name": "GPU",
@@ -341,7 +341,7 @@
         "IgnoreHysteresisAtLimits": true,
         "IsHidden": false,
         "MaximumFanSpeed": 100,
-        "MaximumTemperature": 70.0,
+        "MaximumTemperature": 60.0,
         "MinimumFanSpeed": 0,
         "MinimumTemperature": 35.0,
         "Name": "GPU",
@@ -384,7 +384,7 @@
             "IgnoreHysteresisAtLimits": true,
             "IsHidden": false,
             "MaximumFanSpeed": 100,
-            "MaximumTemperature": 70.0,
+            "MaximumTemperature": 60.0,
             "MinimumFanSpeed": 0,
             "MinimumTemperature": 35.0,
             "Name": "GPU",
