@@ -1,0 +1,4 @@
+windows:
+  links:
+    # this config contains Windows-specific settings
+    config-win.json: ~/AppData/Roaming/gallery-dl/config.json
