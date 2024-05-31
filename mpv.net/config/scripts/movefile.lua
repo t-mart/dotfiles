@@ -30,10 +30,10 @@ local move_dir_name = "!mpv_movefile"
 -- log a message to the console at level and and display it to the user in the
 -- UI. the level may be nil, which will log at "info" level, or it may be any of
 -- `fatal`, `error`, `warn`, `info`, `v`, `debug`, or `trace`.
-local function log_and_osd_message(msg, level)
+local function log_and_osd_message(message, level)
     local level = level or 'info'
-    msg.log(level, msg)
-    mp.osd_message(msg)
+    msg.log(level, message)
+    mp.osd_message(message)
 end
 
 -- Check if path is a protocol, such as `http://...`
