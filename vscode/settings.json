@@ -70,5 +70,10 @@
   "prettier.printWidth": 80,
   "[lua]": {
     "editor.defaultFormatter": "JohnnyMorganz.stylua"
-  }
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "Lua.workspace.library": [
+    "c:\\Users\\tim\\.vscode\\extensions\\ketho.wow-api-0.14.0\\EmmyLua\\API",
+    "c:\\Users\\tim\\.vscode\\extensions\\ketho.wow-api-0.14.0\\EmmyLua\\Optional"
+  ]
 }
