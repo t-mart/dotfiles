@@ -1,5 +1,5 @@
 {
   "extractor": {
-    "base-directory": "%USERPROFILE%/Pictures/gallery-dl/"
+    "base-directory": "D:/Images/gallery-dl/"
   }
 }
