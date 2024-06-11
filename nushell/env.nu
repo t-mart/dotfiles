@@ -222,6 +222,21 @@ init-tool carapace {
     CARAPACE_ENV: 0
 }
 
+#######
+# Paths
+#######
+
+## PYENV ##
+if ("~/.pyenv" | path exists) {
+    path add "~/.pyenv/bin"
+    path add $"(pyenv root)/shims"
+}
+
+## CARGO ##
+if ("~/.cargo" | path exists) {
+    path add "~/.cargo/bin"
+}
+
 # Expand (to absolute paths) and dedupe and expand the OS's path variable
 def --env dedupe_and_expand_path []: nothing -> nothing {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
@@ -230,7 +245,7 @@ def --env dedupe_and_expand_path []: nothing -> nothing {
         $env
             | get $path_name
             | split row (char esep)
-            | path expand
+            | path expand --no-symlink
             | uniq
         )
     }
