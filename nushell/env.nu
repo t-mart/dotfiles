@@ -54,6 +54,12 @@ if ("~/.cargo" | path exists) {
     path add "~/.cargo/bin"
 }
 
+## snap ##
+# Snap is a package manager for linux
+if ("/snap/bin" | path exists) {
+    path add "/snap/bin"
+}
+
 # Expand (to absolute paths) and dedupe and expand the OS's path variable
 def --env dedupe_and_expand_path []: nothing -> nothing {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
