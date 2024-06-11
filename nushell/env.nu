@@ -40,6 +40,34 @@ export-env {
     path add $local_bin
 }
 
+## pyenv ##
+# pyenv is a python version manager that installs python versions in user space
+# and makes them 
+if ("~/.pyenv" | path exists) {
+    path add "~/.pyenv/bin"
+    path add $"(pyenv root)/shims"
+}
+
+## cargo ##
+# Cargo is rust's package manager.
+if ("~/.cargo" | path exists) {
+    path add "~/.cargo/bin"
+}
+
+# Expand (to absolute paths) and dedupe and expand the OS's path variable
+def --env dedupe_and_expand_path []: nothing -> nothing {
+    let path_name = if "PATH" in $env { "PATH" } else { "Path" }
+    load-env {
+        $path_name: (
+        $env
+            | get $path_name
+            | split row (char esep)
+            | path expand --no-symlink
+            | uniq
+        )
+    }
+}
+
 # Specifies how environment variables are:
 # - converted from a string to a value on Nushell startup (from_string)
 # - converted from a value back to a string when running external commands
@@ -161,7 +189,7 @@ def --env init-tool [
     } | save -f ($env.GENERATED_SCRIPTS_DIR | path join $"($name)_init.nu")
 }
 
-## STARSHIP ##
+## starship ##
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://starship.rs/
 init-tool starship {
@@ -175,7 +203,7 @@ init-tool starship {
     PROMPT_MULTILINE_INDICATOR: $'(ansi grey)↵(ansi reset) '
 }
 
-## ATUIN ##
+## atuin ##
 # Atuin replaces your existing shell history with a SQLite database
 #
 # https://docs.atuin.sh/
@@ -188,7 +216,7 @@ init-tool atuin {
     atuin init nu --disable-up-arrow
 }
 
-## ZOXIDE ##
+## zoxide ##
 # zoxide is a smarter cd command, inspired by z and autojump
 #
 # https://github.com/ajeetdsouza/zoxide
@@ -204,7 +232,7 @@ init-tool zoxide {
     _ZO_DATA_DIR: ($env.XDG_DATA_HOME | path join "zoxide")
 }
 
-## CARAPACE ##
+## carapace ##
 # Carapace-bin provides argument completion for multiple CLI commands
 #
 # https://github.com/carapace-sh/carapace-bin
@@ -218,35 +246,6 @@ init-tool carapace {
 
     # don't leak carapace's get-env, set-env and unset-env functions
     CARAPACE_ENV: 0
-}
-
-#######
-# Paths
-#######
-
-## PYENV ##
-if ("~/.pyenv" | path exists) {
-    path add "~/.pyenv/bin"
-    path add $"(pyenv root)/shims"
-}
-
-## CARGO ##
-if ("~/.cargo" | path exists) {
-    path add "~/.cargo/bin"
-}
-
-# Expand (to absolute paths) and dedupe and expand the OS's path variable
-def --env dedupe_and_expand_path []: nothing -> nothing {
-    let path_name = if "PATH" in $env { "PATH" } else { "Path" }
-    load-env {
-        $path_name: (
-        $env
-            | get $path_name
-            | split row (char esep)
-            | path expand --no-symlink
-            | uniq
-        )
-    }
 }
 
 # do this last to ensure its effects
