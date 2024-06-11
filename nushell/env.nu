@@ -35,9 +35,7 @@ source-env ($nu.home-path | path join ".profile.nu")
 
 # Add .local/bin (according to XDG spec)
 export-env {
-    let local_bin = (
-        $nu.home-path | path join ".local" "bin"
-    )
+    let local_bin = "~/.local/bin"
     mkdir $local_bin
     path add $local_bin
 }
