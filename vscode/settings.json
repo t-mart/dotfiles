@@ -76,11 +76,6 @@
     "c:\\Users\\tim\\.vscode\\extensions\\ketho.wow-api-0.14.0\\EmmyLua\\API",
     "c:\\Users\\tim\\.vscode\\extensions\\ketho.wow-api-0.14.0\\EmmyLua\\Optional"
   ],
-  "remote.SSH.remotePlatform": {
-    "ec2-18-191-242-80.us-east-2.compute.amazonaws.com": "linux",
-    "ec2-18-219-59-109.us-east-2.compute.amazonaws.com": "linux",
-    "ec2-3-22-38-101.us-east-2.compute.amazonaws.com": "linux"
-  },
   "explorer.fileNesting.patterns": {
     "*.ts": "${capture}.js",
     "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
