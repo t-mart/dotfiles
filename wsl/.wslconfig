@@ -5,3 +5,8 @@
 # When set to true, any newly created VHD will be set to sparse automatically.
 # For existing distros, use `wsl --manage <distro> --set-sparse true`
 sparseVhd=true
+
+[wsl2]
+
+# Turns on mirrored networking mode, otherwise, its NAT
+networkingMode=mirrored
