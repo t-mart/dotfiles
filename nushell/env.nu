@@ -68,6 +68,7 @@ def --env dedupe_and_expand_path []: nothing -> nothing {
         $env
             | get $path_name
             | split row (char esep)
+            | filter {path exists}
             | path expand --no-symlink
             | uniq
         )
