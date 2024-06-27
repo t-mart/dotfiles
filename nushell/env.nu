@@ -40,6 +40,13 @@ export-env {
     path add $local_bin
 }
 
+# Return true if the tool named `name` is installed on the system.
+def is-installed [
+    name: string,  # the name of the tool
+]: nothing -> bool {
+    (which $name | length) > 0
+}
+
 ## pyenv ##
 # pyenv is a python version manager that installs python versions in user space
 # and makes them 
@@ -52,6 +59,15 @@ if ("~/.pyenv" | path exists) {
 # Cargo is rust's package manager.
 if ("~/.cargo" | path exists) {
     path add "~/.cargo/bin"
+}
+
+## fnm ##
+# Fast and simple Node.js version manager, built in Rust
+# We put this after cargo because it might be installed with cargo
+if (is-installed fnm) {
+    # thanks to this guy https://github.com/Schniz/fnm/issues/463#issuecomment-1321140065
+    ^fnm env --json | from json | load-env
+    path add ($env.FNM_MULTISHELL_PATH | path join "bin")
 }
 
 ## snap ##
@@ -131,13 +147,6 @@ if ($nu.os-info.name) == "windows" {
         # end of file)
         path add $scoop_shims
     }
-}
-
-# Return true if the tool named `name` is installed on the system.
-def is-installed [
-    name: string,  # the name of the tool
-]: nothing -> bool {
-    (which $name | length) > 0
 }
 
 # Like `is-installed`, but also prints a warning if the tool is not installed at
