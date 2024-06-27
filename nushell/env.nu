@@ -76,6 +76,24 @@ if ("/snap/bin" | path exists) {
     path add "/snap/bin"
 }
 
+# code-insiders preferred
+if (is-installed code-insiders) {
+    alias code = code-insiders
+}
+
+# systemd aliases
+if (is-installed systemctl) {
+    alias scstart = systemctl start
+    alias scstop = systemctl stop
+    alias screstart = systemctl restart
+    alias scdr = systemctl daemon-reload
+    alias scstatus = systemctl status
+}
+if (is-installed journalctl) {
+    alias jctl = journalctl --unit
+    alias jctlf = journalctl --follow --unit
+}
+
 # Expand (to absolute paths) and dedupe and expand the OS's path variable
 def --env dedupe_and_expand_path []: nothing -> nothing {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
