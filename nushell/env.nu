@@ -67,7 +67,6 @@ if ("~/.cargo" | path exists) {
 if (is-installed fnm) {
     # thanks to this guy https://github.com/Schniz/fnm/issues/463#issuecomment-1321140065
     ^fnm env --json | from json | load-env
-    path add ($env.FNM_MULTISHELL_PATH | path join "bin")
 }
 
 ## snap ##
@@ -77,22 +76,18 @@ if ("/snap/bin" | path exists) {
 }
 
 # code-insiders preferred
-if (is-installed code-insiders) {
-    alias code = code-insiders
-}
+# TODO: wait for conditional aliasing and only do this if code-insiders is
+# installed: https://github.com/nushell/nushell/discussions/7505
+alias code = code-insiders
 
-# systemd aliases
-if (is-installed systemctl) {
-    alias scstart = systemctl start
-    alias scstop = systemctl stop
-    alias screstart = systemctl restart
-    alias scdr = systemctl daemon-reload
-    alias scstatus = systemctl status
-}
-if (is-installed journalctl) {
-    alias jctl = journalctl --unit
-    alias jctlf = journalctl --follow --unit
-}
+# systemd aliases. ditto on conditional aliases.
+alias scstart = systemctl start
+alias scstop = systemctl stop
+alias screstart = systemctl restart
+alias scdr = systemctl daemon-reload
+alias scstatus = systemctl status
+alias jctl = journalctl --unit
+alias jctlf = journalctl --follow --unit
 
 # rotz updater: pull latest dotfiles and link them into the home directory
 def rotzup []: nothing -> nothing {
@@ -112,7 +107,7 @@ def --env dedupe_and_expand_path []: nothing -> nothing {
         $env
             | get $path_name
             | split row (char esep)
-            | filter {path exists}
+            | filter { path exists }
             | path expand --no-symlink
             | uniq
         )

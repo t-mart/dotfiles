@@ -1,4 +1,4 @@
-format = """$username@$hostname $git_branch$git_state$git_status
+format = """$username@$hostname $os $git_branch$git_state$git_status
 $directory \\($status $cmd_duration\\) """
 
 [username]
@@ -40,8 +40,8 @@ truncation_length = 0
 [status]
 # it always stays on success for powershell currently:
 # https://github.com/starship/starship/issues/4299
-symbol = "[✘](bold red) "
-success_symbol = "[✓](bold green)"
+symbol = "[✘](bold fg:#d62728) "
+success_symbol = "[✓](bold fg:#2ca02c)"
 format = '[$symbol$common_meaning$signal_name$maybe_int]($style)'
 map_symbol = true
 disabled = false
@@ -49,4 +49,9 @@ disabled = false
 [cmd_duration]
 min_time = 0
 format = '[$duration]($style)'
-style = "yellow"
+style = "fg:#bcbd22"
+
+[os]
+format = "on [($type)]($style)"
+style = "bold fg:#7f7f7f"
+disabled = false

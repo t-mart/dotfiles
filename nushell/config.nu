@@ -107,3 +107,30 @@ source carapace_init.nu
 
 # do this again, just in case the above scripts have added new paths
 dedupe_and_expand_path
+
+
+## fnm - part 2 ##
+# i hate this. see, fnm does a check if $env.FNM_MULTISHELL_PATH is present in $PATH and
+# emits a scary warning if not. i would use std's `path add` function for this,
+# but the implementation of it does a `path expand` on the input (i.e. it mutates it!). in this case,
+# this is BAD because the path entry fnm wants gets expanded to some other
+# path (its like a symlink or something). and it does this for each entry.
+# and i use `path add` all over the place. so, i do this RIGHT AT THE END, the
+# hard way, so no other `path add` gets in the way. I should PR 
+# https://github.com/nushell/nushell/blob/46ed69ab126015375d5163972ae321715f34874b/crates/nu-std/std/mod.nu#L83
+if (is-installed fnm) {
+    let path_name = if "PATH" in $env { "PATH" } else { "Path" }
+
+    let fnm_path = if ($nu.os-info.name) == "windows" {
+        $env.FNM_MULTISHELL_PATH
+    } else {
+        $env.FNM_MULTISHELL_PATH | path join "bin"
+    }
+
+    load-env {$path_name: (
+        $env
+            | get $path_name
+            | split row (char esep)
+            | prepend $fnm_path
+    )}
+}
