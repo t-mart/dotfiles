@@ -94,11 +94,13 @@ if (is-installed journalctl) {
     alias jctlf = journalctl --follow --unit
 }
 
-# rotz updater: pull latest dotfiles and link them into the home directory
-if (is-installed rotz) and (is-installed git) and ($nu.home-path | path join ".dotfiles" | path exists) {
-    def rotzup []: nothing -> nothing {
+        # rotz updater: pull latest dotfiles and link them into the home directory
+def rotzup []: nothing -> nothing {
+    if (is-installed rotz) and (is-installed git) and ($nu.home-path | path join ".dotfiles" | path exists) {
         git -C ($nu.home-path | path join ".dotfiles") pull
         rotz link
+    } else {
+        "rotz or git not installed, or ~/.dotfiles does not exist" | print
     }
 }
 
