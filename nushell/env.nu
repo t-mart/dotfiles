@@ -94,6 +94,14 @@ if (is-installed journalctl) {
     alias jctlf = journalctl --follow --unit
 }
 
+# rotz updater: pull latest dotfiles and link them into the home directory
+if (is-installed rotz) and (is-installed git) and ($nu.home-path | path join ".dotfiles" | path exists) {
+    def rotzup []: nothing -> nothing {
+        git -C ($nu.home-path | path join ".dotfiles") pull
+        rotz link
+    }
+}
+
 # Expand (to absolute paths) and dedupe and expand the OS's path variable
 def --env dedupe_and_expand_path []: nothing -> nothing {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
