@@ -106,7 +106,7 @@ source zoxide_init.nu
 source carapace_init.nu
 
 # do this again, just in case the above scripts have added new paths
-dedupe_and_expand_path
+clean_path
 
 
 ## fnm - part 2 ##
@@ -118,6 +118,9 @@ dedupe_and_expand_path
 # and i use `path add` all over the place. so, i do this RIGHT AT THE END, the
 # hard way, so no other `path add` gets in the way. I should PR 
 # https://github.com/nushell/nushell/blob/46ed69ab126015375d5163972ae321715f34874b/crates/nu-std/std/mod.nu#L83
+# UPDATE: I fixed it!: https://github.com/nushell/nushell/pull/13258
+# TODO: wait for this PR to be released, remove this block, and just 
+#   path add $env.FNM_MULTISHELL_PATH
 if (is-installed fnm) {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
 

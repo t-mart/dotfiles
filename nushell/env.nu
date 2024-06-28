@@ -100,7 +100,7 @@ def rotzup []: nothing -> nothing {
 }
 
 # Expand (to absolute paths) and dedupe and expand the OS's path variable
-def --env dedupe_and_expand_path []: nothing -> nothing {
+def --env clean_path []: nothing -> nothing {
     let path_name = if "PATH" in $env { "PATH" } else { "Path" }
     load-env {
         $path_name: (
@@ -288,4 +288,4 @@ init-tool carapace {
 }
 
 # do this last to ensure its effects
-dedupe_and_expand_path
+clean_path
