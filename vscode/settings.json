@@ -104,5 +104,9 @@
       "bold": false,
       "italic": false
     }
-  ]
+  ],
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "redhat.telemetry.enabled": false
 }

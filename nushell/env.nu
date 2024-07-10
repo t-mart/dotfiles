@@ -78,9 +78,11 @@ if ("/snap/bin" | path exists) {
 # code-insiders preferred
 # TODO: wait for conditional aliasing and only do this if code-insiders is
 # installed: https://github.com/nushell/nushell/discussions/7505
+
 alias code = code-insiders
 
 # systemd aliases. ditto on conditional aliases.
+
 alias scstart = systemctl start
 alias scstop = systemctl stop
 alias screstart = systemctl restart
