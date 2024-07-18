@@ -27,14 +27,18 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
   },
   "[yaml]": {
     "editor.tabSize": 2
   },
   "svelte.enable-ts-plugin": true,
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
   },
   "[rust]": {
     "editor.rulers": [100]
@@ -108,5 +112,14 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "gitlens.changes.locations": [
+    "gutter",
+    "overview",
+    "line"
+  ],
+  "gitlens.currentLine.pullRequests.enabled": false,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.hovers.currentLine.enabled": false
 }
