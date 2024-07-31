@@ -44,7 +44,6 @@
     "editor.rulers": [100]
   },
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
     "editor.rulers": [88]
   },
   "[nushell]": {
@@ -56,7 +55,9 @@
   "github.gitProtocol": "ssh",
   "github.gitAuthentication": false,
   "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
+    "editor.defaultFormatter": "svelte.svelte-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
   },
   "git.confirmSync": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
@@ -73,7 +74,7 @@
   "prettier.proseWrap": "always",
   "prettier.printWidth": 80,
   "[lua]": {
-    "editor.defaultFormatter": "JohnnyMorganz.stylua"
+    "editor.defaultFormatter": "sumneko.lua"
   },
   "github.copilot.editor.enableAutoCompletions": true,
   "Lua.workspace.library": [
@@ -114,12 +115,9 @@
   },
   "redhat.telemetry.enabled": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "gitlens.changes.locations": [
-    "gutter",
-    "overview",
-    "line"
-  ],
+  "gitlens.changes.locations": ["gutter", "overview", "line"],
   "gitlens.currentLine.pullRequests.enabled": false,
   "gitlens.codeLens.enabled": false,
-  "gitlens.hovers.currentLine.enabled": false
+  "gitlens.hovers.currentLine.enabled": false,
+  "remote.autoForwardPortsSource": "hybrid"
 }
