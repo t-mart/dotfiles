@@ -8,5 +8,17 @@
     {
         "key": "ctrl+shift+j",
         "command": "editor.action.joinLines"
+    },
+    {
+        "key": "alt+i",
+        "command": "editor.emmet.action.balanceIn"
+    },
+    {
+        "key": "alt+o",
+        "command": "editor.emmet.action.balanceOut"
+    },
+    {
+        "key": "alt+a",
+        "command": "editor.emmet.action.wrapWithAbbreviation"
     }
 ]

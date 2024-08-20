@@ -24,7 +24,15 @@
     "editor.tabSize": 2
   },
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.linkedEditing": true
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -72,7 +80,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.proseWrap": "always",
-  "prettier.printWidth": 80,
   "[lua]": {
     "editor.defaultFormatter": "sumneko.lua"
   },
@@ -119,5 +126,9 @@
   "gitlens.currentLine.pullRequests.enabled": false,
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.currentLine.enabled": false,
-  "remote.autoForwardPortsSource": "hybrid"
+  "remote.autoForwardPortsSource": "hybrid",
+  "files.exclude": {
+    "**/.git": false
+  },
+  "git.ignoreRebaseWarning": true
 }

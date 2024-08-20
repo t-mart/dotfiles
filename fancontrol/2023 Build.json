@@ -1,5 +1,5 @@
 {
-  "__VERSION__": "193",
+  "__VERSION__": "198",
   "Main": {
     "Controls": [
       {
@@ -451,6 +451,12 @@
         "IsHidden": true,
         "Name": "Fan #6",
         "NickName": "Fan #6"
+      },
+      {
+        "Identifier": "ADLX/AMD Radeon(TM) Graphics/4096/fan",
+        "IsHidden": false,
+        "Name": "Fan 1 - AMD Radeon(TM) Graphics",
+        "NickName": "Fan 1 - AMD Radeon(TM) Graphics"
       }
     ],
     "HideCalibration": false,
@@ -458,15 +464,18 @@
     "HorizontalUIOrientation": false,
     "PrimaryColor": "#FF006190",
     "SecondaryColor": "#FFAEEA00",
-    "SelectedTheme": "Inherit",
+    "SelectedTheme": "",
     "ShowHiddenCards": false,
     "SyncThemeWithWindows": true,
     "SyncTrayIconColorWithWindows": true,
     "TemperatureSensors": [],
-    "TrayIconColor": "#FFFFFFFF",
+    "TrayIconColor": null,
     "TrayIcons": []
   },
   "Sensors": {
+    "AdlxWrapperSettings": {
+      "Enabled": true
+    },
     "DisabledPlugins": [],
     "DisableStorageSensors": true,
     "LibreHardwareMonitorSettings": {
@@ -485,6 +494,6 @@
       "Enabled": true,
       "ZeroRPMOverride": false
     },
-    "SensorCount": 25
+    "SensorCount": 28
   }
 }
