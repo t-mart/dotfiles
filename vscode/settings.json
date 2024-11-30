@@ -9,8 +9,8 @@
     "scminput": false
   },
   "terminal.integrated.profiles.windows": {
-    "Windows PowerShell": {
-      "path": "pwsh.exe"
+    "Nushell": {
+      "path": "nu.exe"
     }
   },
   "terminal.integrated.defaultProfile.windows": "Nushell",
@@ -30,12 +30,12 @@
     "editor.linkedEditing": true
   },
   "[xml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "DotJoshJohnson.xml",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
   },
   "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
@@ -120,7 +120,6 @@
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "redhat.telemetry.enabled": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "gitlens.changes.locations": ["gutter", "overview", "line"],
   "gitlens.currentLine.pullRequests.enabled": false,
@@ -128,7 +127,15 @@
   "gitlens.hovers.currentLine.enabled": false,
   "remote.autoForwardPortsSource": "hybrid",
   "files.exclude": {
+    ".git": true,
     "**/.git": false
   },
-  "git.ignoreRebaseWarning": true
+  "git.ignoreRebaseWarning": true,
+  "editor.minimap.autohide": true,
+  "editor.linkedEditing": true,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "github.copilot.preferredAccount": "t-mart",
+  "terminal.integrated.stickyScroll.enabled": false
 }

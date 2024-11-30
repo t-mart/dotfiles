@@ -1,5 +1,5 @@
 {
-  "__VERSION__": "198",
+  "__VERSION__": "206",
   "Main": {
     "Controls": [
       {
@@ -20,12 +20,12 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MinimumPercent": 0,
-        "Name": "Fan #1",
+        "Name": "CPU Fan",
         "NickName": "CPU",
         "PairedFanSensor": {
           "Identifier": "/lpc/it8689e/fan/0",
           "IsHidden": false,
-          "Name": "Fan #1",
+          "Name": "CPU Fan",
           "NickName": "CPU"
         },
         "SelectedCommandStepDown": 8.0,
@@ -71,12 +71,12 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MinimumPercent": 0,
-        "Name": "Fan #2",
+        "Name": "System Fan #1",
         "NickName": "Case Intake",
         "PairedFanSensor": {
           "Identifier": "/lpc/it8689e/fan/1",
           "IsHidden": false,
-          "Name": "Fan #2",
+          "Name": "System Fan #1",
           "NickName": "Case Intake"
         },
         "SelectedCommandStepDown": 8.0,
@@ -149,12 +149,12 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MinimumPercent": 0,
-        "Name": "Fan #3",
+        "Name": "System Fan #2",
         "NickName": "Case Exhaust",
         "PairedFanSensor": {
           "Identifier": "/lpc/it8689e/fan/2",
           "IsHidden": false,
-          "Name": "Fan #3",
+          "Name": "System Fan #2",
           "NickName": "Case Exhaust"
         },
         "SelectedCommandStepDown": 8.0,
@@ -266,7 +266,7 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MinimumPercent": 0,
-        "Name": "Fan #4",
+        "Name": "System Fan #3",
         "NickName": "Fan #4",
         "PairedFanSensor": null,
         "SelectedCommandStepDown": 8.0,
@@ -285,7 +285,7 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MinimumPercent": 0,
-        "Name": "Fan #5",
+        "Name": "System Fan #4 / Pump",
         "NickName": "Fan #5",
         "PairedFanSensor": null,
         "SelectedCommandStepDown": 8.0,
@@ -304,7 +304,7 @@
         "ManualControl": false,
         "ManualControlValue": 50,
         "MinimumPercent": 0,
-        "Name": "Fan #6",
+        "Name": "CPU Optional Fan",
         "NickName": "Fan #6",
         "PairedFanSensor": null,
         "SelectedCommandStepDown": 8.0,
@@ -407,19 +407,19 @@
       {
         "Identifier": "/lpc/it8689e/fan/0",
         "IsHidden": false,
-        "Name": "Fan #1",
+        "Name": "CPU Fan",
         "NickName": "CPU"
       },
       {
         "Identifier": "/lpc/it8689e/fan/1",
         "IsHidden": false,
-        "Name": "Fan #2",
+        "Name": "System Fan #1",
         "NickName": "Case Intake"
       },
       {
         "Identifier": "/lpc/it8689e/fan/2",
         "IsHidden": false,
-        "Name": "Fan #3",
+        "Name": "System Fan #2",
         "NickName": "Case Exhaust"
       },
       {
@@ -437,26 +437,20 @@
       {
         "Identifier": "/lpc/it8689e/fan/3",
         "IsHidden": true,
-        "Name": "Fan #4",
+        "Name": "System Fan #3",
         "NickName": "Fan #4"
       },
       {
         "Identifier": "/lpc/it8689e/fan/4",
         "IsHidden": true,
-        "Name": "Fan #5",
+        "Name": "System Fan #4 / Pump",
         "NickName": "Fan #5"
       },
       {
         "Identifier": "/lpc/it8689e/fan/5",
         "IsHidden": true,
-        "Name": "Fan #6",
+        "Name": "CPU Optional Fan",
         "NickName": "Fan #6"
-      },
-      {
-        "Identifier": "ADLX/AMD Radeon(TM) Graphics/4096/fan",
-        "IsHidden": false,
-        "Name": "Fan 1 - AMD Radeon(TM) Graphics",
-        "NickName": "Fan 1 - AMD Radeon(TM) Graphics"
       }
     ],
     "HideCalibration": false,
@@ -494,6 +488,6 @@
       "Enabled": true,
       "ZeroRPMOverride": false
     },
-    "SensorCount": 28
+    "SensorCount": 25
   }
 }

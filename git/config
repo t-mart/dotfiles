@@ -60,3 +60,6 @@
   
 [gpg "ssh"]
   allowedSignersFile = "~/.config/git/allowed-signers"
+
+[credential "helperselector"]
+	selected = wincred
