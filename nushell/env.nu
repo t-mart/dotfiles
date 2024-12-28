@@ -61,14 +61,6 @@ if ("~/.cargo" | path exists) {
     path add "~/.cargo/bin"
 }
 
-## fnm ##
-# Fast and simple Node.js version manager, built in Rust
-# We put this after cargo because it might be installed with cargo
-if (is-installed fnm) {
-    # thanks to this guy https://github.com/Schniz/fnm/issues/463#issuecomment-1321140065
-    ^fnm env --json | from json | load-env
-}
-
 ## snap ##
 # Snap is a package manager for linux
 if ("/snap/bin" | path exists) {
