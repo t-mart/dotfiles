@@ -5,12 +5,40 @@
       {
         "Calibration": [
           [
-            0,
-            607
+            20,
+            594
+          ],
+          [
+            30,
+            664
+          ],
+          [
+            40,
+            878
+          ],
+          [
+            50,
+            1064
+          ],
+          [
+            60,
+            1255
+          ],
+          [
+            70,
+            1436
+          ],
+          [
+            80,
+            1600
+          ],
+          [
+            90,
+            1736
           ],
           [
             100,
-            1875
+            1896
           ]
         ],
         "Enable": true,
@@ -55,12 +83,40 @@
       {
         "Calibration": [
           [
-            0,
-            350
+            20,
+            362
+          ],
+          [
+            30,
+            460
+          ],
+          [
+            40,
+            619
+          ],
+          [
+            50,
+            770
+          ],
+          [
+            60,
+            912
+          ],
+          [
+            70,
+            1037
+          ],
+          [
+            80,
+            1168
+          ],
+          [
+            90,
+            1293
           ],
           [
             100,
-            1409
+            1415
           ]
         ],
         "Enable": true,
@@ -92,7 +148,7 @@
               "IsHidden": false,
               "LoadTemperature": 60.0,
               "MaxFanSpeed": 100.0,
-              "MinFanSpeed": 50.0,
+              "MinFanSpeed": 20.0,
               "Name": "GPU Curve",
               "SelectedResponseTime": 2,
               "SelectedTempSource": {
@@ -131,12 +187,40 @@
       {
         "Calibration": [
           [
-            0,
-            346
+            20,
+            341
+          ],
+          [
+            30,
+            452
+          ],
+          [
+            40,
+            610
+          ],
+          [
+            50,
+            763
+          ],
+          [
+            60,
+            907
+          ],
+          [
+            70,
+            1036
+          ],
+          [
+            80,
+            1170
+          ],
+          [
+            90,
+            1299
           ],
           [
             100,
-            1412
+            1427
           ]
         ],
         "Enable": true,
@@ -168,7 +252,7 @@
               "IsHidden": false,
               "LoadTemperature": 60.0,
               "MaxFanSpeed": 100.0,
-              "MinFanSpeed": 50.0,
+              "MinFanSpeed": 20.0,
               "Name": "GPU Curve",
               "SelectedResponseTime": 2,
               "SelectedTempSource": {
@@ -205,7 +289,7 @@
         "SelectedStop": 0
       },
       {
-        "Calibration": null,
+        "Calibration": [],
         "Enable": false,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/3",
@@ -224,7 +308,7 @@
         "SelectedStop": 0
       },
       {
-        "Calibration": null,
+        "Calibration": [],
         "Enable": false,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/4",
@@ -243,7 +327,7 @@
         "SelectedStop": 0
       },
       {
-        "Calibration": null,
+        "Calibration": [],
         "Enable": false,
         "ForceApply": false,
         "Identifier": "/lpc/it8689e/control/5",
@@ -264,12 +348,36 @@
       {
         "Calibration": [
           [
-            0,
+            30,
             0
           ],
           [
+            40,
+            459
+          ],
+          [
+            50,
+            915
+          ],
+          [
+            60,
+            1371
+          ],
+          [
+            70,
+            1828
+          ],
+          [
+            80,
+            2286
+          ],
+          [
+            90,
+            2747
+          ],
+          [
             100,
-            3176
+            3203
           ]
         ],
         "Enable": true,
@@ -280,7 +388,7 @@
         "ManualControlValue": 50,
         "MinimumPercent": 0,
         "Name": "Control 1 - NVIDIA GeForce RTX 4070",
-        "NickName": "Control 1 - NVIDIA GeForce RTX 4070",
+        "NickName": "GPU Fan 1",
         "PairedFanSensor": {
           "Identifier": "NVApiWrapper/0-AD104-A/fan/0",
           "IsHidden": false,
@@ -296,7 +404,7 @@
           "IsHidden": false,
           "LoadTemperature": 60.0,
           "MaxFanSpeed": 100.0,
-          "MinFanSpeed": 50.0,
+          "MinFanSpeed": 20.0,
           "Name": "GPU Curve",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -308,18 +416,42 @@
           "Step": 5.0
         },
         "SelectedOffset": 0,
-        "SelectedStart": 0,
-        "SelectedStop": 0
+        "SelectedStart": 51,
+        "SelectedStop": 36
       },
       {
         "Calibration": [
           [
-            0,
+            30,
             0
           ],
           [
+            40,
+            458
+          ],
+          [
+            50,
+            916
+          ],
+          [
+            60,
+            1372
+          ],
+          [
+            70,
+            1828
+          ],
+          [
+            80,
+            2290
+          ],
+          [
+            90,
+            2749
+          ],
+          [
             100,
-            3167
+            3204
           ]
         ],
         "Enable": true,
@@ -330,7 +462,7 @@
         "ManualControlValue": 50,
         "MinimumPercent": 0,
         "Name": "Control 2 - NVIDIA GeForce RTX 4070",
-        "NickName": "Control 2 - NVIDIA GeForce RTX 4070",
+        "NickName": "GPU Fan 2",
         "PairedFanSensor": {
           "Identifier": "NVApiWrapper/0-AD104-A/fan/1",
           "IsHidden": false,
@@ -346,7 +478,7 @@
           "IsHidden": false,
           "LoadTemperature": 60.0,
           "MaxFanSpeed": 100.0,
-          "MinFanSpeed": 50.0,
+          "MinFanSpeed": 20.0,
           "Name": "GPU Curve",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -358,8 +490,8 @@
           "Step": 5.0
         },
         "SelectedOffset": 0,
-        "SelectedStart": 0,
-        "SelectedStop": 0
+        "SelectedStart": 54,
+        "SelectedStop": 36
       }
     ],
     "CustomSensors": [],
@@ -372,7 +504,7 @@
         "IsHidden": false,
         "LoadTemperature": 60.0,
         "MaxFanSpeed": 100.0,
-        "MinFanSpeed": 50.0,
+        "MinFanSpeed": 20.0,
         "Name": "GPU Curve",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
@@ -413,7 +545,7 @@
             "IsHidden": false,
             "LoadTemperature": 60.0,
             "MaxFanSpeed": 100.0,
-            "MinFanSpeed": 50.0,
+            "MinFanSpeed": 20.0,
             "Name": "GPU Curve",
             "SelectedResponseTime": 2,
             "SelectedTempSource": {
