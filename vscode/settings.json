@@ -32,7 +32,7 @@
   "[xml]": {
     "editor.defaultFormatter": "DotJoshJohnson.xml",
     "editor.tabSize": 2,
-    "editor.insertSpaces": true,
+    "editor.insertSpaces": true
   },
   "[javascript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features",
@@ -40,7 +40,9 @@
     "editor.insertSpaces": true
   },
   "[yaml]": {
-    "editor.tabSize": 2
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "svelte.enable-ts-plugin": true,
   "[typescript]": {
@@ -106,17 +108,6 @@
     "bayleaf": "linux",
     "10.0.0.23": "linux"
   },
-  "better-comments.tags": [
-    {
-      "tag": "todo",
-      "color": "#FF8C00",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
-    }
-  ],
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -136,6 +127,10 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "github.copilot.preferredAccount": "t-mart",
-  "terminal.integrated.stickyScroll.enabled": false
+  "terminal.integrated.stickyScroll.enabled": false,
+  "[github-actions-workflow]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
