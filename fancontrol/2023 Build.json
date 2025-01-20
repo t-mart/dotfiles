@@ -61,9 +61,9 @@
         "SelectedFanCurve": {
           "CommandMode": 0,
           "Deadband": 3.0,
-          "IdleTemperature": 35.0,
+          "IdleTemperature": 45.0,
           "IsHidden": false,
-          "LoadTemperature": 95.0,
+          "LoadTemperature": 80.0,
           "MaxFanSpeed": 100.0,
           "MinFanSpeed": 50.0,
           "Name": "CPU Curve",
@@ -74,7 +74,7 @@
             "Name": "Core (Tctl/Tdie)",
             "NickName": "Core (Tctl/Tdie)"
           },
-          "Step": 2.0
+          "Step": 5.0
         },
         "SelectedOffset": 0,
         "SelectedStart": 0,
@@ -144,9 +144,9 @@
             {
               "CommandMode": 0,
               "Deadband": 3.0,
-              "IdleTemperature": 30.0,
+              "IdleTemperature": 45.0,
               "IsHidden": false,
-              "LoadTemperature": 60.0,
+              "LoadTemperature": 75.0,
               "MaxFanSpeed": 100.0,
               "MinFanSpeed": 20.0,
               "Name": "GPU Curve",
@@ -162,9 +162,9 @@
             {
               "CommandMode": 0,
               "Deadband": 3.0,
-              "IdleTemperature": 35.0,
+              "IdleTemperature": 45.0,
               "IsHidden": false,
-              "LoadTemperature": 95.0,
+              "LoadTemperature": 80.0,
               "MaxFanSpeed": 100.0,
               "MinFanSpeed": 50.0,
               "Name": "CPU Curve",
@@ -175,7 +175,7 @@
                 "Name": "Core (Tctl/Tdie)",
                 "NickName": "Core (Tctl/Tdie)"
               },
-              "Step": 2.0
+              "Step": 5.0
             }
           ],
           "SelectedMixFunction": 0
@@ -248,9 +248,9 @@
             {
               "CommandMode": 0,
               "Deadband": 3.0,
-              "IdleTemperature": 30.0,
+              "IdleTemperature": 45.0,
               "IsHidden": false,
-              "LoadTemperature": 60.0,
+              "LoadTemperature": 75.0,
               "MaxFanSpeed": 100.0,
               "MinFanSpeed": 20.0,
               "Name": "GPU Curve",
@@ -266,9 +266,9 @@
             {
               "CommandMode": 0,
               "Deadband": 3.0,
-              "IdleTemperature": 35.0,
+              "IdleTemperature": 45.0,
               "IsHidden": false,
-              "LoadTemperature": 95.0,
+              "LoadTemperature": 80.0,
               "MaxFanSpeed": 100.0,
               "MinFanSpeed": 50.0,
               "Name": "CPU Curve",
@@ -279,7 +279,7 @@
                 "Name": "Core (Tctl/Tdie)",
                 "NickName": "Core (Tctl/Tdie)"
               },
-              "Step": 2.0
+              "Step": 5.0
             }
           ],
           "SelectedMixFunction": 0
@@ -400,9 +400,9 @@
         "SelectedFanCurve": {
           "CommandMode": 0,
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 45.0,
           "IsHidden": false,
-          "LoadTemperature": 60.0,
+          "LoadTemperature": 75.0,
           "MaxFanSpeed": 100.0,
           "MinFanSpeed": 20.0,
           "Name": "GPU Curve",
@@ -474,9 +474,9 @@
         "SelectedFanCurve": {
           "CommandMode": 0,
           "Deadband": 3.0,
-          "IdleTemperature": 30.0,
+          "IdleTemperature": 45.0,
           "IsHidden": false,
-          "LoadTemperature": 60.0,
+          "LoadTemperature": 75.0,
           "MaxFanSpeed": 100.0,
           "MinFanSpeed": 20.0,
           "Name": "GPU Curve",
@@ -500,9 +500,27 @@
       {
         "CommandMode": 0,
         "Deadband": 3.0,
-        "IdleTemperature": 30.0,
+        "IdleTemperature": 45.0,
         "IsHidden": false,
-        "LoadTemperature": 60.0,
+        "LoadTemperature": 80.0,
+        "MaxFanSpeed": 100.0,
+        "MinFanSpeed": 50.0,
+        "Name": "CPU Curve",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "/amdcpu/0/temperature/2",
+          "IsHidden": false,
+          "Name": "Core (Tctl/Tdie)",
+          "NickName": "Core (Tctl/Tdie)"
+        },
+        "Step": 5.0
+      },
+      {
+        "CommandMode": 0,
+        "Deadband": 3.0,
+        "IdleTemperature": 45.0,
+        "IsHidden": false,
+        "LoadTemperature": 75.0,
         "MaxFanSpeed": 100.0,
         "MinFanSpeed": 20.0,
         "Name": "GPU Curve",
@@ -517,33 +535,15 @@
       },
       {
         "CommandMode": 0,
-        "Deadband": 3.0,
-        "IdleTemperature": 35.0,
-        "IsHidden": false,
-        "LoadTemperature": 95.0,
-        "MaxFanSpeed": 100.0,
-        "MinFanSpeed": 50.0,
-        "Name": "CPU Curve",
-        "SelectedResponseTime": 2,
-        "SelectedTempSource": {
-          "Identifier": "/amdcpu/0/temperature/2",
-          "IsHidden": false,
-          "Name": "Core (Tctl/Tdie)",
-          "NickName": "Core (Tctl/Tdie)"
-        },
-        "Step": 2.0
-      },
-      {
-        "CommandMode": 0,
         "IsHidden": false,
         "Name": "Max of CPU and GPU Curves",
         "SelectedFanCurves": [
           {
             "CommandMode": 0,
             "Deadband": 3.0,
-            "IdleTemperature": 30.0,
+            "IdleTemperature": 45.0,
             "IsHidden": false,
-            "LoadTemperature": 60.0,
+            "LoadTemperature": 75.0,
             "MaxFanSpeed": 100.0,
             "MinFanSpeed": 20.0,
             "Name": "GPU Curve",
@@ -559,9 +559,9 @@
           {
             "CommandMode": 0,
             "Deadband": 3.0,
-            "IdleTemperature": 35.0,
+            "IdleTemperature": 45.0,
             "IsHidden": false,
-            "LoadTemperature": 95.0,
+            "LoadTemperature": 80.0,
             "MaxFanSpeed": 100.0,
             "MinFanSpeed": 50.0,
             "Name": "CPU Curve",
@@ -572,7 +572,7 @@
               "Name": "Core (Tctl/Tdie)",
               "NickName": "Core (Tctl/Tdie)"
             },
-            "Step": 2.0
+            "Step": 5.0
           }
         ],
         "SelectedMixFunction": 0
@@ -646,23 +646,23 @@
       "Enabled": true
     },
     "DisabledPlugins": [],
-    "DisableStorageSensors": true,
+    "DisableStorageSensors": false,
     "LibreHardwareMonitorSettings": {
       "Controller": false,
       "CPU": true,
       "EmbeddedEC": true,
       "GPU": true,
       "InpOut": false,
-      "Memory": false,
+      "Memory": true,
       "Motherboard": true,
-      "PSU": false,
-      "Storage": false,
+      "PSU": true,
+      "Storage": true,
       "ZeroRPMOverride": true
     },
     "NvAPIWrapperSettings": {
       "Enabled": true,
       "ZeroRPMOverride": true
     },
-    "SensorCount": 25
+    "SensorCount": 31
   }
 }
