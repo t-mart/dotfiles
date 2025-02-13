@@ -5,3 +5,6 @@
 # this leaks files names of recently played media and isn't really important to
 # persist
 mpv.net/config/settings.xml
+
+# don't track current-system nushell configuration files
+nushell/autoload/*
