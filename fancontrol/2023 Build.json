@@ -61,11 +61,11 @@
         "SelectedFanCurve": {
           "CommandMode": 0,
           "Deadband": 3.0,
-          "IdleTemperature": 45.0,
+          "IdleTemperature": 40.0,
           "IsHidden": false,
           "LoadTemperature": 80.0,
           "MaxFanSpeed": 100.0,
-          "MinFanSpeed": 50.0,
+          "MinFanSpeed": 20.0,
           "Name": "CPU Curve",
           "SelectedResponseTime": 2,
           "SelectedTempSource": {
@@ -162,11 +162,11 @@
             {
               "CommandMode": 0,
               "Deadband": 3.0,
-              "IdleTemperature": 45.0,
+              "IdleTemperature": 40.0,
               "IsHidden": false,
               "LoadTemperature": 80.0,
               "MaxFanSpeed": 100.0,
-              "MinFanSpeed": 50.0,
+              "MinFanSpeed": 20.0,
               "Name": "CPU Curve",
               "SelectedResponseTime": 2,
               "SelectedTempSource": {
@@ -266,11 +266,11 @@
             {
               "CommandMode": 0,
               "Deadband": 3.0,
-              "IdleTemperature": 45.0,
+              "IdleTemperature": 40.0,
               "IsHidden": false,
               "LoadTemperature": 80.0,
               "MaxFanSpeed": 100.0,
-              "MinFanSpeed": 50.0,
+              "MinFanSpeed": 20.0,
               "Name": "CPU Curve",
               "SelectedResponseTime": 2,
               "SelectedTempSource": {
@@ -500,11 +500,11 @@
       {
         "CommandMode": 0,
         "Deadband": 3.0,
-        "IdleTemperature": 45.0,
+        "IdleTemperature": 40.0,
         "IsHidden": false,
         "LoadTemperature": 80.0,
         "MaxFanSpeed": 100.0,
-        "MinFanSpeed": 50.0,
+        "MinFanSpeed": 20.0,
         "Name": "CPU Curve",
         "SelectedResponseTime": 2,
         "SelectedTempSource": {
@@ -559,11 +559,11 @@
           {
             "CommandMode": 0,
             "Deadband": 3.0,
-            "IdleTemperature": 45.0,
+            "IdleTemperature": 40.0,
             "IsHidden": false,
             "LoadTemperature": 80.0,
             "MaxFanSpeed": 100.0,
-            "MinFanSpeed": 50.0,
+            "MinFanSpeed": 20.0,
             "Name": "CPU Curve",
             "SelectedResponseTime": 2,
             "SelectedTempSource": {

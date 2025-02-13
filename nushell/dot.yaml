@@ -3,6 +3,7 @@ windows:
     config.nu: ~/AppData/Roaming/nushell/config.nu
     env.nu: ~/AppData/Roaming/nushell/env.nu
     scripts: ~/AppData/Roaming/nushell/scripts
+    autoload: ~/AppData/Roaming/nushell/autoload
 
 # on windows, do this general symlink mapping too. This will be used if
 # XDG_CONFIG_HOME is set.
@@ -11,3 +12,4 @@ global:
     config.nu: ~/.config/nushell/config.nu
     env.nu: ~/.config/nushell/env.nu
     scripts: ~/.config/nushell/scripts
+    autoload: ~/.config/nushell/autoload

@@ -3,19 +3,6 @@
 # use nu standard library
 use std *
 
-# `~/.profile.nu` is for nushell configuration that is *not* source-controlled.
-# It is useful for things that are local to this user or this machine. Examples
-# include `PATH` modifications or any other environment variable. This is not a
-# standard Nushell convention -- it is of my own design.
-#
-# Its name is modeled after the `.profile` file for bash.
-#
-# QUIRK: Due to nushell's must-already-exist requirement for sourced files, it
-# must be manually created *before* is Nushell is run because source paths are
-# compile-time checked. Therefore, there is no way to gracefully handle/detect
-# this -- the parse will just fail.
-source-env ($nu.home-path | path join ".profile.nu")
-
 # XDG env vars
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 {

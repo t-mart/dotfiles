@@ -4,7 +4,7 @@
   "terminal.integrated.scrollback": 10000,
   "github.copilot.enable": {
     "*": true,
-    "plaintext": false,
+    "plaintext": true,
     "markdown": true,
     "scminput": false
   },
@@ -104,18 +104,10 @@
     "*.sdb": "${capture}.${extname}-*",
     "*.s3db": "${capture}.${extname}-*"
   },
-  "remote.SSH.remotePlatform": {
-    "bayleaf": "linux",
-    "10.0.0.23": "linux"
-  },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "gitlens.changes.locations": ["gutter", "overview", "line"],
-  "gitlens.currentLine.pullRequests.enabled": false,
-  "gitlens.codeLens.enabled": false,
-  "gitlens.hovers.currentLine.enabled": false,
   "remote.autoForwardPortsSource": "hybrid",
   "files.exclude": {
     ".git": true,
@@ -132,5 +124,9 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   }
 }
