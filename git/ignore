@@ -9,5 +9,4 @@
 #
 # For example, things specific to my editor/workflow/etc belong here.
 
-.vscode
 .venv
