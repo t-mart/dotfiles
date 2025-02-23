@@ -35,9 +35,9 @@
     "editor.insertSpaces": true
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2,
-    "editor.insertSpaces": true
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[yaml]": {
     "editor.insertSpaces": true,
