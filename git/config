@@ -14,9 +14,15 @@
 
 [branch]
   autosetuprebase = always
+  sort = -committerdate
 
 [merge]
   conflictstyle = zdiff3
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
 
 [core]
   editor = vim
@@ -36,21 +42,33 @@
 
 [rerere]
   enabled = true
+  autoupdate = true
 
 [rebase]
-  autosquash = true
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
+
 
 [diff]
   algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 
 [init]
   defaultBranch = master
 
 [commit]
   gpgSign = true
+  verbose = true
 
 [tag]
   gpgSign = true
+  sort = version:refname
+
+[help]
+  autocorrect = prompt
 
 [filter "lfs"]
 	process = git-lfs filter-process
