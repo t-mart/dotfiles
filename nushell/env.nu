@@ -34,24 +34,10 @@ def is-installed [
     (which $name | length) > 0
 }
 
-## pyenv ##
-# pyenv is a python version manager that installs python versions in user space
-# and makes them 
-if ("~/.pyenv" | path exists) {
-    path add "~/.pyenv/bin"
-    path add $"(pyenv root)/shims"
-}
-
 ## cargo ##
 # Cargo is rust's package manager.
 if ("~/.cargo" | path exists) {
     path add "~/.cargo/bin"
-}
-
-## snap ##
-# Snap is a package manager for linux
-if ("/snap/bin" | path exists) {
-    path add "/snap/bin"
 }
 
 # code-insiders preferred
