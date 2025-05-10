@@ -1,26 +1,14 @@
 {
-  "files.autoSave": "afterDelay",
-  "editor.inlineSuggest.enabled": true,
-  "terminal.integrated.scrollback": 10000,
-  "github.copilot.enable": {
-    "*": true,
-    "plaintext": true,
-    "markdown": true,
-    "scminput": false
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
   },
-  "terminal.integrated.profiles.windows": {
-    "Nushell": {
-      "path": "nu.exe"
-    }
-  },
-  "terminal.integrated.defaultProfile.windows": "Nushell",
-  "security.workspace.trust.untrustedFiles": "open",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
   "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "vscode.json-language-features",
     "editor.tabSize": 2
   },
   "[html]": {
@@ -44,9 +32,8 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "svelte.enable-ts-plugin": true,
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
@@ -59,16 +46,53 @@
   "[nushell]": {
     "editor.rulers": [80]
   },
-  "files.eol": "\n",
-  "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
-  "editor.fontSize": 13,
-  "github.gitProtocol": "ssh",
-  "github.gitAuthentication": false,
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode",
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[lua]": {
+    "editor.defaultFormatter": "sumneko.lua"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[github-actions-workflow]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "files.autoSave": "afterDelay",
+  "editor.inlineSuggest.enabled": true,
+  "terminal.integrated.scrollback": 10000,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false
+  },
+  "terminal.integrated.profiles.windows": {
+    "Nushell": {
+      "path": "nu.exe",
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "Nushell",
+  "security.workspace.trust.untrustedFiles": "open",
+  "svelte.enable-ts-plugin": true,
+  "files.eol": "\n",
+  "editor.fontFamily": "JetBrains Mono, Consolas, 'Courier New', monospace",
+  "editor.fontSize": 13,
+  "github.gitProtocol": "ssh",
+  "github.gitAuthentication": false,
   "git.confirmSync": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "terminal.integrated.enableMultiLinePasteWarning": "never",
@@ -78,35 +102,7 @@
   "rust-analyzer.check.command": "clippy",
   "diffEditor.ignoreTrimWhitespace": false,
   "workbench.editor.enablePreview": false,
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "prettier.proseWrap": "always",
-  "[lua]": {
-    "editor.defaultFormatter": "sumneko.lua"
-  },
-  "github.copilot.editor.enableAutoCompletions": true,
-  "Lua.workspace.library": [
-    "c:\\Users\\tim\\.vscode\\extensions\\ketho.wow-api-0.14.0\\EmmyLua\\API",
-    "c:\\Users\\tim\\.vscode\\extensions\\ketho.wow-api-0.14.0\\EmmyLua\\Optional"
-  ],
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.js",
-    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-    "*.jsx": "${capture}.js",
-    "*.tsx": "${capture}.ts",
-    "tsconfig.json": "tsconfig.*.json",
-    "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
-    "*.sqlite": "${capture}.${extname}-*",
-    "*.db": "${capture}.${extname}-*",
-    "*.sqlite3": "${capture}.${extname}-*",
-    "*.db3": "${capture}.${extname}-*",
-    "*.sdb": "${capture}.${extname}-*",
-    "*.s3db": "${capture}.${extname}-*"
-  },
-  "[css]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "remote.autoForwardPortsSource": "hybrid",
   "files.exclude": {
@@ -116,17 +112,17 @@
   "git.ignoreRebaseWarning": true,
   "editor.minimap.autohide": true,
   "editor.linkedEditing": true,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "terminal.integrated.stickyScroll.enabled": false,
-  "[github-actions-workflow]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "typescript.preferences.includePackageJsonAutoImports": "on",
-  "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "terminal.integrated.stickyScroll.enabled": false,
+  "editor.stickyScroll.enabled": false,
+  "editor.stickyScroll.scrollWithEditor": false,
+  "terminal.integrated.shellIntegration.enabled": false,
+  "editor.minimap.enabled": false,
+  "workbench.editor.wrapTabs": true,
+  "workbench.editor.showTabs": "single",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "remote.SSH.remotePlatform": {
+    "bayleaf": "linux"
   }
 }
