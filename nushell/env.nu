@@ -27,6 +27,11 @@ export-env {
     path add $local_bin
 }
 
+# Add ~/bin if exists for local installs of built software
+if ("~/bin" | path exists) {
+    path add "~/bin"
+}
+
 # Return true if the tool named `name` is installed on the system.
 def is-installed [
     name: string,  # the name of the tool
