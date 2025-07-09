@@ -4,29 +4,23 @@ These are my dotfiles.
 
 Managed with [chezmoi](https://www.chezmoi.io/).
 
-## Installation
+## Deploy with one command
 
-1. Prerequisites programs:
+### Unix
 
-   - `chezmoi`
+```
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin init --apply t-mart
+```
 
-2. Clone and deploy:
+### Windows
 
-   ```shell
-   chezmoi init --apply t-mart
-   ```
+Run in `powershell.exe` (not pwsh):
+```
+iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b ~/.local/bin -- init --apply t-mart"
+```
 
-4. (Optional) Take a look in `extra/` for files that are may help setting up
-   a new system. These files are not deployed to the system.
+## Update configuration on current host
 
-## XDG Variables
-
-XDG variables should be set to the following values:
-
-- `XDG_CACHE_HOME`: `<HOME_DIR>/.cache`
-- `XDG_CONFIG_HOME`: `<HOME_DIR>/.config`
-- `XDG_DATA_HOME`: `<HOME_DIR>/.local/share`
-- `XDG_STATE_HOME`: `<HOME_DIR>/.local/state`
-
-`<HOME_DIR>` should be replaced with the absolute path to the user's home
-directory.
+```
+chezmoi update
+```
