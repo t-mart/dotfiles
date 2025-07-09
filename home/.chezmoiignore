@@ -4,7 +4,7 @@
 
 # If on windows, ignore these files...
 
-dot_config/nushell
+.config/nushell
 
 {{ else }}
 
@@ -12,7 +12,7 @@ dot_config/nushell
 
 AppData
 Documents
-dot_wslconfig
+.wslconfig
 scoop
 
 {{ end }}
