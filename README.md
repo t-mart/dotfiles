@@ -19,17 +19,6 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 4. (Optional) Take a look in `extra/` for files that are may help setting up
    a new system. These files are not deployed to the system.
 
-5. Deploy (symlink):
-
-   ```sh
-   rotz link
-   ```
-
-## Workflow
-
-Rotz puts this repository in `~/.dotfiles`. It can be managed just like any
-other git repository (e.g., `git pull` or `git push`).
-
 ## XDG Variables
 
 XDG variables should be set to the following values:

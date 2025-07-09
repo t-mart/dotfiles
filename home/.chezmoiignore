@@ -1,0 +1,18 @@
+# This is an ignore file -- If the predicate is true, the file will not be applied (it is _ignored_).
+
+{{ if eq .chezmoi.os "windows" }}
+
+# If on windows, ignore these files...
+
+dot_config/nushell
+
+{{ else }}
+
+# If not on windows, ignore these files...
+
+AppData
+Documents
+dot_wslconfig
+scoop
+
+{{ end }}
