@@ -1,3 +1,0 @@
-windows:
-  links:
-    config.yaml: ~/AppData/Roaming/beets/config.yaml

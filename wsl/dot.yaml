@@ -1,3 +1,0 @@
-windows:
-  links:
-    .wslconfig: ~/.wslconfig

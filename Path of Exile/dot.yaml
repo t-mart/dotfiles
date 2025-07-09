@@ -1,3 +1,0 @@
-windows:
-  links:
-    production_Config.ini: ~/Documents/My Games/Path of Exile/production_Config.ini

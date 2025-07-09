@@ -2,54 +2,22 @@
 
 These are my dotfiles.
 
-Managed with [Rotz](https://volllly.github.io/rotz/).
+Managed with [chezmoi](https://www.chezmoi.io/).
 
 ## Installation
 
 1. Prerequisites programs:
 
-   - `git`
-   - `rotz`
+   - `chezmoi`
 
 2. Clone and deploy:
 
    ```shell
-   rotz clone git@github.com:t-mart/dotfiles.git
+   chezmoi init --apply t-mart
    ```
 
-   *People that aren't me should use `https://github.com/t-mart/dotfiles.git`.*
-
-3. For my nushell config to work, create a `~/profile.nu`, which can be empty.
-
-   ```shell
-   touch ~/profile.nu
-   ```
-
-   See relevant section in [env.nu](nushell/env.nu) for more details.
-
-4. (Optional) Set "global" environment variables:
-
-   To set environment variables permanently for programs (including those
-   launched from the desktop environment), global environment variables should
-   be set according to the operating system's methods.
-
-   This step is important because the dotfiles may be deployed to paths
-   that correlated to these environment variables (e.g., `XDG_CONFIG_HOME`).
-   See [XDG Variables](#xdg-variables) for the values that should be set.
-
-   - Windows:
-
-      ```sh
-      pwsh ~/.dotfiles/env/windows.ps1
-      ```
-
-      (see [source](env/windows.ps1) for details)
-
-   - Others
-
-     Not yet implemented. On Ubuntu,
-     [`~/.profile`](https://help.ubuntu.com/community/EnvironmentVariables#A.2BAH4-.2F.profile)
-     would be a good place to put these.
+4. (Optional) Take a look in `extra/` for files that are may help setting up
+   a new system. These files are not deployed to the system.
 
 5. Deploy (symlink):
 

@@ -1,6 +1,0 @@
-windows:
-  links:
-    Profile.ps1:
-      - ~/Documents/WindowsPowerShell/Profile.ps1
-      - ~/Documents/PowerShell/Profile.ps1
-  

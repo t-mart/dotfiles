@@ -1,3 +1,0 @@
-windows:
-  links:
-    greenshot.ini: ~/scoop/persist/greenshot-unstable/greenshot.ini

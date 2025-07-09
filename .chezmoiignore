@@ -1,0 +1,12 @@
+# Windows only targets (the logic is inverted -- we're in .chezmoiignore, so
+# we're saying "ignore these files if not on windows, etc, but deploy them
+# otherwise")
+{{ if ne .chezmoi.os "windows" }}
+scoop
+dot_wslconfig
+AppData
+Documents
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+{{ end }}

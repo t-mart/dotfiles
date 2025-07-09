@@ -1,5 +1,0 @@
-windows:
-  links:
-    config: 
-    - ~/AppData/Roaming/mpv.net
-    - ~/scoop/persist/mpv.net/portable_config

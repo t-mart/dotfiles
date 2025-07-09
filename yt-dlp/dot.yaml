@@ -1,3 +1,0 @@
-global:
-  links:
-    config: ~/.config/yt-dlp/config

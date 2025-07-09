@@ -1,3 +1,0 @@
-windows:
-  links:
-    2023 Build.json: ~/scoop/persist/fancontrol/Configurations/2023 build.json
