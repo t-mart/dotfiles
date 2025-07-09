@@ -1,4 +1,5 @@
 --sub-langs "en.*"
---write-sub
---write-auto-sub
 --sponsorblock-mark all
+--embed-subs
+--embed-thumbnail
+--embed-metadata
