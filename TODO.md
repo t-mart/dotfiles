@@ -12,7 +12,7 @@
 
 - [ ] go through packages.yaml and keep stuff i like, add stuff, etc
 
-  - [ ] gate some packages with a prompt about "is this a graphical install?"
+  - [ ] gate some packages with a prompt about "is this a headless install?"
         so we don't have to install things like vscode, mpv.net, etc.
 
 - [ ] other cool things from <https://github.com/KapJI/dotfiles>
