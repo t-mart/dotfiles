@@ -1,6 +1,14 @@
 # TODO
 
-[ ] get SSH keys from one password
 [ ] get GPG keys from one password (and import them?)
-[ ] scoop install some things, like git and delta
+
+[ ] embrace winget. it has software that scoop doesn't, is better for
+self-upgrading software, and has access to microsoft store (windows terminal,
+vscode, etc). we can use both scoop and winget, but just make the right choice.
+
+[ ] 1password to get ssh keys, so i don't have to duplicate them here in this
+repo. will need to install 1password with scoop/winget first.
+
+[ ] go through packages.yaml and keep stuff i like, add stuff, etc
+
 [ ] other cool things from <https://github.com/KapJI/dotfiles>

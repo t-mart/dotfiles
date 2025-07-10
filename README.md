@@ -28,8 +28,12 @@ chezmoi update
 
 ## `home/.data/key.txt.age`
 
+(This is for posterity. I shouldn't need to do this again unless I lose/leak the
+key.)
+
 This key is used by chezmoi to encrypt/decrypt other files. It is referenced by
-the chezmoi config at `home/.chezmoi.toml.tmpl`.
+the chezmoi config at `home/.chezmoi.toml.tmpl`. One of our `before_` scripts
+will decrypt and install it into place.
 
 It was created with the following commands:
 
@@ -55,3 +59,7 @@ chezmoi add --encrypt ~/somefile.txt
 While passphrase encrypting a private key file might seem like a strange
 recursion, the file allows us to not need to enter the passphrase every time we
 want to use the key.
+
+## Thanks
+
+Thanks to [KapJI](https://github.com/KapJI/dotfiles) for inspiration and ideas.
