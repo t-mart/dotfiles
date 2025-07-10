@@ -1,5 +1,7 @@
 # This is an ignore file -- If the predicate is true, the file will not be applied (it is _ignored_).
 
+.chezmoiscripts/common/**
+
 {{ if eq .chezmoi.os "windows" }}
 
 # If on windows, ignore these files...
