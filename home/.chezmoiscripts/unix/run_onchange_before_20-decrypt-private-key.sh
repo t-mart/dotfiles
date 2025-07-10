@@ -10,6 +10,7 @@ if [[ -f "${decrypted_key_file}" ]]; then
 else
   mkdir -p "$(dirname "${decrypted_key_file}")"
 
-  "${CHEZMOI_EXECUTABLE}" age decrypt --output "${decrypted_key_file}" "${encrypted_key_file}"
+  "${CHEZMOI_EXECUTABLE}" age decrypt --output "${decrypted_key_file}" --passphrase "${encrypted_key_file}"
   chmod 600 "${decrypted_key_file}"
+  echo "Successfully decrypted and secured '${decrypted_key_file}'."
 fi
