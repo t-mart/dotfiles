@@ -12,6 +12,9 @@
 
 - [ ] go through packages.yaml and keep stuff i like, add stuff, etc
 
+  - [ ] gate some packages with a prompt about "is this a graphical install?"
+        so we don't have to install things like vscode, mpv.net, etc.
+
 - [ ] other cool things from <https://github.com/KapJI/dotfiles>
 
 - [ ] review nushell. things have changed since i last configured it.
@@ -22,3 +25,5 @@
 
 - [ ] windows terminal settings (take out of `extra/` and make it a proper
       dotfile)
+
+- [ ] Cascadia Mono font, jetbrains mono font, etc. make consistent for windows terminal and vscode-insiders.
