@@ -8,7 +8,7 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 
 ### Unix
 
-```
+```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin init --apply t-mart
 ```
 
@@ -16,13 +16,13 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin init --apply t-mart
 
 Run in `powershell.exe` (not pwsh):
 
-```
+```powershell
 iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b ~/.local/bin -- init --apply t-mart"
 ```
 
 ## Update configuration on current host
 
-```
+```bash
 chezmoi update
 ```
 
