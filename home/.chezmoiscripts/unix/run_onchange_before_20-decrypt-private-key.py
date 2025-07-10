@@ -1,1 +1,0 @@
-../common/decrypt-private-key.py
