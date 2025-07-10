@@ -20,7 +20,7 @@ Run in `powershell.exe` (not pwsh):
 iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b ~/.local/bin -- init --apply t-mart"
 ```
 
-## Update configuration on current host
+## Pull the latest changes from this repo and apply them
 
 ```bash
 chezmoi update
