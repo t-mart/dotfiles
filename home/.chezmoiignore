@@ -5,6 +5,7 @@
 # If on windows, ignore these files...
 
 .config/nushell
+.chezmoiscripts/unix/**
 
 {{ else }}
 
@@ -14,5 +15,6 @@ AppData
 Documents
 .wslconfig
 scoop
+.chezmoiscripts/windows/**
 
 {{ end }}

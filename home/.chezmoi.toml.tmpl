@@ -1,0 +1,26 @@
+encryption = "age"
+
+[diff]
+    pager = "delta"
+
+[age]
+    identity = "~/.config/chezmoi/key.txt"
+    recipient = "age1ss5crrns78lu7mgplaxywuw0nu2rsmar2ua7drlermulu0k75snsv9stlh"
+
+[gitHub]
+    refreshPeriod = "24h"
+    
+[interpreters.py]
+    command = "uv"
+    args = ["run", "python"]
+
+{{- if eq .chezmoi.os "windows" }}
+
+[cd]
+    command = "pwsh.exe"
+
+[interpreters.ps1]
+    command = "powershell"
+    args = ["-NoLogo", "-ExecutionPolicy", "RemoteSigned"]
+
+{{- end }}
