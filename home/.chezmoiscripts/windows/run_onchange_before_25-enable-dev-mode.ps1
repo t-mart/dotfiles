@@ -12,15 +12,11 @@ $RegProperty = 'AllowDevelopmentWithoutDevLicense'
 
 # Check if Developer Mode is already enabled.
 try {
-    $currentValue = Get-ItemPropertyValue -Path $RegPath -Name $RegProperty -ErrorAction Stop
-    if ($currentValue -eq 1) {
+    $currentValue = Get-ItemPropertyValue -Path $RegPath -Name $RegProperty -ErrorAction SilentlyContinue
+    if ($currentValue -and $currentValue.$RegProperty -eq 1) {
         Write-Host "Developer Mode is already enabled."
-        Read-Host "Press Enter to exit"
         exit
     }
-}
-catch [Microsoft.PowerShell.Commands.ItemNotFoundException] {
-    # This is expected if the key has never been set. Continue silently.
 }
 catch {
     Write-Error "An unexpected error occurred while checking the registry: $_"
