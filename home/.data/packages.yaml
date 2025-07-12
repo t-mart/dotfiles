@@ -119,7 +119,7 @@
 
 - scoop: extras/rufus
 
-- deb: rustup
+- unix-shell-url: https://sh.rustup.rs
   winget: Rustlang.Rustup
 
 - scoop: extras/screentogif

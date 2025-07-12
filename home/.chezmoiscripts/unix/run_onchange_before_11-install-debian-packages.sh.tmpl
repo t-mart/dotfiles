@@ -13,5 +13,6 @@ set -euo pipefail
     {{ end -}}
 {{ end -}}
 
+sudo apt update
 sudo apt install -y {{ $deb_packages | join " " }}
 {{ end -}}
