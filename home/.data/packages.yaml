@@ -39,7 +39,8 @@
 
 - scoop: main/curl
 
-- deb: git-delta
+- 
+  # deb: git-delta
   winget: dandavison.delta
 
 - winget: Docker.DockerDesktop
@@ -86,6 +87,9 @@
 - deb: jq
   scoop: main/jq
 
+- deb: less
+  scoop: main/less
+
 - scoop: mpv.net
 
 - deb: neovim
@@ -109,8 +113,10 @@
 - winget: Microsoft.Sysinternals.ProcessMonitor
 
 - scoop: protobuf
+  deb: protobuf-compiler
 
 - scoop: main/q-dns
+  deb: q
 
 - scoop: extras/qbittorrent
 
@@ -131,7 +137,7 @@
 - scoop: extras/speedcrunch
 
 - scoop: main/starship
-  deb: starship
+  unix-shell-url: https://starship.rs/install.sh
 
 - winget: WinsiderSS.SystemInformer
 

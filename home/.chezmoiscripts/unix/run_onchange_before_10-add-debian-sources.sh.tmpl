@@ -5,25 +5,7 @@ set -euo pipefail
 sudo apt update
 sudo apt install -y curl gnupg apt-transport-https sudo
 
-# for q (dns client)
 sudo mkdir -p /etc/apt/keyrings
-curl -fsSL https://repo.natesales.net/apt/gpg.key | \
-  sudo gpg --dearmor --output /etc/apt/keyrings/natesales.gpg
-echo "deb [signed-by=/etc/apt/keyrings/natesales.gpg] https://repo.natesales.net/apt * *" | \
-  sudo tee /etc/apt/sources.list.d/natesales.list
-
-# for carapace-bin
-echo "deb [trusted=yes] https://apt.fury.io/rsteube/ /" | \
-  sudo tee /etc/apt/sources.list.d/fury-rsteube.list
-
-# for node (from nodesource)
-curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
-
-# for nushell
-curl -fsSL https://apt.fury.io/nushell/gpg.key | \
-  sudo gpg --dearmor --output /etc/apt/trusted.gpg.d/fury-nushell.gpg
-echo "deb https://apt.fury.io/nushell/ /" | \
-  sudo tee /etc/apt/sources.list.d/fury-nushell.list
 
 # for 1Password
 curl -fsSL https://downloads.1password.com/linux/keys/1password.asc | \
@@ -36,6 +18,31 @@ curl -fsSL https://downloads.1password.com/linux/debian/debsig/1password.pol | \
 sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
 curl -fsSL https://downloads.1password.com/linux/keys/1password.asc | \
   sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+# for carapace-bin
+echo "deb [trusted=yes] https://apt.fury.io/rsteube/ /" | \
+  sudo tee /etc/apt/sources.list.d/fury-rsteube.list
+
+# for eza
+curl -fsSL https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | \
+  sudo tee /etc/apt/sources.list.d/gierens.list
+
+# for node (from nodesource)
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+
+# for nushell
+curl -fsSL https://apt.fury.io/nushell/gpg.key | \
+  sudo gpg --dearmor --output /etc/apt/trusted.gpg.d/fury-nushell.gpg
+echo "deb https://apt.fury.io/nushell/ /" | \
+  sudo tee /etc/apt/sources.list.d/fury-nushell.list
+
+# for q (dns client)
+curl -fsSL https://repo.natesales.net/apt/gpg.key | \
+  sudo gpg --dearmor --output /etc/apt/keyrings/natesales.gpg
+echo "deb [signed-by=/etc/apt/keyrings/natesales.gpg] https://repo.natesales.net/apt * *" | \
+  sudo tee /etc/apt/sources.list.d/natesales.list
 
 # for vscode-insiders
 curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | \
