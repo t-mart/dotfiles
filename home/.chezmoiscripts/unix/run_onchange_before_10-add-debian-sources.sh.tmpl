@@ -5,7 +5,7 @@ set -euo pipefail
 readonly ELEVATE_PREFIX=$([ "$EUID" -ne 0 ] && echo "sudo")
 
 $ELEVATE_PREFIX apt update
-$ELEVATE_PREFIX apt install -y curl gnupg apt-transport-https sudo
+$ELEVATE_PREFIX apt install -y curl gnupg apt-transport-https
 
 log() {
   echo "--- $1" >&2
@@ -35,6 +35,7 @@ add_apt_source() {
 # for 1Password
 add_apt_key "https://downloads.1password.com/linux/keys/1password.asc" "/usr/share/keyrings/1password-archive-keyring.gpg"
 add_apt_source "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" "1password.list"
+$ELEVATE_PREFIX mkdir -p /etc/debsig/policies/AC2D62742012EA22
 curl -fsSL https://downloads.1password.com/linux/debian/debsig/1password.pol | \
   $ELEVATE_PREFIX tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 add_apt_key "https://downloads.1password.com/linux/keys/1password.asc" "/usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg"
