@@ -7,6 +7,6 @@ set -euo pipefail
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "cargo" -}}
-cargo install {{ index . "cargo" }}
+$HOME/.cargo/bin/cargo install {{ index . "cargo" }}
 {{ end -}}
 {{ end }}
