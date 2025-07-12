@@ -32,7 +32,8 @@ echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable
   $ELEVATE_PREFIX tee /etc/apt/sources.list.d/gierens.list
 
 # for node (from nodesource)
-curl -fsSL https://deb.nodesource.com/setup_current.x | $ELEVATE_PREFIX -E bash -
+curl -fsSL https://deb.nodesource.com/setup_current.x | \
+  $ELEVATE_PREFIX $([ "$EUID" -ne 0 ] && echo "-E") bash -
 
 # for nushell
 curl -fsSL https://apt.fury.io/nushell/gpg.key | \
