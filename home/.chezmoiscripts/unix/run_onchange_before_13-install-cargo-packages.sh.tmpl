@@ -3,10 +3,13 @@ set -euo pipefail
 
 # Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
 
+export PATH="$HOME/.cargo/bin:$PATH"
+curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
 # Run unix-command installations
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "cargo" -}}
-$HOME/.cargo/bin/cargo install {{ index . "cargo" }}
+$HOME/.cargo/bin/cargo binstall --locked {{ index . "cargo" }}
 {{ end -}}
 {{ end }}

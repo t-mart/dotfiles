@@ -1,0 +1,20 @@
+# Reload Path
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+if (Get-Command gpg -ErrorAction SilentlyContinue) {
+    "{{ onepasswordRead "op://Personal/Personal GPG Key/private.gpg" }}" | gpg --import
+    "{{ onepasswordRead "op://Personal/Personal GPG Key/public.gpg" }}" | gpg --import
+    Write-Host "Successfully imported GPG keys using the default gpg command."
+} else {
+    Write-Host "Default GPG command not found in PATH. Skipping."
+}
+
+# Define the path for the gpg.exe that may be included with Git installed via Scoop.
+$scoopGpgPath = Join-Path -Path $env:USERPROFILE -ChildPath "scoop\apps\git\current\usr\bin\gpg.exe"
+
+# Check if the gpg.exe from scoop's git exists as well. that's needed for commit signing.
+if (Test-Path -Path $scoopGpgPath) {    
+    "{{ onepasswordRead "op://Personal/Personal GPG Key/private.gpg" }}" | & $scoopGpgPath --import
+    "{{ onepasswordRead "op://Personal/Personal GPG Key/public.gpg" }}" | & $scoopGpgPath --import
+    Write-Host "Successfully imported GPG keys using the scoop's git gpg command."
+}
