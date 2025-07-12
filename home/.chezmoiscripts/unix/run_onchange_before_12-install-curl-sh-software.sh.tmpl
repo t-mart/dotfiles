@@ -3,6 +3,9 @@ set -euo pipefail
 
 # Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
 
+# PNPM installer freaks out if this is not set
+export $SHELL=bash
+
 # Run unix-command installations
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}

@@ -9,8 +9,7 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 ### Unix
 
 ```bash
-# apt update; apt install -y curl
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin init --apply t-mart
+sh -c "$(wget -qO- get.chezmoi.io)" -- -b ~/.local/bin init --apply t-mart
 ```
 
 ### Windows
