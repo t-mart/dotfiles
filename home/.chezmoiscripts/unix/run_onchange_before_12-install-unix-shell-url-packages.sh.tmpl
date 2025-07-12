@@ -7,6 +7,6 @@ set -euo pipefail
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "unix-shell-url" -}}
-curl --proto '=https' --tlsv1.2 -LsSf {{ index . "unix-shell-url" }} | sh
+curl --proto '=https' --tlsv1.2 -LsSf {{ index . "unix-shell-url" }} | bash
 {{ end -}}
 {{ end }}

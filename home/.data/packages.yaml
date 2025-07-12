@@ -144,10 +144,12 @@
 - winget: astral-sh.uv
   unix-shell-url: https://astral.sh/uv/install.sh
 
+- deb: unzip
+
 - scoop: extras/vcredist
 
 - winget: Microsoft.VisualStudioCode.Insiders
-  deb: code-insiders
+  # deb: code-insiders
 
 - winget: VideoLAN.VLC
 
