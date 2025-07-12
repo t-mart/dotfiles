@@ -14,10 +14,7 @@
 
 - scoop: extras/age
 
-- unix-shell-url: https://setup.atuin.sh
-  # awaiting windows support here. instead, atuin suggests `cargo install`,
-  # which requires rust to be configured, which is, IMO, too heavy for chezmoi
-  # setup. for now, i will set this up manually 😓
+- cargo: atuin
 
 - scoop: extras/autohotkey
 
@@ -39,9 +36,7 @@
 
 - scoop: main/curl
 
-- 
-  # deb: git-delta
-  winget: dandavison.delta
+- cargo: git-delta
 
 - winget: Docker.DockerDesktop
 
