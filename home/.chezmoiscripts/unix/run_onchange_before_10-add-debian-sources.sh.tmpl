@@ -45,8 +45,8 @@ echo "deb [signed-by=/etc/apt/keyrings/natesales.gpg] https://repo.natesales.net
   sudo tee /etc/apt/sources.list.d/natesales.list
 
 # for vscode-insiders
-# curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | \
-#   sudo gpg --dearmor --output /etc/apt/keyrings/packages.microsoft.gpg
-# echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | \
-#   sudo tee /etc/apt/sources.list.d/vscode.list
+curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | \
+  sudo gpg --dearmor --output /etc/apt/keyrings/packages.microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | \
+  sudo tee /etc/apt/sources.list.d/vscode.list
 {{end -}}

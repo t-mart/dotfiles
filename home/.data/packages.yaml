@@ -4,7 +4,7 @@
 # (which does portable installations) otherwise.
 
 - winget: AgileBits.1Password
-  deb: 1password
+  # deb: 1password
 
 - winget: AgileBits.1Password.CLI
   deb: 1password-cli
@@ -28,7 +28,7 @@
 - deb: build-essential
 
 - winget: Oven-sh.Bun
-  unix-shell-url: https://bun.com/install
+  curl-sh-command: "curl -fsSL https://bun.sh/install | bash"
 
 - scoop: extras/carapace-bin
 
@@ -97,7 +97,7 @@
   deb: nushell
 
 - winget: pnpm.pnpm
-  unix-shell-url: https://get.pnpm.io/install.sh
+  curl-sh-command: "curl -fsSL https://get.pnpm.io/install.sh | sh -"
 
 - winget: Microsoft.PowerShell
 
@@ -120,7 +120,7 @@
 
 - scoop: extras/rufus
 
-- unix-shell-url: https://sh.rustup.rs
+- curl-sh-command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
   winget: Rustlang.Rustup
 
 - scoop: extras/screentogif
@@ -132,7 +132,7 @@
 - scoop: extras/speedcrunch
 
 - scoop: main/starship
-  unix-shell-url: https://starship.rs/install.sh
+  curl-sh-command: "curl -sS https://starship.rs/install.sh | sh"
 
 - winget: WinsiderSS.SystemInformer
 
@@ -142,7 +142,7 @@
   winget: GnuWin32.Tree
 
 - winget: astral-sh.uv
-  unix-shell-url: https://astral.sh/uv/install.sh
+  curl-sh-command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
 
 - deb: unzip
 
