@@ -1,163 +1,104 @@
-- brew-cask: 1password
-  winget: AgileBits.1Password
+# List of packages to be installed
+#
+# On Windows, winget should be used for packages that self-update. Use scoop
+# (which does portable installations) otherwise.
 
-- brew-cask: 1password-cli
-  winget: AgileBits.1Password.CLI
+- winget: AgileBits.1Password
+  deb: 1password
 
-- brew: sevenzip
-  deb: 7zip
-  winget: 7zip.7zip
+- winget: AgileBits.1Password.CLI
+  deb: 1password-cli
 
-- brew: autoconf
-  deb: autoconf
+- deb: 7zip
+  scoop: main/7zip
 
-- brew-cask: bartender
+- scoop: extras/age
 
-- brew: bat
-  deb: bat
-  winget: sharkdp.bat
+- unix-shell-url: https://setup.atuin.sh
+  # awaiting windows support here. instead, atuin suggests `cargo install`,
+  # which requires rust to be configured, which is, IMO, too heavy for chezmoi
+  # setup. for now, i will set this up manually 😓
 
-- brew: btop
-  deb: btop
+- scoop: extras/autohotkey
+
+- scoop: main/aws
+
+- deb: bat
+  scoop: main/bat
+
+- deb: btop
 
 - deb: build-essential
 
-- scoop: CascadiaCode-NF-Mono
+- winget: Oven-sh.Bun
+  unix-shell-url: https://bun.com/install
 
-- brew-cask: chatgpt
+- scoop: extras/carapace-bin
 
-- brew-cask: google-chrome
-  winget: Google.Chrome
+- scoop: nerd-fonts/CascadiaCode-NF-Mono
 
-- brew: cmake
-  deb: cmake
-  winget: Kitware.CMake
+- scoop: main/curl
 
-- brew-tap: homebrew/command-not-found
-  deb: command-not-found
-
-- brew: git-delta
-  deb: git-delta
+- deb: git-delta
   winget: dandavison.delta
 
-- brew-appstore:
-    name: Disk Speed Test
-    id: 425264550
+- winget: Docker.DockerDesktop
 
-- brew-appstore:
-    name: Divvy
-    id: 413857545
+- scoop: extras/everything
 
-- brew: dos2unix
-  deb: dos2unix
-  winget: waterlan.dos2unix
+- scoop: main/everything-cli
 
-- brew-cask: dropbox
-  winget: Dropbox.Dropbox
-
-- brew: mistertea/et/et
-  deb: et
-
-- brew: eza
-  deb: eza
+- deb: eza
   winget: eza-community.eza
 
-- brew: fastfetch
-  deb: fastfetch
-  dnf: fastfetch
-  winget: Fastfetch-cli.Fastfetch
-
-- brew: fd
-  deb: fd-find
+- deb: fd-find
   winget: sharkdp.fd
 
-- brew: ffmpeg
+- scoop: versions/ffmpeg-nightly
 
-- brew: ffmpegthumbnailer
+- winget: Mozilla.Firefox
 
-- brew: fzf
-  deb: fzf
-  winget: junegunn.fzf
+- deb: fzf
+  scoop: main/fzf
 
-- brew: git
-  deb: git
-  winget: Git.Git
+- deb: git
+  scoop: main/git
 
-- brew: gnupg
-  deb: gnupg
+- scoop: extras/gimp
+
+- deb: gnupg
   winget: GnuPG.GnuPG
 
-- brew: go
-  deb: golang
-  winget: GoLang.Go
-
-- brew-appstore:
-    name: Goodnotes
-    id: 1444383602
-
-- brew: graphviz
-  deb: graphviz
-  winget: Graphviz.Graphviz
-
-- brew-cask: hazel
-
-- brew-cask: hex-fiend
-
-- brew: hexyl
-  deb: hexyl
+- deb: hexyl
   winget: sharkdp.hexyl
 
-- brew: hyperfine
-  deb: hyperfine
+- deb: hyperfine
   winget: sharkdp.hyperfine
 
-- brew: imagemagick
+- scoop: main/imagemagick
 
-- brew-cask: istat-menus
+- scoop: extras/imhex
 
-- brew-cask: iterm2
+- scoop: extras/irfanview
 
-- brew: jid
-  scoop: jid
+- scoop: nerd-fonts/JetBrains-Mono
 
-- brew: jq
-  winget: jqlang.jq
+- deb: jq
+  scoop: main/jq
 
-- brew-cask: logi-options+
+- scoop: mpv.net
 
-- brew-cask: notion
+- deb: neovim
+  scoop: main/neovim
 
-- brew: make
-  winget: GnuWin32.Make
+- scoop: main/nodejs
+  deb: nodejs
 
-- brew: mas
+- scoop: main/nu
+  deb: nushell
 
-- deb: nala
-
-- brew: ncdu
-
-- brew: neovim
-  deb: neovim
-  winget: Neovim.Neovim
-
-- deb: ncat
-
-- brew: ninja
-  winget: Ninja-build.Ninja
-
-- brew: node
-  winget: OpenJS.NodeJS
-
-- winget: JanDeDobbeleer.OhMyPosh
-
-- brew: noborus/tap/ov
-  winget: noborus.ov
-
-- deb: pinentry-tty
-
-- brew: poppler
-
-- scoop: posh-git
+- winget: pnpm.pnpm
+  unix-shell-url: https://get.pnpm.io/install.sh
 
 - winget: Microsoft.PowerShell
 
@@ -167,105 +108,56 @@
 
 - winget: Microsoft.Sysinternals.ProcessMonitor
 
-- scoop: psfzf
+- scoop: protobuf
 
-- brew: pv
-  dev: pv
-  dnf: pv
+- scoop: main/q-dns
 
-- brew: python@3.13
-  deb: python3
-  scoop: python
+- scoop: extras/qbittorrent
 
-- deb: python3-dev
-- deb: python3-pip
-- deb: python3-setuptools
-- deb: python3-venv
-
-- brew-cask: raycast
-
-- brew: ripgrep
-  deb: ripgrep
+- deb: ripgrep
   winget: BurntSushi.ripgrep.MSVC
 
-- brew: rustup
-  deb: rustup
+- scoop: extras/rufus
+
+- deb: rustup
   winget: Rustlang.Rustup
 
-- brew-cask: spotify
-  winget: Spotify.Spotify
+- scoop: extras/screentogif
+
+- scoop: extras/sharex
+
+- winget: OpenWhisperSystems.Signal
+
+- scoop: extras/speedcrunch
+
+- scoop: main/starship
+  deb: starship
+
+- winget: WinsiderSS.SystemInformer
 
 - winget: Valve.Steam
 
-- brew-cask: sublime-text
-  winget: SublimeHQ.SublimeText.4
-
-- brew-cask: telegram
-  winget: Telegram.TelegramDesktop
-
-- brew: telnet
-  deb: telnet
-  dnf: telnet
-
-- brew-appstore:
-    name: Things
-    id: 904280696
-
-- deb: tmux
-  dnf: tmux
-
-- brew: tree
-  deb: tree
-  dnf: tree
+- deb: tree
   winget: GnuWin32.Tree
 
-- brew: uv
-  winget: astral-sh.uv
+- winget: astral-sh.uv
+  unix-shell-url: https://astral.sh/uv/install.sh
 
-- brew-cask: visual-studio-code
-  winget: Microsoft.VisualStudioCode
+- scoop: extras/vcredist
 
-- brew-cask: vlc
-  winget: VideoLAN.VLC
+- winget: Microsoft.VisualStudioCode.Insiders
+  deb: code-insiders
 
-- brew-cask: wezterm
-  winget: wez.wezterm
-
-- brew: wget
-  deb: wget
-  winget: GNU.Wget2
+- winget: VideoLAN.VLC
 
 - winget: Microsoft.WindowsTerminal
 
-- winget: WinMerge.WinMerge
-
-- brew-appstore:
-    name: WireGuard
-    id: 1451685025
-  winget: WireGuard.WireGuard
+- scoop: windowsdesktop-runtime
 
 - winget: AntibodySoftware.WizTree
 
-- brew: yazi
+- deb: zoxide
+  scoop: main/zoxide
 
-- brew-cask: zoom
-  winget: Zoom.Zoom
-
-- brew: zoxide
-  deb: zoxide
-  dnf: zoxide
-  winget: ajeetdsouza.zoxide
-
-- brew: zsh
-  deb: zsh
-  dnf: zsh
-
-- brew: zstd
-  deb: zstd
-  winget: Meta.Zstandard
-
-# VSCode plugins
-- brew-vscode: golang.go
-- brew-vscode: ms-python.debugpy
-- brew-vscode: ms-python.python
-- brew-vscode: ms-python.vscode-pylance
+- deb: zstd
+  scoop: main/zstd

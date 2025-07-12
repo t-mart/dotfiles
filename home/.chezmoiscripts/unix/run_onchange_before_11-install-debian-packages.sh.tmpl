@@ -1,0 +1,17 @@
+{{ if has .osid (list "linux-debian" "linux-ubuntu") -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
+
+# Install packages
+{{ $deb_packages := list -}}
+{{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
+{{ range $packages -}}
+    {{ if hasKey . "deb" -}}
+        {{ $deb_packages = append $deb_packages .deb -}}
+    {{ end -}}
+{{ end -}}
+
+sudo apt install -y {{ $deb_packages | join " " }}
+{{ end -}}

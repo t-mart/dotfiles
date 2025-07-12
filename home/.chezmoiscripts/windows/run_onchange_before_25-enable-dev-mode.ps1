@@ -24,15 +24,16 @@ catch {
     exit
 }
 
+
 # Proceed to enable Developer Mode.
 Write-Host "Enabling Developer Mode..."
 try {
     # The -Force parameter creates the registry path if it doesn't exist.
     Set-ItemProperty -Path $RegPath -Name $RegProperty -Value 1 -Type DWord -Force -ErrorAction Stop
-    Write-Host "✅ Successfully enabled Developer Mode."
+    Write-Host "Successfully enabled Developer Mode."
 }
 catch {
-    Write-Error "❌ Failed to enable Developer Mode: $_"
+    Write-Error "Failed to enable Developer Mode: $_"
 }
 finally {
     Read-Host "Press Enter to exit"

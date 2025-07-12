@@ -7,6 +7,14 @@ encryption = "age"
     identity = "~/.config/chezmoi/key.txt"
     recipient = "age1ss5crrns78lu7mgplaxywuw0nu2rsmar2ua7drlermulu0k75snsv9stlh"
 
+[data]
+    git_signingkey = "{{ (gitHubKeys "t-mart" | first).Key }}"
+    {{- $osid := .chezmoi.os -}}
+    {{- if hasKey .chezmoi.osRelease "id" -}}
+    {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+    {{- end }}
+    osid = "{{ $osid }}"
+
 [gitHub]
     refreshPeriod = "24h"
     
