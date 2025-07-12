@@ -1,0 +1,9 @@
+# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
+
+# Run unix-command installations
+{{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
+{{- range $packages -}}
+{{- if hasKey . "cargo" -}}
+cargo install {{ index . "cargo" }}
+{{ end -}}
+{{ end }}

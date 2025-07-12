@@ -18,6 +18,8 @@ if (Test-Path $decryptedKeyFile) {
     # Create the configuration directory if it doesn't exist
     New-Item -ItemType Directory -Path $configDir -Force | Out-Null
 
+    Write-Host "Decrypting private age key to '$decryptedKeyFile'..."
+
     chezmoi age decrypt --output $decryptedKeyFile --passphrase $encryptedKeyFile
 
     if ($LASTEXITCODE -ne 0) {

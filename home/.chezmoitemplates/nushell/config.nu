@@ -103,3 +103,6 @@ source carapace_init.nu
 
 # do this again, just in case the above scripts have added new paths
 clean_path
+
+# mkdir ($nu.data-dir | path join "vendor/autoload")
+# starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
