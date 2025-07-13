@@ -4,12 +4,12 @@
 # (which does portable installations) otherwise.
 
 - winget: AgileBits.1Password
-  # deb: 1password
+  # apt: 1password
 
 - winget: AgileBits.1Password.CLI
-  deb: 1password-cli
+  apt: 1password-cli
 
-- deb: 7zip
+- apt: 7zip
   scoop: main/7zip
 
 - scoop: extras/age
@@ -20,12 +20,12 @@
 
 - scoop: main/aws
 
-- deb: bat
+- apt: bat
   scoop: main/bat
 
-- deb: btop
+- apt: btop
 
-- deb: build-essential
+- apt: build-essential
 
 - winget: Oven-sh.Bun
   curl-sh-command: "curl -fsSL https://bun.sh/install | bash"
@@ -34,7 +34,7 @@
 
 - scoop: nerd-fonts/CascadiaCode-NF-Mono
 
-- deb: containerd.io
+- apt: containerd.io
 
 - scoop: main/curl
 
@@ -45,43 +45,43 @@
 
 - winget: Docker.DockerDesktop
 
-- deb: docker-ce
+- apt: docker-ce
 
-- deb: docker-ce-cli
+- apt: docker-ce-cli
 
-- deb: docker-buildx-plugin
+- apt: docker-buildx-plugin
 
-- deb: docker-compose-plugin
+- apt: docker-compose-plugin
 
 - scoop: extras/everything
 
 - scoop: main/everything-cli
 
-- deb: eza
+- apt: eza
   winget: eza-community.eza
 
-- deb: fd-find
+- apt: fd-find
   winget: sharkdp.fd
 
 - scoop: versions/ffmpeg-nightly
 
 - winget: Mozilla.Firefox
 
-- deb: fzf
+- apt: fzf
   scoop: main/fzf
 
-- deb: git
+- apt: git
   scoop: main/git
 
 - scoop: extras/gimp
 
-- deb: gnupg
+- apt: gnupg
   winget: GnuPG.GnuPG
 
-- deb: hexyl
+- apt: hexyl
   winget: sharkdp.hexyl
 
-- deb: hyperfine
+- apt: hyperfine
   winget: sharkdp.hyperfine
 
 - scoop: main/imagemagick
@@ -92,22 +92,22 @@
 
 - scoop: nerd-fonts/JetBrains-Mono
 
-- deb: jq
+- apt: jq
   scoop: main/jq
 
-- deb: less
+- apt: less
   scoop: main/less
 
 - scoop: mpv.net
 
-- deb: neovim
+- apt: neovim
   scoop: main/neovim
 
 - scoop: main/nodejs
-  deb: nodejs
+  apt: nodejs
 
 - scoop: main/nu
-  deb: nushell
+  apt: nushell
 
 - winget: pnpm.pnpm
   curl-sh-command: "curl -fsSL https://get.pnpm.io/install.sh | sh -"
@@ -121,14 +121,14 @@
 - winget: Microsoft.Sysinternals.ProcessMonitor
 
 - scoop: protobuf
-  deb: protobuf-compiler
+  apt: protobuf-compiler
 
 - scoop: main/q-dns
-  deb: q
+  apt: q
 
 - winget: qBittorrent.qBittorrent
 
-- deb: ripgrep
+- apt: ripgrep
   winget: BurntSushi.ripgrep.MSVC
 
 - scoop: extras/rufus
@@ -151,13 +151,13 @@
 
 - winget: Valve.Steam
 
-- deb: tree
+- apt: tree
   winget: GnuWin32.Tree
 
 - winget: astral-sh.uv
   curl-sh-command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
 
-- deb: unzip
+- apt: unzip
 
 - winget: Microsoft.VisualStudioCode.Insiders
 
@@ -169,8 +169,8 @@
 
 - uv: yt-dlp
 
-- deb: zoxide
+- apt: zoxide
   scoop: main/zoxide
 
-- deb: zstd
+- apt: zstd
   scoop: main/zstd

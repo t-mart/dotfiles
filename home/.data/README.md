@@ -56,7 +56,7 @@ For example:
 
 ```yaml
 - winget: AgileBits.1Password
-- deb: 7zip
+- apt: 7zip
   scoop: main/7zip
 - winget: Oven-sh.Bun
   curl-sh-command: "curl -fsSL https://bun.sh/install | bash"
@@ -68,8 +68,8 @@ listed.
 
 Order:
 
-1. (Debian/Ubuntu) `deb`, package name. See
-   `home/.chezmoiscripts/unix/run_onchange_before_10-add-debian-sources.sh.tmpl`
+1. (Debian/Ubuntu) `apt`, package name. See
+   `home/.chezmoiscripts/unix/run_onchange_before_10-add-apt-sources.sh.tmpl`
    for setting up the sources if needed.
 2. (Windows) `winget`, package name.
 3. (Windows) `scoop`, package name. Strive for using the `<bucket>/<package>`
