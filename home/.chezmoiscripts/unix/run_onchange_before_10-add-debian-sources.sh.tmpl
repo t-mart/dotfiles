@@ -20,7 +20,9 @@ add_apt_key() {
   local keyring_path="$2"
   log "Adding APT key from $url"
   $ELEVATE_PREFIX mkdir -p "$(dirname "$keyring_path")"
-  curl -fsSL "$url" | $ELEVATE_PREFIX gpg --dearmor --output "$keyring_path"
+  curl -fsSL "$url" | $ELEVATE_PREFIX gpg --dearmor -o "$keyring_path"
+  # Set correct permissions so APT can read the key
+  $ELEVATE_PREFIX chmod a+r "$keyring_path"
 }
 
 # Add an APT repository source file.
@@ -52,8 +54,8 @@ add_apt_key "https://downloads.1password.com/linux/keys/1password.asc" "/usr/sha
 add_apt_source "deb [trusted=yes] https://apt.fury.io/rsteube/ /" "fury-rsteube.list"
 
 # for docker
-add_apt_key "https://download.docker.com/linux/${OSID}/gpg" "/etc/apt/keyrings/docker.asc"
-add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/${OSID} ${VERSION_CODENAME} stable" "docker.list"
+add_apt_key "https://download.docker.com/linux/${OSID}/gpg" "/etc/apt/keyrings/docker.gpg"
+add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/${OSID} ${VERSION_CODENAME} stable" "docker.list"
 
 # for eza
 add_apt_key "https://raw.githubusercontent.com/eza-community/eza/main/deb.asc" "/etc/apt/keyrings/gierens.gpg"

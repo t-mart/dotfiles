@@ -27,40 +27,6 @@ iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b ~/.local/bin -- init --apply t-ma
 chezmoi update
 ```
 
-## `home/.data/key.txt.age`
-
-(This is for posterity. I shouldn't need to do this again unless I lose/leak the
-key.)
-
-This key is used by chezmoi to encrypt/decrypt other files. It is referenced by
-the chezmoi config at `home/.chezmoi.toml.tmpl`. One of our `before_` scripts
-will decrypt and install it into place.
-
-It was created with the following commands:
-
-```nushell
-# first, create the key
-age-keygen -o home/.data/key.txt
-# take note of the public key in this file! it's used in the chezmoi config as the recipient.
-
-# then, passphrase encrypt it
-age -p -a home/.data/key.txt | save home/.data/key.txt.age
-# save the passphrase in a secure place, like 1Password!
-
-# then, delete the unencrypted key
-rm home/.data/key.txt
-```
-
-Then, you can add encrypted things to chezmoi with:
-
-```nushell
-chezmoi add --encrypt ~/somefile.txt
-```
-
-While passphrase encrypting a private key file might seem like a strange
-recursion, the file allows us to not need to enter the passphrase every time we
-want to use the key.
-
 ## Thanks
 
-Thanks to [KapJI](https://github.com/KapJI/dotfiles) for inspiration and ideas.
+Thanks to [KapJI/dotfiles](https://github.com/KapJI/dotfiles) for inspiration and ideas.
