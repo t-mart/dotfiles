@@ -8,4 +8,4 @@ readonly ELEVATE_PREFIX=$([ "$EUID" -ne 0 ] && echo "sudo")
 $ELEVATE_PREFIX groupadd -f docker || true
 $ELEVATE_PREFIX usermod -aG docker "$USER"
 
-{{end -}}
+{{ end -}}

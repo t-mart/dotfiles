@@ -9,6 +9,6 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "cargo" -}}
-$HOME/.cargo/bin/cargo binstall --locked {{ index . "cargo" }}
+$HOME/.cargo/bin/cargo binstall --no-confirm --locked {{ index . "cargo" }}
 {{ end -}}
 {{ end }}

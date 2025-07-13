@@ -10,6 +10,6 @@ $cargoExecutable = Join-Path $env:USERPROFILE .cargo\bin\cargo.exe
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "cargo" -}}
-& $cargoExecutable binstall --locked {{ index . "cargo" }}
+& $cargoExecutable binstall --no-confirm --locked {{ index . "cargo" }}
 {{ end -}}
 {{ end }}
