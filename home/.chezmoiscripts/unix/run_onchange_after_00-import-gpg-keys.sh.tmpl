@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+gpg --import <<EOF
+{{ joinPath .chezmoi.sourceDir ".data/gpg-keys.txt.age" | include | decrypt }}
+EOF
+
+echo "GPG keys imported successfully."
