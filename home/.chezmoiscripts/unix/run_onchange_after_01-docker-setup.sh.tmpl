@@ -8,4 +8,7 @@ readonly ELEVATE_PREFIX=$([ "$EUID" -ne 0 ] && echo "sudo")
 $ELEVATE_PREFIX groupadd -f docker || true
 $ELEVATE_PREFIX usermod -aG docker "$(whoami)"
 
+$ELEVATE_PREFIX systemctl enable docker.service
+$ELEVATE_PREFIX systemctl enable containerd.service
+
 {{ end -}}

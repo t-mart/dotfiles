@@ -1,6 +1,3 @@
-# 1. EDIT THIS LIST ✏️
-#    Add the full paths you want to prepend to your user PATH variable.
-#    Using $env:USERPROFILE is a good practice for paths in your user directory.
 [string[]]$PathsToAdd = @(
     "$env:USERPROFILE\.local\bin",
     "$env:USERPROFILE\.cargo\bin",
@@ -9,7 +6,7 @@
     "$env:USERPROFILE\scoop\apps\nodejs\current",
     "$env:USERPROFILE\.local\share\pnpm",
     "$env:LOCALAPPDATA\Programs\Microsoft VS Code Insiders\bin",
-    "$env:LOCALAPPDATA\Microsoft\WinGet\Links",
+    "$env:LOCALAPPDATA\Microsoft\WinGet\Links"
 )
 
 $User = [System.EnvironmentVariableTarget]::User
