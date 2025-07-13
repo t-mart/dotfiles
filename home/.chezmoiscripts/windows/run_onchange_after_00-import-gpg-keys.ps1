@@ -1,24 +1,19 @@
 # Reload Path
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-$privateGpgKey = @"
-{{ onepasswordRead "op://Personal/Personal GPG Key/private.gpg" }}
-"@
+$sourceDir = $env:CHEZMOI_SOURCE_DIR
+$encryptedKeyFile = Join-Path $sourceDir ".data\gpg-keys.txt.age"
 
-$publicGpgKey = @"
-{{ onepasswordRead "op://Personal/Personal GPG Key/public.gpg" }}
-"@
+$decryptedKeys = & chezmoi decrypt $encryptedKeyFile
 
 if (Get-Command gpg -ErrorAction SilentlyContinue) {
-    $privateGpgKey | gpg --import
-    $publicGpgKey | gpg --import
+    $decryptedKeys | gpg --import
     Write-Host "Successfully imported GPG keys using the default gpg command."
 }
 
 # Also import the GPG keys into the git of scoop, which will be used for commit signing.
 $scoopGpgPath = Join-Path -Path $env:USERPROFILE -ChildPath "scoop\apps\git\current\usr\bin\gpg.exe"
 if (Test-Path -Path $scoopGpgPath) {
-    $privateGpgKey | & $scoopGpgPath --import
-    $publicGpgKey | & $scoopGpgPath --import
+    $decryptedKeys | $scoopGpgPath --import
     Write-Host "Successfully imported GPG keys using the scoop's git gpg command."
 }

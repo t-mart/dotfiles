@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{ if has .osid (list "linux-debian" "linux-ubuntu") -}}
+
+readonly ELEVATE_PREFIX=$([ "$EUID" -ne 0 ] && echo "sudo")
+
+$ELEVATE_PREFIX groupadd -f docker || true
+$ELEVATE_PREFIX usermod -aG docker "$USER"
+
+{{end -}}

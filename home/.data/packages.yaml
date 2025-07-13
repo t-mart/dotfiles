@@ -34,11 +34,24 @@
 
 - scoop: nerd-fonts/CascadiaCode-NF-Mono
 
+- deb: containerd.io
+
 - scoop: main/curl
 
 - cargo: git-delta
 
+- curl-sh-command: "curl -fsSL https://deno.land/install.sh | sh"
+  winget: DenoLand.Deno
+
 - winget: Docker.DockerDesktop
+
+- deb: docker-ce
+
+- deb: docker-ce-cli
+
+- deb: docker-buildx-plugin
+
+- deb: docker-compose-plugin
 
 - scoop: extras/everything
 
@@ -147,7 +160,6 @@
 - deb: unzip
 
 - winget: Microsoft.VisualStudioCode.Insiders
-  # deb: code-insiders
 
 - winget: VideoLAN.VLC
 

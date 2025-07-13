@@ -76,8 +76,9 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
   
-[gpg "ssh"]
-  allowedSignersFile = "~/.config/git/allowed-signers"
-
-[credential "helperselector"]
-	selected = manager
+{{- if eq .chezmoi.os "windows" -}}
+[credential]
+	helper = manager
+[core]
+  sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+{{- end -}}

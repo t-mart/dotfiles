@@ -23,12 +23,7 @@ encryption = "age"
     args = ["run", "python"]
 
 {{- if eq .chezmoi.os "windows" }}
-
-[cd]
-    command = "pwsh.exe"
-
 [interpreters.ps1]
     command = "powershell"
     args = ["-NoLogo", "-ExecutionPolicy", "RemoteSigned"]
-
 {{- end }}
