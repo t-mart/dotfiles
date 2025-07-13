@@ -4,7 +4,6 @@
 
 # If on windows, ignore these files...
 
-.config/nushell
 .chezmoiscripts/unix/**
 
 {{ else }}

@@ -1,1 +1,0 @@
-{{- template "nushell/autoload/README.md" . -}}
