@@ -5,10 +5,11 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 Invoke-Expression (Invoke-WebRequest "https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1").Content
 
-# Run unix-command installations
+$cargoExecutable = Join-Path $env:USERPROFILE .cargo\bin\cargo.exe
+
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "cargo" -}}
-cargo binstall --locked {{ index . "cargo" }}
+& $cargoExecutable binstall --locked {{ index . "cargo" }}
 {{ end -}}
 {{ end }}

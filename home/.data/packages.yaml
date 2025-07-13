@@ -113,7 +113,7 @@
 - scoop: main/q-dns
   deb: q
 
-- scoop: extras/qbittorrent
+- winget: qBittorrent.qBittorrent
 
 - deb: ripgrep
   winget: BurntSushi.ripgrep.MSVC
@@ -146,8 +146,6 @@
 
 - deb: unzip
 
-- scoop: extras/vcredist
-
 - winget: Microsoft.VisualStudioCode.Insiders
   # deb: code-insiders
 
@@ -155,9 +153,9 @@
 
 - winget: Microsoft.WindowsTerminal
 
-- scoop: windowsdesktop-runtime
-
 - winget: AntibodySoftware.WizTree
+
+- uv: yt-dlp
 
 - deb: zoxide
   scoop: main/zoxide

@@ -1,3 +1,6 @@
+# Reload Path
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
 $configFile = $env:CHEZMOI_CONFIG_FILE
 $configDir = Split-Path -Parent -Path $configFile
 

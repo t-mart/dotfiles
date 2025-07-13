@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
+
+export PATH="$HOME/.local/bin:$PATH"
+
+{{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
+{{- range $packages -}}
+{{- if hasKey . "uv" -}}
+$HOME/.local/bin/uv tool install {{ index . "uv" }}
+{{ end -}}
+{{ end }}
