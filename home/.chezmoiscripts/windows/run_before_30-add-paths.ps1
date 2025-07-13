@@ -21,7 +21,3 @@ $UniquePaths = $CombinedPaths | Where-Object { -not [string]::IsNullOrWhiteSpace
 
 $NewPathString = $UniquePaths -join ";"
 [System.Environment]::SetEnvironmentVariable("Path", $NewPathString, $User)
-
-Write-Host "User PATH variable updated successfully!"
-Write-Host "New Path:"
-Write-Host $NewPathString
