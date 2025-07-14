@@ -22,3 +22,7 @@
       versions of vscode-insiders.
 
       this sucks. maybe we should just use the stable version of vscode?
+
+- [ ] add missing dotfiles:
+      - [ ] irfanvivew
+      - [ ] sharex

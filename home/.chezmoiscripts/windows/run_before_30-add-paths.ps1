@@ -2,10 +2,9 @@
     "$env:USERPROFILE\.local\bin",
     "$env:USERPROFILE\.cargo\bin",
     "$env:USERPROFILE\scoop\shims",
-    "$env:ProgramFiles\Docker\Docker\resources\bin",
-    "$env:USERPROFILE\scoop\apps\nodejs\current",
     "$env:USERPROFILE\.local\share\pnpm",
-    "$env:LOCALAPPDATA\Programs\Microsoft VS Code Insiders\bin",
+    "$env:ProgramFiles\Docker\Docker\resources\bin",
+    "$env:LOCALAPPDATA\Programs\Microsoft VS Code\bin",
     "$env:LOCALAPPDATA\Microsoft\WinGet\Links"
 )
 

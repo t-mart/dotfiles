@@ -61,6 +61,10 @@ add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/docker.gpg] https://
 add_apt_key "https://raw.githubusercontent.com/eza-community/eza/main/deb.asc" "/etc/apt/keyrings/gierens.gpg"
 add_apt_source "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" "gierens.list"
 
+# for gh
+add_apt_key "https://cli.github.com/packages/githubcli-archive-keyring.gpg" "/etc/apt/keyrings/githubcli-archive-keyring.gpg"
+add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" "github-cli.list"
+
 # for node (from nodesource)
 curl -fsSL https://deb.nodesource.com/setup_current.x | \
   $ELEVATE_PREFIX $([ "$EUID" -ne 0 ] && echo "-E") bash -

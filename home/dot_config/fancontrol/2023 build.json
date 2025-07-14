@@ -1,0 +1,668 @@
+{
+  "__VERSION__": "224",
+  "Main": {
+    "Controls": [
+      {
+        "Calibration": [
+          [
+            20,
+            594
+          ],
+          [
+            30,
+            664
+          ],
+          [
+            40,
+            878
+          ],
+          [
+            50,
+            1064
+          ],
+          [
+            60,
+            1255
+          ],
+          [
+            70,
+            1436
+          ],
+          [
+            80,
+            1600
+          ],
+          [
+            90,
+            1736
+          ],
+          [
+            100,
+            1896
+          ]
+        ],
+        "Enable": true,
+        "ForceApply": false,
+        "Identifier": "/lpc/it8689e/control/0",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "CPU Fan",
+        "NickName": "CPU Fan",
+        "PairedFanSensor": {
+          "Identifier": "/lpc/it8689e/fan/0",
+          "IsHidden": false,
+          "Name": "CPU Fan",
+          "NickName": "CPU Fan"
+        },
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": {
+          "CommandMode": 0,
+          "Deadband": 3,
+          "IdleTemperature": 60,
+          "IsHidden": false,
+          "LoadTemperature": 80,
+          "MaxFanSpeed": 100,
+          "MinFanSpeed": 20,
+          "Name": "CPU Curve",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "/amdcpu/0/temperature/2",
+            "IsHidden": false,
+            "Name": "Core (Tctl/Tdie)",
+            "NickName": "Core (Tctl/Tdie)"
+          },
+          "Step": 5
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Calibration": [
+          [
+            20,
+            362
+          ],
+          [
+            30,
+            460
+          ],
+          [
+            40,
+            619
+          ],
+          [
+            50,
+            770
+          ],
+          [
+            60,
+            912
+          ],
+          [
+            70,
+            1037
+          ],
+          [
+            80,
+            1168
+          ],
+          [
+            90,
+            1293
+          ],
+          [
+            100,
+            1415
+          ]
+        ],
+        "Enable": true,
+        "ForceApply": false,
+        "Identifier": "/lpc/it8689e/control/1",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "System Fan #1",
+        "NickName": "Case Intake",
+        "PairedFanSensor": {
+          "Identifier": "/lpc/it8689e/fan/1",
+          "IsHidden": false,
+          "Name": "System Fan #1",
+          "NickName": "System Fan #1"
+        },
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": {
+          "CommandMode": 0,
+          "IsHidden": false,
+          "Name": "Max of CPU and GPU Curves",
+          "SelectedFanCurves": [
+            {
+              "CommandMode": 0,
+              "Deadband": 3,
+              "IdleTemperature": 45,
+              "IsHidden": false,
+              "LoadTemperature": 75,
+              "MaxFanSpeed": 100,
+              "MinFanSpeed": 20,
+              "Name": "GPU Curve",
+              "SelectedResponseTime": 2,
+              "SelectedTempSource": {
+                "Identifier": "NVApiWrapper/0-AD104-A/sensor/0",
+                "IsHidden": false,
+                "Name": "GPU",
+                "NickName": "GPU"
+              },
+              "Step": 5
+            },
+            {
+              "CommandMode": 0,
+              "Deadband": 3,
+              "IdleTemperature": 60,
+              "IsHidden": false,
+              "LoadTemperature": 80,
+              "MaxFanSpeed": 100,
+              "MinFanSpeed": 20,
+              "Name": "CPU Curve",
+              "SelectedResponseTime": 2,
+              "SelectedTempSource": {
+                "Identifier": "/amdcpu/0/temperature/2",
+                "IsHidden": false,
+                "Name": "Core (Tctl/Tdie)",
+                "NickName": "Core (Tctl/Tdie)"
+              },
+              "Step": 5
+            }
+          ],
+          "SelectedMixFunction": 0
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Calibration": [
+          [
+            20,
+            341
+          ],
+          [
+            30,
+            452
+          ],
+          [
+            40,
+            610
+          ],
+          [
+            50,
+            763
+          ],
+          [
+            60,
+            907
+          ],
+          [
+            70,
+            1036
+          ],
+          [
+            80,
+            1170
+          ],
+          [
+            90,
+            1299
+          ],
+          [
+            100,
+            1427
+          ]
+        ],
+        "Enable": true,
+        "ForceApply": false,
+        "Identifier": "/lpc/it8689e/control/2",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "System Fan #2",
+        "NickName": "Case Outtake",
+        "PairedFanSensor": {
+          "Identifier": "/lpc/it8689e/fan/2",
+          "IsHidden": false,
+          "Name": "System Fan #2",
+          "NickName": "System Fan #2"
+        },
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": {
+          "CommandMode": 0,
+          "IsHidden": false,
+          "Name": "Max of CPU and GPU Curves",
+          "SelectedFanCurves": [
+            {
+              "CommandMode": 0,
+              "Deadband": 3,
+              "IdleTemperature": 45,
+              "IsHidden": false,
+              "LoadTemperature": 75,
+              "MaxFanSpeed": 100,
+              "MinFanSpeed": 20,
+              "Name": "GPU Curve",
+              "SelectedResponseTime": 2,
+              "SelectedTempSource": {
+                "Identifier": "NVApiWrapper/0-AD104-A/sensor/0",
+                "IsHidden": false,
+                "Name": "GPU",
+                "NickName": "GPU"
+              },
+              "Step": 5
+            },
+            {
+              "CommandMode": 0,
+              "Deadband": 3,
+              "IdleTemperature": 60,
+              "IsHidden": false,
+              "LoadTemperature": 80,
+              "MaxFanSpeed": 100,
+              "MinFanSpeed": 20,
+              "Name": "CPU Curve",
+              "SelectedResponseTime": 2,
+              "SelectedTempSource": {
+                "Identifier": "/amdcpu/0/temperature/2",
+                "IsHidden": false,
+                "Name": "Core (Tctl/Tdie)",
+                "NickName": "Core (Tctl/Tdie)"
+              },
+              "Step": 5
+            }
+          ],
+          "SelectedMixFunction": 0
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Calibration": [],
+        "Enable": false,
+        "ForceApply": false,
+        "Identifier": "/lpc/it8689e/control/3",
+        "IsHidden": true,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "System Fan #3",
+        "NickName": "System Fan #3",
+        "PairedFanSensor": null,
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Calibration": [],
+        "Enable": false,
+        "ForceApply": false,
+        "Identifier": "/lpc/it8689e/control/4",
+        "IsHidden": true,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "System Fan #4 / Pump",
+        "NickName": "System Fan #4 / Pump",
+        "PairedFanSensor": null,
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Calibration": [],
+        "Enable": false,
+        "ForceApply": false,
+        "Identifier": "/lpc/it8689e/control/5",
+        "IsHidden": true,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "CPU Optional Fan",
+        "NickName": "CPU Optional Fan",
+        "PairedFanSensor": null,
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": null,
+        "SelectedOffset": 0,
+        "SelectedStart": 0,
+        "SelectedStop": 0
+      },
+      {
+        "Calibration": [
+          [
+            30,
+            0
+          ],
+          [
+            40,
+            459
+          ],
+          [
+            50,
+            915
+          ],
+          [
+            60,
+            1371
+          ],
+          [
+            70,
+            1828
+          ],
+          [
+            80,
+            2286
+          ],
+          [
+            90,
+            2747
+          ],
+          [
+            100,
+            3203
+          ]
+        ],
+        "Enable": true,
+        "ForceApply": false,
+        "Identifier": "NVApiWrapper/0-AD104-A/control/0",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "Control 1 - NVIDIA GeForce RTX 4070",
+        "NickName": "GPU Fan 1",
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-AD104-A/fan/0",
+          "IsHidden": false,
+          "Name": "Fan 1 - NVIDIA GeForce RTX 4070",
+          "NickName": "Fan 1 - NVIDIA GeForce RTX 4070"
+        },
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": {
+          "CommandMode": 0,
+          "Deadband": 3,
+          "IdleTemperature": 45,
+          "IsHidden": false,
+          "LoadTemperature": 75,
+          "MaxFanSpeed": 100,
+          "MinFanSpeed": 20,
+          "Name": "GPU Curve",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "NVApiWrapper/0-AD104-A/sensor/0",
+            "IsHidden": false,
+            "Name": "GPU",
+            "NickName": "GPU"
+          },
+          "Step": 5
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 51,
+        "SelectedStop": 36
+      },
+      {
+        "Calibration": [
+          [
+            30,
+            0
+          ],
+          [
+            40,
+            458
+          ],
+          [
+            50,
+            916
+          ],
+          [
+            60,
+            1372
+          ],
+          [
+            70,
+            1828
+          ],
+          [
+            80,
+            2290
+          ],
+          [
+            90,
+            2749
+          ],
+          [
+            100,
+            3204
+          ]
+        ],
+        "Enable": true,
+        "ForceApply": false,
+        "Identifier": "NVApiWrapper/0-AD104-A/control/1",
+        "IsHidden": false,
+        "ManualControl": false,
+        "ManualControlValue": 50,
+        "MinimumPercent": 0,
+        "Name": "Control 2 - NVIDIA GeForce RTX 4070",
+        "NickName": "GPU Fan 2",
+        "PairedFanSensor": {
+          "Identifier": "NVApiWrapper/0-AD104-A/fan/1",
+          "IsHidden": false,
+          "Name": "Fan 2 - NVIDIA GeForce RTX 4070",
+          "NickName": "Fan 2 - NVIDIA GeForce RTX 4070"
+        },
+        "SelectedCommandStepDown": 8,
+        "SelectedCommandStepUp": 8,
+        "SelectedFanCurve": {
+          "CommandMode": 0,
+          "Deadband": 3,
+          "IdleTemperature": 45,
+          "IsHidden": false,
+          "LoadTemperature": 75,
+          "MaxFanSpeed": 100,
+          "MinFanSpeed": 20,
+          "Name": "GPU Curve",
+          "SelectedResponseTime": 2,
+          "SelectedTempSource": {
+            "Identifier": "NVApiWrapper/0-AD104-A/sensor/0",
+            "IsHidden": false,
+            "Name": "GPU",
+            "NickName": "GPU"
+          },
+          "Step": 5
+        },
+        "SelectedOffset": 0,
+        "SelectedStart": 54,
+        "SelectedStop": 36
+      }
+    ],
+    "CustomSensors": [],
+    "Fahrenheit": false,
+    "FanCurves": [
+      {
+        "CommandMode": 0,
+        "Deadband": 3,
+        "IdleTemperature": 60,
+        "IsHidden": false,
+        "LoadTemperature": 80,
+        "MaxFanSpeed": 100,
+        "MinFanSpeed": 20,
+        "Name": "CPU Curve",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "/amdcpu/0/temperature/2",
+          "IsHidden": false,
+          "Name": "Core (Tctl/Tdie)",
+          "NickName": "Core (Tctl/Tdie)"
+        },
+        "Step": 5
+      },
+      {
+        "CommandMode": 0,
+        "Deadband": 3,
+        "IdleTemperature": 45,
+        "IsHidden": false,
+        "LoadTemperature": 75,
+        "MaxFanSpeed": 100,
+        "MinFanSpeed": 20,
+        "Name": "GPU Curve",
+        "SelectedResponseTime": 2,
+        "SelectedTempSource": {
+          "Identifier": "NVApiWrapper/0-AD104-A/sensor/0",
+          "IsHidden": false,
+          "Name": "GPU",
+          "NickName": "GPU"
+        },
+        "Step": 5
+      },
+      {
+        "CommandMode": 0,
+        "IsHidden": false,
+        "Name": "Max of CPU and GPU Curves",
+        "SelectedFanCurves": [
+          {
+            "CommandMode": 0,
+            "Deadband": 3,
+            "IdleTemperature": 45,
+            "IsHidden": false,
+            "LoadTemperature": 75,
+            "MaxFanSpeed": 100,
+            "MinFanSpeed": 20,
+            "Name": "GPU Curve",
+            "SelectedResponseTime": 2,
+            "SelectedTempSource": {
+              "Identifier": "NVApiWrapper/0-AD104-A/sensor/0",
+              "IsHidden": false,
+              "Name": "GPU",
+              "NickName": "GPU"
+            },
+            "Step": 5
+          },
+          {
+            "CommandMode": 0,
+            "Deadband": 3,
+            "IdleTemperature": 60,
+            "IsHidden": false,
+            "LoadTemperature": 80,
+            "MaxFanSpeed": 100,
+            "MinFanSpeed": 20,
+            "Name": "CPU Curve",
+            "SelectedResponseTime": 2,
+            "SelectedTempSource": {
+              "Identifier": "/amdcpu/0/temperature/2",
+              "IsHidden": false,
+              "Name": "Core (Tctl/Tdie)",
+              "NickName": "Core (Tctl/Tdie)"
+            },
+            "Step": 5
+          }
+        ],
+        "SelectedMixFunction": 0
+      }
+    ],
+    "FanSensors": [
+      {
+        "Identifier": "/lpc/it8689e/fan/0",
+        "IsHidden": false,
+        "Name": "CPU Fan",
+        "NickName": "CPU Fan"
+      },
+      {
+        "Identifier": "/lpc/it8689e/fan/1",
+        "IsHidden": false,
+        "Name": "System Fan #1",
+        "NickName": "System Fan #1"
+      },
+      {
+        "Identifier": "/lpc/it8689e/fan/2",
+        "IsHidden": false,
+        "Name": "System Fan #2",
+        "NickName": "System Fan #2"
+      },
+      {
+        "Identifier": "/lpc/it8689e/fan/3",
+        "IsHidden": false,
+        "Name": "System Fan #3",
+        "NickName": "System Fan #3"
+      },
+      {
+        "Identifier": "/lpc/it8689e/fan/4",
+        "IsHidden": false,
+        "Name": "System Fan #4 / Pump",
+        "NickName": "System Fan #4 / Pump"
+      },
+      {
+        "Identifier": "/lpc/it8689e/fan/5",
+        "IsHidden": false,
+        "Name": "CPU Optional Fan",
+        "NickName": "CPU Optional Fan"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-AD104-A/fan/0",
+        "IsHidden": false,
+        "Name": "Fan 1 - NVIDIA GeForce RTX 4070",
+        "NickName": "Fan 1 - NVIDIA GeForce RTX 4070"
+      },
+      {
+        "Identifier": "NVApiWrapper/0-AD104-A/fan/1",
+        "IsHidden": false,
+        "Name": "Fan 2 - NVIDIA GeForce RTX 4070",
+        "NickName": "Fan 2 - NVIDIA GeForce RTX 4070"
+      }
+    ],
+    "HideCalibration": false,
+    "HideFanSpeedCards": true,
+    "HorizontalUIOrientation": false,
+    "PrimaryColor": "#FF006190",
+    "SecondaryColor": "#FFAEEA00",
+    "SelectedTheme": "",
+    "ShowHiddenCards": false,
+    "SyncThemeWithWindows": true,
+    "SyncTrayIconColorWithWindows": true,
+    "TemperatureSensors": [],
+    "TrayIconColor": null,
+    "TrayIcons": []
+  },
+  "Sensors": {
+    "AdlxWrapperSettings": {
+      "Enabled": true
+    },
+    "DisabledPlugins": [],
+    "DisableStorageSensors": false,
+    "LibreHardwareMonitorSettings": {
+      "Controller": false,
+      "CPU": true,
+      "EmbeddedEC": true,
+      "GPU": true,
+      "InpOut": false,
+      "Memory": true,
+      "Motherboard": true,
+      "PSU": true,
+      "Storage": true,
+      "ZeroRPMOverride": true
+    },
+    "NvAPIWrapperSettings": {
+      "Enabled": true,
+      "ZeroRPMOverride": true
+    },
+    "SensorCount": 32
+  }
+}

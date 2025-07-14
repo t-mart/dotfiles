@@ -50,30 +50,4 @@ available at `$HOME/.config/chezmoi/key.txt`.
 
 ## `packages.yaml`
 
-A list of packages, keyed by which package manager they are installed with. Each list item can be installed with a package manager that depends on the environment.
-
-For example:
-
-```yaml
-- winget: AgileBits.1Password
-- apt: 7zip
-  scoop: main/7zip
-- winget: Oven-sh.Bun
-  curl-sh-command: "curl -fsSL https://bun.sh/install | bash"
-- uv: yt-dlp
-```
-
-My chezmoi scripts will read this file at various points to install the packages
-listed.
-
-Order:
-
-1. (Debian/Ubuntu) `apt`, package name. See
-   `home/.chezmoiscripts/unix/run_onchange_before_10-add-apt-sources.sh.tmpl`
-   for setting up the sources if needed.
-2. (Windows) `winget`, package name.
-3. (Windows) `scoop`, package name. Strive for using the `<bucket>/<package>`
-   format for exactness.
-4. (Debian/Ubuntu) `curl-sh-command` (for things like
-   `curl https://foo.com/install.sh | sh`)
-5. `uv`, pypi package name. Installed by [uv](https://docs.astral.sh/uv/) as a tool.
+See file for documentation.

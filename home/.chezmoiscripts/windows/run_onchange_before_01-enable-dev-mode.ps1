@@ -10,31 +10,9 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 $RegPath = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock'
 $RegProperty = 'AllowDevelopmentWithoutDevLicense'
 
-# Check if Developer Mode is already enabled.
-try {
-    $currentValue = Get-ItemPropertyValue -Path $RegPath -Name $RegProperty -ErrorAction SilentlyContinue
-    if ($currentValue -and $currentValue.$RegProperty -eq 1) {
-        Write-Host "Developer Mode is already enabled."
-        exit
-    }
-}
-catch {
-    Write-Error "An unexpected error occurred while checking the registry: $_"
-    Read-Host "Press Enter to exit"
-    exit
+if (-not(Test-Path -Path $RegPath)) {
+    New-Item -Path $RegPath -ItemType Directory -Force
 }
 
-
-# Proceed to enable Developer Mode.
-Write-Host "Enabling Developer Mode..."
-try {
-    # The -Force parameter creates the registry path if it doesn't exist.
-    Set-ItemProperty -Path $RegPath -Name $RegProperty -Value 1 -Type DWord -Force -ErrorAction Stop
-    Write-Host "Successfully enabled Developer Mode."
-}
-catch {
-    Write-Error "Failed to enable Developer Mode: $_"
-}
-finally {
-    Read-Host "Press Enter to exit"
-}
+Set-ItemProperty -Path $RegPath -Name $RegProperty -Value 1 -Type DWord -Force -ErrorAction Stop
+Write-Host "Successfully enabled Developer Mode."

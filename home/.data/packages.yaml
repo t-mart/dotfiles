@@ -1,10 +1,27 @@
 # List of packages to be installed
 #
+# Order:
+#
+# 1. (Debian/Ubuntu) `apt`, package name. See
+#    `home/.chezmoiscripts/unix/run_onchange_before_10-add-apt-sources.sh.tmpl`
+#    for setting up the sources if needed.
+# 2. (Windows) `winget`, package name.
+# 3. (Windows) `scoop`, package name. Strive for using the `<bucket>/<package>`
+#    format for exactness.
+# 4. (Debian/Ubuntu) `curl-sh-command` (for things like
+#    `curl https://foo.com/install.sh | sh`)
+# 5. (Cross-Platform) `cargo`, crate name. Installed by `cargo binstall <crate>`.
+# 6. (Cross-Platform) `uv`, pypi package name. Installed by [uv](https://docs.astral.sh/uv/) as a tool.
+#
 # On Windows, winget should be used for packages that self-update. Use scoop
-# (which does portable installations) otherwise.
+# (which does portable installations) otherwise. scoop is not aware of external
+# update events and will install again on its next update cycle, which is annoying.
+#
+# If a package is installed with a cross-platform tool, then it should be
+# the only entry for that package. Otherwise, it will be installed multiple
+# times!
 
 - winget: AgileBits.1Password
-  # apt: 1password
 
 - winget: AgileBits.1Password.CLI
   apt: 1password-cli
@@ -13,6 +30,7 @@
   scoop: main/7zip
 
 - scoop: extras/age
+  apt: age
 
 - cargo: atuin
 
@@ -20,10 +38,10 @@
 
 - scoop: main/aws
 
-- apt: bat
-  scoop: main/bat
+- cargo: bat
 
 - apt: btop
+  scoop: main/btop
 
 - apt: build-essential
 
@@ -31,17 +49,21 @@
   curl-sh-command: "curl -fsSL https://bun.sh/install | bash"
 
 - scoop: extras/carapace-bin
+  deb: carapace-bin
 
 - scoop: nerd-fonts/CascadiaCode-NF-Mono
 
 - apt: containerd.io
 
 - scoop: main/curl
+  apt: curl
 
 - cargo: git-delta
 
 - curl-sh-command: "curl -fsSL https://deno.land/install.sh | sh"
   winget: DenoLand.Deno
+
+- winget: Microsoft.DotNet.DesktopRuntime.5
 
 - winget: Docker.DockerDesktop
 
@@ -64,11 +86,15 @@
   winget: sharkdp.fd
 
 - scoop: versions/ffmpeg-nightly
+  apt: ffmpeg
 
 - winget: Mozilla.Firefox
 
-- apt: fzf
-  scoop: main/fzf
+- scoop: main/fzf
+  # debian fzf is suuuper old, we bring this in as an external
+
+- scoop: main/gh
+  apt: gh
 
 - apt: git
   scoop: main/git
@@ -77,6 +103,10 @@
 
 - apt: gnupg
   winget: GnuPG.GnuPG
+
+- scoop: main/gzip
+
+- scoop: extras/hashcheck
 
 - apt: hexyl
   winget: sharkdp.hexyl
@@ -95,15 +125,12 @@
 - apt: jq
   scoop: main/jq
 
-- apt: less
-  scoop: main/less
-
-- scoop: mpv.net
+- scoop: extras/mpv.net
 
 - apt: neovim
   scoop: main/neovim
 
-- scoop: main/nodejs
+- winget: OpenJS.NodeJS
   apt: nodejs
 
 - scoop: main/nu
@@ -120,7 +147,7 @@
 
 - winget: Microsoft.Sysinternals.ProcessMonitor
 
-- scoop: protobuf
+- scoop: extras/protobuf
   apt: protobuf-compiler
 
 - scoop: main/q-dns
@@ -131,9 +158,10 @@
 - apt: ripgrep
   winget: BurntSushi.ripgrep.MSVC
 
-- scoop: extras/rufus
+- winget: Rufus.Rufus
 
-- curl-sh-command: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+- curl-sh-command:
+    "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
   winget: Rustlang.Rustup
 
 - scoop: extras/screentogif
@@ -157,15 +185,33 @@
 - winget: astral-sh.uv
   curl-sh-command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
 
-- apt: unzip
+- winget: Microsoft.VCRedist.2005.x64
 
-- winget: Microsoft.VisualStudioCode.Insiders
+- winget: Microsoft.VCRedist.2008.x64
+
+- winget: Microsoft.VCRedist.2010.x64
+
+- winget: Microsoft.VCRedist.2012.x64
+
+- winget: Microsoft.VCRedist.2013.x64
+
+- winget: Microsoft.VCRedist.2015+.x64
+
+- cargo: vivid
+
+- winget: Microsoft.VisualStudioCode
 
 - winget: VideoLAN.VLC
 
 - winget: Microsoft.WindowsTerminal
 
 - winget: AntibodySoftware.WizTree
+
+- scoop: main/xz
+  apt: xz-utils
+
+- apt: zip
+  scoop: main/zip
 
 - uv: yt-dlp
 
