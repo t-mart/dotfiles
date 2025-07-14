@@ -4,7 +4,6 @@ use std *
 
 alias cz = chezmoi
 alias less = bat
-alias cd = z
 
 $env.config.buffer_editor = "code"
 $env.EDITOR = "code"
