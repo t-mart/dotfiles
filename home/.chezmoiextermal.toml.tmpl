@@ -1,7 +1,7 @@
 
 {{- if ne .chezmoi.os "windows" }}
 [".local/bin/fzf"]
-    type = "archive-file"
+    type = "archive"
     url = "{{ gitHubLatestReleaseAssetURL "junegunn/fzf" (printf "fzf-*-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) }}"
     path = "fzf"
     refreshPeriod = "168h"
