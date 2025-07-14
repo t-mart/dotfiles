@@ -32,6 +32,8 @@ add-path-if-exists ($nu.home-path | path join ".local" "share" "bin")
 add-path-if-exists ($nu.home-path | path join "bin")
 add-path-if-exists ($nu.home-path | path join ".cargo" "bin")
 add-path-if-exists ($nu.home-path | path join "scoop" "shims")
+
+## TODO: deno offers bash completions, which we might be able to bring in with carapace
 add-path-if-exists ($nu.home-path | path join ".deno" "bin")
 
 let pnpm_home_path = "/root/.local/share/pnpm"
