@@ -56,8 +56,9 @@ starship init nu | save --force ($local_vendor_autoload_path | path join "starsh
 # carapace, a shell completion
 # https://carapace.sh/
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
-# NOTE: we don't use the default carapace completer can throw these
-# "ERR unknown shorthand flag" errors, we configure manually below
+# NOTE: we don't use the default carapace init because:
+# - we it doesn't allow selective completion based on command
+# - it can throw these "ERR unknown shorthand flag" errors
 # carapace _carapace nushell | save --force ($local_vendor_autoload_path | path join "carapace.nu")
 
 # fzf, a command-line fuzzy finder
