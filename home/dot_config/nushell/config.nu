@@ -2,11 +2,6 @@
 
 use std *
 
-$env.config = {
-  show_banner: false
-  edit_mode: vi
-}
-
 alias cz = chezmoi
 alias less = bat
 
@@ -58,15 +53,76 @@ $env.PROMPT_INDICATOR_VI_NORMAL = $'(ansi yellow_bold)Δ(ansi reset) '
 $env.PROMPT_MULTILINE_INDICATOR = $'(ansi grey)↵(ansi reset) '
 starship init nu | save --force ($local_vendor_autoload_path | path join "starship.nu")
 
-# carapace
+# carapace, a shell completion
+# https://carapace.sh/
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+# NOTE: we don't use the default carapace completer can throw these
+# "ERR unknown shorthand flag" errors, we configure manually below
 carapace _carapace nushell | save --force ($local_vendor_autoload_path | path join "carapace.nu")
 
-# fzf
+# fzf, a command-line fuzzy finder
+# https://junegunn.github.io/fzf/
 # TODO?: set up with carapace, e.g. `fzf --bash`
 
-# atuin
+# atuin, a shell history manager
+# https://atuin.sh/
 atuin init nu | save --force ($local_vendor_autoload_path | path join "atuin.nu")
 
-# zoxide
+# zoxide, a smart cd command
+# https://zoxide.dev/
 zoxide init nushell | save --force ($local_vendor_autoload_path | path join "zoxide.nu")
+
+# from https://www.nushell.sh/cookbook/external_completers.html#err-unknown-shorthand-flag-using-carapace
+
+let carapace_completer = {|spans: list<string>|
+  # if the current command is an alias, get it's expansion
+  let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+
+  # overwrite
+  let spans = (if $expanded_alias != null  {
+    # put the first word of the expanded alias first in the span
+    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1 | str replace --regex  '\.exe$' '')
+  } else {
+    $spans | skip 1 | prepend ($spans.0 | str replace --regex  '\.exe$' '')
+  })
+
+  carapace $spans.0 nushell ...$spans
+  | from json
+  | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+}
+
+# This completer will use carapace by default
+let external_completer = {|spans|
+  let expanded_alias = scope aliases
+  | where name == $spans.0
+  | get -i 0.expansion
+
+  let spans = if $expanded_alias != null {
+    $spans
+    | skip 1
+    | prepend ($expanded_alias | split row ' ' | take 1)
+  } else {
+    $spans
+  }
+
+  match $spans.0 {
+    # carapace completions are incorrect for nu
+    # nu => $fish_completer
+    # fish completes commits and branch names in a nicer way
+    # git => $fish_completer
+    # carapace doesn't have completions for asdf
+    # asdf => $fish_completer
+    _ => $carapace_completer
+  } | do $in $spans
+}
+
+$env.config = {
+  show_banner: false
+  edit_mode: vi
+  # completions: {
+  #   external: {
+  #     enable: true
+  #     completer: $external_completer
+  #   }
+  # }
+}
