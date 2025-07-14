@@ -63,7 +63,10 @@ $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 carapace _carapace nushell | save --force ($local_vendor_autoload_path | path join "carapace.nu")
 
 # fzf
+# TODO?: set up with carapace, e.g. `fzf --bash`
 
 # atuin
+atuin init nu | save --force ($local_vendor_autoload_path | path join "atuin.nu")
 
 # zoxide
+zoxide init nushell | save --force ($local_vendor_autoload_path | path join "zoxide.nu")

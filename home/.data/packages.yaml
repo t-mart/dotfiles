@@ -86,12 +86,12 @@
   winget: sharkdp.fd
 
 - scoop: versions/ffmpeg-nightly
-  apt: ffmpeg
+  # linux brought in as an external
 
 - winget: Mozilla.Firefox
 
 - scoop: main/fzf
-  # debian fzf is suuuper old, we bring this in as an external
+  # linux brought in as an external
 
 - scoop: main/gh
   apt: gh
