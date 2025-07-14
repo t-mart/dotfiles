@@ -4,6 +4,7 @@ use std *
 
 alias cz = chezmoi
 alias less = bat
+alias cd = z
 
 $env.config.buffer_editor = "code"
 $env.EDITOR = "code"
@@ -58,7 +59,7 @@ starship init nu | save --force ($local_vendor_autoload_path | path join "starsh
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 # NOTE: we don't use the default carapace completer can throw these
 # "ERR unknown shorthand flag" errors, we configure manually below
-carapace _carapace nushell | save --force ($local_vendor_autoload_path | path join "carapace.nu")
+# carapace _carapace nushell | save --force ($local_vendor_autoload_path | path join "carapace.nu")
 
 # fzf, a command-line fuzzy finder
 # https://junegunn.github.io/fzf/
@@ -70,10 +71,10 @@ atuin init nu | save --force ($local_vendor_autoload_path | path join "atuin.nu"
 
 # zoxide, a smart cd command
 # https://zoxide.dev/
-zoxide init nushell | save --force ($local_vendor_autoload_path | path join "zoxide.nu")
+zoxide init nushell --cmd cd | save --force ($local_vendor_autoload_path | path join "zoxide.nu")
 
 # from https://www.nushell.sh/cookbook/external_completers.html#err-unknown-shorthand-flag-using-carapace
-
+# let fish_completer = ...
 let carapace_completer = {|spans: list<string>|
   # if the current command is an alias, get it's expansion
   let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
@@ -119,10 +120,10 @@ let external_completer = {|spans|
 $env.config = {
   show_banner: false
   edit_mode: vi
-  # completions: {
-  #   external: {
-  #     enable: true
-  #     completer: $external_completer
-  #   }
-  # }
+  completions: {
+    external: {
+      enable: true
+      completer: $external_completer
+    }
+  }
 }
