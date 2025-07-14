@@ -20,7 +20,7 @@ add_apt_key() {
   local keyring_path="$2"
   log "Adding APT key from $url"
   $ELEVATE_PREFIX mkdir -p "$(dirname "$keyring_path")"
-  curl -fsSL "$url" | $ELEVATE_PREFIX gpg --dearmor -o "$keyring_path"
+  curl -fsSL "$url" | $ELEVATE_PREFIX gpg --batch --yes --dearmor --output "$keyring_path"
   # Set correct permissions so APT can read the key
   $ELEVATE_PREFIX chmod a+r "$keyring_path"
 }
