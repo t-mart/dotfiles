@@ -3,6 +3,18 @@ encryption = "age"
 [diff]
     pager = "delta"
 
+[merge]
+{{- if eq .chezmoi.os "windows" }}
+    command = "pwsh"
+    args = [
+        "-Command",
+        "Copy-Item -Path '{{`{{ .Target }}`}}' -Destination '{{`{{ .Target }}`}}.base'; code --new-window --wait --merge '{{`{{ .Destination }}`}}' '{{`{{ .Target }}`}}' '{{`{{ .Target }}`}}.base' '{{`{{ .Source }}`}}'"
+    ]
+{{ else }}
+    command = "nvim"
+    args = ["-d", "{{`{{ .Destination }}`}}", "{{`{{ .Source }}`}}", "{{`{{ .Target }}`}}"]
+{{ end }}
+
 [age]
     identity = "~/.config/chezmoi/key.txt"
     recipient = "age1ss5crrns78lu7mgplaxywuw0nu2rsmar2ua7drlermulu0k75snsv9stlh"
@@ -24,6 +36,6 @@ encryption = "age"
 
 {{- if eq .chezmoi.os "windows" }}
 [interpreters.ps1]
-    command = "powershell"
+    command = "pwsh"
     args = ["-NoLogo", "-ExecutionPolicy", "RemoteSigned"]
 {{- end }}

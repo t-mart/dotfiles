@@ -9,13 +9,13 @@ $decryptedKeys = @"
 "@
 
 if (Get-Command gpg -ErrorAction SilentlyContinue) {
-    $decryptedKeys | gpg --import
+    $decryptedKeys | gpg --import --batch --yes
     Write-Host "Successfully imported GPG keys using the default gpg command."
 }
 
 # Also import the GPG keys into the git of scoop, which will be used for commit signing.
 $scoopGpgPath = Join-Path -Path $env:USERPROFILE -ChildPath "scoop\apps\git\current\usr\bin\gpg.exe"
 if (Test-Path -Path $scoopGpgPath) {
-    $decryptedKeys | & $scoopGpgPath --import
+    $decryptedKeys | & $scoopGpgPath --import --batch --yes
     Write-Host "Successfully imported GPG keys using the scoop's git gpg command."
 }
