@@ -10,16 +10,25 @@
 #    format for exactness.
 # 4. (Debian/Ubuntu) `curl-sh-command` (for things like
 #    `curl https://foo.com/install.sh | sh`)
-# 5. (Cross-Platform) `cargo`, crate name. Installed by `cargo binstall <crate>`.
-# 6. (Cross-Platform) `uv`, pypi package name. Installed by [uv](https://docs.astral.sh/uv/) as a tool.
-#
-# On Windows, winget should be used for packages that self-update. Use scoop
-# (which does portable installations) otherwise. scoop is not aware of external
-# update events and will install again on its next update cycle, which is annoying.
+# 5. (Cross-Platform) `cargo`, crate name. Installed by
+#    `cargo binstall <crate>`.
+# 6. (Cross-Platform) `uv`, pypi package name. Installed by 
+#    [uv](https://docs.astral.sh/uv/) as a tool.
 #
 # If a package is installed with a cross-platform tool, then it should be
 # the only entry for that package. Otherwise, it will be installed multiple
 # times!
+#
+# ## Windows
+#
+# **winget** should be preferred because it better handles applications that:
+# - self-update (scoop is not aware of external update events and will still 
+#   consider the application out of date)
+# - store configuration in the standard locations (scoop puts these in the
+#   atypical `persist/` dir).
+#
+# Use **scoop** if winget does not have the package or if it is not up to 
+# date in winget.
 
 - winget: AgileBits.1Password
 
@@ -118,7 +127,9 @@
 
 - scoop: extras/imhex
 
-- scoop: extras/irfanview
+- winget: IrfanSkiljan.IrfanView
+
+- winget: IrfanSkiljan.IrfanView.PlugIns
 
 - scoop: nerd-fonts/JetBrains-Mono
 
@@ -166,7 +177,7 @@
 
 - scoop: extras/screentogif
 
-- scoop: extras/sharex
+- winget: ShareX.ShareX
 
 - winget: OpenWhisperSystems.Signal
 
