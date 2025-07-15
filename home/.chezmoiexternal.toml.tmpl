@@ -2,7 +2,7 @@
 {{- if ne .chezmoi.os "windows" }}
 [".local/bin/fzf"]
     type = "archive-file"
-    url = "https://github.com/junegunn/fzf/releases/latest/download/fzf-{{ .chezmoi.os }}-{{ .chezmoi.arch }}.tar.gz"
+    url = {{ gitHubLatestReleaseAssetURL "junegunn/fzf" (printf "fzf-*-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
     path = "fzf"
     refreshPeriod = "168h"
     executable = true
