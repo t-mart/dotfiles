@@ -24,8 +24,8 @@
 # **winget** should be preferred because it better handles applications that:
 # - self-update (scoop is not aware of external update events and will still 
 #   consider the application out of date)
-# - store configuration in the standard locations (scoop puts these in the
-#   atypical `persist/` dir).
+# - store configuration in the standard locations (scoop sometimes places
+#   portable configuration in its `persist/` directory, which is atypical).
 #
 # Use **scoop** if winget does not have the package or if it is not up to 
 # date in winget.
