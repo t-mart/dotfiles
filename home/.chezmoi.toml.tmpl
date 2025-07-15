@@ -36,6 +36,6 @@ encryption = "age"
 
 {{ if eq .chezmoi.os "windows" }}
 [interpreters.ps1]
-    command = "pwsh"
+    command = "powershell"
     args = ["-NoLogo", "-ExecutionPolicy", "RemoteSigned"]
 {{ end }}
