@@ -34,8 +34,8 @@ encryption = "age"
     command = "uv"
     args = ["run", "python"]
 
-{{- if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" }}
 [interpreters.ps1]
     command = "pwsh"
     args = ["-NoLogo", "-ExecutionPolicy", "RemoteSigned"]
-{{- end }}
+{{ end }}
