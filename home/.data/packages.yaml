@@ -378,7 +378,7 @@
   description: "Source-code editor developed by Microsoft"
   winget:
     id: Microsoft.VisualStudioCode
-    interactive: true # to turn on context menu integration
+    interactive: true # to turn on context menu integration, skipped otherwise
 
 - name: Windows Terminal
   description: "Modern terminal application for Windows"
