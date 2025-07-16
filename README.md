@@ -31,7 +31,7 @@ chezmoi update
 
 It has been invaluable to test how chezmoi applies changes to fresh machines.
 
-For Windows, I use [VMware Workstation Pro](https://www.vmware.com/products/workstation-pro.html) with a Windows 11 VM. Importantly, I use a snapshot to revert the VM to start the next test.
+For Windows, I use [VMware Workstation Pro](https://www.vmware.com/products/workstation-pro.html) with a Windows 11 VM. Importantly, I use a snapshot to revert the VM to a clean state before the next test.
 
 For Linux, I use a simple docker container: `docker run -it --rm debian`
 
