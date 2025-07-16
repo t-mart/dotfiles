@@ -20,3 +20,5 @@ Write-Host "Enabled Developer Mode"
 
 sudo config --enable normal
 Write-Host "Sudo enabled"
+
+Read-Host -Prompt "Press Enter to continue..."
