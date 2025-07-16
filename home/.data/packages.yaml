@@ -313,9 +313,6 @@
     id: Microsoft.VisualStudioCode
     interactive: true # to turn on context menu integration
 
-- name: VLC
-  winget: VideoLAN.VLC
-
 - name: Windows Terminal
   winget: Microsoft.WindowsTerminal
 
