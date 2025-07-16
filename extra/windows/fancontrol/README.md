@@ -1,5 +1,8 @@
 # FanControl
 
+FanControl is a hardware fan control application. It's not installed by default
+with chezmoi because not all systems need it.
+
 ## Usage
 
 1. Install FanControl with winget:
@@ -20,17 +23,16 @@
    Configuration". Choose the configuration file you placed in the previous
    step.
 
-4. (Optional) If you want to run FanControl at startup, create a task in the
-   Task Scheduler to run the FanControl executable at logon. (Startup folder
-   doesn't work.):
+4. To run FanControl at startup, create a task in the Task Scheduler to run the
+   FanControl executable at logon. (Startup folder method doesn't work.):
 
    - General:
-       - Name: FanControl
-       - Run whether user is logged on or not
-       - Run with highest privileges
+     - Name: FanControl
+     - Run whether user is logged on or not
+     - Run with highest privileges
    - Triggers:
-       - At log on
+     - At log on
    - Actions:
-       - Start a program
-           - Program/script: `C:\Program Files (x86)\FanControl\FanControl.exe`
-           - Start in: `C:\Program Files (x86)\FanControl\`
+     - Start a program
+       - Program/script: `C:\Program Files (x86)\FanControl\FanControl.exe`
+       - Start in: `C:\Program Files (x86)\FanControl\`
