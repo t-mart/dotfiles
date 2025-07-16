@@ -152,7 +152,7 @@
 - name: FFmpeg (Nightly)
   description: "Multimedia framework for handling video, audio, and other multimedia files"
   scoop: versions/ffmpeg-nightly
-  # linux brought in as an external
+  # brought in as an external on Linux
 
 - name: Firefox
   description: "Web browser"
@@ -161,7 +161,7 @@
 - name: fzf
   description: "Command-line fuzzy finder"
   scoop: main/fzf
-  # linux brought in as an external
+  # brought in as an external on Linux
 
 - name: gallery-dl
   description: "Command-line program to download images from galleries"
