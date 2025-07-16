@@ -88,7 +88,7 @@
   scoop: main/curl
   apt: curl
 
-- name: git-delta
+- name: Delta
   cargo: git-delta
 
 - name: Deno
@@ -97,11 +97,8 @@
     url: "https://deno.land/install.sh"
     shell: sh
 
-- name: .NET Desktop Runtime 5
-  winget: Microsoft.DotNet.DesktopRuntime.5
-
-- name: Docker Desktop
-  winget: Docker.DockerDesktop
+- name: Docker Buildx Plugin
+  apt: docker-buildx-plugin
 
 - name: Docker CE
   apt: docker-ce
@@ -109,11 +106,11 @@
 - name: Docker CE CLI
   apt: docker-ce-cli
 
-- name: Docker Buildx Plugin
-  apt: docker-buildx-plugin
-
 - name: Docker Compose Plugin
   apt: docker-compose-plugin
+
+- name: Docker Desktop
+  winget: Docker.DockerDesktop
 
 - name: Everything
   scoop: extras/everything
@@ -198,6 +195,14 @@
   scoop: main/neovim
   apt: neovim
 
+- name: .NET Desktop Runtime 5
+  winget: Microsoft.DotNet.DesktopRuntime.5
+
+- name: Nilesoft Shell
+  winget:
+    id: Nilesoft.Shell
+    elevate: true
+
 - name: Node.js
   winget: OpenJS.NodeJS
   apt: nodejs
@@ -253,11 +258,6 @@
 
 - name: ShareX
   winget: ShareX.ShareX
-
-- name: Nilesoft Shell
-  winget:
-    id: Nilesoft.Shell
-    elevate: true
 
 - name: Signal
   winget: OpenWhisperSystems.Signal
@@ -318,6 +318,10 @@
 
 - name: Windows Terminal
   winget: Microsoft.WindowsTerminal
+
+- name: Windows UI Library
+  # Dependency for Windows Terminal
+  winget: Microsoft.UI.Xaml.2.8
 
 - name: WizTree
   winget: AntibodySoftware.WizTree
