@@ -1,33 +1,35 @@
-# Reload Path
+# Reload Path to ensure winget is available in the current session
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
-
-{{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
-{{- $winget_packages := list -}}
-{{- range $packages -}}
-{{- if hasKey . "winget" -}}
-{{- $winget_packages = append $winget_packages (dict "PackageIdentifier" .winget) -}}
-{{- end -}}
-{{- end }}
-
-{{- $source_details := dict "Name" "winget" "Identifier" "Microsoft.Winget.Source_8wekyb3d8bbwe" "Argument" "https://cdn.winget.microsoft.com/cache" "Type" "Microsoft.PreIndexed.Package" -}}
-{{- $packages_json := dict -}}
-{{- $packages_json = setValueAtPath "`$schema" "https://aka.ms/winget-packages.schema.2.0.json" $packages_json -}}
-{{- $packages_json = setValueAtPath "Sources" (dict "Packages" $winget_packages "SourceDetails" $source_details | list) $packages_json -}}
-
-$packagesJson = @"
-{{ $packages_json | toPrettyJson "    " }}
-"@
-
-$tempFile = [System.IO.Path]::GetTempFileName()
-$packagesJson | Out-File -FilePath $tempFile -Encoding utf8
-
-winget import --accept-package-agreements --accept-source-agreements -i $tempFile
-
-if ($lastexitcode -ne 0) {
-    Write-Host -ForegroundColor Red "winget import $tempFile failed with exit code $lastexitcode"
-    exit 1
+# Verify that winget is installed before proceeding
+if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
+    Write-Error "winget.exe does not appear to be installed or is not in the PATH."
+    return
 }
 
-Remove-Item $tempFile
+# The Go template below will generate a series of installation commands.
+{{- $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
+{{- range $packages }}
+{{- if hasKey . "winget" }}
+{{- /* Normalize the winget config and set variables */ -}}
+{{- $wingetId := "" -}}
+{{- $isElevated := false -}}
+{{- $isInteractive := false -}}
+{{- if kindIs "map" .winget -}}
+    {{- $wingetId = .winget.id -}}
+    {{- if and (hasKey .winget "elevate") .winget.elevate }}{{ $isElevated = true }}{{ end -}}
+    {{- if and (hasKey .winget "interactive") .winget.interactive }}{{ $isInteractive = true }}{{ end -}}
+{{- else -}}
+    {{- $wingetId = .winget -}}
+{{- end -}}
+
+# --- Installing '{{ .name }}' ---
+try {
+    {{ if $isElevated }}sudo {{ end }}winget install --id '{{ $wingetId }}' --exact --accept-package-agreements --accept-source-agreements{{ if $isInteractive }} --interactive{{ end }}
+}
+catch {
+    Write-Error "Failed to install '{{ $wingetId }}'. Error: $_"
+}
+Write-Host ""
+{{- end -}}
+{{- end }}

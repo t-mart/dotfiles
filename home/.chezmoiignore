@@ -15,6 +15,5 @@ Documents
 .wslconfig
 scoop
 .chezmoiscripts/windows/**
-.config/fancontrol
 
 {{ end }}

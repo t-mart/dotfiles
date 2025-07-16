@@ -1,47 +1,38 @@
-# Reload Path
+# Reload Path to ensure scoop is available in the current session
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-$scoopExecutable = Join-Path $env:USERPROFILE scoop\shims\scoop.ps1
+$scoopExecutable = Join-Path $env:USERPROFILE "scoop\shims\scoop.ps1"
 
 Write-Host "Fetching list of currently installed Scoop packages..."
-$installedScoopJson = & $scoopExecutable export | ConvertFrom-Json -ErrorAction Stop
+try {
+    $installedScoopJson = & $scoopExecutable export | ConvertFrom-Json -ErrorAction Stop
+}
+catch {
+    Write-Error "Failed to get installed packages from Scoop. Error: $_"
+    return
+}
+
 $installedApps = if ($null -ne $installedScoopJson.apps) { $installedScoopJson.apps } else { @() }
 
-# Create HashSets for fast lookups. Using OrdinalIgnoreCase for case-insensitive matching.
-$installedNames = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
+# Create a HashSet for fast, case-insensitive lookups of full 'bucket/package' identifiers.
 $installedFullNames = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
 
-# Populate the HashSets with data from the 'scoop export' command.
+# Populate the HashSet with data from the 'scoop export' command.
 foreach ($app in $installedApps) {
-    # Add just the package name (e.g., "7zip")
-    [void]$installedNames.Add($app.Name)
     # Add the full 'bucket/name' identifier (e.g., "main/7zip")
     [void]$installedFullNames.Add("$($app.Source)/$($app.Name)")
 }
 
-# Install packages
+# Install packages defined in the YAML file.
 {{- $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
-{{- range $packages -}}
+
+{{- range $packages }}
 {{- if hasKey . "scoop" }}
-$packageToCheck = '{{ .scoop }}'
-$isInstalled = $false
+$packageName = '{{ .name }}'
+$scoopIdentifier = '{{ .scoop }}'
 
-# Check if the package name from your config contains a slash (e.g., 'main/7zip')
-if ($packageToCheck.Contains('/')) {
-    # If it does, we check against the full 'bucket/name' list.
-    if ($installedFullNames.Contains($packageToCheck)) {
-        $isInstalled = $true
-    }
-} else {
-    # Otherwise, we check against the simple name list.
-    if ($installedNames.Contains($packageToCheck)) {
-        $isInstalled = $true
-    }
-}
-
-if (-not $isInstalled) {
-    Write-Host "Scoop: '$packageToCheck' not found, attempting to install..."
-    & $scoopExecutable install $packageToCheck
+if (-not $installedFullNames.Contains($scoopIdentifier)) {
+    & $scoopExecutable install $scoopIdentifier
 }
 {{- end -}}
 {{- end }}

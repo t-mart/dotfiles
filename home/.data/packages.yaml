@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=packages.yaml-schema.json
+
 # List of packages to be installed
 #
 # Order:
@@ -12,7 +14,7 @@
 #    `curl https://foo.com/install.sh | sh`)
 # 5. (Cross-Platform) `cargo`, crate name. Installed by
 #    `cargo binstall <crate>`.
-# 6. (Cross-Platform) `uv`, pypi package name. Installed by 
+# 6. (Cross-Platform) `uv`, pypi package name. Installed by
 #    [uv](https://docs.astral.sh/uv/) as a tool.
 #
 # If a package is installed with a cross-platform tool, then it should be
@@ -22,212 +24,317 @@
 # ## Windows
 #
 # **winget** should be preferred because it better handles applications that:
-# - self-update (scoop is not aware of external update events and will still 
+# - self-update (scoop is not aware of external update events and will still
 #   consider the application out of date)
 # - store configuration in the standard locations (scoop sometimes places
 #   portable configuration in its `persist/` directory, which is atypical).
 #
-# Use **scoop** if winget does not have the package or if it is not up to 
+# Use **scoop** if winget does not have the package or if it is not up to
 # date in winget.
 
-- winget: AgileBits.1Password
+- name: 1Password
+  winget: AgileBits.1Password
 
-- winget: AgileBits.1Password.CLI
+- name: 1Password CLI
+  winget: AgileBits.1Password.CLI
   apt: 1password-cli
 
-- apt: 7zip
+- name: 7-Zip
   scoop: main/7zip
+  apt: 7zip
 
-- scoop: extras/age
+- name: age
+  scoop: extras/age
   apt: age
 
-- cargo: atuin
+- name: Atuin
+  cargo: atuin
 
-- scoop: extras/autohotkey
+- name: AutoHotkey
+  scoop: extras/autohotkey
 
-- scoop: main/aws
+- name: AWS CLI
+  scoop: main/aws
 
-- cargo: bat
+- name: bat
+  cargo: bat
 
-- apt: btop
+- name: btop
   scoop: main/btop
+  apt: btop
 
-- apt: build-essential
+- name: build-essential
+  apt: build-essential
 
-- winget: Oven-sh.Bun
-  curl-sh-command: "curl -fsSL https://bun.sh/install | bash"
+- name: Bun
+  winget: Oven-sh.Bun
+  curl-sh-command:
+    url: "https://bun.sh/install"
+    shell: bash
 
-- scoop: extras/carapace-bin
-  deb: carapace-bin
+- name: carapace-bin
+  scoop: extras/carapace-bin
+  apt: carapace-bin
 
-- scoop: nerd-fonts/CascadiaCode-NF-Mono
+- name: Cascadia Code Nerd Font Mono
+  scoop: nerd-fonts/CascadiaCode-NF-Mono
 
-- apt: containerd.io
+- name: containerd.io
+  apt: containerd.io
 
-- scoop: main/curl
+- name: curl
+  scoop: main/curl
   apt: curl
 
-- cargo: git-delta
+- name: git-delta
+  cargo: git-delta
 
-- curl-sh-command: "curl -fsSL https://deno.land/install.sh | sh"
+- name: Deno
   winget: DenoLand.Deno
+  curl-sh-command:
+    url: "https://deno.land/install.sh"
+    shell: sh
 
-- winget: Microsoft.DotNet.DesktopRuntime.5
+- name: .NET Desktop Runtime 5
+  winget: Microsoft.DotNet.DesktopRuntime.5
 
-- winget: Docker.DockerDesktop
+- name: Docker Desktop
+  winget: Docker.DockerDesktop
 
-- apt: docker-ce
+- name: Docker CE
+  apt: docker-ce
 
-- apt: docker-ce-cli
+- name: Docker CE CLI
+  apt: docker-ce-cli
 
-- apt: docker-buildx-plugin
+- name: Docker Buildx Plugin
+  apt: docker-buildx-plugin
 
-- apt: docker-compose-plugin
+- name: Docker Compose Plugin
+  apt: docker-compose-plugin
 
-- scoop: extras/everything
+- name: Everything
+  scoop: extras/everything
 
-- scoop: main/everything-cli
+- name: Everything CLI
+  scoop: main/everything-cli
 
-- apt: eza
+- name: eza
   winget: eza-community.eza
+  apt: eza
 
-- apt: fd-find
+- name: fd
   winget: sharkdp.fd
+  apt: fd-find
 
-- scoop: versions/ffmpeg-nightly
+- name: FFmpeg (Nightly)
+  scoop: versions/ffmpeg-nightly
   # linux brought in as an external
 
-- winget: Mozilla.Firefox
+- name: Firefox
+  winget: Mozilla.Firefox
 
-- scoop: main/fzf
+- name: fzf
+  scoop: main/fzf
   # linux brought in as an external
 
-- scoop: main/gh
+- name: gallery-dl
+  uv: gallery-dl
+
+- name: GitHub CLI
+  scoop: main/gh
   apt: gh
 
-- apt: git
+- name: Git
   scoop: main/git
+  apt: git
 
-- scoop: extras/gimp
+- name: GIMP
+  scoop: extras/gimp
 
-- apt: gnupg
+- name: GnuPG
   winget: GnuPG.GnuPG
+  apt: gnupg
 
-- scoop: main/gzip
+- name: gzip
+  scoop: main/gzip
 
-- scoop: extras/hashcheck
+- name: HashCheck
+  scoop: extras/hashcheck
 
-- apt: hexyl
+- name: hexyl
   winget: sharkdp.hexyl
+  apt: hexyl
 
-- apt: hyperfine
+- name: hyperfine
   winget: sharkdp.hyperfine
+  apt: hyperfine
 
-- scoop: main/imagemagick
+- name: ImageMagick
+  scoop: main/imagemagick
 
-- scoop: extras/imhex
+- name: ImHex
+  scoop: extras/imhex
 
-- winget: IrfanSkiljan.IrfanView
+- name: IrfanView
+  winget: IrfanSkiljan.IrfanView
 
-- winget: IrfanSkiljan.IrfanView.PlugIns
+- name: IrfanView Plugins
+  winget: IrfanSkiljan.IrfanView.PlugIns
 
-- scoop: nerd-fonts/JetBrains-Mono
+- name: JetBrains Mono Nerd Font
+  scoop: nerd-fonts/JetBrains-Mono
 
-- apt: jq
+- name: jq
   scoop: main/jq
+  apt: jq
 
-- scoop: extras/mpv.net
+- name: mpv.net
+  scoop: extras/mpv.net
 
-- apt: neovim
+- name: Neovim
   scoop: main/neovim
+  apt: neovim
 
-- winget: OpenJS.NodeJS
+- name: Node.js
+  winget: OpenJS.NodeJS
   apt: nodejs
 
-- scoop: main/nu
+- name: Nushell
+  scoop: main/nu
   apt: nushell
 
-- winget: pnpm.pnpm
-  curl-sh-command: "curl -fsSL https://get.pnpm.io/install.sh | sh -"
+- name: pnpm
+  winget: pnpm.pnpm
+  curl-sh-command:
+    url: "https://get.pnpm.io/install.sh"
+    shell: sh
 
-- winget: Microsoft.PowerShell
+- name: PowerShell
+  winget: Microsoft.PowerShell
 
-- winget: Microsoft.PowerToys
+- name: PowerToys
+  winget: Microsoft.PowerToys
 
-- winget: Microsoft.Sysinternals.ProcessExplorer
+- name: Process Explorer
+  winget: Microsoft.Sysinternals.ProcessExplorer
 
-- winget: Microsoft.Sysinternals.ProcessMonitor
+- name: Process Monitor
+  winget: Microsoft.Sysinternals.ProcessMonitor
 
-- scoop: extras/protobuf
+- name: Protocol Buffers
+  scoop: extras/protobuf
   apt: protobuf-compiler
 
-- scoop: main/q-dns
+- name: q (DNS)
+  scoop: main/q-dns
   apt: q
 
-- winget: qBittorrent.qBittorrent
+- name: qBittorrent
+  winget: qBittorrent.qBittorrent
 
-- apt: ripgrep
+- name: ripgrep
   winget: BurntSushi.ripgrep.MSVC
+  apt: ripgrep
 
-- winget: Rufus.Rufus
+- name: Rufus
+  winget: Rufus.Rufus
 
-- curl-sh-command:
-    "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+- name: Rustup
   winget: Rustlang.Rustup
+  curl-sh-command:
+    url: "https://sh.rustup.rs"
+    shell: sh
 
-- scoop: extras/screentogif
+- name: ScreenToGif
+  scoop: extras/screentogif
 
-- winget: ShareX.ShareX
+- name: ShareX
+  winget: ShareX.ShareX
 
-- winget: OpenWhisperSystems.Signal
+- name: Nilesoft Shell
+  winget:
+    id: Nilesoft.Shell
+    elevate: true
 
-- scoop: extras/speedcrunch
+- name: Signal
+  winget: OpenWhisperSystems.Signal
 
-- scoop: main/starship
-  curl-sh-command: "curl -sS https://starship.rs/install.sh | sh"
+- name: SpeedCrunch
+  scoop: extras/speedcrunch
 
-- winget: WinsiderSS.SystemInformer
+- name: Starship
+  scoop: main/starship
+  curl-sh-command:
+    url: "https://starship.rs/install.sh"
+    shell: sh
 
-- winget: Valve.Steam
+- name: System Informer
+  winget: WinsiderSS.SystemInformer
 
-- apt: tree
+- name: Steam
+  winget: Valve.Steam
+
+- name: tree
   winget: GnuWin32.Tree
+  apt: tree
 
-- winget: astral-sh.uv
-  curl-sh-command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
+- name: uv
+  winget: astral-sh.uv
+  curl-sh-command:
+    url: "https://astral.sh/uv/install.sh"
+    shell: sh
 
-- winget: Microsoft.VCRedist.2005.x64
+- name: Visual C++ Redistributable 2005
+  winget: Microsoft.VCRedist.2005.x64
 
-- winget: Microsoft.VCRedist.2008.x64
+- name: Visual C++ Redistributable 2008
+  winget: Microsoft.VCRedist.2008.x64
 
-- winget: Microsoft.VCRedist.2010.x64
+- name: Visual C++ Redistributable 2010
+  winget: Microsoft.VCRedist.2010.x64
 
-- winget: Microsoft.VCRedist.2012.x64
+- name: Visual C++ Redistributable 2012
+  winget: Microsoft.VCRedist.2012.x64
 
-- winget: Microsoft.VCRedist.2013.x64
+- name: Visual C++ Redistributable 2013
+  winget: Microsoft.VCRedist.2013.x64
 
-- winget: Microsoft.VCRedist.2015+.x64
+- name: Visual C++ Redistributable 2015-2022
+  winget: Microsoft.VCRedist.2015+.x64
 
-- cargo: vivid
+- name: vivid
+  cargo: vivid
 
-- winget: Microsoft.VisualStudioCode
+- name: Visual Studio Code
+  winget:
+    id: Microsoft.VisualStudioCode
+    interactive: true # to turn on context menu integration
 
-- winget: VideoLAN.VLC
+- name: VLC
+  winget: VideoLAN.VLC
 
-- winget: Microsoft.WindowsTerminal
+- name: Windows Terminal
+  winget: Microsoft.WindowsTerminal
 
-- winget: AntibodySoftware.WizTree
+- name: WizTree
+  winget: AntibodySoftware.WizTree
 
-- scoop: main/xz
+- name: xz
+  scoop: main/xz
   apt: xz-utils
 
-- apt: zip
+- name: zip
   scoop: main/zip
+  apt: zip
 
-- uv: yt-dlp
+- name: yt-dlp
+  uv: yt-dlp
 
-- apt: zoxide
+- name: zoxide
   scoop: main/zoxide
+  apt: zoxide
 
-- apt: zstd
+- name: zstd
   scoop: main/zstd
+  apt: zstd

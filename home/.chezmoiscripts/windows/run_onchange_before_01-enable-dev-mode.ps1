@@ -14,5 +14,9 @@ if (-not(Test-Path -Path $RegPath)) {
     New-Item -Path $RegPath -ItemType Directory -Force
 }
 
-Set-ItemProperty -Path $RegPath -Name $RegProperty -Value 1 -Type DWord -Force -ErrorAction Stop
-Write-Host "Successfully enabled Developer Mode."
+New-ItemProperty -Path $RegPath -Name $RegProperty -Value 1 -PropertyType DWord -Force
+Write-Host "Enabled Developer Mode"
+
+
+sudo config --enable normal
+Write-Host "Sudo enabled"
