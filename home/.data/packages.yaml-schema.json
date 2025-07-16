@@ -13,6 +13,10 @@
         "type": "string",
         "description": "The common, human-readable name of the software."
       },
+      "description": {
+        "type": "string",
+        "description": "An optional note or description for the package."
+      },
       "scoop": {
         "type": "string",
         "description": "The package identifier for Scoop, which must be in the 'bucket/package' format.",

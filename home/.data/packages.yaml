@@ -38,296 +38,381 @@
 # date in winget.
 
 - name: 1Password
+  description: "Desktop application for 1Password"
   winget: AgileBits.1Password
 
 - name: 1Password CLI
+  description: "Command-line interface for 1Password"
   winget: AgileBits.1Password.CLI
   apt: 1password-cli
 
 - name: 7-Zip
+  description: "File archiver"
   scoop: main/7zip
   apt: 7zip
 
 - name: age
+  description: "Simple, modern and secure encryption tool"
   scoop: extras/age
   apt: age
 
 - name: Atuin
+  description: "Command-line history manager"
   cargo: atuin
 
 - name: AutoHotkey
+  description: "Scripting language for Windows automation"
   scoop: extras/autohotkey
 
 - name: bat
+  description: "Cat clone with syntax highlighting and Git integration"
   cargo: bat
 
 - name: btop
+  description: "CLI resource monitor"
   scoop: main/btop
   apt: btop
 
 - name: build-essential
+  description: "Essential packages for building software on Debian/Ubuntu"
   apt: build-essential
 
 - name: Bun
+  description: "JavaScript runtime like Node.js"
   winget: Oven-sh.Bun
   curl-sh:
     url: "https://bun.sh/install"
     shell: bash
 
 - name: carapace-bin
+  description: "Command-line utility for generating shell completions"
   scoop: extras/carapace-bin
   apt: carapace-bin
 
 - name: Cascadia Code Nerd Font Mono
+  description: "Monospaced font with programming ligatures"
   scoop: nerd-fonts/CascadiaCode-NF-Mono
 
 - name: containerd.io
+  description: "Container runtime for managing containers"
   apt: containerd.io
 
 - name: curl
+  description: "Command-line tool for transferring data with URLs"
   scoop: main/curl
   apt: curl
 
 - name: Delta
+  description: "Git diff viewer"
   cargo: git-delta
 
 - name: Deno
+  description: "JavaScript and TypeScript runtime"
   winget: DenoLand.Deno
   curl-sh: "https://deno.land/install.sh"
 
 - name: Docker Buildx Plugin
+  description: "Docker Buildx CLI plugin"
   apt: docker-buildx-plugin
 
 - name: Docker CE
+  description: "Docker Community Edition"
   apt: docker-ce
 
 - name: Docker CE CLI
+  description: "Docker Community Edition Command Line Interface"
   apt: docker-ce-cli
 
 - name: Docker Compose Plugin
+  description: "Docker Compose CLI plugin"
   apt: docker-compose-plugin
 
 - name: Docker Desktop
+  description: "Docker Desktop application"
   winget: Docker.DockerDesktop
 
 - name: Everything
+  description: "File search utility for Windows"
   scoop: extras/everything
 
 - name: Everything CLI
+  description: "Command-line interface for Everything"
   scoop: main/everything-cli
 
 - name: eza
+  description: "A modern replacement for ls"
   winget: eza-community.eza
   apt: eza
 
 - name: fd
+  description: "Simple, fast and user-friendly alternative to find"
   winget: sharkdp.fd
   apt: fd-find
 
 - name: FFmpeg (Nightly)
+  description: "Multimedia framework for handling video, audio, and other multimedia files"
   scoop: versions/ffmpeg-nightly
   # linux brought in as an external
 
 - name: Firefox
+  description: "Web browser"
   winget: Mozilla.Firefox
 
 - name: fzf
+  description: "Command-line fuzzy finder"
   scoop: main/fzf
   # linux brought in as an external
 
 - name: gallery-dl
+  description: "Command-line program to download images from galleries"
   uv: gallery-dl
 
 - name: GitHub CLI
+  description: "Command-line interface for GitHub"
   scoop: main/gh
   apt: gh
 
 - name: Git
+  description: "The stupid content tracker"
   scoop: main/git
   apt: git
 
 - name: GIMP
+  description: "GNU Image Manipulation Program"
   scoop: extras/gimp
 
 - name: GnuPG
+  description: "GNU Privacy Guard"
   winget: GnuPG.GnuPG
   apt: gnupg
 
 - name: gzip
+  description: "GNU zip"
   scoop: main/gzip
 
 - name: HashCheck
+  description: "File hash tool for Windows properties window"
   scoop: extras/hashcheck
 
 - name: hexyl
+  description: "Hex viewer for the command line"
   winget: sharkdp.hexyl
   apt: hexyl
 
 - name: hyperfine
+  description: "Benchmarking tool for command-line applications"
   winget: sharkdp.hyperfine
   apt: hyperfine
 
 - name: ImageMagick
+  description: "Image manipulation tool"
   scoop: main/imagemagick
 
 - name: ImHex
+  description: "Hex editor for reverse engineering"
   scoop: extras/imhex
 
 - name: IrfanView
+  description: "Image viewer and editor"
   winget: IrfanSkiljan.IrfanView
 
 - name: IrfanView Plugins
+  description: "Plugins for IrfanView"
   winget: IrfanSkiljan.IrfanView.PlugIns
 
 - name: JetBrains Mono Nerd Font
+  description: "Monospaced font with programming ligatures"
   scoop: nerd-fonts/JetBrains-Mono
 
 - name: jq
+  description: "Command-line JSON processor"
   scoop: main/jq
   apt: jq
 
 - name: mpv.net
+  description: "Media player for Windows"
   scoop: extras/mpv.net
 
 - name: Neovim
+  description: "Vim-fork focused on extensibility and usability"
   scoop: main/neovim
   apt: neovim
 
 - name: .NET Desktop Runtime 5
+  description: "Runtime for running .NET desktop applications"
   winget: Microsoft.DotNet.DesktopRuntime.5
 
 - name: Nilesoft Shell
+  description: "Extends Windows context menu with additional features"
   winget:
     id: Nilesoft.Shell
     elevate: true
 
 - name: Node.js
+  description: "JavaScript runtime built on Chrome's V8 JavaScript engine"
   winget: OpenJS.NodeJS
   apt: nodejs
 
 - name: Nushell
+  description: "A new type of shell"
   scoop: main/nu
   apt: nushell
 
 - name: pnpm
+  description: "Fast, disk space efficient package manager for JavaScript"
   winget: pnpm.pnpm
   curl-sh: "https://get.pnpm.io/install.sh"
 
 - name: PowerShell
+  description: "Task automation and configuration management framework"
   winget: Microsoft.PowerShell
 
 - name: PowerToys
+  description: "Set of utilities for power users to tune and streamline their Windows experience"
   winget: Microsoft.PowerToys
 
 - name: Process Explorer
+  description: "Advanced task manager and system monitor"
   winget: Microsoft.Sysinternals.ProcessExplorer
 
 - name: Process Monitor
+  description: "Real-time file system, Registry, and process/thread activity monitoring, like tracert"
   winget: Microsoft.Sysinternals.ProcessMonitor
 
 - name: Protocol Buffers
+  description: "Google's data interchange format"
   scoop: extras/protobuf
   apt: protobuf-compiler
 
 - name: q (DNS)
+  description: "Command-line DNS client"
   scoop: main/q-dns
   apt: q
 
 - name: qBittorrent
+  description: "Free and open-source BitTorrent client"
   winget: qBittorrent.qBittorrent
 
 - name: ripgrep
+  description: "Line-oriented search tool that recursively searches your current directory for a regex pattern"
   winget: BurntSushi.ripgrep.MSVC
   apt: ripgrep
 
 - name: Rufus
+  description: "Create bootable USB drives"
   winget: Rufus.Rufus
 
 - name: Rustup
+  description: "Toolchain installer for the Rust programming language"
   winget: Rustlang.Rustup
   curl-sh: "https://sh.rustup.rs"
 
 - name: ScreenToGif
+  description: "Screen recording tool"
   scoop: extras/screentogif
 
 - name: ShareX
+  description: "Screen capture and file sharing application"
   winget: ShareX.ShareX
 
 - name: Signal
+  description: "Private messenger application"
   winget: OpenWhisperSystems.Signal
 
 - name: SpeedCrunch
+  description: "Advanced calculator"
   scoop: extras/speedcrunch
 
 - name: Starship
+  description: "Cross-shell prompt"
   scoop: main/starship
   curl-sh: "https://starship.rs/install.sh"
 
 - name: System Informer
+  description: "Task manager replacement"
   winget: WinsiderSS.SystemInformer
 
 - name: Steam
+  description: "Digital distribution platform for video games"
   winget: Valve.Steam
 
 - name: tree
+  description: "Command-line tool to display directory structure"
   winget: GnuWin32.Tree
   apt: tree
 
 - name: uv
+  description: "An extremely fast Python package and project manager"
   irm-iex: "https://astral.sh/uv/install.ps1"
   curl-sh: "https://astral.sh/uv/install.sh"
 
 - name: Visual C++ Redistributable 2005
+  description: "Microsoft Visual C++ Redistributable for Visual Studio 2005"
   winget: Microsoft.VCRedist.2005.x64
 
 - name: Visual C++ Redistributable 2008
+  description: "Microsoft Visual C++ Redistributable for Visual Studio 2008"
   winget: Microsoft.VCRedist.2008.x64
 
 - name: Visual C++ Redistributable 2010
+  description: "Microsoft Visual C++ Redistributable for Visual Studio 2010"
   winget: Microsoft.VCRedist.2010.x64
 
 - name: Visual C++ Redistributable 2012
+  description: "Microsoft Visual C++ Redistributable for Visual Studio 2012"
   winget: Microsoft.VCRedist.2012.x64
 
 - name: Visual C++ Redistributable 2013
+  description: "Microsoft Visual C++ Redistributable for Visual Studio 2013"
   winget: Microsoft.VCRedist.2013.x64
 
 - name: Visual C++ Redistributable 2015-2022
+  description: "Microsoft Visual C++ Redistributable for Visual Studio 2015-2022"
   winget: Microsoft.VCRedist.2015+.x64
 
 - name: vivid
+  description: "A tool for generating color schemes for `ls` in terminals"
   cargo: vivid
 
 - name: Visual Studio Code
+  description: "Source-code editor developed by Microsoft"
   winget:
     id: Microsoft.VisualStudioCode
     interactive: true # to turn on context menu integration
 
 - name: Windows Terminal
+  description: "Modern terminal application for Windows"
   winget: Microsoft.WindowsTerminal
 
 - name: Windows UI Library
+  description: "Library for building modern Windows applications"
   # Dependency for Windows Terminal
   winget: Microsoft.UI.Xaml.2.8
 
 - name: WizTree
+  description: "Disk space analyzer"
   winget: AntibodySoftware.WizTree
 
 - name: xz
+  description: "File compression tool"
   scoop: main/xz
   apt: xz-utils
 
 - name: zip
+  description: "File compression tool"
   scoop: main/zip
   apt: zip
 
 - name: yt-dlp
+  description: "Command-line program to download videos from YouTube and other sites"
   uv: yt-dlp
 
 - name: zoxide
+  description: "A smarter cd command for your terminal"
   scoop: main/zoxide
   apt: zoxide
 
 - name: zstd
+  description: "Fast lossless compression algorithm"
   scoop: main/zstd
   apt: zstd
