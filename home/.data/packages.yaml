@@ -15,7 +15,7 @@
 # 3. (Windows) `scoop`, in the `<bucket>/<package>` format.
 # 4. (Windows) `irm-iex`, URL to a PowerShell script that installs the
 #    package using `Invoke-RestMethod | Invoke-Expression`.
-# 5. (Debian/Ubuntu) `curl-sh-command`, URL for things like
+# 5. (Debian/Ubuntu) `curl-sh`, URL for things like
 #    `curl https://foo.com/install.sh | sh`
 # 6. (Cross-Platform) `cargo`, crate name. Installed by
 #    `cargo binstall <crate>`.
@@ -70,7 +70,7 @@
 
 - name: Bun
   winget: Oven-sh.Bun
-  curl-sh-command:
+  curl-sh:
     url: "https://bun.sh/install"
     shell: bash
 
@@ -93,9 +93,7 @@
 
 - name: Deno
   winget: DenoLand.Deno
-  curl-sh-command:
-    url: "https://deno.land/install.sh"
-    shell: sh
+  curl-sh: "https://deno.land/install.sh"
 
 - name: Docker Buildx Plugin
   apt: docker-buildx-plugin
@@ -213,9 +211,7 @@
 
 - name: pnpm
   winget: pnpm.pnpm
-  curl-sh-command:
-    url: "https://get.pnpm.io/install.sh"
-    shell: sh
+  curl-sh: "https://get.pnpm.io/install.sh"
 
 - name: PowerShell
   winget: Microsoft.PowerShell
@@ -249,9 +245,7 @@
 
 - name: Rustup
   winget: Rustlang.Rustup
-  curl-sh-command:
-    url: "https://sh.rustup.rs"
-    shell: sh
+  curl-sh: "https://sh.rustup.rs"
 
 - name: ScreenToGif
   scoop: extras/screentogif
@@ -267,9 +261,7 @@
 
 - name: Starship
   scoop: main/starship
-  curl-sh-command:
-    url: "https://starship.rs/install.sh"
-    shell: sh
+  curl-sh: "https://starship.rs/install.sh"
 
 - name: System Informer
   winget: WinsiderSS.SystemInformer
@@ -282,10 +274,8 @@
   apt: tree
 
 - name: uv
-  irm-iex: https://astral.sh/uv/install.ps1
-  curl-sh-command:
-    url: "https://astral.sh/uv/install.sh"
-    shell: sh
+  irm-iex: "https://astral.sh/uv/install.ps1"
+  curl-sh: "https://astral.sh/uv/install.sh"
 
 - name: Visual C++ Redistributable 2005
   winget: Microsoft.VCRedist.2005.x64

@@ -59,7 +59,7 @@
           }
         ]
       },
-      "curl-sh-command": {
+      "curl-sh": {
         "oneOf": [
           {
             "type": "string",
@@ -117,10 +117,10 @@
             "apt": false,
             "winget": false,
             "scoop": false,
-            "curl-sh-command": false,
+            "curl-sh": false,
             "irm-iex": false
           },
-          "description": "If 'cargo' or 'uv' is present, system-level package managers (apt, winget, scoop, curl-sh-command, irm-iex) are disallowed."
+          "description": "If 'cargo' or 'uv' is present, system-level package managers (apt, winget, scoop, curl-sh, irm-iex) are disallowed."
         }
       },
       {
@@ -151,7 +151,7 @@
       },
       {
         "required": [
-          "curl-sh-command"
+          "curl-sh"
         ]
       },
       {

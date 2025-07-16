@@ -8,6 +8,7 @@ export PATH="$HOME/.local/bin:$PATH"
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "uv" -}}
+echo "Installing '{{ .name }}' via uv..."
 $HOME/.local/bin/uv tool install {{ index . "uv" }}
 {{ end -}}
 {{ end }}
