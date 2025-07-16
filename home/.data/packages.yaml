@@ -2,28 +2,33 @@
 
 # List of packages to be installed
 #
+# See the schema in `packages.yaml-schema.json` for details.
+#
 # Order:
 #
-# 1. (Debian/Ubuntu) `apt`, package name. See
+# 1. (Debian/Ubuntu) `apt`. See
 #    `home/.chezmoiscripts/unix/run_onchange_before_10-add-apt-sources.sh.tmpl`
 #    for setting up the sources if needed.
-# 2. (Windows) `winget`, package name.
-# 3. (Windows) `scoop`, package name. Strive for using the `<bucket>/<package>`
-#    format for exactness.
-# 4. (Debian/Ubuntu) `curl-sh-command` (for things like
-#    `curl https://foo.com/install.sh | sh`)
-# 5. (Cross-Platform) `cargo`, crate name. Installed by
+# 2. (Windows) `winget`, either an id string or an object with `id` and
+#    `elevate` keys. If `elevate` is true, the command will be run with
+#    `Start-Process -Verb RunAs` to elevate privileges
+# 3. (Windows) `scoop`, in the `<bucket>/<package>` format.
+# 4. (Windows) `irm-iex`, URL to a PowerShell script that installs the
+#    package using `Invoke-RestMethod | Invoke-Expression`.
+# 5. (Debian/Ubuntu) `curl-sh-command`, URL for things like
+#    `curl https://foo.com/install.sh | sh`
+# 6. (Cross-Platform) `cargo`, crate name. Installed by
 #    `cargo binstall <crate>`.
-# 6. (Cross-Platform) `uv`, pypi package name. Installed by
+# 7. (Cross-Platform) `uv`, pypi package name. Installed by
 #    [uv](https://docs.astral.sh/uv/) as a tool.
 #
-# If a package is installed with a cross-platform tool, then it should be
-# the only entry for that package. Otherwise, it will be installed multiple
-# times!
+# If a package is installed with a cross-platform tool, then it must be
+# the only entry for that package.
 #
 # ## Windows
 #
-# **winget** should be preferred because it better handles applications that:
+# **winget** should be preferred over scoop because it better handles
+# applications that:
 # - self-update (scoop is not aware of external update events and will still
 #   consider the application out of date)
 # - store configuration in the standard locations (scoop sometimes places
@@ -277,7 +282,7 @@
   apt: tree
 
 - name: uv
-  winget: astral-sh.uv
+  irm-iex: https://astral.sh/uv/install.ps1
   curl-sh-command:
     url: "https://astral.sh/uv/install.sh"
     shell: sh

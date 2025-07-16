@@ -22,6 +22,11 @@
         "type": "string",
         "description": "The package name for the Debian/Ubuntu Advanced Package Tool (apt)."
       },
+      "irm-iex": {
+        "type": "string",
+        "description": "The URL for the PowerShell script to install the package using 'irm | iex'.",
+        "format": "uri"
+      },
       "winget": {
         "oneOf": [
           {
@@ -112,9 +117,10 @@
             "apt": false,
             "winget": false,
             "scoop": false,
-            "curl-sh-command": false
+            "curl-sh-command": false,
+            "irm-iex": false
           },
-          "description": "If 'cargo' or 'uv' is present, system-level package managers (apt, winget, scoop, curl-sh-command) are disallowed."
+          "description": "If 'cargo' or 'uv' is present, system-level package managers (apt, winget, scoop, curl-sh-command, irm-iex) are disallowed."
         }
       },
       {
@@ -156,6 +162,11 @@
       {
         "required": [
           "uv"
+        ]
+      },
+      {
+        "required": [
+          "irm-iex"
         ]
       }
     ],

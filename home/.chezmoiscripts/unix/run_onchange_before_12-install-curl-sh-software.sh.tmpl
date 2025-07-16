@@ -10,6 +10,6 @@ export SHELL=bash
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "curl-sh-command" -}}
-{{ index . "curl-sh-command" }}
+curl -fsSL {{ index . "curl-sh-command" }}
 {{ end -}}
 {{ end }}
