@@ -111,6 +111,10 @@
   winget: DenoLand.Deno
   curl-sh: "https://deno.land/install.sh"
 
+- name: DirHash
+  description: "Command-line tool to calculate directory hashes"
+  scoop: main/dirhash
+
 - name: Docker Buildx Plugin
   description: "Docker Buildx CLI plugin"
   apt: docker-buildx-plugin
@@ -243,7 +247,7 @@
   winget: Microsoft.DotNet.DesktopRuntime.5
 
 - name: Nilesoft Shell
-  description: "Extends Windows context menu with additional features"
+  description: "Context menu customizer"
   winget:
     id: Nilesoft.Shell
     elevate: true
