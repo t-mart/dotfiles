@@ -11,25 +11,25 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
 {{- $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages }}
 {{- if hasKey . "winget" }}
-{{- /* Normalize the winget config and set variables */ -}}
-{{- $wingetId := "" -}}
-{{- $isElevated := false -}}
-{{- $isInteractive := false -}}
+{{- /* Create a dictionary to hold variables */ -}}
+{{- $vars := dict "id" "" "isElevated" false "isInteractive" false -}}
+
+{{- /* Normalize the winget config by updating the dictionary */ -}}
 {{- if kindIs "map" .winget -}}
-    {{- $wingetId = .winget.id -}}
-    {{- if and (hasKey .winget "elevate") .winget.elevate }}{{ $isElevated = true }}{{ end -}}
-    {{- if and (hasKey .winget "interactive") .winget.interactive }}{{ $isInteractive = true }}{{ end -}}
+    {{- $_ := set $vars "id" .winget.id -}}
+    {{- if and (hasKey .winget "elevate") .winget.elevate }}{{ $_ := set $vars "isElevated" true }}{{ end -}}
+    {{- if and (hasKey .winget "interactive") .winget.interactive }}{{ $_ := set $vars "isInteractive" true }}{{ end -}}
 {{- else -}}
-    {{- $wingetId = .winget -}}
+    {{- $_ := set $vars "id" .winget -}}
 {{- end -}}
 
-Write-Host "Installing '{{ $wingetId }}'..."
+Write-Host "Installing '{{ $vars.id }}'..."
 try {
-    {{ if $isElevated }}sudo {{ end }}winget install --id '{{ $wingetId }}' --exact --accept-package-agreements --accept-source-agreements{{ if $isInteractive }} --interactive{{ end }}
+    {{ if $vars.isElevated }}sudo {{ end }}winget install --id '{{ $vars.id }}' --exact --accept-package-agreements --accept-source-agreements{{ if $vars.isInteractive }} --interactive{{ end }}
 }
 catch {
-    Write-Error "Failed to install '{{ $wingetId }}'. Error: $_"
+    Write-Error "Failed to install '{{ $vars.id }}'. Error: $_"
 }
 Write-Host ""
-{{- end -}}
+{{ end -}}
 {{- end }}
