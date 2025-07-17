@@ -1,5 +1,6 @@
 # Hash: {{ output "dirhash" (joinPath .chezmoi.sourceDir ".data/registry") "-quiet" "-nowait" }}
-#
+
+$registryFiles = Join-Path $env:CHEZMOI_SOURCE_DIR ".data\registry" 
 Get-ChildItem -Path $registryFiles -Filter "*.reg" | ForEach-Object {
     $regFile = $_.FullName
     Write-Host "Importing registry file: $regFile"
