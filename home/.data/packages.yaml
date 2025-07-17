@@ -400,11 +400,6 @@
   description: "Modern terminal application for Windows"
   winget: Microsoft.WindowsTerminal
 
-- name: Windows UI Library
-  description: "Library for building modern Windows applications"
-  # Dependency for Windows Terminal
-  winget: Microsoft.UI.Xaml.2.8
-
 - name: WizTree
   description: "Disk space analyzer"
   winget: AntibodySoftware.WizTree
