@@ -237,6 +237,10 @@
   description: "Media player for Windows"
   scoop: extras/mpv.net
 
+- name: ncdu
+  description: "Disk usage analyzer with a text-mode user interface"
+  apt: ncdu
+
 - name: Neovim
   description: "Vim-fork focused on extensibility and usability"
   scoop: main/neovim
@@ -339,6 +343,10 @@
 - name: Steam
   description: "Digital distribution platform for video games"
   winget: Valve.Steam
+
+- name: Total Registry
+  description: "Registry editor for Windows"
+  scoop: extras/total-registry
 
 - name: tree
   description: "Command-line tool to display directory structure"
