@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Chezmoi Packages Schema",
-  "description": "A list of software packages with conditional installation methods. An entry can either be for a language-specific package manager (uv, cargo) or for system-level ones (apt, winget, etc.), but not both.",
+  "description": "A list of software packages with conditional installation methods.",
   "type": "array",
   "items": {
     "type": "object",
