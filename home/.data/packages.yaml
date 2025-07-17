@@ -48,12 +48,12 @@
 
 - name: 7-Zip
   description: "File archiver"
-  scoop: main/7zip
+  winget: 7zip.7zip
   apt: 7zip
 
 - name: age
   description: "Simple, modern and secure encryption tool"
-  scoop: extras/age
+  winget: FiloSottile.age
   apt: age
 
 - name: Atuin
@@ -62,7 +62,7 @@
 
 - name: AutoHotkey
   description: "Scripting language for Windows automation"
-  scoop: extras/autohotkey
+  winget: AutoHotkey.AutoHotkey
 
 - name: bat
   description: "Cat clone with syntax highlighting and Git integration"
@@ -86,7 +86,7 @@
 
 - name: carapace-bin
   description: "Command-line utility for generating shell completions"
-  scoop: extras/carapace-bin
+  winget: rsteube.Carapace
   apt: carapace-bin
 
 - name: Cascadia Code Nerd Font Mono
@@ -111,7 +111,8 @@
   winget: DenoLand.Deno
   curl-sh: "https://deno.land/install.sh"
 
-- name: DirHash
+- # we must have this for some of our chezmoi scripts
+  name: DirHash
   description: "Command-line tool to calculate directory hashes"
   scoop: main/dirhash
 
@@ -233,7 +234,7 @@
 
 - name: mpv.net
   description: "Media player for Windows"
-  scoop: extras/mpv.net
+  winget: mpv.net
 
 - name: ncdu
   description: "Disk usage analyzer with a text-mode user interface"
@@ -315,7 +316,7 @@
 
 - name: ScreenToGif
   description: "Screen recording tool"
-  scoop: extras/screentogif
+  winget: NickeManarin.ScreenToGif
 
 - name: ShareX
   description: "Screen capture and file sharing application"
