@@ -343,6 +343,11 @@
   description: "Digital distribution platform for video games"
   winget: Valve.Steam
 
+- name: Terraform
+  description: "A tool for building, changing, and versioning infrastructure safely and efficiently."
+  winget: HashiCorp.Terraform
+  apt: terraform
+
 - name: Total Registry
   description: "Registry editor for Windows"
   scoop: extras/total-registry

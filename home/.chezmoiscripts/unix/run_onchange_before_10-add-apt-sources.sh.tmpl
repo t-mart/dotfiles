@@ -77,6 +77,10 @@ add_apt_source "deb [signed-by=/etc/apt/keyrings/fury-nushell.gpg] https://apt.f
 add_apt_key "https://repo.natesales.net/apt/gpg.key" "/etc/apt/keyrings/natesales.gpg"
 add_apt_source "deb [signed-by=/etc/apt/keyrings/natesales.gpg] https://repo.natesales.net/apt * *" "natesales.list"
 
+# for terraform
+add_apt_key "https://apt.releases.hashicorp.com/gpg" "/etc/apt/keyrings/hashicorp.gpg"
+add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com ${VERSION_CODENAME} main" "hashicorp.list"
+
 # for vscode-insiders
 add_apt_key "https://packages.microsoft.com/keys/microsoft.asc" "/etc/apt/keyrings/packages.microsoft.gpg"
 add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" "vscode.list"
