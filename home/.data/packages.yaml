@@ -145,13 +145,11 @@
 
 - name: eza
   description: "A modern replacement for ls"
-  winget: eza-community.eza
-  apt: eza
+  cargo: eza
 
 - name: fd
   description: "Simple, fast and user-friendly alternative to find"
-  winget: sharkdp.fd
-  apt: fd-find
+  cargo: fd
 
 - name: FFmpeg (Nightly)
   description: "Multimedia framework for handling video, audio, and other multimedia files"
