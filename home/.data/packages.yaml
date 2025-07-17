@@ -136,12 +136,12 @@
   winget: Docker.DockerDesktop
 
 - name: Everything
-  description: "File search utility for Windows"
-  scoop: extras/everything
+  description: "Locate files and folders by name instantly"
+  winget: voidtools.Everything
 
 - name: Everything CLI
   description: "Command-line interface for Everything"
-  scoop: main/everything-cli
+  winget: voidtools.Everything.Cli
 
 - name: eza
   description: "A modern replacement for ls"
