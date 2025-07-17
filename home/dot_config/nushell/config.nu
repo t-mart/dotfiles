@@ -4,6 +4,8 @@ use std *
 
 alias cz = chezmoi
 alias less = bat
+# bat is smart about styling/paging when in a non-interactive tty, such as when piping
+alias cat = bat
 
 $env.config.buffer_editor = "code"
 $env.EDITOR = "code"
