@@ -1,4 +1,4 @@
-# Hash: {{ output "dirhash" (joinPath .chezmoi.sourceDir ".data/nilesoft-shell") "-quiet" "-nowait" }}
+# Hash: {{ output (joinPath .chezmoi.wingetLinksPath "dirhash.exe") (joinPath .chezmoi.sourceDir ".data/registry") "-quiet" "-nowait" }}
 
 $shellExecutable = "$env:ProgramFiles\Nilesoft Shell\shell.exe"
 

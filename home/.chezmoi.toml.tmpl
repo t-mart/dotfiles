@@ -26,6 +26,9 @@ encryption = "age"
     {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
     {{- end }}
     osid = "{{ $osid }}"
+    {{ if eq .chezmoi.os "windows" -}}
+    wingetLinksPath = "{{ joinPath .chezmoi.homeDir "AppData/Local/Microsoft/WinGet/Links/" | replace "\\" "/"}}"
+    {{- end }}
 
 [gitHub]
     refreshPeriod = "24h"
@@ -34,7 +37,7 @@ encryption = "age"
     command = "uv"
     args = ["run", "python"]
 
-{{ if eq .chezmoi.os "windows" }}
+{{ if eq .chezmoi.os "windows" -}}
 [interpreters.ps1]
     command = "powershell"
     args = ["-NoLogo", "-ExecutionPolicy", "RemoteSigned"]
