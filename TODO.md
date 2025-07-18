@@ -1,4 +1,3 @@
 # TODO
 
-- [ ] Everything icon not right in context menu
-- [ ] Dirhash not working for scripts, needs path
+- [ ] make sure windows paths look good, we've commented them out for now
