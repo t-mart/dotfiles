@@ -1,13 +1,25 @@
 # Reload Path to ensure winget is available in the current session
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-# Verify that winget is installed before proceeding
-if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
-    Write-Error "winget.exe does not appear to be installed or is not in the PATH."
-    return
+# Create a temporary file to store the export data.
+$TempFile = New-TemporaryFile
+$TempFilePath = $TempFile.FullName
+
+winget export --output $TempFilePath --source winget --ignore-warnings
+
+# Read the JSON file and extract all PackageIdentifier properties.
+$installedData = Get-Content -Path $TempFilePath | ConvertFrom-Json
+$installedPackageIds = [System.Collections.Generic.HashSet[string]]::new()
+
+# The JSON has structure: Sources -> Packages -> PackageIdentifier
+if ($installedData.Sources) {
+    foreach ($source in $installedData.Sources) {
+        foreach ($package in $source.Packages) {
+            [void]$installedPackageIds.Add($package.PackageIdentifier)
+        }
+    }
 }
 
-# The Go template below will generate a series of installation commands.
 {{- $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages }}
 {{- if hasKey . "winget" }}
@@ -23,8 +35,18 @@ if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
     {{- $_ := set $vars "id" .winget -}}
 {{- end -}}
 
-{{ if $vars.isElevated }}sudo {{ end }}winget install --id '{{ $vars.id }}' --exact --accept-package-agreements --accept-source-agreements{{ if $vars.isInteractive }} --interactive{{ end }}
+if ($installedPackageIds.Contains("{{ $vars.id }}")) {
+    Write-Host "Package '{{ $vars.id }}' is already installed. Skipping installation." -ForegroundColor Yellow
+} else {
+    Write-Host "Installing package '{{ $vars.id }}'..."
+    {{ if $vars.isElevated }}sudo {{ end }}winget install --id '{{ $vars.id }}' --exact --accept-package-agreements --accept-source-agreements{{ if $vars.isInteractive }} --interactive{{ end }}
+}
 
 Write-Host ""
 {{ end -}}
 {{- end }}
+
+# Clean up the temporary file
+if ($tempFilePath -and (Test-Path $tempFilePath)) {
+    Remove-Item -Path $tempFilePath -Force
+}
