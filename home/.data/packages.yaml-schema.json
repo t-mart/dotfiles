@@ -82,6 +82,10 @@
               "shell": {
                 "type": "string",
                 "description": "The shell to use for execution, e.g., 'sh', 'bash'."
+              },
+              "flags": {
+                "type": "string",
+                "description": "Optional flags to pass to the shell command."
               }
             },
             "required": [

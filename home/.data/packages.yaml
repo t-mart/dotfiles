@@ -114,7 +114,7 @@
 - # we must have this for some of our chezmoi scripts
   name: DirHash
   description: "Command-line tool to calculate directory hashes"
-  scoop: main/dirhash
+  winget: IDRIX.DirHash
 
 - name: Docker Buildx Plugin
   description: "Docker Buildx CLI plugin"
@@ -312,7 +312,9 @@
 - name: Rustup
   description: "Toolchain installer for the Rust programming language"
   winget: Rustlang.Rustup
-  curl-sh: "https://sh.rustup.rs"
+  curl-sh:
+    url: "https://sh.rustup.rs"
+    flags: "-y"
 
 - name: ScreenToGif
   description: "Screen recording tool"
