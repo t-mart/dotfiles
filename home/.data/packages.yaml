@@ -111,7 +111,7 @@
   winget: DenoLand.Deno
   curl-sh: "https://deno.land/install.sh"
 
-- # we must have this for some of our chezmoi scripts
+- # !!! we must have this for some of our chezmoi scripts
   name: DirHash
   description: "Command-line tool to calculate directory hashes"
   winget: IDRIX.DirHash
