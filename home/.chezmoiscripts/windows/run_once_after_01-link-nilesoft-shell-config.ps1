@@ -37,5 +37,3 @@ if (Test-Path $sourceImportsDir) {
 } else {
     Write-Host "Source imports directory '$sourceImportsDir' does not exist. Skipping."
 }
-
-# sudo $shellExecutable -register
