@@ -37,6 +37,9 @@ encryption = "age"
     command = "uv"
     args = ["run", "python"]
 
+[cd]
+    command = "nu"
+
 {{ if eq .chezmoi.os "windows" -}}
 [interpreters.ps1]
     command = "powershell"
