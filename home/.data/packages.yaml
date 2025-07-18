@@ -184,6 +184,10 @@
   description: "GNU Image Manipulation Program"
   scoop: extras/gimp
 
+- name: Go
+  description: "Programming language for building software"
+  winget: GoLang.Go
+
 - name: GnuPG
   description: "GNU Privacy Guard"
   winget: GnuPG.GnuPG

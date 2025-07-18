@@ -1,0 +1,5 @@
+# Hash: {{ include (joinPath .chezmoi.sourceDir ".data/windows.reg") | sha256sum }}
+
+$registryFile = Join-Path $env:CHEZMOI_SOURCE_DIR ".data\windows.reg"
+Write-Host "Importing registry file: $registryFile"
+sudo reg import $registryFile

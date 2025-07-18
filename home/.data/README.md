@@ -45,16 +45,15 @@ key file in this repository. This private key itself is passphrase-encrypted
 This process is explained at the
 [chezmoi documentation](https://www.chezmoi.io/user-guide/frequently-asked-questions/encryption/).
 
-## `registry/`
+## `windows.reg`
 
-Windows registry files that are applied by chezmoi.
+A registry file that contains some settings for Windows.
 
-## `nilesoft-shell/`
+## `nilesoft-shell.nss`
 
 Nilesoft Shell is a customizer for Windows' context menus. It is a _huge_
 quality-of-life improvement.
 
 Unfortunately, Shell's configuration is located in the directory into which it
 is installed (in Program Files), so chezmoi cannot manage it directly. We
-work-around this by creating a symlink into that directory that points to this
-directory.
+work-around this by creating a symlink.

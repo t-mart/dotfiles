@@ -1,6 +1,0 @@
-# Hash: {{ output (joinPath .wingetLinksPath "dirhash.exe") (joinPath .chezmoi.sourceDir ".data/registry") "-quiet" "-nowait" }}
-
-$shellExecutable = "$env:ProgramFiles\Nilesoft Shell\shell.exe"
-
-Write-Host "Registering Nilesoft Shell. Click button to restart explorer.exe."
-sudo $shellExecutable -register -restart

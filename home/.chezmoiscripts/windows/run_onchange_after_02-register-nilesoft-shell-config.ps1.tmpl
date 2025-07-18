@@ -1,0 +1,6 @@
+# Hash: {{ include (joinPath .chezmoi.sourceDir ".data/nilesoft-shell.nss") | sha256sum }}
+
+$shellExecutable = "$env:ProgramFiles\Nilesoft Shell\shell.exe"
+
+Write-Host "Registering Nilesoft Shell config file. Click button to restart explorer.exe."
+sudo $shellExecutable -register -restart
