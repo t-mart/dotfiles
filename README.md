@@ -6,6 +6,8 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 
 ## Deploy with one command
 
+*Note: This can take a while on the first run, as it installs many packages.*
+
 ### Unix
 
 ```bash
