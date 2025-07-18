@@ -1,6 +1,9 @@
 # Reload Path to ensure winget is available in the current session
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
+# update winget itself
+winget upgrade --id Microsoft.AppInstaller --exact --accept-source-agreements --accept-package-agreements
+
 # Create a temporary file to store the export data.
 $TempFile = New-TemporaryFile
 $TempFilePath = $TempFile.FullName
@@ -10,6 +13,7 @@ winget export --output $TempFilePath --source winget --ignore-warnings
 # Read the JSON file and extract all PackageIdentifier properties.
 $installedData = Get-Content -Path $TempFilePath | ConvertFrom-Json
 $installedPackageIds = [System.Collections.Generic.HashSet[string]]::new()
+
 
 # The JSON has structure: Sources -> Packages -> PackageIdentifier
 if ($installedData.Sources) {
