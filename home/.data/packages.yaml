@@ -27,16 +27,13 @@
 #
 # ## Windows
 #
-# **winget** should be preferred over scoop because it better handles
-# applications that:
+# **winget** should be preferred over scoop for applications that:
 # - self-update (scoop is not aware of external update events and will still
-#   consider the application out of date)
-# - store configuration in the standard locations (scoop sometimes places
-#   portable configuration in its `persist/` directory, which is atypical).
+#   consider the application out of date),
+# - integrate with the system in particular ways (runtimes, etc), or
+# - scoop would install config files strangely.
 #
-# Use **scoop** if winget does not have the package or if it is not up to
-# date in winget. EDIT: updates with scoop are easier (just one command). I'm
-# undecided on this. Figure out on case-by-case basis.
+# Use **scoop** otherwise. Scoop is much easier for managing updates.
 
 - name: 1Password
   description: "Desktop application for 1Password"
@@ -44,17 +41,17 @@
 
 - name: 1Password CLI
   description: "Command-line interface for 1Password"
-  winget: AgileBits.1Password.CLI
+  scoop: main/1password-cli
   apt: 1password-cli
 
 - name: 7-Zip
   description: "File archiver"
-  winget: 7zip.7zip
+  scoop: main/7zip
   apt: 7zip
 
 - name: age
   description: "Simple, modern and secure encryption tool"
-  winget: FiloSottile.age
+  scoop: extras/age
   apt: age
 
 - name: Atuin
@@ -63,7 +60,7 @@
 
 - name: AutoHotkey
   description: "Scripting language for Windows automation"
-  winget: AutoHotkey.AutoHotkey
+  scoop: extras/autohotkey
 
 - name: bat
   description: "Cat clone with syntax highlighting and Git integration"
@@ -87,7 +84,7 @@
 
 - name: carapace-bin
   description: "Command-line utility for generating shell completions"
-  winget: rsteube.Carapace
+  scoop: extras/carapace-bin
   apt: carapace-bin
 
 - name: Cascadia Code Nerd Font Mono
@@ -112,11 +109,6 @@
   winget: DenoLand.Deno
   curl-sh: "https://deno.land/install.sh"
 
-- # !!! we must have this for some of our chezmoi scripts
-  name: DirHash
-  description: "Command-line tool to calculate directory hashes"
-  winget: IDRIX.DirHash
-
 - name: Docker Buildx Plugin
   description: "Docker Buildx CLI plugin"
   apt: docker-buildx-plugin
@@ -139,11 +131,11 @@
 
 - name: Everything
   description: "Locate files and folders by name instantly"
-  winget: voidtools.Everything
+  scoop: extras/everything
 
 - name: Everything CLI
   description: "Command-line interface for Everything"
-  winget: voidtools.Everything.Cli
+  scoop: main/everything-cli
 
 - name: eza
   description: "A modern replacement for ls"
@@ -205,12 +197,12 @@
 
 - name: hexyl
   description: "Hex viewer for the command line"
-  winget: sharkdp.hexyl
+  scoop: main/hexyl
   apt: hexyl
 
 - name: hyperfine
   description: "Benchmarking tool for command-line applications"
-  winget: sharkdp.hyperfine
+  scoop: main/hyperfine
   apt: hyperfine
 
 - name: ImageMagick
@@ -223,11 +215,7 @@
 
 - name: IrfanView
   description: "Image viewer and editor"
-  winget: IrfanSkiljan.IrfanView
-
-- name: IrfanView Plugins
-  description: "Plugins for IrfanView"
-  winget: IrfanSkiljan.IrfanView.PlugIns
+  scoop: extras/irfanview
 
 - name: JetBrains Mono Nerd Font
   description: "Monospaced font with programming ligatures"
@@ -238,14 +226,14 @@
   scoop: main/jq
   apt: jq
 
-- # Can't build MSVC rust stuff without this
+- # needed for rust msvc toolchain
   name: Microsoft Visual Studio Build Tools 2022
   description: "Build tools for Visual Studio 2022"
   winget: Microsoft.VisualStudio.2022.BuildTools
 
 - name: mpv.net
   description: "Media player for Windows"
-  winget: mpv.net
+  scoop: extras/mpv.net
 
 - name: ncdu
   description: "Disk usage analyzer with a text-mode user interface"
@@ -262,8 +250,8 @@
 
 - name: Nilesoft Shell
   description: "Context menu customizer"
-  winget:
-    id: Nilesoft.Shell
+  scoop:
+    app: extras/nilesoft-shell
     elevate: true
 
 - name: Node.js
@@ -283,23 +271,23 @@
 
 - name: PowerShell
   description: "Task automation and configuration management framework"
-  winget: Microsoft.PowerShell
+  scoop: main/pwsh
 
 - name: PowerToys
   description:
     "Set of utilities for power users to tune and streamline their Windows
     experience"
-  winget: Microsoft.PowerToys
+  scoop: extras/powertoys
 
 - name: Process Explorer
   description: "Advanced task manager and system monitor"
-  winget: Microsoft.Sysinternals.ProcessExplorer
+  scoop: sysinternals/process-explorer
 
 - name: Process Monitor
   description:
     "Real-time file system, Registry, and process/thread activity monitoring,
     like tracert"
-  winget: Microsoft.Sysinternals.ProcessMonitor
+  scoop: sysinternals/procmon
 
 - name: Protocol Buffers
   description: "Google's data interchange format"
@@ -313,18 +301,18 @@
 
 - name: qBittorrent
   description: "Free and open-source BitTorrent client"
-  winget: qBittorrent.qBittorrent
+  scoop: extras/qbittorrent
 
 - name: ripgrep
   description:
     "Line-oriented search tool that recursively searches your current directory
     for a regex pattern"
-  winget: BurntSushi.ripgrep.MSVC
+  scoop: main/ripgrep
   apt: ripgrep
 
 - name: Rufus
   description: "Create bootable USB drives"
-  winget: Rufus.Rufus
+  scoop: extras/rufus
 
 - name: Rustup
   description: "Toolchain installer for the Rust programming language"
@@ -335,11 +323,11 @@
 
 - name: ScreenToGif
   description: "Screen recording tool"
-  winget: NickeManarin.ScreenToGif
+  scoop: extras/screentogif
 
 - name: ShareX
   description: "Screen capture and file sharing application"
-  winget: ShareX.ShareX
+  scoop: extras/sharex
 
 - name: Signal
   description: "Private messenger application"
@@ -356,7 +344,7 @@
 
 - name: System Informer
   description: "Task manager replacement"
-  winget: WinsiderSS.SystemInformer
+  scoop: extras/systeminformer
 
 - name: Steam
   description: "Digital distribution platform for video games"
@@ -366,7 +354,7 @@
   description:
     "A tool for building, changing, and versioning infrastructure safely and
     efficiently."
-  winget: Hashicorp.Terraform
+  scoop: main/terraform
   apt: terraform
 
 - name: Total Registry
@@ -416,7 +404,7 @@
   description: "Source-code editor developed by Microsoft"
   winget:
     id: Microsoft.VisualStudioCode
-    interactive: true # to turn on context menu integration, skipped otherwise
+    interactive: true # to turn on context menu integration
 
 - name: Windows Terminal
   description: "Modern terminal application for Windows"
@@ -424,7 +412,7 @@
 
 - name: WizTree
   description: "Disk space analyzer"
-  winget: AntibodySoftware.WizTree
+  scoop: extras/wiztree
 
 - name: xz
   description: "File compression tool"

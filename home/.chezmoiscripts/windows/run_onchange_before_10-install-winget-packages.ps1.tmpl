@@ -25,29 +25,33 @@ if ($installedData.Sources) {
 }
 
 {{- $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
-{{- range $packages }}
-{{- if hasKey . "winget" }}
-{{- /* Create a dictionary to hold variables */ -}}
-{{- $vars := dict "id" "" "isElevated" false "isInteractive" false -}}
 
-{{- /* Normalize the winget config by updating the dictionary */ -}}
-{{- if kindIs "map" .winget -}}
-    {{- $_ := set $vars "id" .winget.id -}}
-    {{- if and (hasKey .winget "elevate") .winget.elevate }}{{ $_ := set $vars "isElevated" true }}{{ end -}}
-    {{- if and (hasKey .winget "interactive") .winget.interactive }}{{ $_ := set $vars "isInteractive" true }}{{ end -}}
-{{- else -}}
-    {{- $_ := set $vars "id" .winget -}}
-{{- end -}}
+{{- range $packages -}}
+    {{- if hasKey . "winget" }}
+        {{- $id := "" -}}
+        {{- $elevate := false -}}
+        {{- $interactive := false -}}
+        {{- if kindIs "map" .winget -}}
+            {{- $id = .winget.id -}}
+            {{- if and (hasKey .winget "elevate") .winget.elevate }}
+                {{ $elevate = true }}
+            {{ end -}}
+            {{- if and (hasKey .winget "interactive") .winget.interactive }}
+                {{ $interactive = true }}
+            {{ end -}}
+        {{- else -}}
+            {{- $id = .winget -}}
+        {{- end }}
 
-if ($installedPackageIds.Contains("{{ $vars.id }}")) {
-    Write-Host "Package '{{ $vars.id }}' is already installed. Skipping installation." -ForegroundColor Yellow
+if ($installedPackageIds.Contains("{{ $id }}")) {
+    Write-Host "Package '{{ $id }}' is already installed. Skipping installation." -ForegroundColor Yellow
 } else {
-    Write-Host "Installing package '{{ $vars.id }}'..."
-    {{ if $vars.isElevated }}sudo {{ end }}winget install --id '{{ $vars.id }}' --exact --accept-package-agreements --accept-source-agreements{{ if $vars.isInteractive }} --interactive{{ end }}
+    Write-Host "Installing package '{{ $id }}'..."
+    {{ if $elevate }}sudo {{ end }}winget install --id '{{ $id }}' --exact --accept-package-agreements --accept-source-agreements{{ if $interactive }} --interactive{{ end }}
 }
-
 Write-Host ""
-{{ end -}}
+
+    {{- end -}}
 {{- end }}
 
 # Clean up the temporary file

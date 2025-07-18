@@ -1,38 +1,38 @@
 # Reload Path to ensure scoop is available in the current session
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
-$scoopExecutable = Join-Path $env:USERPROFILE "scoop\shims\scoop.ps1"
+# needed for scoop buckets
+scoop install git
 
-Write-Host "Fetching list of currently installed Scoop packages..."
-try {
-    $installedScoopJson = & $scoopExecutable export | ConvertFrom-Json -ErrorAction Stop
-}
-catch {
-    Write-Error "Failed to get installed packages from Scoop. Error: $_"
-    return
-}
-
-$installedApps = if ($null -ne $installedScoopJson.apps) { $installedScoopJson.apps } else { @() }
-
-# Create a HashSet for fast, case-insensitive lookups of full 'bucket/package' identifiers.
-$installedFullNames = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::OrdinalIgnoreCase)
-
-# Populate the HashSet with data from the 'scoop export' command.
-foreach ($app in $installedApps) {
-    # Add the full 'bucket/name' identifier (e.g., "main/7zip")
-    [void]$installedFullNames.Add("$($app.Source)/$($app.Name)")
-}
+$currentBucketNames = (scoop bucket list).Name
+$currentApps = scoop list | ForEach-Object { "$($_.Source)/$($_.Name)" }
 
 # Install packages defined in the YAML file.
 {{- $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 
-{{- range $packages }}
-{{- if hasKey . "scoop" }}
-$packageName = '{{ .name }}'
-$scoopIdentifier = '{{ .scoop }}'
+{{- range $packages -}}
+    {{- if hasKey . "scoop" -}}
+        {{ $app := "" -}}
+        {{ $elevate := false -}}
+        {{- if kindIs "map" .scoop -}}
+            {{- $app = .scoop.app -}}
+            {{- if and (hasKey .scoop "elevate") .scoop.elevate -}}
+                {{- $elevate = true -}}
+            {{- end -}}
+        {{- else -}}
+            {{- $app = .scoop -}}
+        {{- end -}}
+        {{- $appParts := split "/" $app -}}
+        {{- $bucket := $appParts._0 -}}
+        {{- $name := $appParts._1 }}
 
-if (-not $installedFullNames.Contains($scoopIdentifier)) {
-    & $scoopExecutable install $scoopIdentifier
+if ($currentApps -contains "{{ $bucket }}/{{ $name }}") {
+    Write-Host "Package '{{ $bucket }}/{{ $name }}' is already installed. Skipping installation." -ForegroundColor Yellow
+} else {
+    if (-not $currentBucketNames -contains "{{ $bucket }}") {
+        scoop bucket add '{{ $bucket }}'
+    }
+    {{ if $elevate }}sudo {{ end }}scoop install '{{ $bucket }}/{{ $name }}'
 }
-{{- end -}}
+    {{- end -}}
 {{- end }}

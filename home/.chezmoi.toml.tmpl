@@ -27,6 +27,7 @@ encryption = "age"
     {{- end }}
     osid = "{{ $osid }}"
     {{ if eq .chezmoi.os "windows" -}}
+    scoopPath = "{{ joinPath .chezmoi.homeDir "scoop" | replace "\\" "/" }}"
     wingetLinksPath = "{{ joinPath .chezmoi.homeDir "AppData/Local/Microsoft/WinGet/Links/" | replace "\\" "/"}}"
     {{- end }}
 
