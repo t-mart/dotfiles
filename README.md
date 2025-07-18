@@ -52,6 +52,12 @@ state before the next test.
 
 For Linux, I use a simple docker container: `docker run -it --rm debian`
 
+## Features
+
+- Flexible package installation for many package managers
+- System setup for things like 1Password, shells, GPG keys, Windows registry,
+  Windows Developer Mode, etc.
+
 ## Thanks
 
 Thanks to [KapJI/dotfiles](https://github.com/KapJI/dotfiles) for inspiration

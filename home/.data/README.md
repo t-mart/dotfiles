@@ -17,37 +17,44 @@ chezmoi gpg-keys.txt --output home/.data/gpg-keys.txt.age
 See [key.txt.age](#keytxtage) for more details for the key to encrypt/decrypt
 this file.
 
-## `key.txt.age`
-
-age-encrypted file containing the age key used by chezmoi to encrypt/decrypt
-other files. This file is **passphrase encrypted** to protect the key itself.
-See 1Password for the passphrase.
-
-_While passphrase encrypting a private key file might seem like a strange
-recursion, the file allows us to not need to enter the passphrase every time we
-want to use the key._
-
-Created by the following:
-
-```nushell
-# first, create the key
-age-keygen -o home/.data/key.txt
-# take note of the public key in this file! it's used in the chezmoi config as the recipient.
-
-# then, passphrase encrypt it
-age -p -a home/.data/key.txt | save home/.data/key.txt.age
-# save the passphrase in a secure place, like 1Password!
-
-# then, delete the unencrypted key
-rm home/.data/key.txt
-```
-
-This is also documented in the
-[chezmoi documentation](https://www.chezmoi.io/user-guide/frequently-asked-questions/encryption/).
-
-After the `decrypt-private-key` script runs, the unencrypted key will be
-available at `$HOME/.config/chezmoi/key.txt`.
-
 ## `packages.yaml`
 
+These dotfiles have a flexible mechanism for installing many types of packages.
+
+Supported are:
+
+- `apt` - Debian/Ubuntu package manager
+- `winget` - Windows Package Manager
+- `scoop` - Windows package manager for portable software
+- `curl ... | sh` - Install via a shell script fetched with `curl`
+- `irm ... | iex` - Install via a PowerShell script fetched with `irm`
+- `cargo` - Rust package manager
+- `uv` - Python package manager
+
 See file for documentation.
+
+## `key.txt.age`
+
+Some of these dotfiles are encrypted with
+[`age`](https://github.com/FiloSottile/age).
+
+Chezmoi manages the encryption and decryption of these files, using a private
+key file in this repository. This private key itself is passphrase-encrypted
+(also with `age`). See 1Password for its value.
+
+This process is explained at the
+[chezmoi documentation](https://www.chezmoi.io/user-guide/frequently-asked-questions/encryption/).
+
+## `registry/`
+
+Windows registry files that are applied by chezmoi.
+
+## `nilesoft-shell/`
+
+Nilesoft Shell is a customizer for Windows' context menus. It is a _huge_
+quality-of-life improvement.
+
+Unfortunately, Shell's configuration is located in the directory into which it
+is installed (in Program Files), so chezmoi cannot manage it directly. We
+work-around this by creating a symlink into that directory that points to this
+directory.
