@@ -1,4 +1,4 @@
-# Hash: {{ output (joinPath .chezmoi.wingetLinksPath "dirhash.exe") (joinPath .chezmoi.sourceDir ".data/registry") "-quiet" "-nowait" }}
+# Hash: {{ output (joinPath .wingetLinksPath "dirhash.exe") (joinPath .chezmoi.sourceDir ".data/registry") "-quiet" "-nowait" }}
 
 $registryFiles = Join-Path $env:CHEZMOI_SOURCE_DIR ".data\registry" 
 Get-ChildItem -Path $registryFiles -Filter "*.reg" | ForEach-Object {
