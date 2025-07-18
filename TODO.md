@@ -1,3 +1,3 @@
 # TODO
 
-- [ ] make sure windows paths look good, we've commented them out for now
+- [x] all done for now! add more if needed to keep track of work
