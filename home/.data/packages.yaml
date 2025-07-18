@@ -232,6 +232,11 @@
   scoop: main/jq
   apt: jq
 
+- # Can't build MSVC rust stuff without this
+  name: Microsoft Visual Studio Build Tools 2022
+  description: "Build tools for Visual Studio 2022"
+  winget: Microsoft.VisualStudio.2022.BuildTools
+
 - name: mpv.net
   description: "Media player for Windows"
   winget: mpv.net
