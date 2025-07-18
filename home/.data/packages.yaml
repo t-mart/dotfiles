@@ -35,7 +35,8 @@
 #   portable configuration in its `persist/` directory, which is atypical).
 #
 # Use **scoop** if winget does not have the package or if it is not up to
-# date in winget.
+# date in winget. EDIT: updates with scoop are easier (just one command). I'm
+# undecided on this. Figure out on case-by-case basis.
 
 - name: 1Password
   description: "Desktop application for 1Password"
@@ -153,7 +154,8 @@
   cargo: fd-find
 
 - name: FFmpeg (Nightly)
-  description: "Multimedia framework for handling video, audio, and other multimedia files"
+  description:
+    "Multimedia framework for handling video, audio, and other multimedia files"
   scoop: versions/ffmpeg-nightly
   # brought in as an external on Linux
 
@@ -284,7 +286,9 @@
   winget: Microsoft.PowerShell
 
 - name: PowerToys
-  description: "Set of utilities for power users to tune and streamline their Windows experience"
+  description:
+    "Set of utilities for power users to tune and streamline their Windows
+    experience"
   winget: Microsoft.PowerToys
 
 - name: Process Explorer
@@ -292,7 +296,9 @@
   winget: Microsoft.Sysinternals.ProcessExplorer
 
 - name: Process Monitor
-  description: "Real-time file system, Registry, and process/thread activity monitoring, like tracert"
+  description:
+    "Real-time file system, Registry, and process/thread activity monitoring,
+    like tracert"
   winget: Microsoft.Sysinternals.ProcessMonitor
 
 - name: Protocol Buffers
@@ -310,7 +316,9 @@
   winget: qBittorrent.qBittorrent
 
 - name: ripgrep
-  description: "Line-oriented search tool that recursively searches your current directory for a regex pattern"
+  description:
+    "Line-oriented search tool that recursively searches your current directory
+    for a regex pattern"
   winget: BurntSushi.ripgrep.MSVC
   apt: ripgrep
 
@@ -355,7 +363,9 @@
   winget: Valve.Steam
 
 - name: Terraform
-  description: "A tool for building, changing, and versioning infrastructure safely and efficiently."
+  description:
+    "A tool for building, changing, and versioning infrastructure safely and
+    efficiently."
   winget: Hashicorp.Terraform
   apt: terraform
 
@@ -394,7 +404,8 @@
   winget: Microsoft.VCRedist.2013.x64
 
 - name: Visual C++ Redistributable 2015-2022
-  description: "Microsoft Visual C++ Redistributable for Visual Studio 2015-2022"
+  description:
+    "Microsoft Visual C++ Redistributable for Visual Studio 2015-2022"
   winget: Microsoft.VCRedist.2015+.x64
 
 - name: vivid
@@ -426,7 +437,8 @@
   apt: zip
 
 - name: yt-dlp
-  description: "Command-line program to download videos from YouTube and other sites"
+  description:
+    "Command-line program to download videos from YouTube and other sites"
   uv: yt-dlp
 
 - name: zoxide
