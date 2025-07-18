@@ -21,11 +21,25 @@ Run in `powershell.exe` (not pwsh):
 iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b ~/.local/bin -- init --apply t-mart"
 ```
 
-## Pull the latest changes from this repo and apply them
+## Common Tasks
 
-```bash
-chezmoi update
-```
+- Pull and apply changes from remote repo
+
+  ```bash
+  chezmoi update --init
+  ```
+
+- Apply changes from local repo
+
+  ```bash
+  chezmoi apply --init
+  ```
+
+- Add a new file to the repo
+
+  ```bash
+  chezmoi add ~/some/file
+  ```
 
 ## Testing
 
