@@ -1,0 +1,6 @@
+# Hash: {{ include (joinPath .scoopPath "persist/nilesoft-shell/shell.nss") | sha256sum }}
+
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+Write-Host "Registering Nilesoft Shell config file. Explorer will restart."
+sudo shell -register -treat -silent -restart

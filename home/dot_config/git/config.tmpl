@@ -82,5 +82,5 @@
 [core]
   sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 [gpg]
-  program = C:/Program Files (x86)/gnupg/bin/gpg.exe
+  program = {{ joinPath .scoopPath "apps/gpg/current/bin/gpg.exe" | replace "\\" "/" }}
 {{- end -}}

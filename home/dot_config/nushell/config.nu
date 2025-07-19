@@ -125,6 +125,7 @@ $env.FZF_CTRL_T_COMMAND = "fd --type file --hidden"
 $env.FZF_CTRL_T_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "
 $env.FZF_DEFAULT_COMMAND = "fd --type file --hidden"
 
+# Directories
 const alt_c = {
     name: fzf_dirs
     modifier: alt
@@ -142,28 +143,6 @@ const alt_c = {
     ]
 }
 
-# History
-const ctrl_r = {
-  name: history_menu
-  modifier: control
-  keycode: char_r
-  mode: [emacs, vi_insert, vi_normal]
-  event: [
-    {
-      send: executehostcommand
-      cmd: "
-        let result = history
-          | get command
-          | str replace --all (char newline) ' '
-          | to text
-          | fzf --preview 'printf \'{}\' | nufmt --stdin 2>&1 | rg -v ERROR';
-        commandline edit --append $result;
-        commandline set-cursor --end
-      "
-    }
-  ]
-}
-
 # Files
 const ctrl_t =  {
     name: fzf_files
@@ -174,6 +153,7 @@ const ctrl_t =  {
       {
         send: executehostcommand
         cmd: "
+          let cur_pos = commandline get-cursor;
           let fzf_ctrl_t_command = \$\"($env.FZF_CTRL_T_COMMAND) | fzf ($env.FZF_CTRL_T_OPTS)\";
           let result = nu -l -i -c $fzf_ctrl_t_command;
           commandline edit --append $result;
@@ -194,7 +174,6 @@ $env.config = {
   }
   keybindings: [
     # $alt_c
-    # $ctrl_r
     $ctrl_t
   ]
 }

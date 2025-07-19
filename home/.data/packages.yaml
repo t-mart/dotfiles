@@ -27,13 +27,14 @@
 #
 # ## Windows
 #
-# **winget** should be preferred over scoop for applications that:
-# - self-update (scoop is not aware of external update events and will still
-#   consider the application out of date),
-# - integrate with the system in particular ways (runtimes, etc), or
-# - scoop would install config files strangely.
+# Use **scoop** unless:
 #
-# Use **scoop** otherwise. Scoop is much easier for managing updates.
+# - the application self-updates. Scoop is not aware of external update events
+#   and will still consider the application out of date.
+# - the application integrates with the system in particular ways (runtimes, etc).
+# - a portable installation would have an inconvenient config location.
+#
+# Use **winget** otherwise. Scoop is much easier for managing updates.
 
 - name: 1Password
   description: "Desktop application for 1Password"
@@ -184,16 +185,18 @@
 
 - name: GnuPG
   description: "GNU Privacy Guard"
-  winget: GnuPG.GnuPG
+  scoop: main/gnupg
   apt: gnupg
 
 - name: gzip
   description: "GNU zip"
   scoop: main/gzip
 
-- name: HashCheck
-  description: "File hash tool for Windows properties window"
-  scoop: extras/hashcheck
+- name: OpenHashTab
+  description: "File hashing and checking shell extension"
+  scoop:
+    app: nonportable/openhashtab-np
+    elevate: true
 
 - name: hexyl
   description: "Hex viewer for the command line"

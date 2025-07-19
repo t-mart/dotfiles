@@ -29,6 +29,8 @@ encryption = "age"
     {{ if eq .chezmoi.os "windows" -}}
     scoopPath = "{{ joinPath .chezmoi.homeDir "scoop" | replace "\\" "/" }}"
     wingetLinksPath = "{{ joinPath .chezmoi.homeDir "AppData/Local/Microsoft/WinGet/Links/" | replace "\\" "/"}}"
+    {{- $hasHardwareFans := promptBoolOnce . "hasHardwareFans" "Does this machine have hardware fans" }}
+    hasHardwareFans = {{ $hasHardwareFans }}
     {{- end }}
 
 [gitHub]

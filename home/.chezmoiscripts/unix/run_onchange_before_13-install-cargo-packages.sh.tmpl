@@ -4,11 +4,16 @@ set -euo pipefail
 # Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
 
 export PATH="$HOME/.cargo/bin:$PATH"
-curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+# install binstall
+if ! command -v cargo-binstall &> /dev/null; then
+    echo "Installing cargo-binstall..."
+    curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+fi
 
 {{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
 {{- range $packages -}}
 {{- if hasKey . "cargo" -}}
-$HOME/.cargo/bin/cargo binstall --no-confirm --locked {{ index . "cargo" }}
+cargo binstall --no-confirm --locked {{ index . "cargo" }}
 {{ end -}}
 {{ end }}

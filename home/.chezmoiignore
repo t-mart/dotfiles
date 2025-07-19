@@ -6,6 +6,10 @@
 
 .chezmoiscripts/unix/**
 
+{{ if eq false .hasHardwareFans}}
+scoop/persist/fancontrol/
+{{ end }}
+
 {{ else }}
 
 # If not on windows, ignore these files...

@@ -13,7 +13,6 @@ fi
 
 # Change the current user's shell to nushell.
 # This will likely prompt for your password.
-echo "Changing default shell to nushell... (You may be prompted for your password.)"
+echo "Changing default shell to nushell..."
 chsh -s "$nu_path"
 
-echo "Shell successfully set to nushell."

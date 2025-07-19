@@ -27,7 +27,7 @@ with chezmoi because not all systems need it.
    FanControl executable at logon. (Startup folder method doesn't work.):
 
    - General:
-     - Name: FanControl
+     - Name: Start FanControl
      - Run whether user is logged on or not
      - Run with highest privileges
    - Triggers:

@@ -1,0 +1,20 @@
+# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
+
+# Reload Path
+$env:Path = @(
+    [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
+    [System.Environment]::GetEnvironmentVariable('Path', 'User')
+) -join ';'
+
+# install binstall
+if (-not (Get-Command cargo-binstall -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing cargo-binstall..."
+    Invoke-Expression (Invoke-WebRequest "https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.ps1").Content
+}
+
+{{ $packages := joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml -}}
+{{- range $packages -}}
+{{- if hasKey . "cargo" -}}
+cargo binstall --no-confirm --locked {{ index . "cargo" }}
+{{ end -}}
+{{ end }}

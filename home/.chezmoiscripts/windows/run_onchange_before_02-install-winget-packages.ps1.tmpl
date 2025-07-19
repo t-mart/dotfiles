@@ -1,5 +1,8 @@
 # Reload Path to ensure winget is available in the current session
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+$env:Path = @(
+    [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
+    [System.Environment]::GetEnvironmentVariable('Path', 'User')
+) -join ';'
 
 # update winget itself
 winget upgrade --id Microsoft.AppInstaller --exact --accept-source-agreements --accept-package-agreements
