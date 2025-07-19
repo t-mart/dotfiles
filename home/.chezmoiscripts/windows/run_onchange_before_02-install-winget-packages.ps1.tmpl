@@ -34,6 +34,7 @@ if ($installedData.Sources) {
         {{- $id := "" -}}
         {{- $elevate := false -}}
         {{- $interactive := false -}}
+        {{- $override := "" -}}
         {{- if kindIs "map" .winget -}}
             {{- $id = .winget.id -}}
             {{- if and (hasKey .winget "elevate") .winget.elevate }}
@@ -41,6 +42,9 @@ if ($installedData.Sources) {
             {{ end -}}
             {{- if and (hasKey .winget "interactive") .winget.interactive }}
                 {{ $interactive = true }}
+            {{ end -}}
+            {{- if hasKey .winget "override" }}
+                {{ $override = .winget.override -}}
             {{ end -}}
         {{- else -}}
             {{- $id = .winget -}}
@@ -50,7 +54,7 @@ if ($installedPackageIds.Contains("{{ $id }}")) {
     Write-Host "Package '{{ $id }}' is already installed. Skipping installation." -ForegroundColor Yellow
 } else {
     Write-Host "Installing package '{{ $id }}'..."
-    {{ if $elevate }}sudo {{ end }}winget install --id '{{ $id }}' --exact --accept-package-agreements --accept-source-agreements{{ if $interactive }} --interactive{{ end }}
+    {{ if $elevate }}sudo {{ end }}winget install --id '{{ $id }}' --exact --accept-package-agreements --accept-source-agreements{{ if $interactive }} --interactive{{ end }}{{ if $override }} --override '{{ $override }}'{{ end }}
 }
 Write-Host ""
 

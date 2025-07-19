@@ -79,6 +79,11 @@
                 "type": "boolean",
                 "description": "Whether to run the installer interactively.",
                 "default": false
+              },
+              "override": {
+                "type": "string",
+                "description": "Override arguments to be passed to the installer.",
+                "default": ""
               }
             },
             "required": [
