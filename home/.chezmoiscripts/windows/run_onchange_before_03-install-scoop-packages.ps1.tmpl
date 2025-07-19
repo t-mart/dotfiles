@@ -18,7 +18,7 @@ $env:Path = @(
 # needed for scoop buckets
 scoop install git
 
-$currentBucketNames = (scoop bucket list).Name
+$currentBucketNames = @((scoop bucket list).Name)
 $currentApps = scoop list | ForEach-Object { "$($_.Source)/$($_.Name)" }
 
 $packages = @"

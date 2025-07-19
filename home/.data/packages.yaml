@@ -230,6 +230,8 @@
   apt: jq
 
 - # needed for rust msvc toolchain
+  # see: https://github.com/rust-lang/rustup/issues/3358#issuecomment-2869757930
+  # might need more config
   name: Microsoft Visual Studio Build Tools 2022
   description: "Build tools for Visual Studio 2022"
   winget: Microsoft.VisualStudio.2022.BuildTools
