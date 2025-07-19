@@ -21,3 +21,5 @@ scoop
 .chezmoiscripts/windows/**
 
 {{ end }}
+
+dot_config/sharex
