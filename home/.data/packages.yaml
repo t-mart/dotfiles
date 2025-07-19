@@ -239,7 +239,7 @@
     override:
       "--add Microsoft.VisualStudio.Workload.VCTools --add
       Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add
-      Microsoft.VisualStudio.Component.Windows11SDK.26100 --quiet --wait
+      Microsoft.VisualStudio.Component.Windows11SDK.26100 --wait
       --norestart --nocache"
 
 - name: mpv.net
