@@ -372,10 +372,9 @@
   description: "Registry editor for Windows"
   scoop: extras/total-registry
 
-- name: tree
-  description: "Command-line tool to display directory structure"
-  winget: GnuWin32.Tree
-  apt: tree
+- name: rust_tree
+  description: "Rust tree command"
+  cargo: rust_tree
 
 - name: uv
   description: "An extremely fast Python package and project manager"
