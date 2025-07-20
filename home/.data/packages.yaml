@@ -88,10 +88,6 @@
   scoop: extras/carapace-bin
   apt: carapace-bin
 
-- name: Cascadia Code Nerd Font Mono
-  description: "Monospaced font with programming ligatures"
-  scoop: nerd-fonts/CascadiaCode-NF-Mono
-
 - name: containerd.io
   description: "Container runtime for managing containers"
   apt: containerd.io
@@ -220,9 +216,17 @@
   description: "Image viewer and editor"
   scoop: extras/irfanview
 
-- name: JetBrains Mono Nerd Font
-  description: "Monospaced font with programming ligatures"
+- name: JetBrains Mono Font
+  description: "A typeface for developers."
   scoop: nerd-fonts/JetBrains-Mono
+
+- name: JetBrains Mono Font - Nerd Font
+  description: "Nerd Fonts patched 'JetBrainsMono' Font family. (Normal version, Nerd Fonts Symbol/Icon could be 1 or 2 cell wide)"
+  scoop: nerd-fonts/JetBrainsMono-NF
+
+- name: JetBrains Mono Font - Mono Nerd Font
+  description: "Nerd Fonts patched 'JetBrainsMono' Font family. (Monospace version, Nerd Fonts Symbol/Icon will be always 1 cell wide)"
+  scoop: nerd-fonts/JetBrainsMono-NF-Mono
 
 - name: jq
   description: "Command-line JSON processor"
@@ -274,6 +278,14 @@
   description: "A new type of shell"
   scoop: main/nu
   apt: nushell
+
+- name: Oh My Posh
+  description: "A prompt theme engine for any shell."
+  winget: JanDeDobbeleer.OhMyPosh
+  curl-sh:
+    url: "https://ohmyposh.dev/install.sh"
+    shell: bash
+    flags: "-d ~/.local/bin"
 
 - name: pnpm
   description: "Fast, disk space efficient package manager for JavaScript"
@@ -347,11 +359,6 @@
 - name: SpeedCrunch
   description: "Advanced calculator"
   scoop: extras/speedcrunch
-
-- name: Starship
-  description: "Cross-shell prompt"
-  scoop: main/starship
-  curl-sh: "https://starship.rs/install.sh"
 
 - name: System Informer
   description: "Task manager replacement"

@@ -1,5 +1,7 @@
 # Nushell Config File
 
+source colors.nu
+
 use std *
 
 alias cz = chezmoi
@@ -11,6 +13,7 @@ $env.config.buffer_editor = "code"
 $env.EDITOR = "code"
 $env.VISUAL = "code"
 $env.PAGER = "bat"
+$env.MANPAGER = r#'sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman''#
 
 def --env add-path-if-exists [
   dir: string,
@@ -40,13 +43,13 @@ def 'quote-path' []: string -> string {
   }
 }
 
-add-path-if-exists ($nu.home-path | path join ".local" "bin")
-add-path-if-exists ($nu.home-path | path join ".local" "share" "bin")
+add-path-if-exists ($nu.home-path | path join ".local/bin")
+add-path-if-exists ($nu.home-path | path join ".local/share/bin")
 add-path-if-exists ($nu.home-path | path join "bin")
-add-path-if-exists ($nu.home-path | path join ".cargo" "bin")
-add-path-if-exists ($nu.home-path | path join "scoop" "shims")
-
-add-path-if-exists ($nu.home-path | path join ".deno" "bin")
+add-path-if-exists ($nu.home-path | path join ".cargo/bin")
+add-path-if-exists ($nu.home-path | path join "scoop/shims")
+add-path-if-exists ($env.LOCALAPPDATA | path join "Programs/oh-my-posh/bin")
+add-path-if-exists ($nu.home-path | path join ".deno/bin")
 
 let pnpm_home_path = "/root/.local/share/pnpm"
 if ($pnpm_home_path | path exists) {
@@ -65,10 +68,10 @@ mkdir $local_vendor_autoload_path
 
 # starship, a cross-shell prompt
 # https://starship.rs/
-$env.PROMPT_INDICATOR_VI_INSERT = $'(ansi green_bold)+(ansi reset) '
-$env.PROMPT_INDICATOR_VI_NORMAL = $'(ansi yellow_bold)Δ(ansi reset) '
-$env.PROMPT_MULTILINE_INDICATOR = $'(ansi grey)↵(ansi reset) '
-starship init nu | save --force ($local_vendor_autoload_path | path join "starship.nu")
+# $env.PROMPT_INDICATOR_VI_INSERT = $'(ansi green_bold)+(ansi reset) '
+# $env.PROMPT_INDICATOR_VI_NORMAL = $'(ansi yellow_bold)Δ(ansi reset) '
+# $env.PROMPT_MULTILINE_INDICATOR = $'(ansi grey)↵(ansi reset) '
+# starship init nu | save --force ($local_vendor_autoload_path | path join "starship.nu")
 
 # atuin, a shell history manager
 # https://atuin.sh/
@@ -132,8 +135,8 @@ let external_completer = {|spans|
   } | do $in $spans
 }
 
-# fzf stuff
-# https://github.com/junegunn/fzf/issues/4122#issuecomment-2607368316
+# fzf
+# https://github.com/junegunn/fzf
 #
 # this fzf config calls out to a few other programs, which we expect to be
 # installed from our chezmoi scripts:
@@ -145,21 +148,27 @@ let external_completer = {|spans|
 #   structure
 # - bat, a cat replacement with syntax highlighting, which we use to preview
 #   files
+#
+# Nushell reference: https://github.com/junegunn/fzf/issues/4122#issuecomment-2607368316
 
-$env.FZF_CD_CWD_COMMAND = "fd --type directory --hidden"
-$env.FZF_CD_ALL_COMMAND = if (on-windows) { 
+$env.FZF_DEFAULT_OPTS = "--style full"
+
+# fzf keybindings
+$env.KB_FZF_CD_CWD_COMMAND = "fd --type directory --hidden"
+$env.KB_FZF_CD_ALL_COMMAND = if (on-windows) { 
   "es folder:" # directories only
 } else {
   "fd --type directory --hidden . \$\"(pwd | path parse | get prefix)/\""
 }
-$env.FZF_CD_OPTS = "--preview 'tree --color --classify --level 3 {} | head -n 200'"
-$env.FZF_FIND_FILES_CWD_COMMAND = "fd --type file --hidden"
-$env.FZF_FIND_FILES_ALL_COMMAND = if (on-windows) { 
+$env.KB_FZF_CD_OPTS = "--preview 'tree --color --classify --level 3 {} | head -n 200'"
+$env.KB_FZF_FIND_FILES_CWD_COMMAND = "fd --type file --hidden"
+$env.KB_FZF_FIND_FILES_ALL_COMMAND = if (on-windows) { 
   "es"
 } else {
   "fd --hidden . \$\"(pwd | path parse | get prefix)/\""
 }
-$env.FZF_FIND_FILES_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "
+$env.KB_FZF_FIND_FILES_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "
+$env.KB_FZF_DEFAULT_OPTS = "--scheme=path"
 
 # cd to directories under current directory
 const fzf_cd_cwd_keybinding = {
@@ -171,7 +180,7 @@ const fzf_cd_cwd_keybinding = {
     {
       send: executehostcommand
       cmd: "
-        let fzf_cd_cwd_command = \$\"($env.FZF_CD_CWD_COMMAND) | fzf ($env.FZF_CD_OPTS)\";
+        let fzf_cd_cwd_command = \$\"($env.KB_FZF_CD_CWD_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_CD_OPTS)\";
         let result = nu -c $fzf_cd_cwd_command;
         cd $result;
       "
@@ -189,7 +198,7 @@ const fzf_cd_all_keybinding = {
     {
       send: executehostcommand
       cmd: "
-        let fzf_cd_all_command = \$\"($env.FZF_CD_ALL_COMMAND) | fzf ($env.FZF_CD_OPTS)\";
+        let fzf_cd_all_command = \$\"($env.KB_FZF_CD_ALL_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_CD_OPTS)\";
         let result = nu -c $fzf_cd_all_command;
         cd $result;
       "
@@ -207,7 +216,7 @@ const fzf_find_files_cwd_keybinding =  {
     {
       send: executehostcommand
       cmd: '
-        let fzf_find_files_cwd_command = $"($env.FZF_FIND_FILES_CWD_COMMAND) | fzf ($env.FZF_FIND_FILES_OPTS)";
+        let fzf_find_files_cwd_command = $"($env.KB_FZF_FIND_FILES_CWD_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_FIND_FILES_OPTS)";
         let result = nu -l -i -c $fzf_find_files_cwd_command;
         commandline edit --append ($result | quote-path);
         commandline set-cursor --end
@@ -226,7 +235,7 @@ const fzf_find_files_all_keybinding =  {
     {
       send: executehostcommand
       cmd: "
-        let fzf_find_files_all_command = \$\"($env.FZF_FIND_FILES_ALL_COMMAND) | fzf ($env.FZF_FIND_FILES_OPTS)\";
+        let fzf_find_files_all_command = \$\"($env.KB_FZF_FIND_FILES_ALL_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_FIND_FILES_OPTS)\";
         let result = nu -l -i -c $fzf_find_files_all_command;
         commandline edit --append ($result | quote-path);
         commandline set-cursor --end
@@ -236,8 +245,8 @@ const fzf_find_files_all_keybinding =  {
 }
 
 # Remind keybindings when starting Nushell
-if $env.SHLVL == "1" {
-  print -e $"Some keybindings. Turn this message off when you know them!
+if $env.SHLVL == 1 {
+  print $"Some keybindings. Turn this message off when you know them!
 
   (ansi green_bold)Ctrl+R(ansi reset) to search command history \(or just (ansi green_bold)Up(ansi reset)\) \((ansi purple_italic)atuin(ansi reset)\)
   (ansi green_bold)Alt+C(ansi reset)  to change directory to a directory under the current directory \((ansi purple_italic)fzf(ansi reset)\)
@@ -262,8 +271,80 @@ $env.config = {
     $fzf_find_files_cwd_keybinding,
     $fzf_find_files_all_keybinding
   ]
+  color_config: {
+    separator: white
+    leading_trailing_space_bg: { attr: n }
+    header: green_bold
+    empty: blue
+    bool: light_cyan
+    int: white
+    filesize: cyan
+    duration: white
+    datetime: purple
+    range: white
+    float: white
+    string: white
+    nothing: white
+    binary: white
+    cell-path: white
+    row_index: green_bold
+    record: white
+    list: white
+    closure: green_bold
+    glob:cyan_bold
+    block: white
+    hints: dark_gray
+    search_result: { bg: red fg: white }
+    shape_binary: purple_bold
+    shape_block: blue_bold
+    shape_bool: light_cyan
+    shape_closure: green_bold
+    shape_custom: green
+    shape_datetime: cyan_bold
+    shape_directory: cyan
+    shape_external: cyan
+    shape_externalarg: green_bold
+    shape_external_resolved: light_yellow_bold
+    shape_filepath: cyan
+    shape_flag: blue_bold
+    shape_float: purple_bold
+    shape_glob_interpolation: cyan_bold
+    shape_globpattern: cyan_bold
+    shape_int: purple_bold
+    shape_internalcall: cyan_bold
+    shape_keyword: cyan_bold
+    shape_list: cyan_bold
+    shape_literal: blue
+    shape_match_pattern: green
+    shape_matching_brackets: { attr: u }
+    shape_nothing: light_cyan
+    shape_operator: yellow
+    shape_pipe: purple_bold
+    shape_range: yellow_bold
+    shape_record: cyan_bold
+    shape_redirection: purple_bold
+    shape_signature: green_bold
+    shape_string: green
+    shape_string_interpolation: cyan_bold
+    shape_table: blue_bold
+    shape_variable: purple
+    shape_vardecl: purple
+    shape_raw_string: light_purple
+    shape_garbage: {
+        fg: white
+        bg: red
+        attr: b
+    }
+  }
 }
 
 # LS_COLORS of the [ayu](https://github.com/ayu-theme) theme generated by 
 # [vivid](https://github.com/sharkdp/vivid)
 $env.LS_COLORS = ^vivid generate ayu
+
+# this is supposed to be done last (might not matter)
+
+$env.PROMPT_INDICATOR_VI_INSERT = $'(ansi green_bold)+(ansi reset) '
+$env.PROMPT_INDICATOR_VI_NORMAL = $'(ansi yellow_bold)Δ(ansi reset) '
+$env.PROMPT_MULTILINE_INDICATOR = $'(ansi grey)↵(ansi reset) '
+oh-my-posh init nu --config $"($nu.home-path | path join ".config/oh-my-posh.yaml")"

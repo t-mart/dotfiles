@@ -1,0 +1,124 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+upgrade:
+  source: cdn
+  interval: 168h
+  auto: false
+  notice: true
+
+console_title_template: "{{ .Folder }}"
+
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - type: session
+        style: powerline
+        foreground: p:fg0
+        background: p:neutral_aqua
+        leading_powerline_symbol: 
+        template:
+          "<b>{{ .UserName }}@{{ .HostName }}</b>{{ if .Root }}  {{ end }} "
+        background_templates:
+          - "{{ if .Root }}p:bright_red{{ end }}"
+
+      - type: os
+        template: " {{.Icon}} "
+        foreground: "#ffffff"
+        background: "#3A3A3A"
+        powerline_symbol: 
+        style: powerline
+        properties:
+          windows: "win"
+          linux: "linux"
+          macos: "mac"
+
+      - type: path
+        properties:
+          style: full
+        template: " {{ .Path }} "
+        foreground: "#282828"
+        powerline_symbol: 
+        background: "#458588"
+        style: powerline
+
+      - type: git
+        properties:
+          branch_icon: " "
+          branch_identical_icon: ●
+          branch_template: "{{ trunc 25 .Branch }}"
+          fetch_stash_count: true
+          fetch_status: true
+        template:
+          " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if
+          .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and
+          (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if
+          .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt
+          .StashCount 0 }}  {{ .StashCount }}{{ end }} "
+        foreground: "#282828"
+        powerline_symbol: 
+        background: "#98971A"
+        style: powerline
+        background_templates:
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}"
+          - "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}"
+          - "{{ if gt .Ahead 0 }}#B388FF{{ end }}"
+          - "{{ if gt .Behind 0 }}#B388FF{{ end }}"
+
+      - type: status
+        template:
+          " {{ if .Error }}{{ .Error }}{{ else }}{{ .ExitCode }}{{ end }} "
+        foreground: "#282828"
+        powerline_symbol: 
+        background: "#FB4934"
+        style: powerline
+        properties:
+          always_enabled: true
+
+      - type: executiontime
+        style: powerline
+        powerline_symbol: 
+        foreground: "#ffffff"
+        background: "#8800dd"
+        template: " {{ .FormattedMs }} "
+        properties:
+          style: austin
+          always_enabled: true
+
+# Gruvbox color palette
+palette:
+  bg0: "#282828"
+  bg1: "#3c3836"
+  bg2: "#504945"
+  bg3: "#665c54"
+  bg4: "#7c6f64"
+  fg0: "#fbf1c7"
+  fg1: "#ebdbb2"
+  fg2: "#d5c4a1"
+  fg3: "#bdae93"
+  fg4: "#a89984"
+  gray: "#928374"
+  bright_red: "#fb4934"
+  bright_green: "#b8bb26"
+  bright_yellow: "#fabd2f"
+  bright_blue: "#83a598"
+  bright_purple: "#d3869b"
+  bright_aqua: "#8ec07c"
+  bright_orange: "#fe8019"
+  neutral_red: "#cc241d"
+  neutral_green: "#98971a"
+  neutral_yellow: "#d79921"
+  neutral_blue: "#458588"
+  neutral_purple: "#b16286"
+  neutral_aqua: "#689d6a"
+  neutral_orange: "#d65d0e"
+  faded_red: "#9d0006"
+  faded_green: "#79740e"
+  faded_yellow: "#b57614"
+  faded_blue: "#076678"
+  faded_purple: "#8f3f71"
+  faded_aqua: "#427b58"
+  faded_orange: "#af3a03"
+
+version: 3
+final_space: true
