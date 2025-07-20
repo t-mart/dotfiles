@@ -383,6 +383,10 @@
   description: "Rust tree command"
   cargo: rust_tree
 
+- name: uutils
+  description: "Rust implementation of GNU coreutils (binaries compiled with MSVC)"
+  scoop: main/uutils-coreutils
+
 - name: uv
   description: "An extremely fast Python package and project manager"
   irm-iex: "https://astral.sh/uv/install.ps1"
