@@ -351,18 +351,15 @@ $env.config = {
   }
 }
 
+$env.PROMPT_INDICATOR_VI_INSERT = [
+  $"(ansi {fg: (tw lime 500)})(ansi reset)"
+  $"(ansi {bg: (tw lime 500) fg: (tw slate 900)}) 󰏫 (ansi reset)"
+  $"(ansi {fg: (tw lime 500)})(ansi reset) "
+] | str join
+$env.PROMPT_INDICATOR_VI_NORMAL = [
+  $"(ansi {fg: (tw neutral 500)})(ansi reset)"
+  $"(ansi {bg: (tw neutral 500) fg: (tw slate 900)}) 󰆾 (ansi reset)"
+  $"(ansi {fg: (tw neutral 500)})(ansi reset) "
+] | str join
 # this is supposed to be done last (might not matter)
-
-let _insert_color = {
-  bg: (tw lime 500)
-  fg: (gruvbox bg0)
-}
-let _normal_color = {
-  bg: (tw neutral 500)
-  fg: (gruvbox bg0)
-}
-
-
-$env.PROMPT_INDICATOR_VI_INSERT = $"(ansi $_insert_color) 󰏫 (ansi reset) "
-$env.PROMPT_INDICATOR_VI_NORMAL = $"(ansi $_normal_color) 󰆾 (ansi reset) "
 oh-my-posh init nu --config $"($nu.home-path | path join ".config/oh-my-posh.yaml")"

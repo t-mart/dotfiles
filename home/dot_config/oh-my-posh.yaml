@@ -18,20 +18,22 @@ blocks:
       - type: status
         style: powerline
         powerline_symbol: 
-        foreground: p:slate_100
+        foreground: p:slate_900
         background: p:green_500
+        foreground_templates:
+          - "{{ if .Error }}p:slate_100{{ end }}"
         background_templates:
           - "{{ if .Error }}p:red_500{{ end }}"
         template:
-          " {{ if eq .Code 0 }}{{ else }} {{ .Code }} {{ lower (reason .Code) }}{{ end
-          }} "
+          " {{ if eq .Code 0 }}{{ else }} {{ .Code }} {{ lower (reason .Code)
+          }}{{ end }} "
         properties:
           always_enabled: true
 
       - type: executiontime
         style: powerline
         powerline_symbol: 
-        foreground: p:slate_100
+        foreground: p:slate_900
         background: p:violet_500
         template: " {{ .FormattedMs }} "
         properties:
@@ -49,8 +51,8 @@ blocks:
         background_templates:
           - "{{ if .Root }}p:red_500{{ end }}"
         template:
-          " {{ .UserName }}@{{ .HostName }} <i>{{ .Segments.os.Icon }}</i>{{ if .Root
-          }}  {{ end }} "
+          " {{ .UserName }}@{{ .HostName }} <i>{{ .Segments.os.Icon }}</i>{{ if
+          .Root }}  {{ end }} "
 
       - # just informational for session segment
         alias: os
@@ -76,7 +78,7 @@ blocks:
       - type: git
         style: powerline
         powerline_symbol: 
-        foreground: p:slate_100
+        foreground: p:slate_900
         background: p:emerald_500
         background_templates:
           - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow_500{{ end
@@ -102,7 +104,7 @@ blocks:
       - type: time
         style: powerline
         background: p:zinc_500
-        foreground: p:slate_100
+        foreground: p:slate_900
         powerline_symbol: 
         template: " {{ .CurrentDate | date .Format }} "
         properties:
