@@ -11,7 +11,7 @@ export SHELL=bash
 {{- range $packages -}}
 {{- if hasKey . "curl-sh" -}}
 {{- /* Create a dictionary to hold the normalized command values */ -}}
-{{- $vars := dict "url" "" "shell" "sh" -}}
+{{- $vars := dict "url" "" "shell" "sh" "flags" "" -}}
 {{- $cmdConfig := index . "curl-sh" -}}
 
 {{- /* Check if the config is a map (object) or a simple string */ -}}
