@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-gpg --import <<EOF
+gpg --import --batch --yes <<EOF
 {{ joinPath .chezmoi.sourceDir ".data/gpg-keys.txt.age" | include | decrypt }}
 EOF
 
