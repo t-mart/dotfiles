@@ -257,24 +257,6 @@ if $env.SHLVL == 1 {
   (ansi green_bold)Alt+M(ansi reset)  to insert a file from anywhere \((ansi purple_italic)fzf(ansi reset)\)
   "
   }
-  
-let _green_bold = { fg: (tw green 500) attr: b }
-let _green = { fg: (tw green 500) }
-let _blue = { fg: (tw blue 500) }
-let _blue_bold = { fg: (tw blue 500) attr: b }
-let _light_cyan = { fg: (tw cyan 300) }
-let _cyan = { fg: (tw cyan 500) }
-let _cyan_bold = { fg: (tw cyan 500) attr: b }
-let _purple = { fg: (tw purple 500) }
-let _purple_bold = { fg: (tw purple 500) attr: b }
-let _light_purple = { fg: (tw purple 300) }
-let _yellow = { fg: (tw yellow 500) }
-let _yellow_bold = { fg: (tw yellow 500) attr: b }
-let _light_yellow_bold = { fg: (tw yellow 200) attr: b }
-let _dark_gray = { fg: dark_gray }
-let _search_result = { bg: (tw red 500) fg: (gruvbox fg0) }
-let _garbage = { fg: (gruvbox fg0) bg: (tw red 500) attr: b }
-let _white = { fg: (gruvbox fg0) }
 
 $env.config = {
   show_banner: false
@@ -310,7 +292,7 @@ $env.config = {
     search_result: { fg: (tw amber 500), bg: (tw zinc 800), attr: b },
     empty: { fg: (tw zinc 500) },
 
-    # Data Types
+    # data types (i think these are values output from nushell commands)
     bool: { fg: (tw violet 500) },
     int: { fg: (tw violet 500) },
     filesize: { fg: (tw violet 500) },
@@ -328,7 +310,7 @@ $env.config = {
     block: { fg: (gruvbox fg0) },
     closure: { fg: (tw rose 500), attr: b },
 
-    # Syntax Shapes (the building blocks of commands)
+    # shapes (i think these are used in the line editor) 
     shape_garbage: { fg: (gruvbox fg0), bg: (tw red 500), attr: b },
     shape_binary: { fg: (tw violet 500) },
     shape_block: { fg: (gruvbox fg0) },
