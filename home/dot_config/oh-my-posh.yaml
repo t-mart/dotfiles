@@ -20,10 +20,12 @@ blocks:
         powerline_symbol: 
         foreground: p:bg0
         background: p:green_500
+        foreground_templates:
+          - "{{ if .Error }}p:slate_100{{ end }}"
         background_templates:
           - "{{ if .Error }}p:red_500{{ end }}"
         template:
-          " {{ if eq .Code 0 }}\uf00c{{ else }}\uf071 {{ reason .Code }}{{ end
+          " {{ if eq .Code 0 }}{{ else }} {{ .Code }} {{ lower (reason .Code) }}{{ end
           }} "
         properties:
           always_enabled: true
@@ -61,8 +63,6 @@ blocks:
           windows: ""
           linux: ""
           macos: ""
-
-  # \uf044 =
 
   - type: prompt
     alignment: left
