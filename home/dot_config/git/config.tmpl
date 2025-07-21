@@ -1,7 +1,7 @@
 [user]
   name = Tim Martin
   email = tim@timmart.in
-  signingkey = 19A52622B91D5DE3
+	signingKey = 19A52622B91D5DE3
 
 [color]
   ui = auto
@@ -75,14 +75,20 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
-  
+
+[gpg]
+  format = gpg
+
 {{- if eq .chezmoi.os "windows" -}}
 [credential]
 	helper = manager
+
 [core]
   sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
+
 [gpg]
   program = {{ joinPath .scoopPath "apps/gnupg/current/bin/gpg.exe" | replace "\\" "/" }}
+
 [credential "helperselector"]
   selected = wincred
 {{- end -}}
