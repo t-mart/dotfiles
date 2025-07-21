@@ -75,19 +75,14 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 
-[gpg]
-  format = gpg
-
-{{- if eq .chezmoi.os "windows" -}}
+{{ if eq .chezmoi.os "windows" -}}
 [credential]
-	helper = manager
+  # avoid annoying "CredentialHelperSelector" prompt from git-for-windows for HTTPS remotes
+  helper = !{{ joinPath .scoopPath "apps/git/current/mingw64/bin/git-credential-manager.exe" | replace "\\" "/" }}
 
 [core]
   sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
 [gpg]
   program = {{ joinPath .scoopPath "apps/gnupg/current/bin/gpg.exe" | replace "\\" "/" }}
-
-[credential "helperselector"]
-  selected = wincred
-{{- end -}}
+{{- end }}
