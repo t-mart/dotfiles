@@ -63,6 +63,7 @@ blocks:
           windows: ""
           linux: ""
           macos: ""
+          display_distro_name: false
 
   - type: prompt
     alignment: left
