@@ -354,14 +354,16 @@ $env.config = {
   }
 }
 
+# here, we create our own oh-my-posh block. we can't do this in omp directly
+# because i don't think nushell exposes it. its also "interactive"
 $env.PROMPT_INDICATOR_VI_INSERT = [
   $"(ansi {fg: (tw lime 500)})(ansi reset)"
-  $"(ansi {bg: (tw lime 500) fg: (tw slate 900)}) 󰏫 (ansi reset)"
+  $"(ansi {bg: (tw lime 500) fg: (gruvbox bg0)}) 󰏫 (ansi reset)"
   $"(ansi {fg: (tw lime 500)})(ansi reset) "
 ] | str join
 $env.PROMPT_INDICATOR_VI_NORMAL = [
   $"(ansi {fg: (tw neutral 500)})(ansi reset)"
-  $"(ansi {bg: (tw neutral 500) fg: (tw slate 900)}) 󰆾 (ansi reset)"
+  $"(ansi {bg: (tw neutral 500) fg: (gruvbox bg0)}) 󰆾 (ansi reset)"
   $"(ansi {fg: (tw neutral 500)})(ansi reset) "
 ] | str join
 # this is supposed to be done last (might not matter)

@@ -18,10 +18,10 @@ blocks:
       - type: status
         style: powerline
         powerline_symbol: 
-        foreground: p:slate_900
+        foreground: p:bg0
         background: p:green_500
         foreground_templates:
-          - "{{ if .Error }}p:slate_100{{ end }}"
+          - "{{ if .Error }}p:fg0{{ end }}"
         background_templates:
           - "{{ if .Error }}p:red_500{{ end }}"
         template:
@@ -33,7 +33,7 @@ blocks:
       - type: executiontime
         style: powerline
         powerline_symbol: 
-        foreground: p:slate_900
+        foreground: p:bg0
         background: p:violet_500
         template: " {{ .FormattedMs }} "
         properties:
@@ -46,7 +46,7 @@ blocks:
       - type: session
         style: powerline
         powerline_symbol: 
-        foreground: p:slate_100
+        foreground: p:fg0
         background: p:blue_500
         background_templates:
           - "{{ if .Root }}p:red_500{{ end }}"
@@ -78,7 +78,7 @@ blocks:
       - type: git
         style: powerline
         powerline_symbol: 
-        foreground: p:slate_900
+        foreground: p:bg0
         background: p:emerald_500
         background_templates:
           - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow_500{{ end
@@ -104,7 +104,7 @@ blocks:
       - type: time
         style: powerline
         background: p:zinc_500
-        foreground: p:slate_900
+        foreground: p:bg0
         powerline_symbol: 
         template: " {{ .CurrentDate | date .Format }} "
         properties:
@@ -119,7 +119,7 @@ blocks:
           style: full
         template: ' {{ .Path | replace "\\" "/"  }} '
         background: p:slate_500
-        foreground: p:slate_100
+        foreground: p:fg0
         style: powerline
         powerline_symbol: 
 
