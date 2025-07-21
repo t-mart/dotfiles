@@ -22,7 +22,7 @@ if [ -f /etc/shells ]; then
 fi
 
 if [ -z "$USER" ]; then
-  echo "Error: \$USER environment variable is not set. Cannot determine current user." >&2
+  echo "Error: \$USER environment variable is not set. Cannot determine user for whom to change the shell." >&2
   exit 1
 fi
 
