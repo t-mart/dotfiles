@@ -301,65 +301,70 @@ $env.config = {
     }
   ]
   color_config: {
-    separator: $_white
-    leading_trailing_space_bg: { attr: n }
-    header: $_green_bold
-    empty: $_blue
-    bool: $_light_cyan
-    int: $_white
-    filesize: $_cyan
-    duration: $_white
-    datetime: $_purple
-    range: $_white
-    float: $_white
-    string: $_white
-    nothing: $_white
-    binary: $_white
-    cell-path: $_white
-    row_index: $_green_bold
-    record: $_white
-    list: $_white
-    closure: $_green_bold
-    glob: $_cyan_bold
-    block: $_white
-    hints: $_dark_gray
-    search_result: $_search_result
-    shape_binary: $_purple_bold
-    shape_block: $_blue_bold
-    shape_bool: $_light_cyan
-    shape_closure: $_green_bold
-    shape_custom: $_green
-    shape_datetime: $_cyan_bold
-    shape_directory: $_cyan
-    shape_external: $_cyan
-    shape_externalarg: $_green_bold
-    shape_external_resolved: $_light_yellow_bold
-    shape_filepath: $_cyan
-    shape_flag: $_blue_bold
-    shape_float: $_purple_bold
-    shape_glob_interpolation: $_cyan_bold
-    shape_globpattern: $_cyan_bold
-    shape_int: $_purple_bold
-    shape_internalcall: $_cyan_bold
-    shape_keyword: $_cyan_bold
-    shape_list: $_cyan_bold
-    shape_literal: $_blue
-    shape_match_pattern: $_green
-    shape_matching_brackets: { attr: u }
-    shape_nothing: $_light_cyan
-    shape_operator: $_yellow
-    shape_pipe: $_purple_bold
-    shape_range: $_yellow_bold
-    shape_record: $_cyan_bold
-    shape_redirection: $_purple_bold
-    shape_signature: $_green_bold
-    shape_string: $_green
-    shape_string_interpolation: $_cyan_bold
-    shape_table: $_blue_bold
-    shape_variable: $_purple
-    shape_vardecl: $_purple
-    shape_raw_string: $_light_purple
-    shape_garbage: $_garbage
+    # General UI Elements
+    separator: { fg: (tw zinc 700) },
+    leading_trailing_space_bg: { attr: n },
+    header: { fg: (tw cyan 500), attr: b },
+    row_index: { fg: (tw zinc 500), attr: b },
+    hints: { fg: (tw zinc 600) },
+    search_result: { fg: (tw amber 500), bg: (tw zinc 800), attr: b },
+    empty: { fg: (tw zinc 500) },
+
+    # Data Types
+    bool: { fg: (tw violet 500) },
+    int: { fg: (tw violet 500) },
+    filesize: { fg: (tw violet 500) },
+    duration: { fg: (tw violet 500) },
+    datetime: { fg: (tw violet 500) },
+    range: { fg: (tw amber 500) },
+    float: { fg: (tw violet 500) },
+    string: { fg: (tw lime 500) },
+    glob: { fg: (tw lime 500) },
+    nothing: { fg: (tw violet 500) },
+    binary: { fg: (gruvbox fg0) },
+    cell-path: { fg: (gruvbox fg0) },
+    record: { fg: (gruvbox fg0) },
+    list: { fg: (gruvbox fg0) },
+    block: { fg: (gruvbox fg0) },
+    closure: { fg: (tw rose 500), attr: b },
+
+    # Syntax Shapes (the building blocks of commands)
+    shape_garbage: { fg: (gruvbox fg0), bg: (tw red 500), attr: b },
+    shape_binary: { fg: (tw violet 500) },
+    shape_block: { fg: (gruvbox fg0) },
+    shape_bool: { fg: (tw violet 500) },
+    shape_closure: { fg: (tw rose 500), attr: b },
+    shape_custom: { fg: (tw amber 500) },
+    shape_datetime: { fg: (tw violet 500) },
+    shape_directory: { fg: (tw lime 500) },
+    shape_external: { fg: (tw cyan 400) },
+    shape_externalarg: { fg: (tw cyan 500), attr: b },
+    shape_external_resolved: { fg: (tw amber 500), attr: b },
+    shape_filepath: { fg: (tw lime 500) },
+    shape_flag: { fg: (tw cyan 500) },
+    shape_float: { fg: (tw violet 500) },
+    shape_glob_interpolation: { fg: (tw amber 500) },
+    shape_globpattern: { fg: (tw lime 500) },
+    shape_int: { fg: (tw violet 500) },
+    shape_internalcall: { fg: (tw cyan 500), attr: b },
+    shape_keyword: { fg: (tw rose 500), attr: b },
+    shape_list: { fg: (gruvbox fg0) },
+    shape_literal: { fg: (tw violet 500) },
+    shape_match_pattern: { fg: (tw lime 500) },
+    shape_matching_brackets: { attr: u },
+    shape_nothing: { fg: (tw violet 500) },
+    shape_operator: { fg: (gruvbox fg0) },
+    shape_pipe: { fg: (tw violet 500), attr: b },
+    shape_range: { fg: (tw amber 500) },
+    shape_record: { fg: (gruvbox fg0) },
+    shape_redirection: { fg: (tw violet 500), attr: b },
+    shape_signature: { fg: (tw cyan 500), attr: b },
+    shape_string: { fg: (tw lime 500) },
+    shape_string_interpolation: { fg: (tw amber 500) },
+    shape_table: { fg: (gruvbox fg0) },
+    shape_variable: { fg: (tw orange 500) },
+    shape_vardecl: { fg: (tw orange 500) },
+    shape_raw_string: { fg: (tw lime 500) }
   }
 }
 
