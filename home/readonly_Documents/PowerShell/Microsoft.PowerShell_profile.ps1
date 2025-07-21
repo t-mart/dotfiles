@@ -1,1 +1,1 @@
-Invoke-Expression (&starship init powershell)
+oh-my-posh init pwsh | Invoke-Expression
