@@ -1,0 +1,9 @@
+[window]
+dimensions = { columns = 120, lines = 30 }
+padding = { x = 10, y = 10 }
+
+[font]
+normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Regular" }
+
+[terminal]
+shell = "nu"
