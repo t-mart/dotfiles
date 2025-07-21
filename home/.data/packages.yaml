@@ -435,9 +435,9 @@
   description: "Disk space analyzer"
   scoop: extras/wiztree
 
-- name: wormhole
+- name: Magic Wormhole
   description: "get things from one computer to another, safely "
-  uv: wormhole
+  uv: magic-wormhole
 
 - name: xz
   description: "File compression tool"
