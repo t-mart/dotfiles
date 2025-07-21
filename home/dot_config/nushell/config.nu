@@ -52,7 +52,7 @@ add-path-if-exists ($nu.home-path | path join ".local/share/bin")
 add-path-if-exists ($nu.home-path | path join "bin")
 add-path-if-exists ($nu.home-path | path join ".cargo/bin")
 add-path-if-exists ($nu.home-path | path join "scoop/shims")
-add-path-if-exists ($env.LOCALAPPDATA | path join "Programs/oh-my-posh/bin")
+add-path-if-exists (($env | get -i LOCALAPPDATA | default "/not-windows") | path join "Programs/oh-my-posh/bin")
 add-path-if-exists ($nu.home-path | path join ".deno/bin")
 
 let pnpm_home_path = "/root/.local/share/pnpm"
