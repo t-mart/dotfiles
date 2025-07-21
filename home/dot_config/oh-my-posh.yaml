@@ -18,10 +18,8 @@ blocks:
       - type: status
         style: powerline
         powerline_symbol: 
-        foreground: p:bg0
+        foreground: p:slate_100
         background: p:green_500
-        foreground_templates:
-          - "{{ if .Error }}p:slate_100{{ end }}"
         background_templates:
           - "{{ if .Error }}p:red_500{{ end }}"
         template:
@@ -33,7 +31,7 @@ blocks:
       - type: executiontime
         style: powerline
         powerline_symbol: 
-        foreground: p:bg0
+        foreground: p:slate_100
         background: p:violet_500
         template: " {{ .FormattedMs }} "
         properties:
@@ -46,12 +44,12 @@ blocks:
       - type: session
         style: powerline
         powerline_symbol: 
-        foreground: p:bg0
+        foreground: p:slate_100
         background: p:blue_500
         background_templates:
           - "{{ if .Root }}p:red_500{{ end }}"
         template:
-          " {{ .UserName }}@{{ .HostName }} {{ .Segments.os.Icon }}{{ if .Root
+          " {{ .UserName }}@{{ .HostName }} <i>{{ .Segments.os.Icon }}</i>{{ if .Root
           }}  {{ end }} "
 
       - # just informational for session segment
@@ -60,10 +58,17 @@ blocks:
         style: plain
         template: " " # must be space
         properties:
-          windows: ""
-          linux: ""
-          macos: ""
-          display_distro_name: true
+          # text is clear, don't use icons. this isn't the full list of OSes
+          # that oh-my-posh can output, but its the ones I likely use
+          windows: "win"
+          linux: "lin"
+          macos: "mac"
+          debian: "deb"
+          ubuntu: "ubu"
+          arch: "arc"
+          fedora: "fed"
+          alpine: "alp"
+          raspbian: "raspb"
 
   - type: prompt
     alignment: left
@@ -71,7 +76,7 @@ blocks:
       - type: git
         style: powerline
         powerline_symbol: 
-        foreground: p:bg0
+        foreground: p:slate_100
         background: p:emerald_500
         background_templates:
           - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:yellow_500{{ end
