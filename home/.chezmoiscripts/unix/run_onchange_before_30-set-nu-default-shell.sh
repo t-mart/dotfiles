@@ -11,6 +11,12 @@ if [ -f /etc/shells ]; then
   grep -qxF "$nu_path" /etc/shells || echo "$nu_path" | $ELEVATE_PREFIX tee -a /etc/shells >/dev/null
 fi
 
+# If the current shell is already nushell, exit early. check with $SHELL
+if [ "$SHELL" = "$nu_path" ]; then
+  exit 0
+fi
+
+
 # Change the current user's shell to nushell.
 # This will likely prompt for your password.
 echo "Changing default shell to nushell..."
