@@ -96,7 +96,7 @@ blocks:
       - type: time
         style: powerline
         background: p:zinc_500
-        foreground: p:bg0
+        foreground: p:slate_100
         powerline_symbol: 
         template: " {{ .CurrentDate | date .Format }} "
         properties:
@@ -111,7 +111,7 @@ blocks:
           style: full
         template: ' {{ .Path | replace "\\" "/"  }} '
         background: p:slate_500
-        foreground: p:bg0
+        foreground: p:slate_100
         style: powerline
         powerline_symbol: 
 
