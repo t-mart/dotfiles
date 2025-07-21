@@ -83,4 +83,6 @@
   sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 [gpg]
   program = {{ joinPath .scoopPath "apps/gnupg/current/bin/gpg.exe" | replace "\\" "/" }}
+[credential "helperselector"]
+  selected = wincred
 {{- end -}}
