@@ -33,6 +33,4 @@ if [ "$current_shell" != "$NU_PATH" ]; then
   echo "Changing default shell for user '$USER' to '$NU_PATH'..." >&2
   chsh -s "$NU_PATH"
   echo "Shell changed! Log out and back in for the change to take effect." >&2
-else
-  echo "Default shell for user '$USER' is already set to '$NU_PATH'. No changes made." >&2
 fi
