@@ -249,15 +249,18 @@ const fzf_find_files_all_keybinding =  {
 
 # Remind keybindings when starting Nushell
 if $env.SHLVL == 1 {
+  def key [name] { $"(ansi green_bold)($name)(ansi reset)" }
+  def from [name] { $"\((ansi purple_italic)($name)(ansi reset)\)" }
+
   print $"Some keybindings. Turn this message off when you know them!
   
-  (ansi green_bold)Ctrl+R(ansi reset) to search command history \(or just (ansi green_bold)Up(ansi reset)\) \((ansi purple_italic)atuin(ansi reset)\)
-  (ansi green_bold)Alt+C(ansi reset)  to change directory to a directory under the current directory \((ansi purple_italic)fzf(ansi reset)\)
-  (ansi green_bold)Alt+V(ansi reset)  to change directory to a directory anywhere \((ansi purple_italic)fzf(ansi reset)\)
-  (ansi green_bold)Alt+N(ansi reset)  to insert a file from the current directory \((ansi purple_italic)fzf(ansi reset)\)
-  (ansi green_bold)Alt+M(ansi reset)  to insert a file from anywhere \((ansi purple_italic)fzf(ansi reset)\)
+  (key "Ctrl+R") or (key "Up") to search command history (from atuin)
+  (key "Alt+C") to change directory to a directory under the current directory (from fzf)
+  (key "Alt+V") to change directory to a directory anywhere (from fzf)
+  (key "Alt+N") to insert a file from the current directory (from fzf)
+  (key "Alt+M") to insert a file from anywhere (from fzf)
   "
-  }
+}
 
 $env.config = {
   show_banner: false
