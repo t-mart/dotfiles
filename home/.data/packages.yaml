@@ -104,7 +104,9 @@
 - name: Deno
   description: "JavaScript and TypeScript runtime"
   winget: DenoLand.Deno
-  curl-sh: "https://deno.land/install.sh"
+  curl-sh:
+    url: "https://deno.land/install.sh"
+    flags: "--yes"
 
 - name: Docker Buildx Plugin
   description: "Docker Buildx CLI plugin"
