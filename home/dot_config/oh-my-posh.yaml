@@ -8,7 +8,7 @@ upgrade:
 
 console_title_template: "{{ .Folder }}"
 
-#    
+# Copy-pasteable triangles:    
 
 blocks:
   - type: prompt
@@ -24,9 +24,14 @@ blocks:
           - "{{ if .Error }}p:fg0{{ end }}"
         background_templates:
           - "{{ if .Error }}p:bright_red{{ end }}"
-        template:
-          " {{ if eq .Code 0 }}{{ else }} {{ .Code }} {{ lower (reason .Code)
-          }}{{ end }} "
+        template: |
+          {{- " " -}}
+          {{ if eq .Code 0 -}}
+            
+          {{- else -}}
+             {{ .Code }} {{ lower (reason .Code) }}
+          {{- end -}}
+          {{- " " -}}
         properties:
           always_enabled: true
 
@@ -48,11 +53,13 @@ blocks:
         powerline_symbol: 
         foreground: p:bg0
         background: p:neutral_blue
+        foreground_templates:
+          - "{{ if .Root }}p:fg0{{ end }}"
         background_templates:
           - "{{ if .Root }}p:neutral_red{{ end }}"
-        template:
-          " <b>{{ .UserName }}</b>@<b>{{ .HostName }}</b> <i>{{ .Segments.os.Icon }}</i>{{ if
-          .Root }}  {{ end }} "
+        template: |
+          {{- " " -}}<b>{{ .UserName }}</b>@<b>{{ .HostName }}</b> <i>{{ .Segments.os.Icon }}</i>
+          {{- if .Root }} {{ end -}}{{- " " -}}
 
       - # just informational for session segment
         alias: os
@@ -84,7 +91,8 @@ blocks:
           - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:neutral_yellow{{ end }}"
           - "{{ if or (gt .Ahead 0) (gt .Behind 0) }}p:neutral_purple{{ end }}"
         template: |
-          {{- " " }}{{ .UpstreamIcon }}{{ .HEAD -}}
+          {{- " " -}}
+          {{ .UpstreamIcon }}{{ .HEAD -}}
           {{- if .BranchStatus }} {{ .BranchStatus }}{{ end -}}
           {{- if .Working.Changed }} {{ .Working.String }}{{ end -}}
           {{- if .Staging.Changed }} {{ .Staging.String }}{{ end -}}
