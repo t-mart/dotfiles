@@ -89,7 +89,7 @@ blocks:
         background: p:neutral_green
         background_templates:
           - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:neutral_yellow{{ end }}"
-          - "{{ if or (gt .Ahead 0) (gt .Behind 0) }}p:neutral_purple{{ end }}"
+          - "{{ if or (gt .Ahead 0) (gt .Behind 0) }}p:bright_purple{{ end }}"
         template: |
           {{- " " -}}
           {{ .UpstreamIcon }}{{ .HEAD -}}
