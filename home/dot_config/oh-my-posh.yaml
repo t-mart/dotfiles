@@ -61,7 +61,7 @@ blocks:
           {{- " " -}}<b>{{ .UserName }}</b>@<b>{{ .HostName }}</b> <i>{{ .Segments.os.Icon }}</i>
           {{- if .Root }} {{ end -}}{{- " " -}}
 
-      - # just informational for session segment
+      - # renders nothing, but needed for import by session segment
         alias: os
         type: os
         style: plain
