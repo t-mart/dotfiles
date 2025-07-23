@@ -42,9 +42,8 @@ echo "Downloading and extracting FFmpeg binaries..."
 # tar options:
 #  -x: Extract files.
 #  -J: Use the xz decompression utility.
-#  -v: Verbose output, lists the files being extracted.
 #  -f -: Read the archive from standard input (the pipe from curl).
 #  -C "$TARGET_DIR": Change to the target directory before extracting.
 #  --strip-components=2: Remove the top 2 directory levels from the path.
 #                        (e.g., "ffmpeg-master-latest-linux64-gpl/bin/ffmpeg" -> "ffmpeg")
-curl -SLf "$FFMPEG_URL" | tar -xJv -C "$TARGET_DIR" --strip-components=2 "${FILES_TO_EXTRACT[@]}"
+curl -SLf "$FFMPEG_URL" | tar -xJ -C "$TARGET_DIR" --strip-components 2 "${FILES_TO_EXTRACT[@]}"
