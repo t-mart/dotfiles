@@ -3,6 +3,11 @@ set -euo pipefail
 
 # Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
 
+# This _could_ be a chezmoi external, but because an external downloads
+# the file each time chezmoi applies and because this file is over 100MB,
+# then it really slows down apply without printing progress. Therefore,
+# we use this script.
+
 readonly ARCH_SUFFIX="
 {{- if and (eq .chezmoi.os "linux") (eq .chezmoi.arch "amd64") -}}
     64
