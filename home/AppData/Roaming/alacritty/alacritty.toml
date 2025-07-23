@@ -4,6 +4,13 @@ padding = { x = 10, y = 10 }
 
 [font]
 normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Regular" }
+offset = { x = 1, y = 0 }
 
 [terminal]
 shell = "nu"
+
+[mouse]
+    bindings = [
+        { mouse = "Right", action = "Copy" },
+        { mouse = "Right", action = "ClearSelection" },
+    ]
