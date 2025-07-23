@@ -6,7 +6,7 @@ upgrade:
   auto: false
   notice: true
 
-console_title_template: "{{ .Folder }}"
+console_title_template: "{{.UserName}}@{{.HostName}} {{.Shell}} in {{.PWD}}"
 
 # Copy-pasteable triangles:    
 
