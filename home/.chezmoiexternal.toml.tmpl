@@ -13,37 +13,3 @@
     refreshPeriod = "168h"
     executable = true
 {{ end }}
-
-{{- if eq .chezmoi.os "linux" }}
-{{- if or (eq .chezmoi.arch "amd64") (eq .chezmoi.arch "arm64") -}}
-
-{{- $ffmpegSuffix := "arm64" -}}
-{{- if eq .chezmoi.arch "amd64" -}}
-    {{- $ffmpegSuffix = "64" -}}
-{{- end -}}
-
-[".local/bin/ffmpeg"]
-    type = "archive-file"
-    url = "https://github.com/BtbN/FFmpeg-Builds/releases/latest/download/ffmpeg-master-latest-linux{{ $ffmpegSuffix }}-gpl.tar.xz"
-    path = "bin/ffmpeg"
-    refreshPeriod = "168h"
-    stripComponents = 1
-    executable = true
-
-[".local/bin/ffprobe"]
-    type = "archive-file"
-    url = "https://github.com/BtbN/FFmpeg-Builds/releases/latest/download/ffmpeg-master-latest-linux{{ $ffmpegSuffix }}-gpl.tar.xz"
-    path = "bin/ffprobe"
-    refreshPeriod = "168h"
-    stripComponents = 1
-    executable = true
-
-[".local/bin/ffplay"]
-    type = "archive-file"
-    url = "https://github.com/BtbN/FFmpeg-Builds/releases/latest/download/ffmpeg-master-latest-linux{{ $ffmpegSuffix }}-gpl.tar.xz"
-    path = "bin/ffplay"
-    refreshPeriod = "168h"
-    stripComponents = 1
-    executable = true
-{{ end }}
-{{ end }}

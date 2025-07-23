@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
+
+readonly ARCH_SUFFIX="
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.arch "amd64") -}}
+    64
+{{- else if and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64") -}}
+    arm64
+{{- else -}}
+    false
+{{- end -}}
+"
+
+# If the architecture is not supported, exit early.
+if [ "$ARCH_SUFFIX" = "false" ]; then
+    exit 0
+fi
+
+readonly FFMPEG_URL="https://github.com/BtbN/FFmpeg-Builds/releases/latest/download/ffmpeg-master-latest-linux${ARCH_SUFFIX}-gpl.tar.xz"
+
+readonly TARGET_DIR="$HOME/.local/bin"
+mkdir -p "$TARGET_DIR"
+
+readonly FILES_TO_EXTRACT=(
+  "ffmpeg-master-latest-linux${ARCH_SUFFIX}-gpl/bin/ffmpeg"
+  "ffmpeg-master-latest-linux${ARCH_SUFFIX}-gpl/bin/ffplay"
+  "ffmpeg-master-latest-linux${ARCH_SUFFIX}-gpl/bin/ffprobe"
+)
+
+# --- Main Logic ---
+echo "Downloading and extracting FFmpeg binaries..."
+
+# Use curl to download the archive and pipe it directly to tar for extraction.
+#
+# curl options:
+#  -L: Follow any redirects to get the final file.
+#  -S: Show an error message if it fails.
+#  -f: Fail on server errors (HTTP 4xx and 5xx).
+#
+# tar options:
+#  -x: Extract files.
+#  -J: Use the xz decompression utility.
+#  -v: Verbose output, lists the files being extracted.
+#  -f -: Read the archive from standard input (the pipe from curl).
+#  -C "$TARGET_DIR": Change to the target directory before extracting.
+#  --strip-components=2: Remove the top 2 directory levels from the path.
+#                        (e.g., "ffmpeg-master-latest-linux64-gpl/bin/ffmpeg" -> "ffmpeg")
+curl -SLf "$FFMPEG_URL" | tar -xJv -C "$TARGET_DIR" --strip-components=2 "${FILES_TO_EXTRACT[@]}"
