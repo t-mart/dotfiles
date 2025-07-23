@@ -160,14 +160,14 @@ $env.KB_FZF_CD_CWD_COMMAND = "fd --type directory --hidden"
 $env.KB_FZF_CD_ALL_COMMAND = if (on-windows) { 
   "es folder:" # directories only
 } else {
-  "fd --type directory --hidden . \$\"(pwd | path parse | get prefix)/\""
+  "fd --type directory --hidden . /"
 }
 $env.KB_FZF_CD_OPTS = "--preview 'tree --color --classify --level 3 {} | head -n 200'"
 $env.KB_FZF_FIND_FILES_CWD_COMMAND = "fd --type file --hidden"
 $env.KB_FZF_FIND_FILES_ALL_COMMAND = if (on-windows) { 
   "es"
 } else {
-  "fd --hidden . \$\"(pwd | path parse | get prefix)/\""
+  "fd --hidden . /"
 }
 $env.KB_FZF_FIND_FILES_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "
 $env.KB_FZF_DEFAULT_OPTS = "--scheme=path"
