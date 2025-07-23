@@ -37,6 +37,7 @@
             {
                 "face": "JetBrainsMonoNL Nerd Font Mono"
             },
+            "intenseTextStyle": "bold",
             "startingDirectory": "%USERPROFILE%",
             "useAcrylic": false
         },

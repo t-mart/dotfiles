@@ -80,6 +80,9 @@
   # avoid annoying "CredentialHelperSelector" prompt from git-for-windows for HTTPS remotes
   helper = !{{ joinPath .scoopPath "apps/git/current/mingw64/bin/git-credential-manager.exe" | replace "\\" "/" }}
 
+[credential "helperselector"]
+	selected = wincred
+
 [core]
   sshCommand = C:/Windows/System32/OpenSSH/ssh.exe
 
