@@ -134,7 +134,7 @@ export def main [] {
     shape_external_resolved: { fg: (gruvbox bright_blue), attr: i }
 
     # shape_externalarg: Arguments to an external command (whether resolved or not)
-    shape_externalarg: { fg: (gruvbox neutral_orange), attr: i }
+    shape_externalarg: { fg: (gruvbox bright_orange), attr: i }
 
     # shape_match_pattern: The matching pattern for each arm in a match expression. Does not
     # include the guard expression (if present).
@@ -158,7 +158,7 @@ export def main [] {
 
     # shape_flag: Flags and switches to internal and custom-commands. Only the `--flag` (`-f`) portion
     # is styled. The argument to a flag will be styled using its own shape.
-    shape_flag: { fg: (gruvbox neutral_orange), attr: i }
+    shape_flag: { fg: (gruvbox bright_orange), attr: i }
 
     # color.config.<type>
     # *Values* of a particular *type* can be styled differently than the *shape*.
