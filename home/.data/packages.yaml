@@ -55,6 +55,10 @@
   scoop: extras/age
   apt: age
 
+- name: Alacritty
+  description: "A fast, cross-platform, OpenGL terminal emulator"
+  scoop: extras/alacritty
+
 - name: Atuin
   description: "Command-line history manager"
   cargo: atuin
@@ -288,6 +292,10 @@
     url: "https://ohmyposh.dev/install.sh"
     shell: bash
     flags: "-d ~/.local/bin"
+
+- name: PeaZip
+  description: "free file archiver utility"
+  scoop: extras/peazip
 
 - name: pnpm
   description: "Fast, disk space efficient package manager for JavaScript"
