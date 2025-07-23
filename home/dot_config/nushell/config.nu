@@ -31,15 +31,11 @@ def --env add-path-if-exists [
 }
 
 def 'is-installed' [ app: string ] {
-  ((which $app | length) > 0)
+  (which $app | length) > 0
 }
 
 def 'on-windows' []: nothing -> bool {
-  if (version | get build_os | str starts-with "windows") {
-    true
-  } else {
-    false
-  }
+  version | get build_os | str starts-with "windows"
 }
 
 def 'quote-path' []: string -> string {
