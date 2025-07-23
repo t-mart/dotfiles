@@ -310,14 +310,14 @@ const gruvbox = {
   "bg2": "#504945",
   "bg3": "#665c54",
   "bg4": "#7c6f64",
-  
-  "fg0": "#fbf1c7",
-  "fg1": "#ebdbb2",
-  "fg2": "#d5c4a1",
-  "fg3": "#bdae93",
-  "fg4": "#a89984",
-  
+
   "gray": "#928374",
+  
+  "fg4": "#a89984",
+  "fg3": "#bdae93",
+  "fg2": "#d5c4a1",
+  "fg1": "#ebdbb2",
+  "fg0": "#fbf1c7",
 
   "bright_red": "#fb4934",
   "bright_green": "#b8bb26",
