@@ -92,6 +92,10 @@
   scoop: extras/carapace-bin
   apt: carapace-bin
 
+- name: cargo-update
+  description: "A cargo subcommand for checking and applying updates to installed executables"
+  cargo: cargo-update
+
 - name: containerd.io
   description: "Container runtime for managing containers"
   apt: containerd.io
@@ -389,7 +393,8 @@
   description: "Registry editor for Windows"
   scoop: extras/total-registry
 
-- name: rust_tree
+- # provides a portable tree command all platforms we support
+  name: rust_tree
   description: "Rust tree command"
   cargo: rust_tree
 
