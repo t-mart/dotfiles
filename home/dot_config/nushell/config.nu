@@ -51,7 +51,7 @@ add-path-if-exists ($nu.home-path | path join ".local/share/bin")
 add-path-if-exists ($nu.home-path | path join "bin")
 add-path-if-exists ($nu.home-path | path join ".cargo/bin")
 add-path-if-exists ($nu.home-path | path join "scoop/shims")
-add-path-if-exists (($env | get -i LOCALAPPDATA | default "/not-windows") | path join "Programs/oh-my-posh/bin")
+add-path-if-exists (($env | get --optional LOCALAPPDATA | default "/not-windows") | path join "Programs/oh-my-posh/bin")
 add-path-if-exists ($nu.home-path | path join ".deno/bin")
 
 let pnpm_home_path = "/root/.local/share/pnpm"
@@ -97,7 +97,7 @@ $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 # let fish_completer = ...
 let carapace_completer = {|spans: list<string>|
   # if the current command is an alias, get it's expansion
-  let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+  let expanded_alias = (scope aliases | where name == $spans.0 | get --optional 0 | get --optional expansion)
 
   # overwrite
   let spans = (if $expanded_alias != null  {
@@ -116,7 +116,7 @@ let carapace_completer = {|spans: list<string>|
 let external_completer = {|spans|
   let expanded_alias = scope aliases
   | where name == $spans.0
-  | get -i 0.expansion
+  | get --optional 0.expansion
 
   let spans = if $expanded_alias != null {
     $spans
