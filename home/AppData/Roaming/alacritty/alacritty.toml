@@ -15,6 +15,9 @@ bindings = [
     { mouse = "Right", action = "ClearSelection" },
 ]
 
+[keyboard]
+bindings = [{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }]
+
 [cursor.style]
 shape = "Block"
 blinking = "On"
