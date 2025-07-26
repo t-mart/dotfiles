@@ -442,6 +442,10 @@
     id: Microsoft.VisualStudioCode
     interactive: true # to turn on context menu integration
 
+- name: WezTerm
+  description: "WezTerm is a powerful cross-platform terminal emulator"
+  scoop: versions/wezterm-nightly
+
 - name: Windows Terminal
   description: "Modern terminal application for Windows"
   winget: Microsoft.WindowsTerminal
