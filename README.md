@@ -11,7 +11,6 @@ Managed with [chezmoi](https://www.chezmoi.io/).
 ### Unix
 
 ```bash
-# apt update; apt install -y curl
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin init --apply t-mart
 ```
 
@@ -28,7 +27,7 @@ iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b ~/.local/bin -- init --apply t-ma
 - Pull and apply changes from remote repo
 
   ```bash
-  chezmoi update --init
+  chezmoi update --init --apply
   ```
 
 - Apply changes from local repo
@@ -52,7 +51,7 @@ For Windows, I use
 with a Windows 11 VM. Importantly, I use a snapshot to revert the VM to a clean
 state before the next test.
 
-For Linux, I use a simple docker container: `docker run -it --rm debian`
+For Linux, use the Dockerfiles in the `tests/` directory.
 
 ## Features
 

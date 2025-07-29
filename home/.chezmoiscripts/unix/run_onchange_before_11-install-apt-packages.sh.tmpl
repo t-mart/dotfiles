@@ -1,8 +1,21 @@
-{{ if has .osid (list "linux-debian" "linux-ubuntu") -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
 # Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
+
+ENABLED="
+{{- if has .osid (list "linux-debian" "linux-ubuntu") -}}
+    true
+{{- else -}}
+    false
+{{- end -}}
+"
+readonly ENABLED
+
+# If not ubuntu/debian, exit early.
+if [ "$ENABLED" = "false" ]; then
+    exit 0
+fi
 
 # Install packages
 {{ $apt_packages := list -}}
@@ -13,9 +26,5 @@ set -euo pipefail
     {{ end -}}
 {{ end -}}
 
-
-readonly ELEVATE_PREFIX=$([ "$EUID" -ne 0 ] && echo "sudo")
-
-$ELEVATE_PREFIX apt update
-$ELEVATE_PREFIX apt install -y {{ $apt_packages | join " " }}
-{{ end -}}
+sudo apt update
+sudo apt install -y {{ $apt_packages | join " " }}

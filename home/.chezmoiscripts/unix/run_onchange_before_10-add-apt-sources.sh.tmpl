@@ -1,12 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-{{ if has .osid (list "linux-debian" "linux-ubuntu") -}}
+readonly ENABLED="
+{{- if has .osid (list "linux-debian" "linux-ubuntu") -}}
+    true
+{{- else -}}
+    false
+{{- end -}}
+"
 
-readonly ELEVATE_PREFIX=$([ "$EUID" -ne 0 ] && echo "sudo")
+# If not ubuntu/debian, exit early.
+if [ "$ENABLED" = "false" ]; then
+    exit 0
+fi
 
-$ELEVATE_PREFIX apt update
-$ELEVATE_PREFIX apt install -y curl ca-certificates gnupg apt-transport-https
+sudo apt update
+sudo apt install -y curl ca-certificates gnupg apt-transport-https
 
 log() {
   echo "--- $1" >&2
@@ -19,10 +28,10 @@ add_apt_key() {
   local url="$1"
   local keyring_path="$2"
   log "Adding APT key from $url"
-  $ELEVATE_PREFIX mkdir -p "$(dirname "$keyring_path")"
-  curl -fsSL "$url" | $ELEVATE_PREFIX gpg --batch --yes --dearmor --output "$keyring_path"
+  sudo mkdir -p "$(dirname "$keyring_path")"
+  curl -fsSL "$url" | sudo gpg --batch --yes --dearmor --output "$keyring_path"
   # Set correct permissions so APT can read the key
-  $ELEVATE_PREFIX chmod a+r "$keyring_path"
+  sudo chmod a+r "$keyring_path"
 }
 
 # Add an APT repository source file.
@@ -32,22 +41,25 @@ add_apt_source() {
   local repo_entry="$1"
   local list_file="$2"
   log "Adding APT source to /etc/apt/sources.list.d/$list_file"
-  echo "$repo_entry" | $ELEVATE_PREFIX tee "/etc/apt/sources.list.d/$list_file"
+  echo "$repo_entry" | sudo tee "/etc/apt/sources.list.d/$list_file"
 }
 
 # like "debian" or "ubuntu"
-readonly OSID="$(. /etc/os-release && echo "$ID")"
+OSID="$(. /etc/os-release && echo "$ID")"
+readonly OSID
 # like "bookworm" or "noble"
-readonly VERSION_CODENAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+VERSION_CODENAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+readonly VERSION_CODENAME
 # like "amd64"
-readonly ARCH="$(dpkg --print-architecture)"
+ARCH="$(dpkg --print-architecture)"
+readonly ARCH
 
 # for 1Password
 add_apt_key "https://downloads.1password.com/linux/keys/1password.asc" "/usr/share/keyrings/1password-archive-keyring.gpg"
 add_apt_source "deb [arch=$ARCH signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$ARCH stable main" "1password.list"
-$ELEVATE_PREFIX mkdir -p /etc/debsig/policies/AC2D62742012EA22
+sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22
 curl -fsSL https://downloads.1password.com/linux/debian/debsig/1password.pol | \
-  $ELEVATE_PREFIX tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+  sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
 add_apt_key "https://downloads.1password.com/linux/keys/1password.asc" "/usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg"
 
 # for carapace-bin
@@ -67,7 +79,7 @@ add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/githubcli-archive-ke
 
 # for node (from nodesource)
 curl -fsSL https://deb.nodesource.com/setup_current.x | \
-  $ELEVATE_PREFIX $([ "$EUID" -ne 0 ] && echo "-E") bash -
+  sudo "$([ "$EUID" -ne 0 ] && echo "-E")" bash -
 
 # for nushell
 add_apt_key "https://apt.fury.io/nushell/gpg.key" "/etc/apt/keyrings/fury-nushell.gpg"
@@ -84,5 +96,3 @@ add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/hashicorp.gpg] https
 # for vscode-insiders
 add_apt_key "https://packages.microsoft.com/keys/microsoft.asc" "/etc/apt/keyrings/packages.microsoft.gpg"
 add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" "vscode.list"
-
-{{end -}}

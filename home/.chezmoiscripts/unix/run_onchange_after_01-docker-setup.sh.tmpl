@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-{{ if has .osid (list "linux-debian" "linux-ubuntu") -}}
+ENABLED="
+{{- if has .osid (list "linux-debian" "linux-ubuntu") -}}
+    true
+{{- else -}}
+    false
+{{- end -}}
+"
+readonly ENABLED
 
-readonly ELEVATE_PREFIX=$([ "$EUID" -ne 0 ] && echo "sudo")
+# If not ubuntu/debian, exit early.
+if [ "$ENABLED" = "false" ]; then
+    exit 0
+fi
 
-$ELEVATE_PREFIX groupadd -f docker || true
-$ELEVATE_PREFIX usermod -aG docker "$(whoami)"
+sudo groupadd -f docker || true
+sudo usermod -aG docker "$(whoami)"
 
-$ELEVATE_PREFIX systemctl enable docker.service
-$ELEVATE_PREFIX systemctl enable containerd.service
-
-{{ end -}}
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service

@@ -16,7 +16,10 @@ $env:Path = @(
 ) -join ';'
 
 # needed for scoop buckets
-scoop install git
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Host "git not found, installing..."
+    scoop install git
+}
 
 $currentBucketNames = @((scoop bucket list).Name)
 $currentApps = scoop list | ForEach-Object { "$($_.Source)/$($_.Name)" }

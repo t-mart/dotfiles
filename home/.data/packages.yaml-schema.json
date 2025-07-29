@@ -125,6 +125,44 @@
           }
         ]
       },
+      "archlinux": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "The name of the package to be installed on Arch Linux (official or AUR)."
+          },
+          {
+            "type": "object",
+            "description": "Configuration for an archlinux installation.",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the package to be installed on Arch Linux (official or AUR)."
+              },
+              "gpg-key-id": {
+                "type": "string",
+                "description": "The GPG key ID (fingerprint) to import from a keyserver for package verification. This is used to fetch the key from a public keyserver like keys.openpgp.org. Use this OR gpg-key-url, but not both."
+              },
+              "gpg-key-url": {
+                "type": "string",
+                "description": "A direct URL to the GPG public key file (e.g., a .asc or .gpg file). This is used when the key is hosted directly and not on a keyserver. Use this OR gpg-key-id, but not both.",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "not": {
+              "description": "Cannot specify both a GPG key ID and a GPG key URL.",
+              "required": [
+                "gpg-key-id",
+                "gpg-key-url"
+              ]
+            },
+            "additionalProperties": false
+          }
+        ]
+      },
       "cargo": {
         "type": "string",
         "description": "The crate name to be installed via 'cargo install'."
@@ -205,6 +243,11 @@
       {
         "required": [
           "irm-iex"
+        ]
+      },
+      {
+        "required": [
+          "archlinux"
         ]
       }
     ],

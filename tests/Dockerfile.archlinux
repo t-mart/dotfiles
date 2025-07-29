@@ -1,0 +1,25 @@
+# Start from the official Arch Linux base image
+FROM archlinux:latest
+
+# Set a non-interactive frontend for pacman
+ENV PACKAGER="pacman"
+
+# Update package database and install sudo
+RUN pacman -Syu --noconfirm && \
+    pacman -S --noconfirm sudo
+
+# Create a new user 'tim' and add them to the 'wheel' group for sudo access
+RUN useradd -m -G wheel tim
+
+# Set the password for 'tim' non-interactively.
+RUN echo 'tim:1234' | chpasswd
+
+# Allow users in the 'wheel' group to use sudo without a password prompt
+RUN echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+# Switch the context to the new user
+USER tim
+WORKDIR /home/tim
+
+# Set the default command to a bash shell
+CMD ["/bin/bash"]

@@ -1,5 +1,4 @@
-
-{{- if ne .chezmoi.os "windows" }}
+{{- if has .osid (list "linux-debian" "linux-ubuntu") -}}
 [".local/bin/fzf"]
     type = "archive-file"
     url = {{ gitHubLatestReleaseAssetURL "junegunn/fzf" (printf "fzf-*-%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
