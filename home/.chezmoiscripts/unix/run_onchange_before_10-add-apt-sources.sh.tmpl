@@ -79,7 +79,7 @@ add_apt_source "deb [arch=$ARCH signed-by=/etc/apt/keyrings/githubcli-archive-ke
 
 # for node (from nodesource)
 curl -fsSL https://deb.nodesource.com/setup_current.x | \
-  sudo "$([ "$EUID" -ne 0 ] && echo "-E")" bash -
+  sudo -E bash -
 
 # for nushell
 add_apt_key "https://apt.fury.io/nushell/gpg.key" "/etc/apt/keyrings/fury-nushell.gpg"

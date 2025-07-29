@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
-
 ENABLED="
 {{- if eq .osid "linux-arch" -}}
     true
