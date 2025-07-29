@@ -2,7 +2,8 @@
 set -euo pipefail
 
 # the path we expect from installation (this is correct for debian, ubuntu, and arch)
-readonly NU_PATH="/usr/bin/nu"
+NU_PATH="/usr/bin/nu"
+readonly NU_PATH
 
 # Check if Nushell is installed ${NU_PATH} and is executable
 if [ ! -x "$NU_PATH" ]; then
@@ -19,17 +20,19 @@ if [ -f /etc/shells ]; then
   fi
 fi
 
-if [ -z "$USER" ]; then
-  echo "Error: \$USER environment variable is not set. Cannot determine user for whom to change the shell." >&2
+USERNAME="$(id -un)"
+
+if [ -z "$USERNAME" ]; then
+  echo "Error: Could not determine current username." >&2
   exit 1
 fi
 
-CURRENT_SHELL="$(getent passwd "$USER" | cut --delimiter=: --fields=7)"
+CURRENT_SHELL="$(getent passwd "$USERNAME" | cut --delimiter=: --fields=7)"
 readonly CURRENT_SHELL
 
 # If the user's shell is not $NU_PATH, run 'chsh'.
 if [ "$CURRENT_SHELL" != "$NU_PATH" ]; then
-  echo "Changing default shell for user '$USER' to '$NU_PATH'..." >&2
+  echo "Changing default shell for user '$USERNAME' to '$NU_PATH'..." >&2
   chsh -s "$NU_PATH"
   echo "Shell changed! Log out and back in for the change to take effect." >&2
 fi
