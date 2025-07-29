@@ -405,13 +405,16 @@
   description: "Create bootable USB drives"
   scoop: extras/rufus
 
+- name: Rust
+  description: "Systems programming language focused on safety, speed and concurrency"
+  archlinux: rust
+
 - name: Rustup
   description: "The Rust toolchain installer"
   winget: Rustlang.Rustup
   curl-sh:
     url: "https://sh.rustup.rs"
     flags: "-y"
-  archlinux: rustup
 
 - # provides a portable tree command all platforms we support (EDIT: not arch actually, need to add a package for that)
   name: rust_tree
