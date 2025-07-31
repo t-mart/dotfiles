@@ -1,9 +1,6 @@
 local wezterm = require 'wezterm'
-local act = wezterm.action
 
-local config = {}
-
-config = wezterm.config_builder()
+local config = wezterm.config_builder()
 
 config.window_padding = {
   left = 10,
@@ -13,6 +10,18 @@ config.window_padding = {
 }
 
 config.default_prog = { 'nu' }
+
+-- i'm not sure how this all really works, but the 1Password SSH agent won't
+-- work if wezterm is using its own agent. see
+-- https://wezterm.org/config/lua/config/default_ssh_auth_sock.html and
+-- https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent
+--
+-- recommended way to interrogate the platform is to use
+-- `wezterm.target_triple`. see
+-- https://wezterm.org/config/lua/wezterm/target_triple.html
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  config.default_ssh_auth_sock = "\\\\.\\pipe\\openssh-ssh-agent"
+end
 
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font Mono")
 
@@ -69,7 +78,4 @@ config.colors = {
   },
 }
 
---====================================================================--
-
--- Finally, return the configuration to wezterm
 return config
