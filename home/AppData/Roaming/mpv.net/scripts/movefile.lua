@@ -37,7 +37,7 @@ local function log_and_osd_message(message, level)
 end
 
 -- Check if path is a protocol, such as `http://...`
-local function is_protocol(path)
+local function is_remote(path)
     return type(path) == 'string' and (path:match('^%a[%a%d_-]+://'))
 end
 
@@ -101,8 +101,8 @@ end
 local function move_file_next()
     local file_path = mp.get_property('path')
 
-    if is_protocol(file_path) then
-        msg.info("Cannot move non-local file: " .. file_path)
+    if is_remote(file_path) then
+        msg.info("Cannot move remote file: " .. file_path)
         return
     end
 
