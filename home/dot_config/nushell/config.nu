@@ -93,26 +93,14 @@ $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 # - it can throw these "ERR unknown shorthand flag" errors
 # carapace _carapace nushell | save --force ($local_vendor_autoload_path | path join "carapace.nu")
 
-# from https://www.nushell.sh/cookbook/external_completers.html#err-unknown-shorthand-flag-using-carapace
+# from https://www.nushell.sh/cookbook/external_completers.html
 # let fish_completer = ...
 let carapace_completer = {|spans: list<string>|
-  # if the current command is an alias, get it's expansion
-  let expanded_alias = (scope aliases | where name == $spans.0 | get --optional 0 | get --optional expansion)
-
-  # overwrite
-  let spans = (if $expanded_alias != null  {
-    # put the first word of the expanded alias first in the span
-    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1 | str replace --regex  '\.exe$' '')
-  } else {
-    $spans | skip 1 | prepend ($spans.0 | str replace --regex  '\.exe$' '')
-  })
-
   carapace $spans.0 nushell ...$spans
   | from json
-  | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+  | if ($in | default [] | where value =~ 'ERR$' | is-empty) { $in } else { null }
 }
 
-# This completer will use carapace by default
 let external_completer = {|spans|
   let expanded_alias = scope aliases
   | where name == $spans.0
@@ -127,12 +115,13 @@ let external_completer = {|spans|
   }
 
   match $spans.0 {
-    # carapace completions are incorrect for nu
+    # use different completers for different commands
+    # for example:
     # nu => $fish_completer
-    # fish completes commits and branch names in a nicer way
     # git => $fish_completer
-    # carapace doesn't have completions for asdf
     # asdf => $fish_completer
+
+    # default to carapace
     _ => $carapace_completer
   } | do $in $spans
 }
