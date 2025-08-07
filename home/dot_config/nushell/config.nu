@@ -19,7 +19,7 @@ $env.config.buffer_editor = "code"
 $env.EDITOR = "code"
 $env.VISUAL = "code"
 $env.PAGER = "bat"
-$env.MANPAGER = r#'sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman''#
+$env.MANPAGER = r#'sh -c 'sed -u -e "s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat -p -lman''#
 $env.config.highlight_resolved_externals = true
 
 def --env add-path-if-exists [
