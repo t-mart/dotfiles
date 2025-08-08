@@ -5,22 +5,26 @@ use lib/colors.nu gruvbox
 use lib/tim_theme.nu
 use std *
 
-
 alias cz = chezmoi
 alias less = bat
 # bat is smart about styling/paging when in a non-interactive tty, such as when piping
 alias cat = bat
 
-
 $env.NU_LIB_DIRS = [
   $nu.default-config-dir | path join "lib"
 ]
-$env.config.buffer_editor = "code"
 $env.EDITOR = "code"
 $env.VISUAL = "code"
 $env.PAGER = "bat"
+# see https://github.com/sharkdp/bat/blob/master/README.md#man
 $env.MANPAGER = r#'sh -c 'sed -u -e "s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat -p -lman''#
+
+
+# applies color to executables found in PATH var
 $env.config.highlight_resolved_externals = true
+
+# use base-1024 instead of base-1000 for file sizes
+$env.config.filesize.unit = "binary"
 
 def --env add-path-if-exists [
   dir: string,
