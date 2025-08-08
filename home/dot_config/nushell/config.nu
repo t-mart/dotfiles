@@ -19,7 +19,6 @@ $env.PAGER = "bat"
 # see https://github.com/sharkdp/bat/blob/master/README.md#man
 $env.MANPAGER = r#'sh -c 'sed -u -e "s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat -p -lman''#
 
-
 # applies color to executables found in PATH var
 $env.config.highlight_resolved_externals = true
 
