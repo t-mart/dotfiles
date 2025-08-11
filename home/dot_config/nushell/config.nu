@@ -3,6 +3,7 @@
 use lib/colors.nu tw
 use lib/colors.nu gruvbox
 use lib/tim_theme.nu
+use lib/tim_util.nu *
 use std *
 
 alias cz = chezmoi
@@ -25,21 +26,6 @@ $env.config.highlight_resolved_externals = true
 # use base-1024 instead of base-1000 for file sizes
 $env.config.filesize.unit = "binary"
 
-def --env add-path-if-exists [
-  dir: string,
-]: nothing -> nothing {
-  if ($dir | path exists) {
-    path add $dir
-  }
-}
-
-def 'is-installed' [ app: string ] {
-  (which $app | length) > 0
-}
-
-def 'on-windows' []: nothing -> bool {
-  version | get build_os | str starts-with "windows"
-}
 
 def 'quote-path' []: string -> string {
   if ($in | str index-of ' ') == -1 {
