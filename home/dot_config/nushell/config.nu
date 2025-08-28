@@ -26,6 +26,25 @@ $env.config.highlight_resolved_externals = true
 # use base-1024 instead of base-1000 for file sizes
 $env.config.filesize.unit = "binary"
 
+if $env.LANG? == null {
+  let locale_paths = [
+    ($env.XDG_CONFIG_HOME? | if $in != null { $in | path join "locale.conf" } )
+    ($nu.home-path | path join ".config/locale.conf")
+    "/etc/locale.conf"
+  ]
+  | compact 
+  | where { path exists }
+  if ($locale_paths | length) != 0 {
+    $locale_paths
+    | first 
+    | open 
+    | lines 
+    | parse "{name}={value}"
+    | str trim value --char '"'
+    | transpose --header-row --as-record
+    | load-env
+  }
+}
 
 def 'quote-path' []: string -> string {
   if ($in | str index-of ' ') == -1 {
