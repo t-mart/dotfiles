@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
+
 ENABLED="
 {{- if eq .osid "linux-arch" -}}
     true
@@ -57,6 +59,11 @@ readonly PACKAGE_CONFS
 # iterate
 for package_conf in "${PACKAGE_CONFS[@]}"; do
     IFS=',' read -r package_name gpg_key_id gpg_key_url <<< "$package_conf"
+
+    # check if already installed
+    if paru -Q "$package_name" &> /dev/null; then
+        continue
+    fi
 
     echo "Installing package: $package_name"
 
