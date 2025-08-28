@@ -201,7 +201,9 @@
 - name: gallery-dl
   description: "Command-line program to download images from galleries"
   uv: gallery-dl
-  archlinux: gallery-dl-bin
+  archlinux:
+    name: gallery-dl
+    gpg-key-id: 5680CA389D365A88
 
 - name: GitHub CLI
   description: "Command-line interface for GitHub"

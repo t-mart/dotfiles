@@ -74,7 +74,7 @@ blocks:
           macos: "mac"
           debian: "deb"
           ubuntu: "ubu"
-          arch: "arc"
+          arch: "arch"
           fedora: "fed"
           alpine: "alp"
           raspbian: "raspb"
