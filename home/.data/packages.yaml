@@ -139,9 +139,10 @@
   apt: docker-buildx-plugin
   archlinux: docker-buildx
 
-- name: Docker CE
+- name: Docker
   description: "Docker Community Edition"
   apt: docker-ce
+  archlinux: docker
 
 - name: Docker CE CLI
   description: "Docker Community Edition Command Line Interface"
