@@ -27,6 +27,7 @@ $env.config.highlight_resolved_externals = true
 # use base-1024 instead of base-1000 for file sizes
 $env.config.filesize.unit = "binary"
 
+# quick hack to set LANG (probably to en_US.UTF-8)
 if $env.LANG? == null {
   let locale_paths = [
     ($env.XDG_CONFIG_HOME? | if $in != null { $in | path join "locale.conf" } )
