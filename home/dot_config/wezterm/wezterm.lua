@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 
 local config = wezterm.config_builder()
 
@@ -28,6 +29,24 @@ config.font = wezterm.font("JetBrainsMonoNL Nerd Font Mono")
 config.default_cursor_style = 'SteadyBlock'
 
 config.hide_tab_bar_if_only_one_tab = true
+
+-- https://github.com/wezterm/wezterm/discussions/3541#discussioncomment-5633570
+-- right-click to copy selection or paste if no selection
+config.mouse_bindings = {
+  {
+    event = { Down = { streak = 1, button = "Right" } },
+    mods = "NONE",
+    action = wezterm.action_callback(function(window, pane)
+      local has_selection = window:get_selection_text_for_pane(pane) ~= ""
+      if has_selection then
+        window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
+        window:perform_action(act.ClearSelection, pane)
+      else
+        window:perform_action(act({ PasteFrom = "Clipboard" }), pane)
+      end
+    end),
+  },
+}
 
 config.colors = {
   foreground = '#ebdbb2',
