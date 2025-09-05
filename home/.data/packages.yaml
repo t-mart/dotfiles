@@ -525,7 +525,7 @@
   scoop: extras/wiztree
 
 - name: Magic Wormhole
-  description: "get things from one computer to another, safely "
+  description: "get things from one computer to another, safely"
   uv: magic-wormhole
   archlinux: magic-wormhole
 
