@@ -435,7 +435,7 @@
 - name: ShellCheck
   description: "finds bugs in your shell scripts."
   scoop: main/shellcheck
-  archlinux: shellcheck
+  archlinux: shellcheck-bin
 
 - name: Signal
   description: "Private messenger application"
