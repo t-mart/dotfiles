@@ -201,7 +201,7 @@
 
 - name: gallery-dl
   description: "Command-line program to download images from galleries"
-  uv: gallery-dl
+  uv: gallery-dl --with mutagen # hack to get mutagen installed too
   archlinux:
     name: gallery-dl
     gpg-key-id: 5680CA389D365A88
@@ -396,6 +396,10 @@
   description: "Free and open-source BitTorrent client"
   scoop: extras/qbittorrent
 
+- name: Ranger
+  description: "A VIM-inspired filemanager for the console"
+  archlinux: ranger
+
 - name: ripgrep
   description:
     "Line-oriented search tool that recursively searches your current directory
@@ -544,7 +548,7 @@
 - name: yt-dlp
   description:
     "Command-line program to download videos from YouTube and other sites"
-  uv: yt-dlp
+  uv: yt-dlp --with mutagen # hack to get mutagen installed too
   archlinux: yt-dlp
 
 - name: zoxide
