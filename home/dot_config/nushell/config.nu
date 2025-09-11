@@ -246,10 +246,14 @@ const fzf_find_files_all_keybinding =  {
 }
 
 
-# Remind keybindings when starting Nushell
+# MOTD stuff
 if $env.SHLVL == 1 {
   def key [name] { $"(ansi green_bold)($name)(ansi reset)" }
   def from [name] { $"\((ansi purple_italic)($name)(ansi reset)\)" }
+
+  if (is-installed fastfetch) {
+    fastfetch
+  }
 
   print $"Some keybindings. Turn this message off when you know them!
   

@@ -10,6 +10,9 @@ config.window_padding = {
   bottom = 10,
 }
 
+config.initial_cols = 120
+config.initial_rows = 32
+
 config.default_prog = { 'nu' }
 
 -- i'm not sure how this all really works, but the 1Password SSH agent won't
