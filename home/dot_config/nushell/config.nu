@@ -14,8 +14,13 @@ alias cat = bat
 $env.NU_LIB_DIRS = [
   $nu.default-config-dir | path join "lib"
 ]
-$env.EDITOR = "code"
-$env.VISUAL = "code"
+if (is-installed code) {
+  $env.EDITOR = "code"
+  $env.VISUAL = "code"
+} else if (is-installed nvim) {
+  $env.EDITOR = "nvim"
+  $env.VISUAL = "nvim"
+}
 $env.PAGER = "bat"
 # see https://github.com/sharkdp/bat/blob/master/README.md#man
 $env.MANPAGER = r#'sh -c 'sed -u -e "s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat -p -lman''#
