@@ -201,7 +201,7 @@
 
 - name: gallery-dl
   description: "Command-line program to download images from galleries"
-  uv: gallery-dl --with mutagen # hack to get mutagen installed too
+  uv: gallery-dl --with yt-dlp # hack to get yt-dlp installed too
   archlinux:
     name: gallery-dl
     gpg-key-id: 5680CA389D365A88
