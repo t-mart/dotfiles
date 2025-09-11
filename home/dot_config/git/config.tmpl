@@ -26,7 +26,6 @@
 
 [core]
   editor = vim
-  autocrlf = true
   pager = bat
 
 [grep]
@@ -88,4 +87,12 @@
 
 [gpg]
   program = {{ joinPath .scoopPath "apps/gnupg/current/bin/gpg.exe" | replace "\\" "/" }}
+{{- end }}
+
+
+[core]
+{{ if eq .chezmoi.os "windows" -}}
+  autocrlf = true
+{{ else -}}
+  autocrlf = input
 {{- end }}
