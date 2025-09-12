@@ -170,6 +170,11 @@
   cargo: eza
   archlinux: eza
 
+- name: fastfetch
+  description: "A maintained, feature-rich and performance oriented, neofetch like system information tool."
+  scoop: main/fastfetch
+  archlinux: fastfetch
+
 - name: fd
   description: "Simple, fast and user-friendly alternative to find"
   cargo: fd-find
