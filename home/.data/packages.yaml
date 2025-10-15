@@ -157,6 +157,14 @@
   description: "Docker Desktop application"
   winget: Docker.DockerDesktop
 
+- name: Duf
+  description: "Disk Usage/Free Utility - a better 'df' alternative"
+  archlinux: duf
+
+- name: Dust
+  description: "A more intuitive version of du in rust"
+  archlinux: dust
+
 - name: Everything
   description: "Locate files and folders by name instantly"
   scoop: extras/everything
@@ -235,6 +243,11 @@
   scoop: main/gnupg
   apt: gnupg
   archlinux: gnupg
+
+- name: gping
+  description: "Ping, but with a graph"
+  scoop: main/gping
+  archlinux: gping
 
 - name: gzip
   description: "GNU zip"
