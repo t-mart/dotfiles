@@ -179,7 +179,9 @@
   archlinux: eza
 
 - name: fastfetch
-  description: "A maintained, feature-rich and performance oriented, neofetch like system information tool."
+  description:
+    "A maintained, feature-rich and performance oriented, neofetch like system
+    information tool."
   scoop: main/fastfetch
   archlinux: fastfetch
 
@@ -429,7 +431,8 @@
   scoop: extras/rufus
 
 - name: Rust
-  description: "Systems programming language focused on safety, speed and concurrency"
+  description:
+    "Systems programming language focused on safety, speed and concurrency"
   archlinux: rust
 
 - name: Rustup
@@ -472,6 +475,12 @@
 - name: Steam
   description: "Digital distribution platform for video games"
   winget: Valve.Steam
+
+- name: SumatraPDF
+  description:
+    "PDF, eBook (epub, mobi), comic book (cbz/cbr), DjVu, XPS, CHM, image viewer
+    for Windows"
+  scoop: extras/sumatrapdf
 
 - name: Terraform
   description:
