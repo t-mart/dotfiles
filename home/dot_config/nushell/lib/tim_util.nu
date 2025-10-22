@@ -95,3 +95,8 @@ export def ln-recurse [
         }
     }
 }
+
+export def --env mkcd [directory: path]: nothing -> nothing {
+    mkdir $directory
+    cd $directory
+}
