@@ -309,6 +309,17 @@
   apt: jq
   archlinux: jq
 
+- name: lazydocker
+  description: "Terminal UI for both docker and docker-compose"
+  scoop: extras/lazydocker
+  archlinux: lazydocker
+
+- name: lazygit
+  description: "A simple terminal UI for git commands"
+  scoop: extras/lazygit
+  apt: lazygit
+  archlinux: lazygit
+
 - # needed for rust msvc toolchain
   # see: https://github.com/rust-lang/rustup/issues/3358#issuecomment-2869757930
   # might need more config
