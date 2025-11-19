@@ -3,3 +3,4 @@
 --embed-subs
 --embed-thumbnail
 --embed-metadata
+--remote-components ejs:github
