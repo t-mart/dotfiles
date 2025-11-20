@@ -8,7 +8,7 @@ readonly NU_PATH
 # Check if Nushell is installed ${NU_PATH} and is executable
 if [ ! -x "$NU_PATH" ]; then
   echo "Nushell not found at $NU_PATH. Not setting default shell." >&2
-  exit 1
+  exit 0
 fi
 
 # If /etc/shells exists, add nushell to it if it's not already present
