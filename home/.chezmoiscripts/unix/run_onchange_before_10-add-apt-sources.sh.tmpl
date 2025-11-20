@@ -2,7 +2,7 @@
 set -euo pipefail
 
 readonly ENABLED="
-{{- if has .osid (list "linux-debian" "linux-ubuntu") -}}
+{{- if and (has .osid (list "linux-debian" "linux-ubuntu")) .installPackages -}}
     true
 {{- else -}}
     false

@@ -4,7 +4,7 @@ set -euo pipefail
 # Run weekly. Current week: {{ div now.YearDay 7 }}, {{ now.Year }}
 
 ENABLED="
-{{- if eq .osid "linux-arch" -}}
+{{- if and (eq .osid "linux-arch") .installPackages -}}
     true
 {{- else -}}
     false
