@@ -28,6 +28,11 @@ export def 'is-absolute' [path: string]: nothing -> bool {
     }
 }
 
+export def --env mkcd [directory: path]: nothing -> nothing {
+    mkdir $directory
+    cd $directory
+}
+
 # Hardlink to files in <target_root> under <link_root>.
 #
 # The directory structure under <target_root> will be preserved under
@@ -96,7 +101,57 @@ export def ln-recurse [
     }
 }
 
-export def --env mkcd [directory: path]: nothing -> nothing {
-    mkdir $directory
-    cd $directory
+# Unzip a zip file into a folder named after the zip file's stem.
+export def "unzip-smart" [
+    zip_file: path,       # The source .zip file
+    destination?: path    # Optional: The directory to place the new folder in
+] {
+    # 1. Validate the Zip File
+    let absolute_zip = ($zip_file | path expand)
+    if not ($absolute_zip | path exists) {
+        error make {msg: $"Source file does not exist: ($zip_file)"}
+    }
+    if ($absolute_zip | path type) != "file" {
+        error make {msg: $"Source is not a file: ($zip_file)"}
+    }
+
+    # 2. Determine the folder name (stem)
+    let folder_name = ($absolute_zip | path parse | get stem)
+
+    # 3. Handle the Destination Argument
+    let target_parent = if ($destination == null) {
+        $env.PWD
+    } else {
+        let abs_dest = ($destination | path expand)
+        
+        if not ($abs_dest | path exists) {
+            error make {msg: $"Destination path not found: ($destination)"}
+        }
+        if ($abs_dest | path type) != "dir" {
+            error make {msg: $"Destination is a file, not a directory: ($destination)"}
+        }
+        
+        $abs_dest
+    }
+
+    # 4. Construct the final path
+    let final_output_path = ($target_parent | path join $folder_name)
+
+    # 5. Safety Check: Ensure the "would-be" directory doesn't already exist
+    if ($final_output_path | path exists) {
+        error make {
+            msg: $"Target directory already exists. Aborting to prevent overwrite.",
+            label: {
+                text: "Already exists here",
+                span: (metadata $final_output_path).span
+            } 
+        }
+    }
+
+    # 6. Execute unzip
+    # We allow unzip standard output to print so the user sees progress
+    ^unzip $absolute_zip -d $final_output_path
+
+    # 7. Return the path
+    return $final_output_path
 }

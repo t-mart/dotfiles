@@ -3,7 +3,7 @@
 use lib/colors.nu tw
 use lib/colors.nu gruvbox
 use lib/tim_theme.nu
-use lib/tim_util.nu *
+use lib/commands.nu *
 use std *
 
 alias cz = chezmoi
