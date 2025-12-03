@@ -348,9 +348,33 @@
   apt: neovim
   archlinux: neovim
 
+- name: .NET Desktop Runtime 3.1
+  description: "Runtime for running .NET desktop applications"
+  winget: Microsoft.DotNet.DesktopRuntime.3_1
+
 - name: .NET Desktop Runtime 5
   description: "Runtime for running .NET desktop applications"
   winget: Microsoft.DotNet.DesktopRuntime.5
+
+- name: .NET Desktop Runtime 6
+  description: "Runtime for running .NET desktop applications"
+  winget: Microsoft.DotNet.DesktopRuntime.6
+
+- name: .NET Desktop Runtime 7
+  description: "Runtime for running .NET desktop applications"
+  winget: Microsoft.DotNet.DesktopRuntime.7
+
+- name: .NET Desktop Runtime 8
+  description: "Runtime for running .NET desktop applications"
+  winget: Microsoft.DotNet.DesktopRuntime.8
+
+- name: .NET Desktop Runtime 9
+  description: "Runtime for running .NET desktop applications"
+  winget: Microsoft.DotNet.DesktopRuntime.9
+
+- name: .NET Desktop Runtime 10
+  description: "Runtime for running .NET desktop applications"
+  winget: Microsoft.DotNet.DesktopRuntime.10
 
 - name: Nilesoft Shell
   description: "Context menu customizer"

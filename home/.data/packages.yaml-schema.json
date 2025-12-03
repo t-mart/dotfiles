@@ -60,7 +60,7 @@
           {
             "type": "string",
             "description": "The package identifier for winget.",
-            "pattern": "^[-+a-zA-Z0-9]+(\\.[-+a-zA-Z0-9]+)*$"
+            "pattern": "^[-+a-zA-Z0-9]+(\\.[-+a-zA-Z0-9_]+)*$"
           },
           {
             "type": "object",
