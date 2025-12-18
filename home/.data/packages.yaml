@@ -608,7 +608,7 @@
 - name: yt-dlp
   description:
     "Command-line program to download videos from YouTube and other sites"
-  uv: yt-dlp --with mutagen # hack to get mutagen installed too
+  uv: yt-dlp --with mutagen --with curl_cffi --with yt-dlp-ejs
   archlinux: yt-dlp
 
 - name: zoxide
