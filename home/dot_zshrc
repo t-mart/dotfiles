@@ -38,4 +38,4 @@ setopt CORRECT
 
 autoload -U colors && colors
 
-PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[magenta]%}%m %{$fg[blue]%}%~ %# %{$reset_color%}'
+PROMPT='%F{green}%n%f@%F{magenta}%m %F{blue}%~ %# %f'
