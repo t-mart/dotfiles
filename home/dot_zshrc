@@ -1,0 +1,41 @@
+#!/bin/zsh
+
+# zsh config. 
+
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
+export EDITOR='vim'  # Change to vim or code if preferred
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Share history between tabs/windows immediately
+setopt SHARE_HISTORY
+# Don't record an entry that was just recorded again
+setopt HIST_IGNORE_DUPS
+# Remove older duplicate entries from history
+setopt HIST_EXPIRE_DUPS_FIRST
+# Don't record commands starting with a space (useful for secrets)
+setopt HIST_IGNORE_SPACE
+
+autoload -Uz compinit && compinit
+
+# Enable the "Menu Select" interface
+# This lets you use arrow keys to navigate tab completion results!
+zstyle ':completion:*' menu select
+
+# Case insensitive tab completion (e.g., typing 'cd doc' finds 'Documents')
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# Auto-CD: Type a directory name (without 'cd') to enter it
+setopt AUTO_CD
+
+# Correction: Try to correct minor spelling mistakes in commands
+setopt CORRECT
+
+autoload -U colors && colors
+
+PROMPT='%{$fg[green]%}%n%{$reset_color%}@%{$fg[magenta]%}%m %{$fg[blue]%}%~ %# %{$reset_color%}'
