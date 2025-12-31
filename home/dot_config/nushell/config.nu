@@ -26,6 +26,10 @@ $env.PAGER = "bat"
 $env.MANPAGER = r#'sh -c 'sed -u -e "s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat -p -lman''#
 $env.GOPATH = ($nu.home-path | path join ".local/share/go")
 
+# disable rclone unicode normalization to preserve filename fidelity
+# omg, how toxic is this default behavior
+$env.RCLONE_NO_UNICODE_NORMALIZATION = true
+
 # applies color to executables found in PATH var
 $env.config.highlight_resolved_externals = true
 
