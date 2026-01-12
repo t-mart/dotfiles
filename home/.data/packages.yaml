@@ -95,7 +95,7 @@
   curl-sh:
     url: "https://bun.sh/install"
     shell: bash
-  archlinux: bun-bin
+  # archlinux: bun-bin
 
 - name: carapace-bin
   description: "Command-line utility for generating shell completions"
