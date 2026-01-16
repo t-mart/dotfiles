@@ -6,9 +6,6 @@
 #
 # Order:
 #
-# 1. (Debian/Ubuntu) `apt`. See
-#    `home/.chezmoiscripts/unix/run_onchange_before_10-add-apt-sources.sh.tmpl`
-#    for setting up the sources if needed.
 # 2. (Windows) `winget`, either an id string or an object with `id` and
 #    `elevate` keys. If `elevate` is true, the command will be run with
 #    `Start-Process -Verb RunAs` to elevate privileges
@@ -46,7 +43,6 @@
 - name: 1Password CLI
   description: "Command-line interface for 1Password"
   scoop: main/1password-cli
-  apt: 1password-cli
   archlinux:
     name: 1password-cli
     gpg-key-url: https://downloads.1password.com/linux/keys/1password.asc
@@ -58,7 +54,6 @@
 - name: age
   description: "Simple, modern and secure encryption tool"
   scoop: extras/age
-  apt: age
   archlinux: age
 
 - name: Alacritty
@@ -82,12 +77,7 @@
 - name: btop
   description: "CLI resource monitor"
   scoop: main/btop
-  apt: btop
   archlinux: btop
-
-- name: build-essential
-  description: "Essential packages for building software on Debian/Ubuntu"
-  apt: build-essential
 
 - name: Bun
   description: "JavaScript runtime like Node.js"
@@ -100,7 +90,6 @@
 - name: carapace-bin
   description: "Command-line utility for generating shell completions"
   scoop: extras/carapace-bin
-  apt: carapace-bin
   archlinux: carapace-bin
 
 - name: cargo-update
@@ -112,13 +101,11 @@
 
 - name: containerd.io
   description: "Container runtime for managing containers"
-  apt: containerd.io
   archlinux: containerd
 
 - name: curl
   description: "Command-line tool for transferring data with URLs"
   scoop: main/curl
-  apt: curl
   archlinux: curl
 
 - name: Delta
@@ -136,21 +123,14 @@
 
 - name: Docker Buildx Plugin
   description: "Docker Buildx CLI plugin"
-  apt: docker-buildx-plugin
   archlinux: docker-buildx
 
 - name: Docker
   description: "Docker Community Edition"
-  apt: docker-ce
   archlinux: docker
-
-- name: Docker CE CLI
-  description: "Docker Community Edition Command Line Interface"
-  apt: docker-ce-cli
 
 - name: Docker Compose Plugin
   description: "Docker Compose CLI plugin"
-  apt: docker-compose-plugin
   archlinux: docker-compose
 
 - name: Docker Desktop
@@ -222,13 +202,11 @@
 - name: GitHub CLI
   description: "Command-line interface for GitHub"
   scoop: main/gh
-  apt: gh
   archlinux: github-cli
 
 - name: Git
   description: "The stupid content tracker"
   scoop: main/git
-  apt: git
   archlinux: git
 
 - name: GIMP
@@ -243,7 +221,6 @@
 - name: GnuPG
   description: "GNU Privacy Guard"
   scoop: main/gnupg
-  apt: gnupg
   archlinux: gnupg
 
 - name: gping
@@ -262,16 +239,9 @@
     app: nonportable/openhashtab-np
     elevate: true
 
-- name: hexyl
-  description: "Hex viewer for the command line"
-  scoop: main/hexyl
-  apt: hexyl
-  archlinux: hexyl
-
 - name: hyperfine
   description: "Benchmarking tool for command-line applications"
   scoop: main/hyperfine
-  apt: hyperfine
   archlinux: hyperfine
 
 - name: ImageMagick
@@ -306,7 +276,6 @@
 - name: jq
   description: "Command-line JSON processor"
   scoop: main/jq
-  apt: jq
   archlinux: jq
 
 - name: lazydocker
@@ -317,7 +286,6 @@
 - name: lazygit
   description: "A simple terminal UI for git commands"
   scoop: extras/lazygit
-  apt: lazygit
   archlinux: lazygit
 
 - # needed for rust msvc toolchain
@@ -339,13 +307,11 @@
 
 - name: ncdu
   description: "Disk usage analyzer with a text-mode user interface"
-  apt: ncdu
   archlinux: ncdu
 
 - name: Neovim
   description: "Vim-fork focused on extensibility and usability"
   scoop: main/neovim
-  apt: neovim
   archlinux: neovim
 
 - name: .NET Desktop Runtime 3.1
@@ -385,13 +351,11 @@
 - name: Node.js
   description: "JavaScript runtime built on Chrome's V8 JavaScript engine"
   winget: OpenJS.NodeJS
-  apt: nodejs
   archlinux: nodejs
 
 - name: Nushell
   description: "A new type of shell"
   scoop: main/nu
-  apt: nushell
   archlinux: nushell
 
 - name: Oh My Posh
@@ -436,13 +400,11 @@
 - name: Protocol Buffers
   description: "Google's data interchange format"
   scoop: extras/protobuf
-  apt: protobuf-compiler
   archlinux: protobuf
 
 - name: q (DNS)
   description: "Command-line DNS client"
   scoop: main/q-dns
-  apt: q
   archlinux: q-dns
 
 - name: qBittorrent
@@ -458,7 +420,6 @@
     "Line-oriented search tool that recursively searches your current directory
     for a regex pattern"
   scoop: main/ripgrep
-  apt: ripgrep
   archlinux: ripgrep
 
 - name: Rufus
@@ -522,12 +483,18 @@
     "A tool for building, changing, and versioning infrastructure safely and
     efficiently."
   scoop: main/terraform
-  apt: terraform
   archlinux: terraform
 
 - name: Total Registry
   description: "Registry editor for Windows"
   scoop: extras/total-registry
+
+- name: trippy
+  description:
+    "Trippy combines the functionality of traceroute and ping and is designed to
+    assist with the analysis of networking issues."
+  scoop: main/trippy
+  archlinux: trippy
 
 - name: uutils
   description:
@@ -596,13 +563,11 @@
 - name: xz
   description: "File compression tool"
   scoop: main/xz
-  apt: xz-utils
   archlinux: xz
 
 - name: zip
   description: "File compression tool"
   scoop: main/zip
-  apt: zip
   archlinux: zip
 
 - name: yt-dlp
@@ -614,11 +579,9 @@
 - name: zoxide
   description: "A smarter cd command for your terminal"
   scoop: main/zoxide
-  apt: zoxide
   archlinux: zoxide
 
 - name: zstd
   description: "Fast lossless compression algorithm"
   scoop: main/zstd
-  apt: zstd
   archlinux: zstd

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 readonly decrypted_key_file="${HOME}/.config/chezmoi/key.txt"
-readonly encrypted_key_file="${CHEZMOI_SOURCE_DIR}/.data/key.txt.age"
+readonly encrypted_key_file="${CHEZMOI_WORKING_TREE}/data/key.txt.age"
 
 if [[ -f "${decrypted_key_file}" ]]; then
   echo "Key file '${decrypted_key_file}' already exists. Skipping."

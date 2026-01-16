@@ -1,0 +1,52 @@
+pkgname=tim-base
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Base metapackage for my Arch installations"
+arch=("any")
+license=("GPL")
+
+depends=(
+    "age"
+    "atuin"
+    "bat"
+    "btop"
+    "carapace-bin"
+    "cargo-update"
+    "curl"
+    "docker"
+    "docker-buildx"
+    "docker-compose"
+    "duf"
+    "dust"
+    "fastfetch"
+    "fclones"
+    "fd"
+    "fzf"
+    "git"
+    "git-delta"
+    "gnupg"
+    "gping"
+    "gzip"
+    "jq"
+    "lazydocker"
+    "ncdu"
+    "neovim"
+    "nushell"
+    "oh-my-posh-bin"
+    "q-dns-bin"
+    "ranger"
+    "ripgrep"
+    "trippy"
+    "uv"
+    "unzip"
+    "vivid"
+    "xz"
+    "zip"
+    "zoxide"
+    "zstd"
+)
+
+
+package() {
+    :
+}

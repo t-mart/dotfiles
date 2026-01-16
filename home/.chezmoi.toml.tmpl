@@ -33,8 +33,8 @@ encryption = "age"
     hasHardwareFans = {{ $hasHardwareFans }}
     {{- end }}
     {{ if ne .chezmoi.os "windows" -}}
-    {{- $installPackages := promptBoolOnce . "installPackages" "Should packages be installed" }}
-    installPackages = {{ $installPackages }}
+    {{- $isWorkstation := promptBoolOnce . "installPackages" "Should we install workstation packages (development and multimedia stuff)" }}
+    isWorkstation = {{ $isWorkstation }}
     {{- end }}
 
 [gitHub]

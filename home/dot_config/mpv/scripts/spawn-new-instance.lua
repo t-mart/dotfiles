@@ -1,15 +1,15 @@
 -- A script to spawn a new mpv instance with the current video.
 
 local mp = require('mp')
-local msg = require('mp.msg')
-local utils = require 'mp.utils'
+
+local os_name = mp.get_property("platform")
+local mpv_path = os_name == "windows" and mp.get_property_native("user-data/frontend/process-path") or "mpv"
 
 local function spawn_new_instance()
-
     mp.command_native({
         name = "subprocess",
         args = { 
-            "mpvnet",
+            mpv_path,
             mp.get_property("path")
         },
         detach = true,  -- Detach so the new instance runs independently.

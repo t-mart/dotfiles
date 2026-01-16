@@ -1,0 +1,27 @@
+pkgname=tim-workstation
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Workstation metapackage for my Arch installations"
+arch=("any")
+license=("GPL")
+
+depends=(
+    "1password-cli"
+    "deno"
+    "ffmpeg"
+    "gallery-dl-bin"
+    "github-cli"
+    "go"
+    "hyperfine"
+    "imagemagick"
+    "lazygit"
+    "nodejs"
+    "pnpm"
+    "rust"
+    "terraform"
+    "magic-wormhole"
+)
+
+package() {
+    :
+}
