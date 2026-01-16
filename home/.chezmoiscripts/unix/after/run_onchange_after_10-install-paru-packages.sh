@@ -39,8 +39,8 @@ PACKAGE_GPG_KEYS=(
 MISSING_CSV="Package,Key ID"
 MISSING_COUNT=0
 for ((i=0; i<${#PACKAGE_GPG_KEYS[@]}; i+=2)); do
-    local pkg="${PACKAGE_GPG_KEYS[i]}"
-    local key="${PACKAGE_GPG_KEYS[i+1]}"
+    pkg="${PACKAGE_GPG_KEYS[i]}"
+    key="${PACKAGE_GPG_KEYS[i+1]}"
 
     # Check for key existence
     if ! gpg --list-keys "$key" &> /dev/null; then
