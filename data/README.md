@@ -1,4 +1,4 @@
-# `.data/`
+# `data/`
 
 Files that chezmoi uses in some way, but are not directly managed by chezmoi.
 

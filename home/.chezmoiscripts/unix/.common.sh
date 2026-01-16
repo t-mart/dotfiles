@@ -1,12 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# This file must be prefixed with a `.` so that chezmoi does not try to run it
+# directly. It is intended to be sourced by other scripts.
+
 # a function to check if a command exists
 command_exists() {
     command -v "$1" &> /dev/null
 }
 
-# a function to check if we're on arch linux. we proxy this to seeing if makepkg exists and pacman exists
+# a function to check if we're on arch linux. we proxy this to seeing if makepkg
+# exists and pacman exists
 is_arch_linux() {
     command_exists makepkg && command_exists pacman
 }

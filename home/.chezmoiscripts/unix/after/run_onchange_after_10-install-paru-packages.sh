@@ -36,7 +36,7 @@ PACKAGE_GPG_KEYS=(
     "gallery-dl-bin" "5680CA389D365A88"
 )
 
-MISSING_CSV="Package,Key ID"
+MISSING_CSV="Package,GPG Key ID"
 MISSING_COUNT=0
 for ((i=0; i<${#PACKAGE_GPG_KEYS[@]}; i+=2)); do
     pkg="${PACKAGE_GPG_KEYS[i]}"
@@ -45,7 +45,7 @@ for ((i=0; i<${#PACKAGE_GPG_KEYS[@]}; i+=2)); do
     # Check for key existence
     if ! gpg --list-keys "$key" &> /dev/null; then
         MISSING_CSV+=$'\n'"$pkg,$key"
-        ((MISSING_COUNT++))
+        MISSING_COUNT=$((MISSING_COUNT + 1))
     fi
 done
 

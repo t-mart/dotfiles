@@ -15,8 +15,9 @@ run the `chezmoi` command to get information out of it.
 To do this, in many cases, you need to use environment variables that chezmoi
 sets when running the scripts. This allows for getting things like:
 
-- the path of the chezmoi executable
-- the path of the chezmoi source directory
+- the path of the chezmoi executable (/home/.local/bin/chezmoi)
+- the path of the chezmoi working tree directory (/home/.local/share/chezmoi)
+- the path of the chezmoi source directory (/home/.local/share/chezmoi/home)
 
 Here's what that environment looks like on unix systems:
 
