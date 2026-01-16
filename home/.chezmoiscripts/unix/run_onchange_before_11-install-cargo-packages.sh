@@ -10,4 +10,4 @@ if ! command -v cargo-binstall &> /dev/null; then
 fi
 
 echo "Installing tree via cargo-binstall..."
-cargo binstall --no-confirm --locked --git https://github.com/peteretelej/tree.git
+cargo binstall --no-confirm --locked --git https://github.com/peteretelej/tree.git rust_tree
