@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# due the chezmoi requirements, this script will be run on its own, but we only
-# intend for it to be sourced. this isn't a problem right now because its just
-# function definitions.
-
 # a function to check if a command exists
 command_exists() {
     command -v "$1" &> /dev/null
