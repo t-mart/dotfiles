@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source "${CHEZMOI_WORKING_TREE}/.chezmoiscripts/unix/common.sh"
+source "${CHEZMOI_WORKING_TREE}/.chezmoiscripts/unix/.common.sh"
 
 log_banner "Installing gum"
 
