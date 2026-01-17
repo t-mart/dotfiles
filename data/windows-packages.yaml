@@ -1,40 +1,18 @@
-# yaml-language-server: $schema=packages.yaml-schema.json
+# yaml-language-server: $schema=windows-packages.yaml-schema.json
 
-# List of packages to be installed
+# List of Windows packages to be installed and what method to use for each.
 #
 # See the schema in `packages.yaml-schema.json` for details.
 #
-# Order:
+# Use **winget** in the following less-common scenarios:
 #
-# 2. (Windows) `winget`, either an id string or an object with `id` and
-#    `elevate` keys. If `elevate` is true, the command will be run with
-#    `Start-Process -Verb RunAs` to elevate privileges
-# 3. (Windows) `scoop`, in the `<bucket>/<package>` format.
-# 4. (Windows) `irm-iex`, URL to a PowerShell script that installs the
-#    package using `Invoke-RestMethod | Invoke-Expression`.
-# 5. (Debian/Ubuntu) `curl-sh`, URL for things like
-#    `curl https://foo.com/install.sh | sh`
-# 6. (Cross-Platform) `cargo`, crate name. Installed by
-#    `cargo binstall <crate>`.
-# 7. (Cross-Platform) `uv`, pypi package name. Installed by
-#    [uv](https://docs.astral.sh/uv/) as a tool.
-# 8. (Arch Linux) archlinux, either a string with the package name or an object
-#    with a `name` key. If the object has a `gpg-key` key, it will be used to
-#    verify the package signature.
+# - the application self-updates. Scoop is not aware of applications updating
+#   themselves and will try to reinstall them on the next update run.
+# - the application heavily integrates with the system (runtimes, etc).
+# - a portable installation (like that from Scoop) would have an inconvenient
+#   config location.
 #
-# If a package is installed with a cross-platform tool, then it must be
-# the only entry for that package.
-#
-# ## Windows
-#
-# Use **scoop** unless:
-#
-# - the application self-updates. Scoop is not aware of external update events
-#   and will still consider the application out of date.
-# - the application integrates with the system in particular ways (runtimes, etc).
-# - a portable installation would have an inconvenient config location.
-#
-# Use **winget** otherwise. Scoop is much easier for managing updates.
+# Use **scoop** otherwise. Scoop is much easier for managing updates.
 
 - name: 1Password
   description: "Desktop application for 1Password"
@@ -43,9 +21,6 @@
 - name: 1Password CLI
   description: "Command-line interface for 1Password"
   scoop: main/1password-cli
-  archlinux:
-    name: 1password-cli
-    gpg-key-url: https://downloads.1password.com/linux/keys/1password.asc
 
 - name: 7-Zip
   description: "File archiver"
@@ -54,7 +29,6 @@
 - name: age
   description: "Simple, modern and secure encryption tool"
   scoop: extras/age
-  archlinux: age
 
 - name: Alacritty
   description: "A fast, cross-platform, OpenGL terminal emulator"
@@ -63,7 +37,6 @@
 - name: Atuin
   description: "Command-line history manager"
   cargo: atuin
-  archlinux: atuin
 
 - name: AutoHotkey
   description: "Scripting language for Windows automation"
@@ -71,67 +44,37 @@
 
 - name: bat
   description: "Cat clone with syntax highlighting and Git integration"
-  cargo: bat
-  archlinux: bat
+  scoop: main/bat
 
 - name: btop
   description: "CLI resource monitor"
   scoop: main/btop
-  archlinux: btop
 
 - name: Bun
   description: "JavaScript runtime like Node.js"
   winget: Oven-sh.Bun
-  curl-sh:
-    url: "https://bun.sh/install"
-    shell: bash
-  # archlinux: bun-bin
 
 - name: carapace-bin
   description: "Command-line utility for generating shell completions"
   scoop: extras/carapace-bin
-  archlinux: carapace-bin
 
 - name: cargo-update
   description:
     "A cargo subcommand for checking and applying updates to installed
     executables"
   cargo: cargo-update
-  archlinux: cargo-update
-
-- name: containerd.io
-  description: "Container runtime for managing containers"
-  archlinux: containerd
 
 - name: curl
   description: "Command-line tool for transferring data with URLs"
   scoop: main/curl
-  archlinux: curl
 
 - name: Delta
   description: "Git diff viewer"
-  cargo: git-delta
-  archlinux: git-delta
+  scoop: main/delta
 
 - name: Deno
   description: "JavaScript and TypeScript runtime"
   winget: DenoLand.Deno
-  curl-sh:
-    url: "https://deno.land/install.sh"
-    flags: "--yes"
-  archlinux: deno
-
-- name: Docker Buildx Plugin
-  description: "Docker Buildx CLI plugin"
-  archlinux: docker-buildx
-
-- name: Docker
-  description: "Docker Community Edition"
-  archlinux: docker
-
-- name: Docker Compose Plugin
-  description: "Docker Compose CLI plugin"
-  archlinux: docker-compose
 
 - name: Docker Desktop
   description: "Docker Desktop application"
@@ -139,11 +82,11 @@
 
 - name: Duf
   description: "Disk Usage/Free Utility - a better 'df' alternative"
-  archlinux: duf
+  scoop: main/duf
 
 - name: Dust
   description: "A more intuitive version of du in rust"
-  archlinux: dust
+  scoop: main/dust
 
 - name: Everything
   description: "Locate files and folders by name instantly"
@@ -153,36 +96,21 @@
   description: "Command-line interface for Everything"
   scoop: main/everything-cli
 
-- name: eza
-  description: "A modern replacement for ls"
-  cargo: eza
-  archlinux: eza
-
 - name: fastfetch
   description:
     "A maintained, feature-rich and performance oriented, neofetch like system
     information tool."
   scoop: main/fastfetch
-  archlinux: fastfetch
 
 - name: fd
   description: "Simple, fast and user-friendly alternative to find"
-  cargo: fd-find
-  archlinux: fd
+  scoop: main/fd
 
 - name: FFmpeg (Nightly)
   description:
     "Multimedia framework for handling video, audio, and other multimedia files,
     nightly build"
   scoop: versions/ffmpeg-nightly
-  # brought in as an external on debian/ubuntu
-
-- name: FFmpeg (Stable)
-  description:
-    "Multimedia framework for handling video, audio, and other multimedia files,
-    stable build"
-  archlinux: ffmpeg
-  # we don't want to have to compile this, so we use stable
 
 - name: Firefox
   description: "Web browser"
@@ -191,23 +119,18 @@
 - name: fzf
   description: "Command-line fuzzy finder"
   scoop: main/fzf
-  # brought in as an external on debian/ubuntu
-  archlinux: fzf
 
 - name: gallery-dl
   description: "Command-line program to download images from galleries"
-  uv: gallery-dl --with yt-dlp # hack to get yt-dlp installed too
-  archlinux: gallery-dl-bin
+  uv: gallery-dl --with yt-dlp
 
 - name: GitHub CLI
   description: "Command-line interface for GitHub"
   scoop: main/gh
-  archlinux: github-cli
 
 - name: Git
   description: "The stupid content tracker"
   scoop: main/git
-  archlinux: git
 
 - name: GIMP
   description: "GNU Image Manipulation Program"
@@ -216,22 +139,18 @@
 - name: Go
   description: "Programming language for building software"
   winget: GoLang.Go
-  archlinux: go
 
 - name: GnuPG
   description: "GNU Privacy Guard"
   scoop: main/gnupg
-  archlinux: gnupg
 
 - name: gping
   description: "Ping, but with a graph"
   scoop: main/gping
-  archlinux: gping
 
 - name: gzip
   description: "GNU zip"
   scoop: main/gzip
-  archlinux: gzip
 
 - name: OpenHashTab
   description: "File hashing and checking shell extension"
@@ -242,12 +161,10 @@
 - name: hyperfine
   description: "Benchmarking tool for command-line applications"
   scoop: main/hyperfine
-  archlinux: hyperfine
 
 - name: ImageMagick
   description: "Image manipulation tool"
   scoop: main/imagemagick
-  archlinux: imagemagick
 
 - name: ImHex
   description: "Hex editor for reverse engineering"
@@ -276,17 +193,14 @@
 - name: jq
   description: "Command-line JSON processor"
   scoop: main/jq
-  archlinux: jq
 
 - name: lazydocker
   description: "Terminal UI for both docker and docker-compose"
   scoop: extras/lazydocker
-  archlinux: lazydocker
 
 - name: lazygit
   description: "A simple terminal UI for git commands"
   scoop: extras/lazygit
-  archlinux: lazygit
 
 - # needed for rust msvc toolchain
   # see: https://github.com/rust-lang/rustup/issues/3358#issuecomment-2869757930

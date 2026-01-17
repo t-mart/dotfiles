@@ -1,34 +1,28 @@
-$env:Path = @(
-    [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
-    [System.Environment]::GetEnvironmentVariable('Path', 'User')
-) -join ';'
+. "${env:CHEZMOI_SOURCE_DIR}/.chezmoiscripts/windows/.common.ps1"
 
-if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+if (-not (Command-Exists scoop)) {
     Write-Host "scoop not found, installing..."
     Invoke-RestMethod get.scoop.sh | Invoke-Expression
-} else {
-    Write-Host "scoop is already installed. Skipping installation." -ForegroundColor Yellow
 }
 
-$env:Path = @(
-    [System.Environment]::GetEnvironmentVariable('Path', 'Machine')
-    [System.Environment]::GetEnvironmentVariable('Path', 'User')
-) -join ';'
-
 # needed for scoop buckets
-if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+if (-not (Command-Exists git)) {
     Write-Host "git not found, installing..."
-    scoop install git
+    scoop install main/git
 }
 
 $currentBucketNames = @((scoop bucket list).Name)
 $currentApps = scoop list | ForEach-Object { "$($_.Source)/$($_.Name)" }
 
-$packages = @"
-{{ joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml | toPrettyJson -}}
-"@ | ConvertFrom-Json
+$packagesToInstall = @(
+    @{ Name = 'AgileBits.1Password'},
+)
 
-foreach ($package in $packages) {
+# $packages = @"
+# {{ joinPath .chezmoi.sourceDir ".data/packages.yaml" | include | fromYaml | toPrettyJson -}}
+# "@ | ConvertFrom-Json
+
+foreach ($package in $packagesToInstall) {
   if ($null -ne $package.scoop) {
     $appName = ""
     $elevate = $false
