@@ -26,7 +26,7 @@ log_info() {
     if command_exists gum; then
         gum log --level info "$@"
     else
-        echo "INFO: $@" >&2
+        echo "INFO: $*" >&2
     fi
 }
 
@@ -35,7 +35,7 @@ log_error() {
     if command_exists gum; then
         gum log --level error "$@"
     else
-        echo "ERROR: $@" >&2
+        echo "ERROR: $*" >&2
     fi
 }
 
