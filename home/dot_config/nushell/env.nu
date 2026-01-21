@@ -1,8 +1,6 @@
-# Nushell Environment Config File
-
-# The first file loaded is env.nu, which was historically used to override
+# When nu starts, this is the first file loaded. It was historically used to override
 # environment variables. However, the current "best-practice" recommendation is
-# to set all environment variables (and other configuration) using config.nu and
+# to set all environment variables (and other configuration) in config.nu and
 # the autoload directories.
 
 # so, nothing to see here. see config.nu.

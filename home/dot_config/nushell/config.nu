@@ -24,7 +24,7 @@ if (is-installed code) {
 $env.PAGER = "bat"
 # see https://github.com/sharkdp/bat/blob/master/README.md#man
 $env.MANPAGER = r#'sh -c 'sed -u -e "s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat -p -lman''#
-$env.GOPATH = ($nu.home-path | path join ".local/share/go")
+$env.GOPATH = ($nu.home-dir | path join ".local/share/go")
 
 # disable rclone unicode normalization to preserve filename fidelity
 # omg, how toxic is this default behavior
@@ -40,7 +40,7 @@ $env.config.filesize.unit = "binary"
 if $env.LANG? == null {
   let locale_paths = [
     ($env.XDG_CONFIG_HOME? | if $in != null { $in | path join "locale.conf" } )
-    ($nu.home-path | path join ".config/locale.conf")
+    ($nu.home-dir | path join ".config/locale.conf")
     "/etc/locale.conf"
   ]
   | compact 
@@ -65,22 +65,18 @@ def 'quote-path' []: string -> string {
   }
 }
 
-add-path-if-exists ($nu.home-path | path join ".local/bin")
-add-path-if-exists ($nu.home-path | path join ".local/share/bin")
-add-path-if-exists ($nu.home-path | path join "bin")
-add-path-if-exists ($nu.home-path | path join ".cargo/bin")
-add-path-if-exists ($nu.home-path | path join "scoop/shims")
-add-path-if-exists (($env | get --optional LOCALAPPDATA | default "/not-windows") | path join "Programs/oh-my-posh/bin")
-add-path-if-exists ($nu.home-path | path join ".deno/bin")
+add-path-if-exists ($nu.home-dir | path join ".local/bin")
+add-path-if-exists ($nu.home-dir | path join ".cargo/bin")
+add-path-if-exists ($nu.home-dir | path join ".deno/bin")
 add-path-if-exists ($env.GOPATH | path join "bin")
 
-let pnpm_home_path = ($nu.home-path | path join ".local/share/pnpm")
+let pnpm_home_path = ($nu.home-dir | path join ".local/share/pnpm")
 if ($pnpm_home_path | path exists) {
     $env.PNPM_HOME = $pnpm_home_path
     path add $env.PNPM_HOME
 }
 
-let bun_install_path = ($nu.home-path | path join ".bun")
+let bun_install_path = ($nu.home-dir | path join ".bun")
 if ($bun_install_path | path exists) {
     $env.BUN_INSTALL = $bun_install_path
     path add ($env.BUN_INSTALL | path join "bin")
@@ -166,18 +162,10 @@ $env.FZF_DEFAULT_OPTS = "--style full"
 
 # fzf keybindings
 $env.KB_FZF_CD_CWD_COMMAND = "fd --type directory --hidden"
-$env.KB_FZF_CD_ALL_COMMAND = if (on-windows) { 
-  "es folder:" # directories only
-} else {
-  "fd --type directory --hidden . /"
-}
+$env.KB_FZF_CD_ALL_COMMAND = "fd --type directory --hidden . /"
 $env.KB_FZF_CD_OPTS = "--preview 'tree --color --classify --level 3 {} | head -n 200'"
 $env.KB_FZF_FIND_FILES_CWD_COMMAND = "fd --type file --hidden"
-$env.KB_FZF_FIND_FILES_ALL_COMMAND = if (on-windows) { 
-  "es"
-} else {
-  "fd --hidden . /"
-}
+$env.KB_FZF_FIND_FILES_ALL_COMMAND = "fd --hidden . /"
 $env.KB_FZF_FIND_FILES_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "
 $env.KB_FZF_DEFAULT_OPTS = "--scheme=path"
 
@@ -315,4 +303,4 @@ $env.PROMPT_INDICATOR_VI_NORMAL = [
   $"(ansi {fg: (gruvbox fg2)})(ansi reset) "
 ] | str join
 # this is supposed to be done last (might not matter)
-oh-my-posh init nu --config $"($nu.home-path | path join ".config/oh-my-posh.yaml")"
+oh-my-posh init nu --config $"($nu.home-dir | path join ".config/oh-my-posh.yaml")"

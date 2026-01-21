@@ -15,18 +15,6 @@ config.initial_rows = 32
 
 config.default_prog = { 'nu' }
 
--- i'm not sure how this all really works, but the 1Password SSH agent won't
--- work if wezterm is using its own agent. see
--- https://wezterm.org/config/lua/config/default_ssh_auth_sock.html and
--- https://developer.1password.com/docs/ssh/get-started/#step-3-turn-on-the-1password-ssh-agent
---
--- recommended way to interrogate the platform is to use
--- `wezterm.target_triple`. see
--- https://wezterm.org/config/lua/wezterm/target_triple.html
-if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
-  config.default_ssh_auth_sock = "\\\\.\\pipe\\openssh-ssh-agent"
-end
-
 config.font = wezterm.font("JetBrainsMonoNL Nerd Font Mono")
 
 config.default_cursor_style = 'SteadyBlock'
@@ -48,6 +36,19 @@ config.mouse_bindings = {
         window:perform_action(act({ PasteFrom = "Clipboard" }), pane)
       end
     end),
+  },
+  {
+    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+    mods = 'NONE',
+    -- the default here is act.ScrollByCurrentEventWheelDelta, where the scroll whell event contains the number of lines to scroll
+    -- but that was too fast with KDE Plasma (despite it working well for other scrollable apps), so we set a fixed number of lines instead
+    action = act.ScrollByLine(-5),
+  },
+  {
+    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+    mods = 'NONE',
+    -- ditto, see above
+    action = act.ScrollByLine(5),
   },
 }
 

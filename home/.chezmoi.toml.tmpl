@@ -4,16 +4,13 @@ encryption = "age"
     pager = "delta"
 
 [merge]
-{{- if eq .chezmoi.os "windows" }}
-    command = "pwsh"
+    # https://www.chezmoi.io/user-guide/tools/merge/#use-vscode-as-the-merge-tool
+    # Note the second arg is a template string because we need to escape the brackets
+    command = "bash"
     args = [
-        "-Command",
-        "Copy-Item -Path '{{`{{ .Target }}`}}' -Destination '{{`{{ .Target }}`}}.base'; code --new-window --wait --merge '{{`{{ .Destination }}`}}' '{{`{{ .Target }}`}}' '{{`{{ .Target }}`}}.base' '{{`{{ .Source }}`}}'"
+        "-c",
+        {{`"cp {{ .Target | quote }} {{ printf \"%s.base\" .Target | quote }} && code --new-window --wait --merge {{ .Destination | quote }} {{ .Target | quote }} {{ printf \"%s.base\" .Target | quote }} {{ .Source | quote }}"`}},
     ]
-{{ else }}
-    command = "nvim"
-    args = ["-d", "{{`{{ .Destination }}`}}", "{{`{{ .Source }}`}}", "{{`{{ .Target }}`}}"]
-{{ end }}
 
 [age]
     identity = "~/.config/chezmoi/key.txt"
@@ -21,21 +18,10 @@ encryption = "age"
 
 [data]
     git_signingkey = "{{ (gitHubKeys "t-mart" | first).Key }}"
-    {{- $osid := .chezmoi.os -}}
-    {{- if hasKey .chezmoi.osRelease "id" -}}
-    {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
-    {{- end }}
-    osid = "{{ $osid }}"
-    {{ if eq .chezmoi.os "windows" -}}
-    scoopPath = "{{ joinPath .chezmoi.homeDir "scoop" | replace "\\" "/" }}"
-    wingetLinksPath = "{{ joinPath .chezmoi.homeDir "AppData/Local/Microsoft/WinGet/Links/" | replace "\\" "/"}}"
-    {{- $hasHardwareFans := promptBoolOnce . "hasHardwareFans" "Does this machine have hardware fans" }}
-    hasHardwareFans = {{ $hasHardwareFans }}
-    {{- end }}
-    {{ if ne .chezmoi.os "windows" -}}
-    {{- $isWorkstation := promptBoolOnce . "installPackages" "Should we install workstation packages (development and multimedia stuff)" }}
+    {{- $isWorkstation := promptBoolOnce . "isWorkstation" "Should we install workstation packages (development and multimedia stuff)" }}
     isWorkstation = {{ $isWorkstation }}
-    {{- end }}
+    {{- $hasNvidia := promptBoolOnce . "hasNvidia" "Does this machine use an Nvidia GPU" }}
+    hasNvidia = {{ $hasNvidia }}
 
 [gitHub]
     refreshPeriod = "24h"
@@ -46,9 +32,3 @@ encryption = "age"
 
 [cd]
     command = "nu"
-
-{{ if eq .chezmoi.os "windows" -}}
-[interpreters.ps1]
-    command = "powershell"
-    args = ["-NoLogo", "-ExecutionPolicy", "RemoteSigned"]
-{{ end }}

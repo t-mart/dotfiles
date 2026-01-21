@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/unix/.common.sh"
+source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.common.sh"
 
 log_banner "Setting default shell to Nushell"
 

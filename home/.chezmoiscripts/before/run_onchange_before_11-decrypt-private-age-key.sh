@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/unix/.common.sh"
+source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.common.sh"
 
 log_banner "Decrypting age private key"
 
-readonly encrypted_key_file="${CHEZMOI_WORKING_TREE}/data/key.txt.age"
+readonly encrypted_key_file="${CHEZMOI_WORKING_TREE}/data/chezmoi-age-key.txt.age"
 readonly decrypted_key_file="${HOME}/.config/chezmoi/key.txt"
 
 if [[ -f "${decrypted_key_file}" ]]; then

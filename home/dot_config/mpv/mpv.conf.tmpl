@@ -1,0 +1,61 @@
+input-ar-delay = 500
+input-ar-rate = 20
+keep-open = yes
+osd-duration = 2000
+osd-playing-msg = '${filename}'
+screenshot-directory = '~~desktop/'
+screenshot-format = png
+
+volume-max = 150
+volume = 100
+
+# generally seeks navigate to the nearest keyframe because it is faster. but, i
+# care more about accuracy (or "High Resolution")
+hr-seek = yes
+
+# try (in order):
+# 1. best avc format (needed for seeking to work) + best audio format, muxed together
+# 2. best video format + best audio format, muxed together
+# 3. best format that contains both audio and video
+ytdl-format="bestvideo[vcodec^=avc]+bestaudio/bestvideo+bestaudio/best"
+
+# extra yt-dlp options
+ytdl-raw-options=sub-langs="en.*",write-sub=,write-auto-sub=,remote-components="ejs:github",cookies-from-browser="firefox"
+
+# Load all subs containing the media filename.
+sub-auto=fuzzy
+
+# autofit window to 50% of screen width and height
+autofit-larger=50%x50%
+
+# use nvidia hardware decoding
+hwdec = {{ if eq .hasNvidia true -}}
+    nvdec
+{{- else -}}
+    auto
+{{- end }}
+
+# use the gpu-next video output driver for better performance and quality
+vo=gpu-next
+
+# A built in profile that comes with mpv that prioritizes quality over performance
+profile=high-quality
+
+# Dither depth (helps with banding on 8-bit panels)
+dither-depth=auto
+
+# Fixes blocky gradients in lower quality streams (YouTube, Anime)
+deband=yes
+deband-iterations=4
+deband-threshold=48
+deband-range=16
+deband-grain=48
+
+# create playlist of siblint files when opening a file
+autocreate-playlist=same
+
+# when opening a directory, only load video files
+directory-filter-types=video
+
+[protocol.https]
+osd-playing-msg = '${media-title}'

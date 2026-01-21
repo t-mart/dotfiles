@@ -1,6 +1,6 @@
 # mpv configuration
 
-This is my configuration for mpv and mpvnet media players.
+This is my configuration for mpv media players.
 
 Included scripts:
 
@@ -32,7 +32,7 @@ Included scripts:
 
 - Spawn New Instance (own work)
 
-  Spawns a new instance of mpv/mpvnet with the currently playing file. Useful
+  Spawns a new instance of mpv with the currently playing file. Useful
   for quickly opening multiple videos while browsing through a directory.
 
   `Ctrl+n` to spawn a new instance.
