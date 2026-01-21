@@ -68,10 +68,7 @@ log_info "Installing 'tim-base' metapackage via paru..."
 )
 
 # Check if workstation packages should be installed
-# this relies on jq being installed in the base metapackage
-IS_WORKSTATION=$("${CHEZMOI_EXECUTABLE}" dump-config | jq -r '.data.isWorkstation' 2>/dev/null)
-readonly IS_WORKSTATION
-if [[ "$IS_WORKSTATION" == "true" ]]; then
+if is_workstation; then
     log_info "Installing 'tim-workstation' metapackage via paru..."
     (
         cd "${CHEZMOI_WORKING_TREE}/data/arch-packages/tim-workstation" || exit

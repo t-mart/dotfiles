@@ -41,4 +41,6 @@ if [ "$CURRENT_SHELL" != "$NU_PATH" ]; then
   log_info "Changing default shell for user '$USERNAME' to '$NU_PATH'..."
   chsh -s "$NU_PATH"
   log_info "Shell changed to ${NU_PATH}! Log out and back in for the change to take effect."
+else
+  log_info "Default shell for user '$USERNAME' is already set to '$NU_PATH'. No change needed."
 fi

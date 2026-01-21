@@ -15,6 +15,12 @@ is_arch_linux() {
     command_exists makepkg && command_exists pacman
 }
 
+is_workstation() {
+    local value
+    value=$("${CHEZMOI_EXECUTABLE}" execute-template '{{ .isWorkstation }}' || echo "false")
+    [[ "$value" == "true" ]]
+}
+
 # log the arguments to stderr. use `gum log` if available, otherwise just echo
 log_info() {
     if command_exists gum; then
