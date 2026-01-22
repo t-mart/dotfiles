@@ -148,11 +148,8 @@ let external_completer = {|spans|
 # this fzf config calls out to a few other programs, which we expect to be
 # installed from our chezmoi scripts:
 #
-# - fd, a cross-platform file finder, which we use to find files and directories
-# - es, a windows file finder, which is significantly faster than fd because it 
-#   reads from the NTFS MFT (it is slower to start up, though)
-# - tree, from rust crate `rust_tree`, which we use to preview directory
-#   structure
+# - erdtree, a tree visualizer, which we use to preview directories
+# - fd, a file finder, which we use to find files and directories
 # - bat, a cat replacement with syntax highlighting, which we use to preview
 #   files
 #
@@ -163,7 +160,7 @@ $env.FZF_DEFAULT_OPTS = "--style full"
 # fzf keybindings
 $env.KB_FZF_CD_CWD_COMMAND = "fd --type directory --hidden"
 $env.KB_FZF_CD_ALL_COMMAND = "fd --type directory --hidden . /"
-$env.KB_FZF_CD_OPTS = "--preview 'tree --color --classify --level 3 {} | head -n 200'"
+$env.KB_FZF_CD_OPTS = "--preview 'erd --human --no-progress --suppress-size --level 3 --color force {}'"
 $env.KB_FZF_FIND_FILES_CWD_COMMAND = "fd --type file --hidden"
 $env.KB_FZF_FIND_FILES_ALL_COMMAND = "fd --hidden . /"
 $env.KB_FZF_FIND_FILES_OPTS = "--preview 'bat --color=always --style=full --line-range=:500 {}' "

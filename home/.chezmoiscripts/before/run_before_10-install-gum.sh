@@ -15,5 +15,7 @@ fi
 if ! command_exists gum; then
     log_info "Installing gum..."
     sudo pacman -Syu --noconfirm --needed gum
+else
+    log_info "gum already installed. Skipping."
 fi
 
