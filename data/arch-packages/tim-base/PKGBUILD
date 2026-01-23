@@ -39,8 +39,9 @@ depends=(
     "ranger" # terminal file manager
     "ripgrep" # regex search tool
     "trippy" # network diagnostic tool (command is trip)
-    "uv" # make python gud
+    "unrar" # decompression tool
     "unzip" # file decompression tool
+    "uv" # make python gud
     "vivid" # terminal color scheme manager
     "xz" # file compression tool
     "zip" # file compression tool

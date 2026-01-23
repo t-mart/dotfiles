@@ -12,7 +12,7 @@ log_banner "Installing mpv uosc UI"
 if ! is_workstation; then
     log_info "Not a workstation. Skipping mpv uosc UI installation."
     exit 0
-elif [[ -d "${HOME}/.config/mpv/uosc" ]]; then
+elif [[ -d "${HOME}/.config/mpv/scripts/uosc" ]]; then
     log_info "mpv uosc UI already installed. Skipping."
     exit 0
 fi
