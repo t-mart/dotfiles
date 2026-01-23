@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=./.packagelist.schema.json
+
+- "1password" # password manager
+- "firefox" # web browser
+- "mpv" # media player
+- "plasma-meta" # KDE Plasma desktop environment
+- "wezterm-nightly-bin" # terminal emulator

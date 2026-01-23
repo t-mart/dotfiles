@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=./.packagelist.schema.json
+
+- "1password-cli" # password manager CLI
+- "atomicparsley" # media file tagger (yt-dlp dependency)
+- "deno" # JavaScript/TypeScript runtime
+- "ffmpeg" # media processing
+- "gallery-dl-bin" # image downloader
+- "github-cli" # GitHub CLI tool
+- "go" # programming language
+- "hyperfine" # command-line benchmarking tool
+- "imagemagick" # image manipulation
+- "lazygit" # terminal UI for git
+- "nodejs" # JavaScript runtime
+- "pnpm" # JavaScript package manager
+- "rtmpdump" # RTMP streaming tool (yt-dlp dependency)
+- "rust" # programming language
+- "terraform" # infrastructure as code tool
+- "magic-wormhole" # secure file transfer tool

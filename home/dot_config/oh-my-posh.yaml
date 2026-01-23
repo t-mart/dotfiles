@@ -3,9 +3,9 @@ version: 4
 
 upgrade:
   source: cdn
-  interval: 168h
+  interval: "87600h" # 10 years, stop being a package manager
   auto: false
-  notice: true
+  notice: false
 
 console_title_template: "{{.UserName}}@{{.HostName}} {{.Shell}} in {{.PWD}}"
 

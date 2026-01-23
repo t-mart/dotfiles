@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Arch Package List",
+  "description": "A list of Arch Linux packages to be installed via paru/pacman.",
+  "type": "array",
+  "items": {
+    "type": "string",
+    "description": "The valid Arch Linux package name.",
+    "pattern": "^[a-z0-9@._+-]+$",
+    "minLength": 1
+  },
+  "uniqueItems": true
+}

@@ -21,6 +21,32 @@ is_workstation() {
     [[ "$value" == "true" ]]
 }
 
+is_graphical() {
+    local value
+    value=$("${CHEZMOI_EXECUTABLE}" execute-template '{{ .isGraphical }}' || echo "false")
+    [[ "$value" == "true" ]]
+}
+
+install_packagelist() {
+    local list_file="${CHEZMOI_WORKING_TREE}/data/packagelists/${1}.yml"
+
+    if [[ ! -f "$list_file" ]]; then
+        echo "Packagelist file not found: $list_file"
+        return
+    fi
+
+    log_info "Installing packages from '${list_file}' via paru..."
+    
+    # -r = raw output (no quotes)
+    # '.[]' = iterate over the top-level list
+    local packages
+    packages=$(yq -r '.[]' "$list_file")
+
+    # Pass the list to paru (no quotes around $packages to allow word splitting)
+    # shellcheck disable=SC2086
+    paru -S --needed $packages
+}
+
 # log the arguments to stderr. use `gum log` if available, otherwise just echo
 log_info() {
     if command_exists gum; then

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=inode/directory;
+Actions=openWezterm;
+X-KDE-Priority=TopLevel
+
+[Desktop Action openWezterm]
+Name=Open WezTerm Here
+Icon=org.wezfurlong.wezterm
+Exec=/usr/bin/wezterm start --always-new-process --cwd "%f"

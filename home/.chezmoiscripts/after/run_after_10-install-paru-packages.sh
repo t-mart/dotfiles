@@ -29,6 +29,12 @@ if ! command_exists paru; then
     log_info "Paru installed successfully."
 fi
 
+# Install yq for reading package lists
+if ! command_exists yq; then
+    log_info "Installing yq..."
+    sudo pacman -Syu --noconfirm --needed yq
+fi
+
 # Add GPG keys for certain packages
 # Admittedly, this is a lot of code for something small.
 PACKAGE_GPG_KEYS=(
@@ -60,18 +66,12 @@ if (( MISSING_COUNT > 0 )); then
     fi
 fi
 
-# Install the base metapackage
-log_info "Installing 'tim-base' metapackage via paru..."
-(
-    cd "${CHEZMOI_WORKING_TREE}/data/arch-packages/tim-base" || exit
-    paru -U --noconfirm
-)
+install_packagelist "base"
 
-# Check if workstation packages should be installed
 if is_workstation; then
-    log_info "Installing 'tim-workstation' metapackage via paru..."
-    (
-        cd "${CHEZMOI_WORKING_TREE}/data/arch-packages/tim-workstation" || exit
-        paru -U --noconfirm
-    )
+    install_packagelist "workstation"
+fi
+
+if is_graphical; then
+    install_packagelist "graphical"
 fi
