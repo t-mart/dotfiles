@@ -31,4 +31,6 @@ scripts.
 ## `packagelists/`
 
 YAML files listing packages to be installed by my chezmoi scripts. See
-[`the installation script`](/home/.chezmoiscripts/after/run_after_10-install-paru-packages.sh) for usage.
+[the installation script](/home/.chezmoiscripts/after/run_after_10-install-paru-packages.sh) for usage.
+
+Format is a YAML list of unique package names.
