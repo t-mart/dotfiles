@@ -1,3 +1,10 @@
 {{- if not .isGraphical }}
 .local/share/kio
+.config/mpv
+.config/plasma-workspace
+{{- end }}
+
+{{- if not .isThinkpadZ13 }}
+.config/thinkfan.conf
+.config/keyboard-backlightd
 {{- end }}

@@ -2,7 +2,8 @@
 
 - "1password-cli" # password manager CLI
 - "atomicparsley" # media file tagger (yt-dlp dependency)
-- "deno" # JavaScript/TypeScript runtime
+- "bun" # JavaScript runtime
+- "deno" # JavaScript runtime
 - "ffmpeg" # media processing
 - "gallery-dl-bin" # image downloader
 - "github-cli" # GitHub CLI tool

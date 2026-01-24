@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=./.packagelist.schema.json
+
+- "thinkfan" # fan control for ThinkPads
+- "keyboard-backlightd" # keyboard backlight control for ThinkPads
+- "lm_sensors" # hardware monitoring
+

@@ -15,16 +15,38 @@ is_arch_linux() {
     command_exists makepkg && command_exists pacman
 }
 
-is_workstation() {
+get_data_bool() {
     local value
-    value=$("${CHEZMOI_EXECUTABLE}" execute-template '{{ .isWorkstation }}' || echo "false")
+    value=$("${CHEZMOI_EXECUTABLE}" execute-template "{{ .${1} }}" || echo "false")
     [[ "$value" == "true" ]]
 }
 
+is_workstation() {
+    get_data_bool "isWorkstation"
+}
+
 is_graphical() {
-    local value
-    value=$("${CHEZMOI_EXECUTABLE}" execute-template '{{ .isGraphical }}' || echo "false")
-    [[ "$value" == "true" ]]
+    get_data_bool "isGraphical"
+}
+
+has_nvidia() {
+    get_data_bool "hasNvidia"
+}
+
+uses_brother_printer() {
+    get_data_bool "usesBrotherPrinter"
+}
+
+is_thinkpad_z13() {
+    get_data_bool "isThinkpadZ13"
+}
+
+# Check if $1 is a link AND if its target matches $2
+# Arguments:
+#   $1: The link file to check
+#   $2: The expected target file
+is_softlink_of() {
+    [[ -L "$1" ]] && [[ "$(readlink -f "$1")" == "$(readlink -f "$2")" ]]
 }
 
 install_packagelist() {

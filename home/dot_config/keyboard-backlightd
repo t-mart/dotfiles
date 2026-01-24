@@ -1,0 +1,32 @@
+# Inputs to monitor.
+# Should be on form -i /dev/input/... -i /dev/input/...
+#
+# See README.md for more info
+INPUTS=-i /dev/input/by-path/platform-i8042-serio-0-event-kbd \
+       -i /dev/input/by-path/platform-thinkpad_acpi-event \
+       -i /dev/input/by-path/platform-i8042-serio-1-event-mouse \
+       -i /dev/input/by-path/platform-AMDI0010:02-event-mouse \
+       -i /dev/input/by-path/platform-AMDI0010:01-event
+
+# Path to LED under /sys to control
+LED=/sys/class/leds/tpacpi::kbd_backlight
+
+# Default brightness
+BRIGHTNESS=1
+
+# Timeout in milliseconds after which to turn off the LED.
+TIMEOUT=15000
+
+# Time to wait for files showing up. This is useful during boot to handle
+# device nodes not yet being available due to late kernel module loading.
+WAIT=15000
+
+# Extra command line flags to pass to keyboard-backlightd
+# See --help for a full list (though some overlap with the other settings
+# in this file). Of particular interest might be:
+# * --no-adaptive-brightness
+# * --verbose
+FLAGS=
+
+# Set service log level
+RUST_LOG=warn

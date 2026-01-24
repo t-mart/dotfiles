@@ -18,12 +18,17 @@ encryption = "age"
 
 [data]
     git_signingkey = "{{ (gitHubKeys "t-mart" | first).Key }}"
+
     {{- $isWorkstation := promptBoolOnce . "isWorkstation" "Should we install workstation packages (development and multimedia stuff)" }}
     isWorkstation = {{ $isWorkstation }}
     {{- $isGraphical := promptBoolOnce . "isGraphical" "Should we install graphical packages (desktop environment and related stuff)" }}
     isGraphical = {{ $isGraphical }}
     {{- $hasNvidia := promptBoolOnce . "hasNvidia" "Does this machine use an Nvidia GPU" }}
     hasNvidia = {{ $hasNvidia }}
+    {{- $usesBrotherPrinter := promptBoolOnce . "usesBrotherPrinter" "Does this machine use a Brother laser printer" }}
+    usesBrotherPrinter = {{ $usesBrotherPrinter }}
+    {{- $isThinkpadZ13 := promptBoolOnce . "isThinkpadZ13" "Is this machine a ThinkPad Z13" }}
+    isThinkpadZ13 = {{ $isThinkpadZ13 }}
 
 [gitHub]
     refreshPeriod = "24h"

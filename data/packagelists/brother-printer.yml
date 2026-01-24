@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=./.packagelist.schema.json
+
+- "brlaser" # Brother printer drivers
+- "cups" # Common Unix Printing System

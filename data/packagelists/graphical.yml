@@ -1,7 +1,16 @@
 # yaml-language-server: $schema=./.packagelist.schema.json
 
 - "1password" # password manager
+- "discord" # chat application
+- "filelight" # disk usage analyzer
 - "firefox" # web browser
+- "flameshot" # screenshot tool
+- "gnome-network-displays" # cast to network displays
+- "libreoffice-fresh" # office suite
 - "mpv" # media player
 - "plasma-meta" # KDE Plasma desktop environment
+- "qalculate-gtk" # advanced calculator
+- "signal-desktop" # secure messaging app
+- "visual-studio-code-bin" # code editor
 - "wezterm-nightly-bin" # terminal emulator
+- "wl-clipboard" # Wayland clipboard utilities

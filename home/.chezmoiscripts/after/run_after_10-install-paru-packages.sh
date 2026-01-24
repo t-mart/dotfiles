@@ -75,3 +75,11 @@ fi
 if is_graphical; then
     install_packagelist "graphical"
 fi
+
+if uses_brother_printer; then
+    install_packagelist "brother-printer"
+fi
+
+if is_thinkpad_z13; then
+    install_packagelist "thinkpad-z13"
+fi

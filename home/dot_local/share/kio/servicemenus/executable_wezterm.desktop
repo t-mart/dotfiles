@@ -8,4 +8,4 @@ X-KDE-Priority=TopLevel
 [Desktop Action openWezterm]
 Name=Open WezTerm Here
 Icon=org.wezfurlong.wezterm
-Exec=/usr/bin/wezterm start --always-new-process --cwd "%f"
+Exec=wezterm start --always-new-process --cwd "%f"
