@@ -11,6 +11,8 @@
 - "plasma-meta" # KDE Plasma desktop environment
 - "qalculate-gtk" # advanced calculator
 - "signal-desktop" # secure messaging app
+- "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
+- "ttf-jetbrains-mono-nerd" # monospace programming font
 - "visual-studio-code-bin" # code editor
 - "wezterm-nightly-bin" # terminal emulator
 - "wl-clipboard" # Wayland clipboard utilities

@@ -15,8 +15,7 @@ config.initial_rows = 32
 
 config.default_prog = { 'nu' }
 
-config.font = wezterm.font("JetBrainsMono Nerd Font")
--- or use "JetBrainsMonoNL Nerd Font Mono" for no ligatures
+config.font = wezterm.font("JetBrainsMonoNL Nerd Font")
 
 config.default_cursor_style = 'SteadyBlock'
 
