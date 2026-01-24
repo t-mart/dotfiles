@@ -6,8 +6,10 @@
 - "firefox" # web browser
 - "flameshot" # screenshot tool
 - "gnome-network-displays" # cast to network displays
+- "inter-font" # highly legible sans-serif typeface
 - "libreoffice-fresh" # office suite
 - "mpv" # media player
+- "noto-fonts" # versatile typeface family
 - "plasma-meta" # KDE Plasma desktop environment
 - "qalculate-gtk" # advanced calculator
 - "signal-desktop" # secure messaging app
