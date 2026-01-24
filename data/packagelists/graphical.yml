@@ -5,6 +5,8 @@
 - "filelight" # disk usage analyzer
 - "firefox" # web browser
 - "flameshot" # screenshot tool
+- "fontconfig" # font configuration tools
+- "font-manager" # font preview and management
 - "gnome-network-displays" # cast to network displays
 - "inter-font" # highly legible sans-serif typeface
 - "libreoffice-fresh" # office suite
