@@ -26,6 +26,7 @@
 - "gzip" # file compression tool
 - "jq" # command-line JSON processor
 - "lazydocker" # terminal UI for docker
+- "mkinitcpio-firmware" # firmware hooks for mkinitcpio (fixes warnings)
 - "ncdu" # interactive disk usage analyzer
 - "neovim" # text editor
 - "nushell" # modern shell
