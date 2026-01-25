@@ -1,5 +1,6 @@
 {{- if not .isGraphical }}
 .local/share/kio
+.local/share/applications
 .config/mpv
 .config/plasma-workspace
 {{- end }}
