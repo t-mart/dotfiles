@@ -1,7 +1,9 @@
 # yaml-language-server: $schema=./.packagelist.schema.json
 
 - "1password" # password manager
+- "ark" # archive manager
 - "discord" # chat application
+- "ffmpegthumbs" # video thumbnail generator
 - "filelight" # disk usage analyzer
 - "firefox" # web browser
 - "flameshot" # screenshot tool
@@ -9,12 +11,16 @@
 - "font-manager" # font preview and management
 - "gnome-network-displays" # cast to network displays
 - "inter-font" # highly legible sans-serif typeface
+- "kdegraphics-thumbnailers" # image and video thumbnailers for KDE
+- "kimageformats" # additional image format plugins for KDE
 - "libreoffice-fresh" # office suite
 - "mpv" # media player
 - "noto-fonts" # versatile typeface family
 - "plasma-meta" # KDE Plasma desktop environment
 - "qalculate-gtk" # advanced calculator
+- "qt6-imageformats" # additional image format plugins for Qt6
 - "signal-desktop" # secure messaging app
+- "taglib" # audio metadata library
 - "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
 - "ttf-jetbrains-mono-nerd" # monospace programming font
 - "visual-studio-code-bin" # code editor
