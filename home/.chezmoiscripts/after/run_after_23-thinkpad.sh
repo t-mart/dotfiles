@@ -5,6 +5,8 @@ source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.common.sh"
 
 if is_thinkpad_z13; then
 
+  # TODO: this linking might now work! test with docker to ensure.
+
   log_banner "Configuring ThinkPad Z13 specific settings"
 
   thinkfan_target="${CHEZMOI_SOURCE_DIR}/thinkfan.conf"
