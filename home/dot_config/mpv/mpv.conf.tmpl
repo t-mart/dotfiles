@@ -1,17 +1,17 @@
-input-ar-delay = 500
-input-ar-rate = 20
-keep-open = yes
-osd-duration = 2000
-osd-playing-msg = '${filename}'
-screenshot-directory = '~~desktop/'
-screenshot-format = png
+input-ar-delay=500
+input-ar-rate=20
+keep-open=yes
+osd-duration=2000
+osd-playing-msg='${filename}'
+screenshot-directory='~~desktop/'
+screenshot-format=png
 
-volume-max = 150
-volume = 100
+volume-max=150
+volume=100
 
 # generally seeks navigate to the nearest keyframe because it is faster. but, i
 # care more about accuracy (or "High Resolution")
-hr-seek = yes
+hr-seek=yes
 
 # try (in order):
 # 1. best avc format (needed for seeking to work) + best audio format, muxed together
@@ -56,6 +56,9 @@ autocreate-playlist=same
 
 # when opening a directory, only load video files
 directory-filter-types=video
+
+# save watch history
+save-watch-history=yes
 
 [protocol.https]
 osd-playing-msg = '${media-title}'
