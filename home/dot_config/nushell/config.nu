@@ -10,6 +10,8 @@ alias cz = chezmoi
 alias less = bat
 # bat is smart about styling/paging when in a non-interactive tty, such as when piping
 alias cat = bat
+alias vim = nvim
+alias vi = nvim
 
 $env.NU_LIB_DIRS = [
   $nu.default-config-dir | path join "lib"
