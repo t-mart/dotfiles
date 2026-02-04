@@ -6,7 +6,6 @@
 - "ffmpegthumbs" # video thumbnail generator
 - "filelight" # disk usage analyzer
 - "firefox" # web browser
-- "flameshot" # screenshot tool
 - "fontconfig" # font configuration tools
 - "font-manager" # font preview and management
 - "gnome-network-displays" # cast to network displays
