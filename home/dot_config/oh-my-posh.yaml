@@ -49,16 +49,21 @@ blocks:
     segments:
       - type: session
         template: |
-          {{- " " -}}<b>{{ .UserName }}</b>@<b>{{ .HostName }}</b> <i>{{ .Segments.os.Icon }}</i>
-          {{- if .Root }} {{ end -}}{{- " " -}}
+          {{- " " -}}
+          <b>{{ .UserName }}</b>@<b>{{ .HostName }}</b>
+          {{- if .SSHSession }}|REMOTE{{ end -}}
+          {{- " " -}}
+          <i>{{ .Segments.os.Icon }}</i>
+          {{- " " -}}
         foreground: p:bg0
         powerline_symbol: 
         background: p:neutral_blue
         style: powerline
         foreground_templates:
-          - "{{ if .Root }}p:fg0{{ end }}"
+          - "{{ if or .Root .SSHSession }}p:fg0{{ end }}"
         background_templates:
-          - "{{ if .Root }}p:neutral_red{{ end }}"
+          - "{{ if .Root }}p:neutral_red{{ else if .SSHSession
+            }}p:neutral_orange{{ end }}"
       - type: os
         alias: os
         template: " "
