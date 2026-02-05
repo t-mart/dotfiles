@@ -10,7 +10,7 @@ source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.common.sh"
 log_banner "Installing mpv uosc UI"
 
 if ! is_graphical; then
-    log_info "Not a workstation. Skipping mpv uosc UI installation."
+    log_info "Not a graphical environment. Skipping mpv uosc UI installation."
     exit 0
 elif [[ -d "${HOME}/.config/mpv/scripts/uosc" ]]; then
     log_info "mpv uosc UI already installed. Skipping."
