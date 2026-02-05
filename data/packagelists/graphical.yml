@@ -2,6 +2,7 @@
 
 - "1password" # password manager
 - "ark" # archive manager
+- "cups" # Common Unix Printing System
 - "discord" # chat application
 - "ffmpegthumbs" # video thumbnail generator
 - "filelight" # disk usage analyzer
@@ -19,6 +20,7 @@
 - "qalculate-gtk" # advanced calculator
 - "qt6-imageformats" # additional image format plugins for Qt6
 - "signal-desktop" # secure messaging app
+- "system-config-printer" # printer configuration tool for kde plasma
 - "taglib" # audio metadata library
 - "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
 - "ttf-jetbrains-mono-nerd" # monospace programming font
