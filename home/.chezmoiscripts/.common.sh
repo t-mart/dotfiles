@@ -41,14 +41,6 @@ is_thinkpad_z13() {
     get_data_bool "isThinkpadZ13"
 }
 
-# Check if $1 is a link AND if its target matches $2
-# Arguments:
-#   $1: The link file to check
-#   $2: The expected target file
-is_softlink_of() {
-    [[ -L "$1" ]] && [[ "$(readlink -f "$1")" == "$(readlink -f "$2")" ]]
-}
-
 install_packagelist() {
     local list_file="${CHEZMOI_WORKING_TREE}/data/packagelists/${1}.yml"
 
