@@ -18,6 +18,7 @@
 - "noto-fonts" # versatile typeface family
 - "plasma-meta" # KDE Plasma desktop environment
 - "qalculate-gtk" # advanced calculator
+- "qimgv" # image viewer and editor
 - "qt6-imageformats" # additional image format plugins for Qt6
 - "signal-desktop" # secure messaging app
 - "system-config-printer" # printer configuration tool for kde plasma
