@@ -22,8 +22,8 @@ link_config() {
     log_error "${name} config file not found at $target"
     exit 1
   fi
-
-  if is_softlink_of "$target" "$link"; then
+  
+  if is_softlink_of "$link" "$target"; then
     log_info "${name} config link already correct."
   else
     log_info "Linking $link to ${target}..."
