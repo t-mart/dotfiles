@@ -15,7 +15,7 @@ LED=/sys/class/leds/tpacpi::kbd_backlight
 BRIGHTNESS=1
 
 # Timeout in milliseconds after which to turn off the LED.
-TIMEOUT=15000
+TIMEOUT=7500
 
 # Time to wait for files showing up. This is useful during boot to handle
 # device nodes not yet being available due to late kernel module loading.
