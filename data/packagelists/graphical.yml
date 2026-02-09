@@ -23,6 +23,7 @@
 - "signal-desktop" # secure messaging app
 - "system-config-printer" # printer configuration tool for kde plasma
 - "taglib" # audio metadata library
+- "tex-gyre-math-fonts" # fonts, especially a Century Schoolbook clone, Schola
 - "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
 - "ttf-jetbrains-mono-nerd" # monospace programming font
 - "visual-studio-code-bin" # code editor
