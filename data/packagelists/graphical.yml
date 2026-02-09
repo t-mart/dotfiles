@@ -7,15 +7,13 @@
 - "ffmpegthumbs" # video thumbnail generator
 - "filelight" # disk usage analyzer
 - "firefox" # web browser
-- "fontconfig" # font configuration tools
-- "font-manager" # font preview and management
+- "fontconfig" # CLI tools for font configuration
+- "font-manager" # manage installed fonts and preview font files
 - "gnome-network-displays" # cast to network displays
-- "inter-font" # highly legible sans-serif typeface
 - "kdegraphics-thumbnailers" # image and video thumbnailers for KDE
 - "kimageformats" # additional image format plugins for KDE
 - "libreoffice-fresh" # office suite
 - "mpv" # media player
-- "noto-fonts" # versatile typeface family
 - "plasma-meta" # KDE Plasma desktop environment
 - "qalculate-gtk" # advanced calculator
 - "qimgv" # image viewer and editor
@@ -23,9 +21,17 @@
 - "signal-desktop" # secure messaging app
 - "system-config-printer" # printer configuration tool for kde plasma
 - "taglib" # audio metadata library
-- "tex-gyre-math-fonts" # fonts, especially a Century Schoolbook clone, Schola
-- "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
-- "ttf-jetbrains-mono-nerd" # monospace programming font
 - "visual-studio-code-bin" # code editor
 - "wezterm-nightly-bin" # terminal emulator
 - "wl-clipboard" # Wayland clipboard utilities
+
+# fonts (not tools for font, but actual font packages)
+- "inter-font" # highly legible sans-serif typeface
+- "noto-fonts" # Google Noto TTF fonts
+- "noto-fonts-cjk" # CJK characters for Noto
+- "noto-fonts-emoji" # emoji characters for Noto
+- "noto-fonts-extra" # additional variants (condensed, semi-bold, extra-light)
+- "tex-gyre-math-fonts" # math fonts, including a Century Schoolbook clone, Schola
+- "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
+- "ttf-jetbrains-mono" # monospace programming font
+- "ttf-nerd-fonts-symbols" # just the icons for nerd fonts
