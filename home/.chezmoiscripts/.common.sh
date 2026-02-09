@@ -41,24 +41,55 @@ is_thinkpad_z13() {
     get_data_bool "isThinkpadZ13"
 }
 
+has_pgp_key() {
+    local key="$1"
+    gpg --list-keys "$key" &> /dev/null
+}
+
+import_pgp_key() {
+    local key="$1"
+    gpg --receive-keys "$key"
+}
+
 install_packagelist() {
     local list_file="${CHEZMOI_WORKING_TREE}/data/packagelists/${1}.yml"
 
     if [[ ! -f "$list_file" ]]; then
-        echo "Packagelist file not found: $list_file"
-        return
+        log_error "Packagelist file not found: $list_file"
+        return 1
     fi
 
     log_info "Installing packages from '${list_file}' via paru..."
-    
-    # -r = raw output (no quotes)
-    # '.[]' = iterate over the top-level list
-    local packages
-    packages=$(yq -r '.[]' "$list_file")
 
-    # Pass the list to paru (no quotes around $packages to allow word splitting)
-    # shellcheck disable=SC2086
-    paru -S --needed $packages
+    local packages=()
+
+    # Process in pairs
+    # yq obviously can't provide a bash iteration flow for us, so we just
+    # translate the package list to something that bash can easily read:
+    #  name
+    #  fingerprint (or empty if not set)
+    #  name
+    #  fingerprint
+    #  ... and so on
+    while IFS= read -r name && IFS= read -r fingerprint; do
+        # If fingerprint exists and key is not present, prompt user
+        if [[ -n "$fingerprint" ]] && ! has_pgp_key "$fingerprint"; then
+            if gum confirm --negative "Skip" "Package '$name' requires PGP key '$fingerprint'. Import it?" < /dev/tty; then
+                import_pgp_key "$fingerprint"
+                packages+=("$name")
+            fi
+        else
+            # No fingerprint or key already present - add package
+            packages+=("$name")
+        fi
+    done < <(yq -r '.[] | .name, (.fingerprint // "")' "$list_file")
+
+    if [[ ${#packages[@]} -eq 0 ]]; then
+        return 0
+    fi
+
+    # Install collected packages
+    paru -S --needed "${packages[@]}"
 }
 
 # log the arguments to stderr. use `gum log` if available, otherwise just echo

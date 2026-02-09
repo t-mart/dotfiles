@@ -1,46 +1,51 @@
 # yaml-language-server: $schema=./.packagelist.schema.json
 
-- "age" # encryption tool
-- "atuin" # shell history manager
-- "bat" # enhanced cat command
-- "btop" # resource monitor
-- "brotli" # file compression tool
-- "carapace-bin" # shell completion tool
-- "cargo-update" # Rust crate updater
-- "curl" # HTTP tool
-- "docker" # containerization platform
-- "docker-buildx" # extended build capabilities for Docker
-- "docker-compose" # multi-container Docker applications
-- "duf" # enhanced df utility
-- "dust" # enhanced du utility
-- "erdtree" # enhanced tree command
-- "fastfetch" # system information tool
-- "fclones" # file deduplication tool (hardlinks)
-- "fd" # alternative to find
-- "fzf" # command-line fuzzy finder
-- "git" # version control system
-- "git-delta" # syntax-highlighting pager for git and diff output
-- "gnupg" # encryption and signing tool
-- "gping" # ping with a graph
-- "gum" # CLI builder
-- "gzip" # file compression tool
-- "jq" # command-line JSON processor
-- "lazydocker" # terminal UI for docker
-- "mkinitcpio-firmware" # firmware hooks for mkinitcpio (fixes warnings)
-- "ncdu" # interactive disk usage analyzer
-- "neovim" # text editor
-- "nushell" # modern shell
-- "oh-my-posh-bin" # prompt theme engine
-- "q-dns-bin" # DNS query tool
-- "ranger" # terminal file manager
-- "ripgrep" # regex search tool
-- "trippy" # network diagnostic tool (command is trip)
-- "unrar" # decompression tool
-- "unzip" # file decompression tool
-- "uv" # make python gud
-- "vivid" # terminal color scheme manager
-- "xz" # file compression tool
-- "yq" # YAML processor
-- "zip" # file compression tool
-- "zoxide" # smarter cd command
-- "zstd" # file compression tool
+# packages that are generally useful in all contexts
+
+- name: "age" # encryption tool
+- name: "atuin" # shell history manager
+- name: "bat" # enhanced cat command
+- name: "btop" # resource monitor
+- name: "brotli" # file compression tool
+- name: "carapace-bin" # shell completion tool
+- name: "cargo-update" # Rust crate updater
+- name: "curl" # HTTP tool
+- name: "docker" # containerization platform
+- name: "docker-buildx" # extended build capabilities for Docker
+- name: "docker-compose" # multi-container Docker applications
+- name: "duf" # enhanced df utility
+- name: "dust" # enhanced du utility
+- name: "erdtree" # enhanced tree command
+- name: "fastfetch" # system information tool
+- name: "fclones" # file deduplication tool (hardlinks)
+- name: "fd" # alternative to find
+- name: "fpart" # FS partitioner. makes rsync parallelizable
+  fingerprint: "F942ADECEDA0D50A"
+- name: "fzf" # command-line fuzzy finder
+- name: "git" # version control system
+- name: "git-delta" # syntax-highlighting pager for git and diff output
+- name: "gnupg" # encryption and signing tool
+- name: "gping" # ping with a graph
+- name: "gum" # CLI builder
+- name: "gzip" # file compression tool
+- name: "jq" # command-line JSON processor
+- name: "lazydocker" # terminal UI for docker
+- name: "mkinitcpio-firmware" # firmware hooks for mkinitcpio (fixes warnings)
+- name: "ncdu" # interactive disk usage analyzer
+- name: "neovim" # text editor
+- name: "nushell" # modern shell
+- name: "oh-my-posh-bin" # prompt theme engine
+- name: "procs" # ps alternative written
+- name: "q-dns-bin" # DNS query tool
+- name: "ranger" # terminal file manager
+- name: "ripgrep" # regex search tool
+- name: "trippy" # network diagnostic tool (command is trip)
+- name: "unrar" # decompression tool
+- name: "unzip" # file decompression tool
+- name: "uv" # make python gud
+- name: "vivid" # terminal color scheme manager
+- name: "xz" # file compression tool
+- name: "yq" # YAML processor
+- name: "zip" # file compression tool
+- name: "zoxide" # smarter cd command
+- name: "zstd" # file compression tool

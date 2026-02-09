@@ -1,37 +1,39 @@
 # yaml-language-server: $schema=./.packagelist.schema.json
 
-- "1password" # password manager
-- "ark" # archive manager
-- "cups" # Common Unix Printing System
-- "discord" # chat application
-- "ffmpegthumbs" # video thumbnail generator
-- "filelight" # disk usage analyzer
-- "firefox" # web browser
-- "fontconfig" # CLI tools for font configuration
-- "font-manager" # manage installed fonts and preview font files
-- "gnome-network-displays" # cast to network displays
-- "kdegraphics-thumbnailers" # image and video thumbnailers for KDE
-- "kimageformats" # additional image format plugins for KDE
-- "libreoffice-fresh" # office suite
-- "mpv" # media player
-- "plasma-meta" # KDE Plasma desktop environment
-- "qalculate-gtk" # advanced calculator
-- "qimgv" # image viewer and editor
-- "qt6-imageformats" # additional image format plugins for Qt6
-- "signal-desktop" # secure messaging app
-- "system-config-printer" # printer configuration tool for kde plasma
-- "taglib" # audio metadata library
-- "visual-studio-code-bin" # code editor
-- "wezterm-nightly-bin" # terminal emulator
-- "wl-clipboard" # Wayland clipboard utilities
+# packages for a graphical desktop environment
+
+- name: "1password" # password manager
+- name: "ark" # archive manager
+- name: "cups" # Common Unix Printing System
+- name: "discord" # chat application
+- name: "ffmpegthumbs" # video thumbnail generator
+- name: "filelight" # disk usage analyzer
+- name: "firefox" # web browser
+- name: "fontconfig" # CLI tools for font configuration
+- name: "font-manager" # manage installed fonts and preview font files
+- name: "gnome-network-displays" # cast to network displays
+- name: "kdegraphics-thumbnailers" # image and video thumbnailers for KDE
+- name: "kimageformats" # additional image format plugins for KDE
+- name: "libreoffice-fresh" # office suite
+- name: "mpv" # media player
+- name: "plasma-meta" # KDE Plasma desktop environment
+- name: "qalculate-gtk" # advanced calculator
+- name: "qimgv" # image viewer and editor
+- name: "qt6-imageformats" # additional image format plugins for Qt6
+- name: "signal-desktop" # secure messaging app
+- name: "system-config-printer" # printer configuration tool for kde plasma
+- name: "taglib" # audio metadata library
+- name: "visual-studio-code-bin" # code editor
+- name: "wezterm-nightly-bin" # terminal emulator
+- name: "wl-clipboard" # Wayland clipboard utilities
 
 # fonts (not tools for font, but actual font packages)
-- "inter-font" # highly legible sans-serif typeface
-- "noto-fonts" # Google Noto TTF fonts
-- "noto-fonts-cjk" # CJK characters for Noto
-- "noto-fonts-emoji" # emoji characters for Noto
-- "noto-fonts-extra" # additional variants (condensed, semi-bold, extra-light)
-- "tex-gyre-math-fonts" # math fonts, including a Century Schoolbook clone, Schola
-- "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
-- "ttf-jetbrains-mono" # monospace programming font
-- "ttf-nerd-fonts-symbols" # just the icons for nerd fonts
+- name: "inter-font" # highly legible sans-serif typeface
+- name: "noto-fonts" # Google Noto TTF fonts
+- name: "noto-fonts-cjk" # CJK characters for Noto
+- name: "noto-fonts-emoji" # emoji characters for Noto
+- name: "noto-fonts-extra" # additional variants (condensed, semi-bold, extra-light)
+- name: "tex-gyre-math-fonts" # math fonts, including a Century Schoolbook clone, Schola
+- name: "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
+- name: "ttf-jetbrains-mono" # monospace programming font
+- name: "ttf-nerd-fonts-symbols" # just the icons for nerd fonts

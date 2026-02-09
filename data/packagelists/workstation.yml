@@ -1,19 +1,25 @@
 # yaml-language-server: $schema=./.packagelist.schema.json
 
-- "1password-cli" # password manager CLI
-- "atomicparsley" # media file tagger (yt-dlp dependency)
-- "bun" # JavaScript runtime
-- "deno" # JavaScript runtime
-- "ffmpeg" # media processing
-- "gallery-dl-bin" # image downloader
-- "github-cli" # GitHub CLI tool
-- "go" # programming language
-- "hyperfine" # command-line benchmarking tool
-- "imagemagick" # image manipulation
-- "lazygit" # terminal UI for git
-- "nodejs" # JavaScript runtime
-- "pnpm" # JavaScript package manager
-- "rtmpdump" # RTMP streaming tool (yt-dlp dependency)
-- "rust" # programming language
-- "terraform" # infrastructure as code tool
-- "magic-wormhole" # secure file transfer tool
+# a workstation is a more fully featured machine, with tools for development and
+# media processing. it is not necessarily a machine with a graphical desktop
+# environment though
+
+- name: "1password-cli" # password manager CLI
+  fingerprint: 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
+- name: "atomicparsley" # media file tagger (yt-dlp dependency)
+- name: "bun" # JavaScript runtime
+- name: "deno" # JavaScript runtime
+- name: "ffmpeg" # media processing
+- name: "gallery-dl-bin" # image downloader
+  fingerprint: "5680CA389D365A88"
+- name: "github-cli" # GitHub CLI tool
+- name: "go" # programming language
+- name: "hyperfine" # command-line benchmarking tool
+- name: "imagemagick" # image manipulation
+- name: "lazygit" # terminal UI for git
+- name: "nodejs" # JavaScript runtime
+- name: "pnpm" # JavaScript package manager
+- name: "rtmpdump" # RTMP streaming tool (yt-dlp dependency)
+- name: "rust" # programming language
+- name: "terraform" # infrastructure as code tool
+- name: "magic-wormhole" # secure file transfer tool
