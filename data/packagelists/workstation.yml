@@ -1,8 +1,7 @@
 # yaml-language-server: $schema=./.packagelist.schema.json
 
-# a workstation is a more fully featured machine, with tools for development and
-# media processing. it is not necessarily a machine with a graphical desktop
-# environment though
+# a workstation is one where development might be done, but it does not
+# necessarily have a graphical desktop environment.
 
 - name: "1password-cli" # password manager CLI
   fingerprint: 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
