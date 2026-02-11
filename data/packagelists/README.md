@@ -1,6 +1,6 @@
 # Package Lists
 
-Package lists define which packages to install on Arch Linux during
+A package list defines a group of packages to install on Arch Linux during
 `chezmoi apply`. During `chezmoi init`, configuration questions about the
 machine determine which lists are enabled.
 
@@ -15,8 +15,7 @@ Schema example:
 ```
 
 The `name` field specifies a package from the official repositories or AUR. The
-optional `fingerprint` field adds the provided GPG key to the keyring before
-installation (with user confirmation), a requirement for installing some
-packages.
+optional `fingerprint` field specifies a GPG key to add to the keyring before
+installation, a requirement for installing some packages.
 
 Each package list file documents its specific purpose.
