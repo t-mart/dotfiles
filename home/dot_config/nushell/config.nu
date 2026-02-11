@@ -17,8 +17,8 @@ $env.NU_LIB_DIRS = [
   $nu.default-config-dir | path join "lib"
 ]
 if (is-installed code) {
-  $env.EDITOR = "code"
-  $env.VISUAL = "code"
+  $env.EDITOR = "code --wait"
+  $env.VISUAL = "code --wait"
 } else if (is-installed nvim) {
   $env.EDITOR = "nvim"
   $env.VISUAL = "nvim"
@@ -290,7 +290,7 @@ $env.config = {
 }
 
 # here, we create our own oh-my-posh block. we can't do this in omp directly
-# because i don't think nushell exposes it. its also "interactive"
+# because i don't think nushell exposes it, nor could omp poll for it
 $env.PROMPT_INDICATOR_VI_INSERT = [
   $"(ansi {fg: (gruvbox bright_green)})(ansi reset)"
   $"(ansi {bg: (gruvbox bright_green) fg: (gruvbox bg0)}) 󰏫 (ansi reset)"
@@ -301,5 +301,5 @@ $env.PROMPT_INDICATOR_VI_NORMAL = [
   $"(ansi {bg: (gruvbox fg2) fg: (gruvbox bg0)}) 󰆾 (ansi reset)"
   $"(ansi {fg: (gruvbox fg2)})(ansi reset) "
 ] | str join
-# this is supposed to be done last (might not matter)
+# oh-my-posh docs want this to be done last (might not matter)
 oh-my-posh init nu --config $"($nu.home-dir | path join ".config/oh-my-posh.yaml")"
