@@ -17,15 +17,12 @@ config.default_prog = { 'nu' }
 
 config.font = wezterm.font_with_fallback({
   -- Primary font
-  { family = 'JetBrains Mono', weight = 'Medium' },
+  { family = 'JetBrainsMonoNL Nerd Font', weight = 'Medium' },
 
   -- CJK
   'Noto Sans CJK SC',
   'Noto Sans CJK JP',
   'Noto Sans CJK KR',
-
-  -- Powerline / Nerd Font Symbols
-  'Symbols Nerd Font Mono',
 
   -- Extra
   'Noto Sans Symbols',

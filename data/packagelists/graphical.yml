@@ -35,5 +35,5 @@
 - name: "noto-fonts-extra" # additional variants (condensed, semi-bold, extra-light)
 - name: "tex-gyre-math-fonts" # math fonts, including a Century Schoolbook clone, Schola
 - name: "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
-- name: "ttf-jetbrains-mono" # monospace programming font
+- name: "ttf-jetbrains-mono-nerd" # monospace programming font with nerd font icons
 - name: "ttf-nerd-fonts-symbols" # just the icons for nerd fonts
