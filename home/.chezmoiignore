@@ -1,4 +1,4 @@
-{{- not .isWorkstation }}
+{{- if not .isWorkstation }}
 .config/yt-dlp
 {{- end }}
 
