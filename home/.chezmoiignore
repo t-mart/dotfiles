@@ -1,8 +1,15 @@
+{{- not .isWorkstation }}
+.config/yt-dlp
+{{- end }}
+
 {{- if not .isGraphical }}
 .local/share/kio
 .local/share/applications
 .config/mpv
 .config/plasma-workspace
+.config/qimv
+.config/autostart
+.config/fontconfig
 {{- end }}
 
 {{- if not .isThinkpadZ13 }}
