@@ -35,6 +35,7 @@
 - name: "neovim" # text editor
 - name: "nushell" # modern shell
 - name: "oh-my-posh-bin" # prompt theme engine
+- name: "ouch" # unified archive tool
 - name: "procs" # ps alternative written
 - name: "q-dns-bin" # DNS query tool
 - name: "ranger" # terminal file manager
