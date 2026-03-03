@@ -41,16 +41,6 @@ is_thinkpad_z13() {
     get_data_bool "isThinkpadZ13"
 }
 
-has_pgp_key() {
-    local key="$1"
-    gpg --list-keys "$key" &> /dev/null
-}
-
-import_pgp_key() {
-    local key="$1"
-    gpg --receive-keys "$key"
-}
-
 install_packagelist() {
     local list_file="${CHEZMOI_WORKING_TREE}/data/packagelists/${1}.yml"
 
@@ -62,34 +52,15 @@ install_packagelist() {
     log_info "Installing packages from '${list_file}' via paru..."
 
     local packages=()
-
-    # Process in pairs
-    # yq obviously can't provide a bash iteration flow for us, so we just
-    # translate the package list to something that bash can easily read:
-    #  name
-    #  fingerprint (or empty if not set)
-    #  name
-    #  fingerprint
-    #  ... and so on
-    while IFS= read -r name && IFS= read -r fingerprint; do
-        # If fingerprint exists and key is not present, prompt user
-        if [[ -n "$fingerprint" ]] && ! has_pgp_key "$fingerprint"; then
-            if gum confirm --negative "Skip" "Package '$name' requires PGP key '$fingerprint'. Import it?" < /dev/tty; then
-                import_pgp_key "$fingerprint"
-                packages+=("$name")
-            fi
-        else
-            # No fingerprint or key already present - add package
-            packages+=("$name")
-        fi
-    done < <(yq -r '.[] | .name, (.fingerprint // "")' "$list_file")
+    while IFS= read -r name; do
+        packages+=("$name")
+    done < <(yq -r '.[]' "$list_file")
 
     if [[ ${#packages[@]} -eq 0 ]]; then
         return 0
     fi
 
-    # Install collected packages
-    paru -S --needed "${packages[@]}"
+    paru --sync --sysupgrade --refresh --needed --pgpfetch "${packages[@]}"
 }
 
 # log the arguments to stderr. use `gum log` if available, otherwise just echo

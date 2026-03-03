@@ -19,9 +19,14 @@ $env.NU_LIB_DIRS = [
 if (is-installed code) {
   $env.EDITOR = "code --wait"
   $env.VISUAL = "code --wait"
+  if (is-installed nvim) {
+    # visudo doesn't like running as sudo
+    $env.SUDO_EDITOR = "nvim"
+  }
 } else if (is-installed nvim) {
   $env.EDITOR = "nvim"
   $env.VISUAL = "nvim"
+  $env.SUDO_EDITOR = "nvim"
 }
 $env.PAGER = "bat"
 # see https://github.com/sharkdp/bat/blob/master/README.md#man

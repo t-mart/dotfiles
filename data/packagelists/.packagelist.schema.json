@@ -3,22 +3,10 @@
   "title": "Arch Package List",
   "type": "array",
   "items": {
-    "type": "object",
-    "required": ["name"],
-    "additionalProperties": false,
-    "properties": {
-      "name": {
-        "type": "string",
-        "description": "The Arch Linux package name.",
-        "pattern": "^[a-z0-9@._+-]+$",
-        "minLength": 1
-      },
-      "fingerprint": {
-        "type": "string",
-        "description": "Optional PGP key fingerprint to import.",
-        "minLength": 8
-      }
-    }
+    "type": "string",
+    "description": "The Arch Linux package name.",
+    "pattern": "^[a-z0-9@._+-]+$",
+    "minLength": 1
   },
   "uniqueItems": true
 }

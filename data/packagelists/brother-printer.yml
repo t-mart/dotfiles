@@ -2,4 +2,4 @@
 
 # packages for my Brother printer, a Brother MFC-7860DW
 
-- name: "brlaser" # Brother printer drivers
+- "brlaser" # Brother printer drivers

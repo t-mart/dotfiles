@@ -2,7 +2,7 @@
 
 # packages for my laptop, a ThinkPad Z13
 
-- name: "thinkfan" # fan control for ThinkPads
-- name: "keyboard-backlightd" # keyboard backlight control for ThinkPads
-- name: "lm_sensors" # hardware monitoring
+- "thinkfan" # fan control for ThinkPads
+- "keyboard-backlightd" # keyboard backlight control for ThinkPads
+- "lm_sensors" # hardware monitoring
 
