@@ -60,7 +60,7 @@ install_packagelist() {
         return 0
     fi
 
-    paru --sync --sysupgrade --refresh --needed --pgpfetch "${packages[@]}"
+    paru --sync --sysupgrade --refresh --needed --pgpfetch --noconfirm "${packages[@]}"
 }
 
 # log the arguments to stderr. use `gum log` if available, otherwise just echo
