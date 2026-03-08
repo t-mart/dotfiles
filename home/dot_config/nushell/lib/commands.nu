@@ -100,3 +100,10 @@ export def ln-recurse [
         }
     }
 }
+
+# Returns a path with the provided extension.
+export def path-with-ext [
+    extension: string # the extension (without the dot).
+]: string -> string {
+    path parse | update extension $extension | path join
+}
