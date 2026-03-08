@@ -107,3 +107,101 @@ export def path-with-ext [
 ]: string -> string {
     path parse | update extension $extension | path join
 }
+
+# Do system updates
+export def upta [...targets: string] {
+    let cmds = [
+        # arch paru
+        "paru --sync --sysupgrade --refresh --noconfirm --skipreview"
+
+        # chezmoi
+        "~/.local/bin/chezmoi update --init --apply"
+
+        # uv
+        "uv tool update --all"
+
+        # rust
+        "cargo install-update --all"
+    ]
+
+    let servers = if ($targets | is-empty) {
+        let path = xdg config | path join "upta.txt"
+        if ($path | path exists) {
+            ($path | open | lines | where { |line| not ($line | str starts-with "#") and not ($line | str trim | is-empty) })
+        } else {
+            error make --unspanned { msg: $"No targets provided and no config file found at ($path)" }
+        }
+    } else {
+        $targets
+    }
+
+    for server in $servers {
+        print $"\n(ansi g)--- Target: ($server) ---(ansi reset)"
+        for cmd in $cmds {
+            let ping_check = (ping -c 1 -W 1 $server | complete)
+            
+            if $ping_check.exit_code == 0 {
+                ssh -A -t $server $cmd
+            } else {
+                print $"⚠️  ($server) is offline or unreachable. Skipping."
+            }
+        }
+        print $"\n(ansi g)--- Finished: ($server) ---(ansi reset)"
+    }
+}
+
+# Return the path to the specified XDG directory according to the specification:
+# https://specifications.freedesktop.org/basedir/latest/
+#
+# This command only returns the singleton directories such as XDG_CONFIG_HOME.
+# For the preference-ordered sets of directories such as XDG_CONFIG_DIRS, use
+# the `xdg-dirs` command.
+export def xdg [
+    type: string
+]: nothing -> string {
+    # should we use $nu.home-dir? spec says to use $HOME. are these equivalent?
+    match $type {
+        "data" => {
+            $env.XDG_DATA_HOME? | default ($env.HOME | path join ".local/share")
+        },
+        "config" => {
+            $env.XDG_CONFIG_HOME? | default ($env.HOME | path join ".config")
+        },
+        "state" => {
+            $env.XDG_STATE_HOME? | default ($env.HOME | path join ".local/state")
+        },
+        "bin" => {
+            # this isn't a "named" XDG dir like the others, but fine
+            $env.XDG_BIN_HOME? | default ($env.HOME | path join ".local/bin")
+        },
+        "cache" => {
+            $env.XDG_CACHE_HOME? | default ($env.HOME | path join ".cache")
+        },
+        "runtime" => {
+            # no default if unset. should this be null instead?
+            $env.XDG_RUNTIME_DIR? | default (error make --unspanned { msg: "XDG_RUNTIME_DIR is not set" })
+        },
+        _ => {
+            error make --unspanned { msg: $"Invalid XDG directory: ($type)" }
+        },
+    }
+}
+
+# Return a list of paths to the specified preference-ordered set of XDG
+# directories according to the specification:
+# https://specifications.freedesktop.org/basedir/latest/
+export def xdg-dirs [
+    type: string
+]: nothing -> list<string> {
+    match $type {
+        "data" => {
+            $env.XDG_DATA_DIRS? | default "/usr/local/share:/usr/share" | split row ":"
+        },
+        "config" => {
+            $env.XDG_CONFIG_DIRS? | default "/etc/xdg" | split row ":"
+        },
+        _ => {
+            error make --unspanned { msg: $"Invalid XDG directory: ($type)" }
+        },
+    }
+}
