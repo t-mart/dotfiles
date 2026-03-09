@@ -2,7 +2,7 @@
 
 use lib/colors.nu tw
 use lib/colors.nu gruvbox
-use lib/tim_theme.nu
+use lib/theme.nu
 use lib/commands.nu *
 use std *
 
@@ -42,27 +42,6 @@ $env.config.highlight_resolved_externals = true
 
 # use base-1024 instead of base-1000 for file sizes
 $env.config.filesize.unit = "binary"
-
-# quick hack to set LANG (probably to en_US.UTF-8)
-if $env.LANG? == null {
-  let locale_paths = [
-    ($env.XDG_CONFIG_HOME? | if $in != null { $in | path join "locale.conf" } )
-    ($nu.home-dir | path join ".config/locale.conf")
-    "/etc/locale.conf"
-  ]
-  | compact 
-  | where { path exists }
-  if ($locale_paths | length) != 0 {
-    $locale_paths
-    | first 
-    | open 
-    | lines 
-    | parse "{name}={value}"
-    | str trim value --char '"'
-    | transpose --header-row --as-record
-    | load-env
-  }
-}
 
 def 'quote-path' []: string -> string {
   if ($in | str index-of ' ') == -1 {
@@ -291,7 +270,7 @@ $env.config = {
       ]
     }
   ]
-  color_config: (tim_theme)
+  color_config: (theme)
 }
 
 # here, we create our own oh-my-posh block. we can't do this in omp directly
@@ -306,5 +285,6 @@ $env.PROMPT_INDICATOR_VI_NORMAL = [
   $"(ansi {bg: (gruvbox fg2) fg: (gruvbox bg0)}) 󰆾 (ansi reset)"
   $"(ansi {fg: (gruvbox fg2)})(ansi reset) "
 ] | str join
+
 # oh-my-posh docs want this to be done last (might not matter)
 oh-my-posh init nu --config $"($nu.home-dir | path join ".config/oh-my-posh.yaml")"

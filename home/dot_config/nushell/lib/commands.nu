@@ -14,20 +14,16 @@ export def 'on-windows' []: nothing -> bool {
   version | get build_os | str starts-with "windows"
 }
 
-# Returns whether a command is available.
+# Returns whether an executable is available on the PATH.
 export def 'is-installed' [cmd: string]: nothing -> bool {
     (which $cmd | length) > 0
 }
 
 export def 'is-absolute' [path: string]: nothing -> bool {
-    let parse = $path | path parse
-    if (on-windows) {
-        ($parse | get prefix | str length) > 0
-    } else {
-        $parse | get parent | str starts-with "/"
-    }
+    (path expand --strict) == $path
 }
 
+# Make a directory and cd into it.
 export def --env mkcd [directory: path]: nothing -> nothing {
     mkdir $directory
     cd $directory
@@ -108,8 +104,12 @@ export def path-with-ext [
     path parse | update extension $extension | path join
 }
 
-# Do system updates
-export def upta [...targets: string] {
+# Update remote servers with paru, chezmoi, uv, and cargo.
+
+# If no servers are provided, read from config file at
+# $XDG_CONFIG_HOME/upta.txt for a line-separated list. Lines starting with #
+# and empty lines are ignored.
+export def upta [...servers: string] {
     let cmds = [
         # arch paru
         "paru --sync --sysupgrade --refresh --noconfirm --skipreview"
@@ -124,19 +124,28 @@ export def upta [...targets: string] {
         "cargo install-update --all"
     ]
 
-    let servers = if ($targets | is-empty) {
-        let path = xdg config | path join "upta.txt"
-        if ($path | path exists) {
-            ($path | open | lines | where { |line| not ($line | str starts-with "#") and not ($line | str trim | is-empty) })
-        } else {
-            error make --unspanned { msg: $"No targets provided and no config file found at ($path)" }
+    mut servers = $servers
+    let servers_path = xdg config | path join "upta.txt"
+
+    if ($servers | is-empty) {
+        if ($servers_path | path exists) {
+            $servers = $servers_path | open | lines | where { |line|
+                not ($line | str starts-with "#") and not ($line | str trim | is-empty)
+            }
         }
-    } else {
-        $targets
     }
 
+    # check again
+    if ($servers | is-empty) {
+        error make --unspanned {
+            msg: $"No servers to update: no servers provided or config file at ($servers_path) is empty or does not exist"
+        }
+    }
+
+    $servers = $servers | uniq
+
     for server in $servers {
-        print $"\n(ansi g)--- Target: ($server) ---(ansi reset)"
+        print $"\n(ansi g)--- STARTING UPDATE ON ($server) ---(ansi reset)"
         for cmd in $cmds {
             let ping_check = (ping -c 1 -W 1 $server | complete)
             
@@ -146,18 +155,21 @@ export def upta [...targets: string] {
                 print $"⚠️  ($server) is offline or unreachable. Skipping."
             }
         }
-        print $"\n(ansi g)--- Finished: ($server) ---(ansi reset)"
+        print $"\n(ansi g)--- COMPLETED UPDATE ON ($server) ---(ansi reset)"
     }
 }
 
-# Return the path to the specified XDG directory according to the specification:
-# https://specifications.freedesktop.org/basedir/latest/
+# Return the path of the specified XDG directory according to the specification
+# at https://specifications.freedesktop.org/basedir/latest/. The paths returned
+# path will be absolute and may not exist.
+#
+# Exception: on XDG_RUNTIME_DIR, no permissions are checked.
 #
 # This command only returns the singleton directories such as XDG_CONFIG_HOME.
 # For the preference-ordered sets of directories such as XDG_CONFIG_DIRS, use
 # the `xdg-dirs` command.
 export def xdg [
-    type: string
+    type: string # one of "data", "config", "state", "bin", "cache", or "runtime"
 ]: nothing -> string {
     # should we use $nu.home-dir? spec says to use $HOME. are these equivalent?
     match $type {
@@ -187,11 +199,12 @@ export def xdg [
     }
 }
 
-# Return a list of paths to the specified preference-ordered set of XDG
-# directories according to the specification:
-# https://specifications.freedesktop.org/basedir/latest/
+# Return a list of paths for the specified preference-ordered set of XDG
+# directories according to the specification at
+# https://specifications.freedesktop.org/basedir/latest/. The paths returned
+# are absolute and may not exist.
 export def xdg-dirs [
-    type: string
+    type: string # one of "data" or "config"
 ]: nothing -> list<string> {
     match $type {
         "data" => {
