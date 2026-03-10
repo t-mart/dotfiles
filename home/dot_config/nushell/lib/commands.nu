@@ -10,17 +10,13 @@ export def --env add-path-if-exists [
 }
 
 # Returns true if the current platform is Windows.
-export def 'on-windows' []: nothing -> bool {
+export def on-windows []: nothing -> bool {
   version | get build_os | str starts-with "windows"
 }
 
 # Returns whether an executable is available on the PATH.
-export def 'is-installed' [cmd: string]: nothing -> bool {
+export def is-installed [cmd: string]: nothing -> bool {
     (which $cmd | length) > 0
-}
-
-export def 'is-absolute' [path: string]: nothing -> bool {
-    (path expand --strict) == $path
 }
 
 # Make a directory and cd into it.
@@ -36,6 +32,7 @@ export def --env mkcd [directory: path]: nothing -> nothing {
 export def ln-recurse [
     target_root: string            # The root directory containing the files to hardlink
     link_root: string              # The root directory where the hardlinks will be created
+    --force (-f)                   # Overwrite existing files at the link location
     --only-ext (-o): list<string>  # Only hardlink files with these extensions
     --dry-run (-d)                 # Do not actually create the hardlinks
 ]: nothing -> table<target: string, link: string> {
@@ -49,11 +46,26 @@ export def ln-recurse [
     def hardlink [
         target: string
         link: string
+        --force (-f)
+        --dry-run (-d)
     ]: nothing -> record<target: string, link: string> {
+        if ($dry_run) {
+            return { target: $target, link: $link }
+        }
         let result = if (on-windows) {
-            ^mklink /h $link $target
+            if $force {
+                error make --unspanned {
+                    msg: "Overwriting existing files is not supported on Windows"
+                }
+            } else {
+                ^mklink /h $link $target
+            }
         } else {
-            ^ln $target $link
+            if $force {
+                ^ln -f $target $link
+            } else {
+                ^ln $target $link
+            }
         } | complete
         if ($result.exit_code == 0) {
             { target: $target, link: $link }
@@ -75,46 +87,76 @@ export def ln-recurse [
     }
     
     $fd_result.stdout | lines | each { |target_path|
-        # target path is absolute right now, suitable for relative-to
+        # example:
+        #   target_root:   /target/
+        #   link_root:     /link/
+        #   target_path:   /target/subdir/file.txt
+        #   relative_path: subdir/file.txt
+        #   link_path:     /link/subdir/file.txt
         let relative_path = $target_path | path relative-to ($target_root | path expand --strict)
         let link_path = $link_root | path join $relative_path
 
-        # now, fix up target_path so it matches the "absoluteness" of
-        # target_root for better UI
-        let target_path = if (is-absolute $target_root) {
-            # fd is already printing absolute paths
-            $target_path
-        } else {
-            $target_path | path relative-to (pwd)
-        }
-
-        if $dry_run {
+        let result = if $dry_run {
             { target: $target_path, link: $link_path }
         } else {
-            mkdir ($link_path | path parse | get parent)
-            hardlink $target_path $link_path
+            if $dry_run {
+                hardlink --dry-run $target_path $link_path
+            } else {
+                mkdir ($link_path | path parse | get parent)
+                hardlink $target_path $link_path
+            }
         }
+
+        { target: ($result.target | path relative-to-safe (pwd)), link: ($result.link | path relative-to-safe (pwd)) }
     }
 }
 
 # Return a path with the provided extension.
-export def path-with-ext [
-    extension: string # the extension (without the dot).
+@example "Change to .txt extension" {"foo.html" | path with-extension "txt"} --result "foo.txt"
+@example "Remove extension" {"bar.html" | path with-extension ""} --result "bar"
+export def "path with-extension" [
+    extension?: string # the extension (without the dot), or empty string to remove the extension
 ]: string -> string {
-    path parse | update extension $extension | path join
+    path parse | update extension ($extension | default "") | path join
 }
 
-# Return a the filename of the provided path (remove parent directories)
-export def filename []: string -> string {
-    # prefix present on windows paths (e.g. c:)
-    path parse | update parent "" | update prefix? "" | path join
+# Return a path with the provided stem (i.e. filename without extension).
+@example "Change stem" {"foo/bar.txt" | path with-stem "baz"} --result "foo/baz.txt"
+@example "Remove stem" {"foo/bar.txt" | path with-stem ""} --result "foo/.txt"
+export def "path with-stem" [
+    stem?: string # the stem, or empty string to remove the stem
+]: string -> string {
+    path parse | update stem ($stem | default "") | path join
 }
+
+# Return a path with the provided basename (i.e. filename with extension).
+@example "Change basename" {"foo/bar.txt" | path with-basename "baz.md"} --result "foo/baz.md"
+@example "Remove basename" {"foo/bar.txt" | path with-basename ""} --result "foo/"
+export def "path with-basename" [
+    basename?: string # the basename, or empty string to remove the basename
+]: string -> string {
+    let parse = $basename | default "" | path parse
+    $in | path parse | update stem ($parse.stem | default "") | update extension ($parse.extension | default "") | path join
+}
+
+# Return the input path relative to the provided base path. If the input path
+# is not under the base path, return the input path unchanged.
+export def "path relative-to-safe" [base: string]: string -> string {
+    let $path = $in
+    try {
+        $path | path relative-to $base
+    } catch {
+        $path
+    }
+}
+
+# Return a path with the provided 
 
 # Produce a random port. It may be used or not, so check for availability before
 # using.
 #
 # By default, returns a port in the range 1024-65535.
-export def randport [
+export def "random port" [
     --all (-a) # return a port in range 1-65535
     --priveleged (-p) # return a port in range 1-1023
 ]: nothing -> int {
@@ -124,7 +166,7 @@ export def randport [
 }
 
 # Produce a random password based on the Bech32 character set.
-export def randpass [
+export def "random password" [
     length?: int # the length of the password to generate, defaults to 32
 ]: nothing -> string {
     let alphabet = "qpzry9x8gf2tvdw0s3jn54khce6mua7l" | split chars
