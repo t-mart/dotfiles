@@ -140,7 +140,9 @@ export def "path with-basename" [
 }
 
 # Return the input path relative to the provided base path. If the input path
-# is not under the base path, return the input path unchanged.
+# is not under the base path, return the input path unchanged. This is the
+# "safe" version of `path relative-to`, which errors when the input path is not
+# under the base path.
 export def "path relative-to-safe" [base: string]: string -> string {
     let $path = $in
     try {
