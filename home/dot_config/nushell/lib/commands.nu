@@ -97,11 +97,17 @@ export def ln-recurse [
     }
 }
 
-# Returns a path with the provided extension.
+# Return a path with the provided extension.
 export def path-with-ext [
     extension: string # the extension (without the dot).
 ]: string -> string {
     path parse | update extension $extension | path join
+}
+
+# Return a the filename of the provided path (remove parent directories)
+export def filename []: string -> string {
+    # prefix present on windows paths (e.g. c:)
+    path parse | update parent "" | update prefix? "" | path join
 }
 
 # Update remote servers with paru, chezmoi, uv, and cargo.
