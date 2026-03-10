@@ -110,6 +110,30 @@ export def filename []: string -> string {
     path parse | update parent "" | update prefix? "" | path join
 }
 
+# Produce a random port. It may be used or not, so check for availability before
+# using.
+#
+# By default, returns a port in the range 1024-65535.
+export def randport [
+    --all (-a) # return a port in range 1-65535
+    --priveleged (-p) # return a port in range 1-1023
+]: nothing -> int {
+    let lower = if $all or $priveleged { 1 } else { 1024 }
+    let upper = if $priveleged { 1023 } else { 65535 }
+    random int $lower..$upper
+}
+
+# Produce a random password based on the Bech32 character set.
+export def randpass [
+    length?: int # the length of the password to generate, defaults to 32
+]: nothing -> string {
+    let alphabet = "qpzry9x8gf2tvdw0s3jn54khce6mua7l" | split chars
+    let alphabet_length = $alphabet | length
+    seq 1 ($length | default 32) | each {
+        $alphabet | get (random int 0..<$alphabet_length)
+    } | str join
+}
+
 # Update remote servers with paru, chezmoi, uv, and cargo.
 
 # If no servers are provided, read from config file at
