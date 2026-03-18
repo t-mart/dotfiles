@@ -30,7 +30,7 @@ if (is-installed code) {
 }
 $env.PAGER = "bat"
 # see https://github.com/sharkdp/bat/blob/master/README.md#man
-$env.MANPAGER = r#'sh -c 'sed -u -e "s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat -p -lman''#
+$env.MANPAGER = r#'sh -c 'sed --unbuffered --expression="s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat --plain --language=man''#
 $env.GOPATH = ($nu.home-dir | path join ".local/share/go")
 
 # disable rclone unicode normalization to preserve filename fidelity
@@ -79,7 +79,10 @@ $env.LS_COLORS = ^vivid generate gruvbox-dark
 
 # atuin, a shell history manager
 # https://atuin.sh/
-atuin init nu | save --force ($local_vendor_autoload_path | path join "atuin.nu")
+# TODO: remove the str replace when https://github.com/atuinsh/atuin/issues/3268 is resolved
+atuin init nu |
+  str replace "job spawn -d atuin" "job spawn --tag atuin" |
+  save --force ($local_vendor_autoload_path | path join "atuin.nu")
 
 # zoxide, a smart cd command
 # https://zoxide.dev/
