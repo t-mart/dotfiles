@@ -13,6 +13,27 @@ alias cat = bat
 alias vim = nvim
 alias vi = nvim
 
+# as close as we can get to conditional aliasing
+def --wrapped cmd-if-is-installed [cmd: string, fallback_cmd: string, ...args: string] {
+  if (is-installed $cmd) {
+    ^$cmd ...$args
+  } else {
+    ^$fallback_cmd ...$args
+  }
+}
+
+def --wrapped sudo [...args: string] {
+  cmd-if-is-installed "sudo-rs" "sudo" ...$args
+}
+
+def --wrapped visudo [...args: string] {
+  cmd-if-is-installed "visudo-rs" "visudo" ...$args
+}
+
+def --wrapped su [...args: string] {
+  cmd-if-is-installed "su-rs" "su" ...$args
+}
+
 $env.NU_LIB_DIRS = [
   $nu.default-config-dir | path join "lib"
 ]
