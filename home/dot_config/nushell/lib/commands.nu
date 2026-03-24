@@ -78,7 +78,7 @@ export def ln-recurse [
 
     let extension_args = $only_ext | default [] | each {|ext| ['--extension' $ext] } | flatten
 
-    let fd_result = ^fd --type file ...$extension_args --absolute-path . $target_root | complete
+    let fd_result = ^fd --type file --hidden ...$extension_args --absolute-path . $target_root | complete
 
     if $fd_result.exit_code != 0 {
         error make --unspanned {
