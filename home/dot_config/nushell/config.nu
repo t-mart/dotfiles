@@ -58,6 +58,8 @@ $env.GOPATH = ($nu.home-dir | path join ".local/share/go")
 # omg, how toxic is this default behavior
 $env.RCLONE_NO_UNICODE_NORMALIZATION = true
 
+$env.RIPGREP_CONFIG_PATH = ($nu.home-dir | path join .config/ripgrep.conf)
+
 # applies color to executables found in PATH var
 $env.config.highlight_resolved_externals = true
 
