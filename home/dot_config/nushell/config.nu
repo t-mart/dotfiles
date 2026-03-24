@@ -12,6 +12,7 @@ alias less = bat
 alias cat = bat
 alias vim = nvim
 alias vi = nvim
+alias fd = fd --hidden
 
 # as close as we can get to conditional aliasing
 def --wrapped cmd-if-is-installed [cmd: string, fallback_cmd: string, ...args: string] {
