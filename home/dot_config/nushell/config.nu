@@ -310,18 +310,16 @@ $env.config = {
 
 # here, we create our own oh-my-posh block. we can't do this in omp directly
 # because i don't think nushell exposes it, nor could omp poll for it
-{
-  PROMPT_INDICATOR_VI_INSERT: ([
-    $"(ansi {fg: (gruvbox bright_green)})(ansi reset)"
-    $"(ansi {bg: (gruvbox bright_green) fg: (gruvbox bg0)}) 󰏫 (ansi reset)"
-    $"(ansi {fg: (gruvbox bright_green)})(ansi reset) "
-  ] | str join)
-  PROMPT_INDICATOR_VI_NORMAL: ([
-    $"(ansi {fg: (gruvbox fg2)})(ansi reset)"
-    $"(ansi {bg: (gruvbox fg2) fg: (gruvbox bg0)}) 󰆾 (ansi reset)"
-    $"(ansi {fg: (gruvbox fg2)})(ansi reset) "
-  ] | str join)
-}
+$env.PROMPT_INDICATOR_VI_INSERT = [
+  $"(ansi {fg: (gruvbox bright_green)})(ansi reset)"
+  $"(ansi {bg: (gruvbox bright_green) fg: (gruvbox bg0)}) 󰏫 (ansi reset)"
+  $"(ansi {fg: (gruvbox bright_green)})(ansi reset) "
+] | str join
+$env.PROMPT_INDICATOR_VI_NORMAL = [
+  $"(ansi {fg: (gruvbox fg2)})(ansi reset)"
+  $"(ansi {bg: (gruvbox fg2) fg: (gruvbox bg0)}) 󰆾 (ansi reset)"
+  $"(ansi {fg: (gruvbox fg2)})(ansi reset) "
+] | str join
 
 # oh-my-posh docs want this to be done last (might not matter)
 oh-my-posh init nu --config $"($nu.home-dir | path join ".config/oh-my-posh.yaml")"
