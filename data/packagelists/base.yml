@@ -21,6 +21,7 @@
 - "fd" # alternative to find
 - "fpart" # FS partitioner. makes rsync parallelizable
 - "fzf" # command-line fuzzy finder
+- "geoipupdate" # GeoIP database updater (requires setup of /etc/GeoIP.conf)
 - "git" # version control system
 - "git-delta" # syntax-highlighting pager for git and diff output
 - "gnupg" # encryption and signing tool
