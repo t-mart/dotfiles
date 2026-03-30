@@ -1,0 +1,15 @@
+#!/usr/bin/env -S nu --stdin
+
+# A helper script for displaying man pages with bat.
+# 
+# It needs to be a standalone executable because this script is looked for in
+# the PATH (it can't be a nushell function or alias, for example).
+#
+# See https://www.nushell.sh/book/scripts.html#shebangs for details on the above
+# shebang
+
+def main []: string -> string {
+  # See https://github.com/sharkdp/bat?tab=readme-ov-file#man for reference
+  str replace --all --regex "\\x1B\\[[0-9;]*m|.\\x08" "" # remove ANSI color codes and backspace-overstrike sequences
+  | bat --plain --language man
+}

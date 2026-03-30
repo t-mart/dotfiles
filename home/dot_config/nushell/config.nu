@@ -55,11 +55,18 @@ if (is-installed code) {
   } | load-env
 }
 
+def display-man []: string -> string {
+  str replace --all --regex "\\x1B[0-9;]*m|.\\x08" "" # remove ANSI color codes and backspace-overstrike sequences
+  | bat --plain --language man
+}
+
 {
   PAGER: bat
 
   # see https://github.com/sharkdp/bat/blob/master/README.md#man
-  MANPAGER: r#'sh -c 'sed --unbuffered --expression="s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat --plain --language=man''#
+  # MANPAGER: r#'sh -c 'sed --unbuffered --expression="s/\x1B\[[0-9;]*m//g; s/.\x08//g" | bat --plain --language=man''#
+  # MANPAGER: r#'nu --stdin --commands 'str replace --all --regex "\\x1B\\[[0-9;]*m|.\\x08" "" | bat --plain --language=man''#
+  MANPAGER: batman
 
   GOPATH: ($nu.home-dir | path join .local/share/go)
 
