@@ -2,8 +2,8 @@
 
 # A helper script for displaying man pages with bat.
 # 
-# It needs to be a standalone executable because this script is looked for in
-# the PATH (it can't be a nushell function or alias, for example).
+# It needs to be a standalone executable because this script is invoked by `man`
+# itself. In other words, it can't be a nushell function or alias, for example.
 #
 # See https://www.nushell.sh/book/scripts.html#shebangs for details on the above
 # shebang

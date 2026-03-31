@@ -27,7 +27,7 @@
 - "wezterm-nightly-bin" # terminal emulator
 - "wl-clipboard" # Wayland clipboard utilities
 
-# fonts (not tools for font, but actual font packages)
+# fonts (not tools for fonts, but actual font packages)
 - "inter-font" # highly legible sans-serif typeface
 - "noto-fonts" # Google Noto TTF fonts
 - "noto-fonts-cjk" # CJK characters for Noto
