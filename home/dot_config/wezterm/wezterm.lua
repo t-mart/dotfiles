@@ -65,6 +65,15 @@ config.mouse_bindings = {
   },
 }
 
+config.keys = {
+  {
+    -- let shell handle alt+enter (in nu, this will insert a newline)
+    key = 'Enter',
+    mods = 'ALT',
+    action = act.DisableDefaultAssignment
+  },
+}
+
 config.colors = {
   foreground = '#ebdbb2',
   background = '#282828',

@@ -285,6 +285,7 @@ if $env.SHLVL == 1 {
   (key "Alt+V") to change directory to a directory anywhere (from fzf)
   (key "Alt+N") to insert a file from the current directory (from fzf)
   (key "Alt+M") to insert a file from anywhere (from fzf)
+  (key "Alt+Enter") to insert a newline without executing the command (from wezterm)
   "
 }
 
