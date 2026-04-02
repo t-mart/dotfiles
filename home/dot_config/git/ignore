@@ -1,12 +1,10 @@
-# This is my user-level .gitignore Only files that are specific to me should go
-# in here.
+# User-level git ignore
 #
-# Litmus test: If an another developer were to work on this repo, would would
-# they _also_ generate this file (that should be ignored)?
-# - If yes, put it in the project .gitignore. It's an expected part
-#   working on the project.
-# - If no, put it here. It's something specific to my workflow.
+# Litmus test: Would another developer on this project necessarily produce this file?
+# - Yes → add to the project .gitignore (shared concern)
+# - No → add here (personal/workflow-specific/tool-specific concern)
 #
 # For example, things specific to my editor/workflow/etc belong here.
 
 .venv
+.claude/settings.local.json
