@@ -61,6 +61,8 @@ def display-man []: string -> string {
 }
 
 {
+  LANG: en_US.UTF-8
+
   PAGER: bat
 
   # see https://github.com/sharkdp/bat/blob/master/README.md#man
