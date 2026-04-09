@@ -7,6 +7,7 @@
 - "bat" # enhanced cat command
 - "btop" # resource monitor
 - "brotli" # file compression tool
+- "cadvisor-bin" # container monitoring tool
 - "carapace-bin" # shell completion tool
 - "cargo-update" # Rust crate updater
 - "curl" # HTTP tool
@@ -38,6 +39,7 @@
 - "oh-my-posh-bin" # prompt theme engine
 - "ouch" # unified archive tool
 - "procs" # ps alternative written
+- "prometheus-node-exporter" # Prometheus exporter for hardware and OS metrics
 - "q-dns-bin" # DNS query tool
 - "ranger" # terminal file manager
 - "ripgrep" # regex search tool
