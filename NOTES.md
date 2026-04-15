@@ -2,63 +2,69 @@
 
 ## Stop templating scripts
 
-Chezmoi offers the execution of scripts during runs. I use this to do package
-management (which is maybe an abuse of chezmoi, but its convenient).
+Chezmoi offers the execution of scripts during runs. (I use this to do package
+management which is maybe an abuse of chezmoi, but its convenient).
 
-Anyway, I used to (and in some cases still do) write these scripts in bash or
-powershell, augmented with chezmoi Go templating. This creates frankenstein
-scripts that are hard to read, write, and maintain.
+To avoid making franken-scripts that use Go templating on top of bash, a cleaner
+pattern seems to be to write in pure bash, and just query `chezmoi` for the
+information needed.
 
-Instead, a cleaner pattern seems to be to write in pure bash or powershell, but
-run the `chezmoi` command to get information out of it.
+`chezmoi` can be found absolutely at the `CHEZMOI_EXECUTABLE` environment
+variable.
 
-To do this, in many cases, you need to use environment variables that chezmoi
-sets when running the scripts. This allows for getting things like:
+## clove partitioning and EFI stuff
 
-- the path of the chezmoi executable (/home/.local/bin/chezmoi)
-- the path of the chezmoi working tree directory (/home/.local/share/chezmoi)
-- the path of the chezmoi source directory (/home/.local/share/chezmoi/home)
+For lack of a better place, here's some stuff about my main computer `clove` and
+its EFI setup.
 
-Here's what that environment looks like on unix systems:
+Partition layout:
 
-```text
-CHEZMOI=1
-CHEZMOI_ARCH=amd64
-CHEZMOI_ARGS=/home/tim/.local/bin/chezmoi apply
-CHEZMOI_CACHE_DIR=/home/tim/.cache/chezmoi
-CHEZMOI_COMMAND=apply
-CHEZMOI_COMMAND_DIR=/home/tim/.local/share/chezmoi/home/.chezmoiscripts/unix/before
-CHEZMOI_CONFIG_FILE=/home/tim/.config/chezmoi/chezmoi.toml
-CHEZMOI_DEST_DIR=/home/tim
-CHEZMOI_EXECUTABLE=/home/tim/.local/bin/chezmoi
-CHEZMOI_FQDN_HOSTNAME=00d0a78af1a2
-CHEZMOI_GID=1000
-CHEZMOI_GROUP=tim
-CHEZMOI_HOME_DIR=/home/tim
-CHEZMOI_HOSTNAME=00d0a78af1a2
-CHEZMOI_KERNEL_OSRELEASE=6.6.87.2-microsoft-standard-WSL2
-CHEZMOI_KERNEL_OSTYPE=Linux
-CHEZMOI_KERNEL_VERSION=#1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025
-CHEZMOI_OS=linux
-CHEZMOI_OS_RELEASE_ANSI_COLOR=38;2;23;147;209
-CHEZMOI_OS_RELEASE_BUG_REPORT_URL=https://gitlab.archlinux.org/groups/archlinux/-/issues
-CHEZMOI_OS_RELEASE_BUILD_ID=rolling
-CHEZMOI_OS_RELEASE_DOCUMENTATION_URL=https://wiki.archlinux.org/
-CHEZMOI_OS_RELEASE_HOME_URL=https://archlinux.org/
-CHEZMOI_OS_RELEASE_ID=arch
-CHEZMOI_OS_RELEASE_LOGO=archlinux-logo
-CHEZMOI_OS_RELEASE_NAME=Arch Linux
-CHEZMOI_OS_RELEASE_PRETTY_NAME=Arch Linux
-CHEZMOI_OS_RELEASE_PRIVACY_POLICY_URL=https://terms.archlinux.org/docs/privacy-policy/
-CHEZMOI_OS_RELEASE_SUPPORT_URL=https://bbs.archlinux.org/
-CHEZMOI_OS_RELEASE_VERSION_ID=20260111.0.480139
-CHEZMOI_SOURCE_DIR=/home/tim/.local/share/chezmoi/home
-CHEZMOI_SOURCE_FILE=.chezmoiscripts/unix/before/run_onchange_before_10-decrypt-private-key1.sh
-CHEZMOI_UID=1000
-CHEZMOI_USERNAME=tim
-CHEZMOI_VERSION_BUILT_BY=goreleaser
-CHEZMOI_VERSION_COMMIT=e2e3d1d416604bfe97ff2abfd14d197b79359e5b
-CHEZMOI_VERSION_DATE=2026-01-16T01:48:52Z
-CHEZMOI_VERSION_VERSION=2.69.3
-CHEZMOI_WORKING_TREE=/home/tim/.local/share/chezmoi
 ```
+TARGET               SOURCE                 FSTYPE
+/                    /dev/nvme0n1p2[/@]     btrfs 
+├─/home              /dev/nvme0n1p2[/@home] btrfs 
+├─/swap              /dev/nvme0n1p2[/@swap] btrfs 
+├─/var/log           /dev/nvme0n1p2[/@log]  btrfs 
+└─/boot              /dev/sda1              vfat  
+```
+
+The following is how you might mount the partitions `clove` uses in a USB live
+session when installing/repairing the system.
+
+- Root partition is `/dev/nvme0n1p2`. This is btrfs. The root subvolume is `@`.
+  To mount this:
+
+  ```bash
+  mount -o subvol=@ /dev/nvme0n1p2 /mnt
+  ```
+
+- (Optional) Home partition is also on `/dev/nvme0n1p2`, but under subvolume
+  `@home`. To mount this:
+
+  ```bash
+  mount -o subvol=@home /dev/nvme0n1p2 /mnt/home
+  ```
+
+- EFI partition is `/dev/sda1`. This is FAT32. To mount this:
+
+  ```bash
+  mount --mkdir /dev/sda1 /mnt/boot/efi
+  ```
+
+  This is on a separate drive because I dual-boot Windows, which wants its own
+  EFI partition on its own drive.
+
+After making the mounts above, you can `arch-chroot` into the system with:
+
+```bash
+# -S flag is important for bootctl to work
+arch-chroot -S /mnt
+```
+
+Then, you could hypothetically run `bootctl install` to install systemd-boot to
+the EFI partition to "move-in" to the Windows EFI partition.
+
+Afterwards, run `efibootmgr` to make sure the boot entries are correct. You may
+need to change the boot order to make sure the systemd-boot entry is first --
+this can be done with `efibootmgr -o XXXX,YYYY` where `XXXX` is the boot number
+for systemd-boot and `YYYY` is the boot number for Windows Boot Manager.
