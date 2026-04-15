@@ -20,12 +20,12 @@ its EFI setup.
 Partition layout:
 
 ```
-TARGET               SOURCE                 FSTYPE
-/                    /dev/nvme0n1p2[/@]     btrfs 
-├─/home              /dev/nvme0n1p2[/@home] btrfs 
-├─/swap              /dev/nvme0n1p2[/@swap] btrfs 
-├─/var/log           /dev/nvme0n1p2[/@log]  btrfs 
-└─/boot              /dev/sda1              vfat  
+TARGET      SOURCE                  FSTYPE
+/           /dev/nvme0n1p2[/@]      btrfs 
+├─/home     /dev/nvme0n1p2[/@home]  btrfs 
+├─/swap     /dev/nvme0n1p2[/@swap]  btrfs 
+├─/var/log  /dev/nvme0n1p2[/@log]   btrfs 
+└─/boot     /dev/sda1               vfat  
 ```
 
 The following is how you might mount the partitions `clove` uses in a USB live
@@ -48,7 +48,7 @@ session when installing/repairing the system.
 - EFI partition is `/dev/sda1`. This is FAT32. To mount this:
 
   ```bash
-  mount --mkdir /dev/sda1 /mnt/boot/efi
+  mount --mkdir /dev/sda1 /mnt/boot
   ```
 
   This is on a separate drive because I dual-boot Windows, which wants its own
