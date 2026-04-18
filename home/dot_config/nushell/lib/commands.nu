@@ -292,3 +292,22 @@ export def xdg-dirs [
         },
     }
 }
+
+# Use fzf to select a process and return its PID. Searchable fields are name,
+# PID, and command.
+@example "Select a process" {fdps} --result 1234
+@example "Select a process to kill" {fdps | kill $in}
+export def fdps []: nothing -> int {
+    # this command may be too general. we almost certainly want to kill this
+    # process. maybe we make that a
+    let selected = ps --long
+        | select name pid command 
+        | to tsv 
+        | fzf --header-lines=1 --layout=reverse
+
+    if ($selected | str length) == 0 {
+        error make --unspanned { msg: "No process selected" }
+    }
+
+    $selected | split row "\t" | get 1 | into int
+}
