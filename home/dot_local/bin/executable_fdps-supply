@@ -1,0 +1,11 @@
+#!/usr/bin/env -S nu --stdin
+
+# A helper script for displaying processes with fzf. Needs to be a script like
+# this because it's invoked by fzf itself as a reload command
+
+def main []: nothing -> string {
+  ps --long
+    | select pid ppid name command
+    | to csv
+    | column --separator , --table
+}
