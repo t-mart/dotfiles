@@ -1,0 +1,35 @@
+[CompactMode]
+ViewFont=IBM Plex Sans,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[ContentDisplay]
+DirectorySizeMode=ContentSize
+
+[ContextMenu]
+ShowOpenTerminal=false
+
+[DetailsMode]
+PreviewSize=22
+RightPadding=215
+ViewFont=IBM Plex Sans,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[General]
+DoubleClickViewAction=none
+DynamicView=true
+RememberOpenedTabs=false
+ShowFullPath=true
+ShowSelectionToggle=false
+UseTabForSwitchingSplitView=true
+Version=202
+ViewPropsTimestamp=2026,1,21,4,20,16.196
+
+[IconsMode]
+IconSize=160
+PreviewSize=256
+ViewFont=IBM Plex Sans,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,glycin-heif,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,glycin-image-rs,jpegthumbnail,glycin-jxl,kraorathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,gsthumbnail,glycin-svg,svgthumbnail,textthumbnail,ffmpegthumbs

@@ -1,3 +1,5 @@
+# Note that patterns match against the target path, not the source path.
+
 {{- if not .isWorkstation }}
 .config/yt-dlp
 {{- end }}
@@ -10,6 +12,7 @@
 .config/qimv
 .config/autostart
 .config/fontconfig
+.config/dolphinrc
 {{- end }}
 
 {{- if not .isThinkpadZ13 }}
