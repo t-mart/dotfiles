@@ -34,6 +34,8 @@ config.default_cursor_style = 'SteadyBlock'
 
 config.hide_tab_bar_if_only_one_tab = true
 
+local scroll_lines_delta = 5
+
 -- https://github.com/wezterm/wezterm/discussions/3541#discussioncomment-5633570
 -- right-click to copy selection or paste if no selection
 config.mouse_bindings = {
@@ -53,15 +55,19 @@ config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = { WheelUp = 1 } } },
     mods = 'NONE',
-    -- the default here is act.ScrollByCurrentEventWheelDelta, where the scroll whell event contains the number of lines to scroll
-    -- but that was too fast with KDE Plasma (despite it working well for other scrollable apps), so we set a fixed number of lines instead
-    action = act.ScrollByLine(-5),
+    -- the default here is act.ScrollByCurrentEventWheelDelta, where the scroll
+    -- wheel event contains the number of lines to scroll but that was too fast
+    -- with KDE Plasma (despite it working well for other scrollable apps), so
+    -- we set a fixed number of lines instead
+    action = act.ScrollByLine(-scroll_lines_delta),
+    alt_screen = false,
   },
   {
     event = { Down = { streak = 1, button = { WheelDown = 1 } } },
     mods = 'NONE',
     -- ditto, see above
-    action = act.ScrollByLine(5),
+    action = act.ScrollByLine(scroll_lines_delta),
+    alt_screen = false,
   },
 }
 
