@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=WezTerm
+Comment=Wez's Terminal Emulator
+Keywords=shell;prompt;command;commandline;cmd;
+Icon=org.wezfurlong.wezterm
+StartupWMClass=org.wezfurlong.wezterm
+TryExec=wezterm
+
+# --always-new-process lets copy-paste between instances work
+Exec=wezterm start --always-new-process --cwd .
+
+Type=Application
+Categories=System;TerminalEmulator;Utility;
+Terminal=false
