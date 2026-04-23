@@ -48,7 +48,7 @@ config.mouse_bindings = {
         window:perform_action(act.CopyTo("ClipboardAndPrimarySelection"), pane)
         window:perform_action(act.ClearSelection, pane)
       else
-        window:perform_action(act({ PasteFrom = "Clipboard" }), pane)
+        window:perform_action(act.PasteFrom("Clipboard"), pane)
       end
     end),
   },
@@ -68,6 +68,20 @@ config.mouse_bindings = {
     -- ditto, see above
     action = act.ScrollByLine(scroll_lines_delta),
     alt_screen = false,
+  },
+
+  -- Scrolling up while holding CTRL increases the font size
+  {
+    event = { Down = { streak = 1, button = { WheelUp = 1 } } },
+    mods = 'CTRL',
+    action = act.IncreaseFontSize,
+  },
+
+  -- Scrolling down while holding CTRL decreases the font size
+  {
+    event = { Down = { streak = 1, button = { WheelDown = 1 } } },
+    mods = 'CTRL',
+    action = act.DecreaseFontSize,
   },
 }
 
