@@ -99,6 +99,7 @@
   </Menu>
   <Separator weakSeparator="1"/>
   <Separator weakSeparator="1"/>
+  <Separator weakSeparator="1"/>
   <Menu alreadyVisited="1" name="tools" noMerge="1">
    <text translationDomain="kxmlgui6">&amp;Tools</text>
    <Action name="open_preferred_search_tool"/>
@@ -144,6 +145,7 @@
   <Action name="create_dir"/>
   <Action name="view_settings"/>
   <Action name="sort"/>
+  <Action name="show_hidden_files"/>
   <Action name="url_navigators"/>
   <Action name="split_view"/>
   <Action name="split_stash"/>
@@ -196,5 +198,6 @@
   <Action name="toggle_filter" priority="0"/>
   <Action name="sort" priority="0"/>
   <Action name="create_dir" priority="0"/>
+  <Action name="show_hidden_files" priority="0"/>
  </ActionProperties>
 </gui>
