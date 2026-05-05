@@ -44,6 +44,7 @@
 - "ranger" # terminal file manager
 - "ripgrep" # regex search tool
 - "sudo-rs" # modern sudo written in Rust
+- "systemctl-tui" # systemd services and logs TUI
 - "trippy" # network diagnostic tool (command is trip)
 - "unrar" # decompression tool
 - "unzip" # file decompression tool
