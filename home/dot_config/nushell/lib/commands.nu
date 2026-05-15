@@ -112,28 +112,31 @@ export def ln-recurse [
 }
 
 # Return a path with the provided extension.
-@example "Change to .txt extension" {"foo.html" | path with-extension "txt"} --result "foo.txt"
-@example "Remove extension" {"bar.html" | path with-extension ""} --result "bar"
+@example "Change to .txt extension" { "foo.html" | path with-extension  txt } --result foo.txt
+@example "Change to .md extension with closure" { "foo.html" | path with-extension {|ext| if $ext == html { "md" } else { $ext } } } --result foo.md
+@example "Remove extension" { "bar.html" | path with-extension "" } --result bar
 export def "path with-extension" [
-    extension?: string # the extension (without the dot), or empty string to remove the extension
+    extension?: oneof<string, closure> # the extension without the dot (can be empty to remove) or a closure that takes the current extension and returns the new extension
 ]: string -> string {
     path parse | update extension ($extension | default "") | path join
 }
 
 # Return a path with the provided stem (i.e. filename without extension).
-@example "Change stem" {"foo/bar.txt" | path with-stem "baz"} --result "foo/baz.txt"
-@example "Remove stem" {"foo/bar.txt" | path with-stem ""} --result "foo/.txt"
+@example "Change stem" { "foo/bar.txt" | path with-stem baz } --result foo/baz.txt
+@example "Change stem with closure" { "foo/bar.txt" | path with-stem {|stem| $"new_($stem)" } } --result foo/new_bar.txt
+@example "Remove stem" { "foo/bar.txt" | path with-stem "" } --result foo/.txt
 export def "path with-stem" [
-    stem?: string # the stem, or empty string to remove the stem
+    stem?: oneof<string, closure> # the stem string (can be empty to remove) or a closure that takes the current stem and returns the new stem
 ]: string -> string {
     path parse | update stem ($stem | default "") | path join
 }
 
 # Return a path with the provided basename (i.e. filename with extension).
-@example "Change basename" {"foo/bar.txt" | path with-basename "baz.md"} --result "foo/baz.md"
-@example "Remove basename" {"foo/bar.txt" | path with-basename ""} --result "foo/"
+@example "Change basename" { "foo/bar.txt" | path with-basename baz.md } --result foo/baz.md
+@example "Change basename with closure" { "foo/bar.txt" | path with-basename {|basename| $"($basename).backup" } } --result foo/bar.txt.backup
+@example "Remove basename" { "foo/bar.txt" | path with-basename "" } --result foo/
 export def "path with-basename" [
-    basename?: string # the basename, or empty string to remove the basename
+    basename?: oneof<string, closure> # the basename string (can be empty to remove) or a closure that takes the current basename and returns the new basename
 ]: string -> string {
     let parse = $basename | default "" | path parse
     $in | path parse | update stem ($parse.stem | default "") | update extension ($parse.extension | default "") | path join
