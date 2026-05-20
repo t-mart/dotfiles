@@ -111,6 +111,14 @@ export def ln-recurse [
     }
 }
 
+# Return a path's extension. A convenience wrapper around `path parse | get extension`
+# that returns an empty string if there is no extension instead of null.
+@example "Get extension" { "foo/bar.txt" | path extension } --result txt
+@example "Get extension with no extension" { "foo/bar" | path extension } --result ""
+export def "path extension" []: string -> string {
+    path parse | get extension | default ""
+}
+
 # Return a path with the provided extension.
 @example "Change to .txt extension" { "foo.html" | path with-extension  txt } --result foo.txt
 @example "Change to .md extension with closure" { "foo.html" | path with-extension {|ext| if $ext == html { "md" } else { $ext } } } --result foo.md
@@ -119,6 +127,14 @@ export def "path with-extension" [
     extension?: oneof<string, closure> # the extension without the dot (can be empty to remove) or a closure that takes the current extension and returns the new extension
 ]: string -> string {
     path parse | update extension ($extension | default "") | path join
+}
+
+# Return a path's stem. A convenience wrapper around `path parse | get stem`
+# that returns an empty string if there is no stem instead of null.
+@example "Get stem" { "foo/bar.txt" | path stem } --result bar
+@example "Get stem with no stem" { "foo/.txt" | path stem } --result ""
+export def "path stem" []: string -> string {
+    path parse | get stem | default ""
 }
 
 # Return a path with the provided stem (i.e. filename without extension).
@@ -309,4 +325,48 @@ export def fdps []: nothing -> int {
     }
 
     $selected | parse --regex "^\\s*(?<pid>\\d+)\\s+(?<rest>.*)" | first | get pid | into int
+}
+
+# List common video extensions
+export def "ext video" []: nothing -> list<string> {
+    [mp4 mkv avi mov flv wmv webm mpeg mpg m4v asf divx xvid 3gp ogv mpeg4 vob]
+}
+
+# List common image extensions
+export def "ext image" []: nothing -> list<string> {
+    [jpg jpeg png gif bmp svg webp tiff tif heic]
+}
+
+# List common audio extensions
+export def "ext audio" []: nothing -> list<string> {
+    [mp3 wav flac aac ogg m4a wma opus alac]
+}
+
+# List common archive extensions
+export def "ext archive" []: nothing -> list<string> {
+    [zip tar gz tgz bz2 tbz2 xz txz 7z rar]
+}
+
+# Return if a path is a video based on its extension. Check "ext video" for the 
+# list of extensions.
+export def "path is-video" []: string -> bool {
+    path extension | str downcase | $in in (ext video)
+}
+
+# Return if a path is an image based on its extension. Check "ext image" for the
+# list of extensions.
+export def "path is-image" []: string -> bool {
+    path extension | str downcase | $in in (ext image)
+}
+
+# Return if a path is an audio file based on its extension. Check "ext audio" for the
+# list of extensions.
+export def "path is-audio" []: string -> bool {
+    path extension | str downcase | $in in (ext audio)
+}
+
+# Return if a path is an archive based on its extension. Check "ext archive" for the
+# list of extensions.
+export def "path is-archive" []: string -> bool {
+    path extension | str downcase | $in in (ext archive)
 }
