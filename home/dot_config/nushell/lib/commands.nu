@@ -370,3 +370,37 @@ export def "path is-audio" []: string -> bool {
 export def "path is-archive" []: string -> bool {
     path extension | str downcase | $in in (ext archive)
 }
+
+# Parses an .env-formatted file and returns a table of key-value pairs. Relies
+# on `python-dotenv` to handle the parsing, so it supports all features of that library
+@example "Parse .env file" { parse-env-file "path/to/.env" } --result {KEY: VALUE}
+export def parse-env-file [path?: string]: nothing -> table<key: string, value: string> {
+    if not (is-installed 'dotenv') {
+        error make --unspanned {
+            msg: "python-dotenv must be installed to use parse-env-file"
+        }
+    }
+
+    let path_args = if $path {
+        ["--file" $path]
+    } else {
+        []
+    }
+
+    let result = dotenv ...($path_args) list --format json | complete
+
+    if $result.exit_code != 0 {
+        error make --unspanned {
+            msg: $"Failed to parse env file: ($result.stderr)"
+        }
+    }
+
+    $result.stdout | from json
+}
+
+# Load environment variables from an .env-formatted file. See `parse-env-file` 
+# for details and supported features.
+@example "Load .env file" { load-env-file "path/to/.env" }
+export def load-env-file [path?: string]: nothing -> nothing {
+    parse-env-file $path | load-env
+}
