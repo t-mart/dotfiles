@@ -42,6 +42,7 @@
 - "prometheus-node-exporter" # Prometheus exporter for hardware and OS metrics
 - "q-dns-bin" # DNS query tool
 - "ranger" # terminal file manager
+- "reflector" # retrieve and filter the latest Pacman mirror list
 - "ripgrep" # regex search tool
 - "sudo-rs" # modern sudo written in Rust
 - "systemctl-tui" # systemd services and logs TUI

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# Deploy /etc files. Chezmoi only cares about the home directory, so we need to
+# do custom stuff for /etc. (Maybe we're outgrowing chezmoi?)
 set -euo pipefail
 
 source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.common.sh"
@@ -32,9 +35,19 @@ link_config() {
   fi
 }
 
-if is_thinkpad_z13; then
-  log_banner "Configuring ThinkPad Z13 specific settings"
+log_banner "Deploying /etc symlinks"
+link_config \
+  "reflector" \
+  "${CHEZMOI_SOURCE_DIR}/dot_config/reflector.conf" \
+  "/etc/xdg/reflector/reflector.conf" \
+  "$(cat <<EOF
+Next, you need to enable and start the reflector service and timer.
 
+See https://wiki.archlinux.org/title/Reflector for details.
+EOF
+)"
+
+if is_thinkpad_z13; then
   link_config \
     "thinkfan" \
     "${CHEZMOI_SOURCE_DIR}/dot_config/thinkfan.conf" \
