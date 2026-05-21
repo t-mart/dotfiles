@@ -6,39 +6,37 @@ set -euo pipefail
 
 source "${CHEZMOI_SOURCE_DIR}/.chezmoiscripts/.common.sh"
 
-# Link a config file to a system location and show setup instructions if needed
-# Args: 
+# Copy a config file to a system location and show setup instructions if needed
+# Args:
 # - name: used in messages
-# - target: the path of the target
-# - link_path: the link to create
-# - instructions_message: things to do next, shown if the link was updated
-link_config() {
+# - source: the path of the source file
+# - dest: the destination path to copy to
+# - instructions_message: things to do next, shown if the file was updated
+copy_config() {
   local name=$1
-  local target=$2
-  local link=$3
+  local source=$2
+  local dest=$3
   local instructions=$4
 
-  local target
-  target=$(realpath "${target}")
-  
-  if [[ ! -f "$target" ]]; then
-    log_error "${name} config file not found at $target"
+  if [[ ! -f "$source" ]]; then
+    log_error "${name} config file not found at $source"
     exit 1
   fi
 
-  if [[ -L "$link" ]] && [[ "$(readlink -f "$link")" == "$target" ]]; then
-    log_info "${name} config link already correct."
+  if [[ -f "$dest" ]] && diff -q "$source" "$dest" &>/dev/null; then
+    log_info "${name} config already up to date."
   else
-    log_info "Linking $link to ${target}..."
-    sudo ln -sf "$target" "$link"
+    log_info "Copying $source to ${dest}..."
+    sudo cp "$source" "$dest"
     gum confirm "$instructions"
   fi
 }
 
-log_banner "Deploying /etc symlinks"
-link_config \
+log_banner "Deploying non-home files"
+
+copy_config \
   "reflector" \
-  "${CHEZMOI_SOURCE_DIR}/dot_config/reflector.conf" \
+  "${CHEZMOI_WORKING_TREE}/data/non-home/reflector.conf" \
   "/etc/xdg/reflector/reflector.conf" \
   "$(cat <<EOF
 Next, you need to enable and start the reflector service and timer.
@@ -48,9 +46,9 @@ EOF
 )"
 
 if is_thinkpad_z13; then
-  link_config \
+  copy_config \
     "thinkfan" \
-    "${CHEZMOI_SOURCE_DIR}/dot_config/thinkfan.conf" \
+    "${CHEZMOI_WORKING_TREE}/data/non-home/thinkfan.conf" \
     "/etc/thinkfan.conf" \
     "$(cat <<EOF
 Next, you need to:
@@ -62,9 +60,9 @@ See https://wiki.archlinux.org/title/Fan_speed_control (especially the thinkfan 
 EOF
 )"
 
-  link_config \
+  copy_config \
     "keyboard-backlightd" \
-    "${CHEZMOI_SOURCE_DIR}/dot_config/keyboard-backlightd" \
+    "${CHEZMOI_WORKING_TREE}/data/non-home/keyboard-backlightd" \
     "/etc/conf.d/keyboard-backlightd" \
     "$(cat <<EOF
 Next, you need to enable and start the keyboard-backlightd service.
