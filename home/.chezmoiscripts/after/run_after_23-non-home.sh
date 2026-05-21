@@ -23,11 +23,6 @@ copy_config() {
     exit 1
   fi
 
-  # Remove dangling symlinks so cp doesn't refuse to overwrite them
-  if [[ -L "$dest" ]] && [[ ! -e "$dest" ]]; then
-    sudo rm "$dest"
-  fi
-
   if [[ -f "$dest" ]] && diff -q "$source" "$dest" &>/dev/null; then
     log_info "${name} config already up to date."
   else
