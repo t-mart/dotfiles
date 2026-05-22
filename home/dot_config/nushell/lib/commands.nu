@@ -401,6 +401,6 @@ export def parse-env-file [path?: string]: nothing -> table<key: string, value: 
 # Load environment variables from an .env-formatted file. See `parse-env-file` 
 # for details and supported features.
 @example "Load .env file" { load-env-file "path/to/.env" }
-export def load-env-file [path?: string]: nothing -> nothing {
+export def --env load-env-file [path?: string]: nothing -> nothing {
     parse-env-file $path | load-env
 }
