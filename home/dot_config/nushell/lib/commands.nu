@@ -381,7 +381,7 @@ export def parse-env-file [path?: string]: nothing -> table<key: string, value: 
         }
     }
 
-    let path_args = if $path {
+    let path_args = if ($path != null) {
         ["--file" $path]
     } else {
         []
