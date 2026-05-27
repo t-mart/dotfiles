@@ -26,7 +26,14 @@
 
 [core]
   editor = nvim
-  pager = bat --plain
+  pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true
 
 [grep]
   lineNumber = true
