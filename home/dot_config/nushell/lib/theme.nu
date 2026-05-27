@@ -23,7 +23,7 @@ use colors.nu gruvbox
 # name and shade as arguments) and the gruvbox color palette using the `gruvbox`
 # function (takes color name as argument).
 
-export def main [] {
+export def tim-theme []: nothing -> record {
   {
     # foreground: keep default from terminal
     # background: keep default from terminal

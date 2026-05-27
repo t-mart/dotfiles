@@ -13,6 +13,7 @@
 - "go" # programming language
 - "hyperfine" # command-line benchmarking tool
 - "imagemagick" # image manipulation
+- "jwt-cli" # decode and encode JWTs 
 - "lazygit" # terminal UI for git
 - "nodejs" # JavaScript runtime
 - "pnpm" # JavaScript package manager
