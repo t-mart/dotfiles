@@ -16,6 +16,7 @@
 - "kimageformats" # additional image format plugins for KDE
 - "libreoffice-fresh" # office suite
 - "mpv" # media player
+- "mpv-uosc" # feature-rich minimalist proximity-based UI for mpv
 - "plasma-meta" # KDE Plasma desktop environment
 - "qalculate-gtk" # advanced calculator
 - "qimgv" # image viewer and editor

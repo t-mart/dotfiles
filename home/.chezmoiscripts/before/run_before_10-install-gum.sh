@@ -12,7 +12,7 @@ if ! is_arch_linux; then
 fi
 
 # Install gum, shell script UI tool
-if ! command_exists gum; then
+if ! pacman_package_installed gum; then
     log_info "Installing gum..."
     sudo pacman -Syu --noconfirm --needed gum
 else

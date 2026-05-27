@@ -41,6 +41,10 @@ is_thinkpad_z13() {
     get_data_bool "isThinkpadZ13"
 }
 
+pacman_package_installed() {
+    pacman -Qq "$1" &>/dev/null
+}
+
 install_packagelist() {
     local list_file="${CHEZMOI_WORKING_TREE}/data/packagelists/${1}.yml"
 
@@ -48,8 +52,6 @@ install_packagelist() {
         log_error "Packagelist file not found: $list_file"
         return 1
     fi
-
-    log_info "Installing packages from '${list_file}' via paru..."
 
     local packages=()
     while IFS= read -r name; do
@@ -60,7 +62,26 @@ install_packagelist() {
         return 0
     fi
 
-    paru --sync --sysupgrade --refresh --needed --pgpfetch --noconfirm "${packages[@]}"
+    # Build a set of installed packages from the local DB (fast, no network).
+    declare -A installed
+    while IFS= read -r pkg; do
+        installed["$pkg"]=1
+    done < <(pacman -Qq 2>/dev/null)
+
+    local missing=()
+    for pkg in "${packages[@]}"; do
+        if [[ -z "${installed[$pkg]+x}" ]]; then
+            missing+=("$pkg")
+        fi
+    done
+
+    if [[ ${#missing[@]} -eq 0 ]]; then
+        log_info "All packages from '${1}' already installed. Skipping."
+        return 0
+    fi
+
+    log_info "Installing ${#missing[@]} missing package(s) from '${1}' via paru..."
+    paru --sync --sysupgrade --refresh --needed --pgpfetch --noconfirm "${missing[@]}"
 }
 
 # log the arguments to stderr. use `gum log` if available, otherwise just echo

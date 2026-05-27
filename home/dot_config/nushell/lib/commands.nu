@@ -238,17 +238,17 @@ export def xdg [
 
 # List common video extensions
 export def "ext video" []: nothing -> list<string> {
-    [mp4 mkv avi mov flv wmv webm mpeg mpg m4v asf divx xvid 3gp ogv mpeg4 vob]
+    [3g2 3gp asf avi f4v flv h264 h265 m2ts m4v mkv mov mp4 mp4v mpeg mpg ogm ogv rm rmvb ts vob webm wmv y4m]
 }
 
 # List common image extensions
 export def "ext image" []: nothing -> list<string> {
-    [jpg jpeg png gif bmp svg webp tiff tif heic]
+    [apng avif bmp gif j2k jp2 jfif jpeg jpg jxl mj2 png svg tga tif tiff webp]
 }
 
 # List common audio extensions
 export def "ext audio" []: nothing -> list<string> {
-    [mp3 wav flac aac ogg m4a wma opus alac]
+    [aac ac3 aiff ape au cue dsf dts flac m4a mid midi mka mp3 mp4a oga ogg opus spx tak tta wav weba wma wv]
 }
 
 # List common archive extensions
