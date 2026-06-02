@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UV Tool Installations",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["tool"],
+    "additionalProperties": false,
+    "properties": {
+      "tool": {
+        "type": "string",
+        "description": "The package name to install via uv tool install.",
+        "minLength": 1
+      },
+      "extras": {
+        "type": "array",
+        "description": "Additional packages to include via --with.",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      }
+    }
+  }
+}

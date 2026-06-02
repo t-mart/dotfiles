@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Non-Home Configuration",
+  "type": "object",
+  "required": ["copies"],
+  "additionalProperties": false,
+  "properties": {
+    "copies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "source", "dest", "instructions"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Display name for this config file.",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "description": "Path relative to the non-home/ directory.",
+            "minLength": 1
+          },
+          "dest": {
+            "type": "string",
+            "description": "Absolute destination path on the system.",
+            "pattern": "^/"
+          },
+          "when": {
+            "type": "array",
+            "description": "Chezmoi data boolean keys that must all be true for this entry to apply.",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "instructions": {
+            "type": "string",
+            "description": "Post-copy instructions displayed to the user.",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

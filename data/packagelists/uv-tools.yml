@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=./uv-tools.schema.json
+
+- tool: yt-dlp
+  extras:
+    - mutagen
+    - curl-cffi
+    - yt-dlp-ejs
+    - certifi
+    - brotli
+    - websockets
+    - requests
+    - pycryptodome

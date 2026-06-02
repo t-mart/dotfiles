@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=./.packagelist.schema.json
+# yaml-language-server: $schema=./.pacman-packagelist.schema.json
 
 # a workstation is one where development might be done, but it does not
 # necessarily have a graphical desktop environment.

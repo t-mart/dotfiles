@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=./.packagelist.schema.json
+# yaml-language-server: $schema=./.pacman-packagelist.schema.json
 
 # packages for my laptop, a ThinkPad Z13
 

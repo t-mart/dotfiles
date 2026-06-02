@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=./non-home.schema.json
+
+copies:
+  - name: reflector
+    source: ./etc/xdg/reflector/reflector.conf
+    dest: /etc/xdg/reflector/reflector.conf
+    instructions: |
+      Next, you need to enable and start the reflector service and timer.
+
+      See https://wiki.archlinux.org/title/Reflector for details.
+
+  - name: thinkfan
+    source: ./etc/thinkfan.conf
+    dest: /etc/thinkfan.conf
+    when:
+      - isThinkpadZ13
+    instructions: |
+      Next, you need to:
+
+      1. Run `sensors-detect`
+      2. Enable and start the thinkfan service
+
+      See https://wiki.archlinux.org/title/Fan_speed_control for details.
+
+  - name: keyboard-backlightd
+    source: ./etc/conf.d/keyboard-backlightd
+    dest: /etc/conf.d/keyboard-backlightd
+    when:
+      - isThinkpadZ13
+    instructions: |
+      Next, you need to enable and start the keyboard-backlightd service.
+
+      See https://github.com/VorpalBlade/keyboard-backlightd for details.
