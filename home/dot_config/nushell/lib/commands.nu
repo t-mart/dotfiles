@@ -309,3 +309,93 @@ export def parse-env-file [path?: string]: nothing -> table<key: string, value: 
 export def --env load-env-file [path?: string]: nothing -> nothing {
     parse-env-file $path | load-env
 }
+
+# Return the process IDs bound to a network port. Delegates to `ss`, which
+# must be installed. Defaults to TCP; pass --udp for UDP. A port may map to
+# multiple PIDs (e.g. forked workers or separate IPv4/IPv6 sockets), so a list
+# is always returned.
+#
+# Processes owned by other users are only visible to root, so pass --sudo to
+# run `ss` under sudo (you will be prompted for your password).
+@example "Find the PIDs listening on TCP 8080" { port pid 8080 } --result [1234]
+export def "port pid" [
+    port: int   # the network port to look up
+    --udp (-u)  # look up UDP instead of TCP
+    --all (-a)  # match any socket on the port, not just listening ones
+    --sudo (-s) # run ss under sudo to see processes owned by other users
+]: nothing -> list<int> {
+    require-installed ss
+
+    let proto = if $udp { "--udp" } else { "--tcp" }
+    let state = if $all { "--all" } else { "--listening" }
+    let ss_cmd = [
+        (if $sudo { [sudo] } else { null })
+        ss
+        $proto
+        $state
+        --numeric
+        --processes
+        --no-header
+        --oneline
+        $"sport = :($port)"
+    ] | where ($it | is-not-empty)
+
+    run-checked ...$ss_cmd
+        | parse --regex 'pid=(?<pid>\d+)'
+        | get pid
+        | uniq
+        | into int
+}
+
+# Return a table of process details for the given PID(s), read natively from
+# /proc. `name` is the kernel comm, `exe` the resolved executable path, and
+# `cmdline` the full argument vector. `comm` and `cmdline` are world-readable,
+# but reading another user's `exe` requires ptrace permission, so it falls back
+# to null. Pass --sudo to resolve those `exe` paths via `sudo readlink` (you
+# will be prompted for your password).
+@example "Describe the processes on TCP 8080" { port pid 8080 | proc }
+export def proc [
+    --sudo (-s) # resolve other users' exe paths via sudo
+]: oneof<int, list<int>> -> table<pid: int, name: string, exe: string, cmdline: list<string>> {
+    [$in] | flatten | each {|pid|
+        {
+            pid: $pid
+            name: (try { open --raw $"/proc/($pid)/comm" | decode utf-8 | str trim } catch { null })
+            exe: (try {
+                if $sudo {
+                    run-checked [sudo readlink $"/proc/($pid)/exe"] | str trim
+                } else {
+                    ls --long $"/proc/($pid)/exe" | get 0?.target
+                }
+            } catch { null })
+            cmdline: (try {
+                open --raw $"/proc/($pid)/cmdline"
+                    | decode utf-8
+                    | split row \u{0}
+                    | where ($it | is-not-empty)
+            } catch { null })
+        }
+    }
+}
+
+# Run an external command and return its stdout, raising an error containing the
+# command's stderr if it exits non-zero. The command is passed as a list so its
+# own flags are not mistaken for flags to this helper.
+#
+# Pass --sudo to run it under sudo; credentials are validated up front
+# (prompting if needed) so the password prompt stays visible instead of being
+# swallowed by the captured output.
+@example "Capture output or raise on failure" { run-checked [ss -tlnp] }
+export def run-checked [
+    ...cmd: string # the external command and its arguments
+]: nothing -> string {
+    if ($cmd | is-empty) {
+        error make "run-checked requires a command to run"
+    }
+
+    let result = run-external ...$cmd | complete
+    if $result.exit_code != 0 {
+        error make $"`($cmd | str join ' ')` failed: ($result.stderr | str trim)"
+    }
+    $result.stdout
+}
