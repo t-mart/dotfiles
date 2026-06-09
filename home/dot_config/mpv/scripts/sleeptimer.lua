@@ -37,7 +37,7 @@ local function humanize_duration(seconds)
     local hours, left = math.floor(left / 3600), left % 3600
     local minutes, seconds = math.floor(left / 60), left % 60
 
-    units = {}
+    local units = {}
     if hours > 0 then table.insert(units, string.format("%dh", hours)) end
     if minutes > 0 then table.insert(units, string.format("%dm", minutes)) end
     if seconds > 0 then table.insert(units, string.format("%.0fs", seconds)) end
@@ -51,16 +51,22 @@ end
 local function cycle_sleep_timer()
     duration_index = duration_index + 1
 
-    if duration_index - 1 == #durations then duration_index = 1 end
+    if duration_index > #durations then
+        duration_index = 1
+    end
 
     if durations[duration_index] == 0 then
-        timer:kill()
+        if timer ~= nil then
+            timer:kill()
+        end
         timer = nil
         mp.osd_message("Sleep timer unset")
         return
     end
 
-    if timer ~= nil then timer:kill() end
+    if timer ~= nil then
+        timer:kill()
+    end
 
     timer = mp.add_timeout(durations[duration_index],
                            function() mp.command_native({name = "quit-watch-later"}) end)
