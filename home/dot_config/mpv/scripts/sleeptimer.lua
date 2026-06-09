@@ -100,7 +100,11 @@ local function stop_timeout()
     end
 end
 
--- if the timer is set, show in how many seconds it will expire.
+local function show_sleep_timer_raw(seconds, is_paused)
+    local suffix = is_paused and " (paused)" or ""
+    mp.osd_message("Will sleep after " .. humanize_duration(seconds) .. suffix)
+end
+
 local function show_sleep_timer()
     if active == nil then
         mp.osd_message("No sleep timer set")
@@ -110,8 +114,8 @@ local function show_sleep_timer()
     local seconds = active.expire ~= nil
         and math.floor(active.expire - mp.get_time())
         or math.floor(active.remaining)
-    local suffix = mp.get_property_bool("pause") and " (paused)" or ""
-    mp.osd_message("Will sleep after " .. humanize_duration(seconds) .. suffix)
+    local is_paused = mp.get_property_bool("pause")
+    show_sleep_timer_raw(seconds, is_paused)
 end
 
 local function set_timer(seconds)
@@ -126,11 +130,13 @@ local function set_timer(seconds)
 
     active = { remaining = seconds, expire = nil }
 
-    if not mp.get_property_bool("pause") then
+    local is_paused = mp.get_property_bool("pause")
+
+    if not is_paused then
         start_timeout()
     end
 
-    show_sleep_timer()
+    show_sleep_timer_raw(seconds, is_paused)
 end
 
 -- set a sleep timer with a duration from a group of durations. invoke the function again to cycle
