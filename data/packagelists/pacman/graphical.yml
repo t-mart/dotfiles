@@ -1,14 +1,22 @@
 # yaml-language-server: $schema=./.pacman-packagelist.schema.json
 
-# packages for a graphical desktop environment
+# Installed on machines with a display and desktop environment.
+# Gated on the isGraphical config variable.
+#
+# Placement rule: anything that needs a screen to be useful — the DE itself,
+# GUI applications, font packages, the GUI terminal, printing. This axis is
+# orthogonal to workstation: a media/kiosk box is graphical but not a
+# workstation. CLI dev/media tools go in workstation.yml instead.
 
 - "1password" # password manager
 - "ark" # archive manager
 - "cups" # Common Unix Printing System
 - "discord" # chat application
+- "evince" # PDF viewer
 - "ffmpegthumbs" # video thumbnail generator
 - "filelight" # disk usage analyzer
 - "firefox" # web browser
+- "foliate" # e-book reader
 - "fontconfig" # CLI tools for font configuration
 - "font-manager" # manage installed fonts and preview font files
 - "gnome-network-displays" # cast to network displays

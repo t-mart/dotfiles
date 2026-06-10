@@ -1,6 +1,10 @@
 # yaml-language-server: $schema=./.pacman-packagelist.schema.json
 
-# packages for my laptop, a ThinkPad Z13
+# Installed on my laptop, a ThinkPad Z13. Gated on the isThinkpadZ13 prompt.
+#
+# Placement rule: hardware-specific packages for this exact machine — fan
+# control, backlight, sensors. Per-machine hardware quirks get their own list
+# rather than muddying base/workstation/graphical.
 
 - "thinkfan" # fan control for ThinkPads
 - "keyboard-backlightd" # keyboard backlight control for ThinkPads

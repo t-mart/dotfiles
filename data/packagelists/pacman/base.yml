@@ -1,6 +1,9 @@
 # yaml-language-server: $schema=./.pacman-packagelist.schema.json
 
-# packages that are generally useful in all contexts
+# Installed on every machine, no questions asked.
+#
+# Placement rule: a package belongs here only if it is useful on a minimal,
+# headless box (no display, no development).
 
 - "age" # encryption tool
 - "atuin" # shell history manager

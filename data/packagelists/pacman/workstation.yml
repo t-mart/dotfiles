@@ -1,7 +1,13 @@
 # yaml-language-server: $schema=./.pacman-packagelist.schema.json
 
-# a workstation is one where development might be done, but it does not
-# necessarily have a graphical desktop environment.
+# Installed where I actually work: development and media manipulation.
+# Gated on the isWorkstation prompt.
+#
+# Placement rule: non-GUI tools that I only want on machines where I write code
+# or process media — language runtimes, dev CLIs, media-processing tools. This
+# axis is orthogonal to graphical: a headless dev server is a workstation but
+# not graphical. If a package needs a display, it goes in graphical.yml; if it's
+# useful even on a minimal headless box, it goes in base.yml.
 
 - "1password-cli" # password manager CLI
 - "atomicparsley" # media file tagger (yt-dlp dependency)

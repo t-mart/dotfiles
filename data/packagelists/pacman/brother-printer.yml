@@ -1,5 +1,9 @@
 # yaml-language-server: $schema=./.pacman-packagelist.schema.json
 
-# packages for my Brother printer, a Brother MFC-7860DW
+# Installed on machines connected to my Brother printer, a Brother MFC-7860DW.
+# Gated on the usesBrotherPrinter config variable.
+#
+# Placement rule: drivers/packages tied to this specific peripheral. Like the
+# thinkpad list, peripheral-specific packages get their own list.
 
 - "brlaser" # Brother printer drivers
