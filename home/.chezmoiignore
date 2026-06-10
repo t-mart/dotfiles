@@ -6,13 +6,16 @@
 
 {{- if not .isGraphical }}
 .local/share/kio
+.local/share/kxmlgui5
 .local/share/applications
+.config/wezterm
 .config/mpv
 .config/plasma-workspace
-.config/qimv
+.config/qimgv
 .config/autostart
 .config/fontconfig
 .config/dolphinrc
+.config/user-dirs.dirs
 {{- end }}
 
 {{- if not .isThinkpadZ13 }}
