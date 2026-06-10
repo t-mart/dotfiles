@@ -41,7 +41,11 @@ def install_paru() -> None:
         return
 
     log_info("Installing build dependencies...")
-    run("sudo-rs pacman -Syu --noconfirm --needed base-devel git gnupg", check=True)
+    run(
+        "pacman -Syu --noconfirm --needed base-devel git gnupg",
+        sudo=True,
+        check=True,
+    )
 
     with tempfile.TemporaryDirectory() as tmp:
         log_info("Cloning paru from AUR...")
@@ -65,7 +69,11 @@ def install_yay() -> None:
         return
 
     log_info("Installing build dependencies...")
-    run("sudo-rs pacman -Syu --noconfirm --needed base-devel git gnupg", check=True)
+    run(
+        "pacman -Syu --noconfirm --needed base-devel git gnupg",
+        sudo=True,
+        check=True,
+    )
 
     with tempfile.TemporaryDirectory() as tmp:
         log_info("Cloning yay-bin from AUR...")
@@ -168,7 +176,8 @@ def set_default_shell() -> None:
     if shells.exists() and str(nu) not in shells.read_text().splitlines():
         log_info(f"Adding '{nu}' to /etc/shells...")
         run(
-            ["sudo-rs", "tee", "--append", str(shells)],
+            ["tee", "--append", str(shells)],
+            sudo=True,
             input=f"{nu}\n",
             text=True,
             capture_output=True,
@@ -231,7 +240,7 @@ def deploy_non_home() -> None:
             continue
 
         log_info(f"{name}: copying to {dest}...")
-        run(["sudo-rs", "cp", str(source), dest], check=True)
+        run(["cp", str(source), dest], sudo=True, check=True)
         log_panel(instructions.strip(), title=f"[bold]{name}[/bold] — next steps")
         prompt_continue()
 
