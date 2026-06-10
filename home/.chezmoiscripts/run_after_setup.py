@@ -59,8 +59,8 @@ def install_paru() -> None:
     log_info("paru installed.")
 
 
-
 # ── yay ───────────────────────────────────────────────────────────────────────
+
 
 @step("yay", arch_only=True)
 def install_yay() -> None:
@@ -78,7 +78,7 @@ def install_yay() -> None:
     with tempfile.TemporaryDirectory() as tmp:
         log_info("Cloning yay-bin from AUR...")
         run(
-            [f"git clone https://aur.archlinux.org/yay-bin.git {tmp}/yay"],
+            f"git clone https://aur.archlinux.org/yay-bin.git {tmp}/yay",
             check=True,
         )
         log_info("Installing yay...")
