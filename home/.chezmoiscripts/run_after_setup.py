@@ -1,7 +1,8 @@
 # Chezmoi after-apply Python script
 #
 # This script does the following:
-# - Installs paru and pacman packages (Arch only)
+# - Installs yay
+# - Installs packages based on the system type
 # - Installs uv tools
 # - Sets Nushell as the default shell
 # - Imports GPG keys
@@ -29,34 +30,6 @@ from lib.logging import (
 )
 from lib.proc import run
 from lib.yaml import load_yaml
-
-
-# ── paru ──────────────────────────────────────────────────────────────────────
-
-
-@step("paru", arch_only=True)
-def install_paru() -> None:
-    if pacman_package_installed("paru"):
-        log_info("paru already installed.")
-        return
-
-    log_info("Installing build dependencies...")
-    run(
-        "pacman -Syu --noconfirm --needed base-devel git gnupg",
-        sudo=True,
-        check=True,
-    )
-
-    with tempfile.TemporaryDirectory() as tmp:
-        log_info("Cloning paru from AUR...")
-        run(
-            ["git", "clone", "https://aur.archlinux.org/paru.git", f"{tmp}/paru"],
-            check=True,
-        )
-        log_info("Building and installing paru...")
-        run("makepkg -si --noconfirm", cwd=f"{tmp}/paru", check=True)
-
-    log_info("paru installed.")
 
 
 # ── yay ───────────────────────────────────────────────────────────────────────
@@ -113,10 +86,10 @@ def install_packagelist(name: str) -> None:
         return
 
     log_info(
-        f"Installing {len(missing)} missing package(s) from '{name}' via paru...",
+        f"Installing {len(missing)} missing package(s) from '{name}' via yay...",
     )
     run(
-        f"paru --sync --sysupgrade --refresh --needed --pgpfetch --noconfirm {' '.join(missing)}",
+        f"yay --sync --sysupgrade --refresh --needed --pgpfetch --noconfirm {' '.join(missing)}",
         check=True,
     )
 
@@ -247,7 +220,6 @@ def deploy_non_home() -> None:
 
 def main() -> None:
     with phase("chezmoi — after apply"):
-        install_paru()
         install_yay()
         install_packages()
 
