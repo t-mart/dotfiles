@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+#
+# Merge command for `chezmoi merge`.
+#
+# chezmoi calls this with three files (order set in .chezmoi.yaml.tmpl):
+#   $1 destination - the file currently in $HOME (your live, edited version)
+#   $2 target      - chezmoi's desired content for the file (rendered/decrypted)
+#   $3 source      - the file in the chezmoi source tree; the MERGE RESULT goes here
+#
+# A managed plain file only ever has two meaningful versions -- yours
+# (destination) and chezmoi's (target) -- so this is a 2-way reconciliation, not
+# a 3-way merge. We render every differing hunk as familiar git conflict markers
+# with GNU diff's group formats:
+#
+#     <<<<<<< live
+#     your lines
+#     =======
+#     chezmoi's lines
+#     >>>>>>> chezmoi
+#
+# That marked-up result is written to source; open it in a single editor,
+# resolve each block, save, and quit.
+set -euo pipefail
+
+dest=$1
+target=$2
+source=$3
+
+# Conflict marker pieces, defined once. In the formats below, %< = lines from
+# destination, %> = lines from target, %= = shared lines. Every difference
+# (changed, dest-only, target-only) is wrapped as a conflict block so you choose
+# explicitly; with no common ancestor we can't safely auto-pick a side.
+open='<<<<<<< live'
+sep='======='
+close='>>>>>>> chezmoi'
+
+changed_fmt="$open
+%<$sep
+%>$close
+"
+old_fmt="$open
+%<$sep
+$close
+"
+new_fmt="$open
+$sep
+%>$close
+"
+
+# diff exits 0 (identical), 1 (differences, the expected case), or >1 on error.
+merged=$(mktemp)
+trap 'rm --force -- "$merged"' EXIT
+
+status=0
+diff \
+  --unchanged-group-format='%=' \
+  --changed-group-format="$changed_fmt" \
+  --old-group-format="$old_fmt" \
+  --new-group-format="$new_fmt" \
+  -- "$dest" "$target" > "$merged" || status=$?
+if (( status > 1 )); then
+  echo "chezmoi-merge: diff failed (exit $status)" >&2
+  exit 1
+fi
+
+cp -- "$merged" "$source"
+
+is_graphical() {
+  [[ -n ${DISPLAY:-} || -n ${WAYLAND_DISPLAY:-} ]]
+}
+
+if is_graphical && command -v code >/dev/null 2>&1; then
+  code --new-window --wait "$source"
+else
+  "${VISUAL:-${EDITOR:-nvim}}" "$source"
+fi

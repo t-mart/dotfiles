@@ -164,7 +164,7 @@ def set_default_shell() -> None:
 
     log_info(f"Changing default shell to '{nu}'...")
     run(["chsh", "-s", str(nu)], check=True)
-    log_info("Shell changed — log out and back in for it to take effect.")
+    log_info("Shell changed. Log out and back in for it to take effect.")
 
 
 # ── GPG keys ──────────────────────────────────────────────────────────────────
