@@ -164,8 +164,8 @@ export def "random password" [
 # and empty lines are ignored.
 export def upta [...servers: string] {
     let cmds = [
-        # arch paru
-        "paru --sync --sysupgrade --refresh --noconfirm --skipreview"
+        # upgrade packages
+        "yay --sync --sysupgrade --refresh --noconfirm --diffmenu=false --editmenu=false --cleanmenu=false"
 
         # chezmoi
         "~/.local/bin/chezmoi update --init --apply"
