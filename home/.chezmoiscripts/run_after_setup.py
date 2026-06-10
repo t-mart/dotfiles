@@ -248,6 +248,7 @@ def deploy_non_home() -> None:
 def main() -> None:
     with phase("chezmoi — after apply"):
         install_paru()
+        install_yay()
         install_packages()
 
         install_uv_tools()
