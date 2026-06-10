@@ -1,87 +1,41 @@
-#!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.11"
-# dependencies = ["rich", "PyYAML"]
-# ///
+# Chezmoi after-apply Python script
+#
+# This script does the following:
+# - Installs paru and pacman packages (Arch only)
+# - Installs uv tools
+# - Sets Nushell as the default shell
+# - Imports GPG keys
+# - Deploys non-home files
+
 
 import os
 import pwd
-import shlex
-import shutil
-import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
-import yaml
-from rich.console import Console
-from rich.panel import Panel
-from rich.prompt import Prompt
-
-CHEZMOI_WORKING_TREE = Path(os.environ["CHEZMOI_WORKING_TREE"])
-CHEZMOI_EXECUTABLE = os.environ["CHEZMOI_EXECUTABLE"]
-
-console = Console()
-
-
-# ── subprocess ────────────────────────────────────────────────────────────────
-
-
-def run(cmd: str | list[str], **kwargs) -> subprocess.CompletedProcess:
-    if isinstance(cmd, str):
-        cmd = shlex.split(cmd)
-    return subprocess.run(cmd, **kwargs)
-
-
-# ── logging ───────────────────────────────────────────────────────────────────
-
-
-def log_info(msg: str) -> None:
-    console.print(f"[cyan]•[/cyan] {msg}")
-
-
-def log_error(msg: str) -> None:
-    console.print(f"[bold red]✗[/bold red] {msg}")
-
-
-def log_banner(msg: str) -> None:
-    console.rule(f"[bold magenta]{msg}[/bold magenta]")
-
-
-# ── chezmoi data ──────────────────────────────────────────────────────────────
-
-
-def get_chezmoi_data_bool(key: str) -> bool:
-    result = subprocess.run(
-        [CHEZMOI_EXECUTABLE, "execute-template", f"{{{{ .{key} }}}}"],
-        capture_output=True,
-        text=True,
-    )
-    return result.stdout.strip() == "true"
-
-
-# ── environment detection ─────────────────────────────────────────────────────
-
-
-def is_arch_linux() -> bool:
-    return shutil.which("pacman") is not None and shutil.which("makepkg") is not None
+from lib.arch_linux import pacman_package_installed
+from lib.chezmoi import (
+    CHEZMOI_EXECUTABLE,
+    CHEZMOI_WORKING_TREE,
+    get_chezmoi_data_bool,
+)
+from lib.flow import phase, step
+from lib.logging import (
+    log_error,
+    log_info,
+    log_panel,
+    prompt_continue,
+)
+from lib.proc import run
+from lib.yaml import load_yaml
 
 
 # ── paru ──────────────────────────────────────────────────────────────────────
 
 
-def pacman_package_installed(pkg: str) -> bool:
-    return (
-        run(
-            f"pacman -Qq {pkg}",
-            capture_output=True,
-        ).returncode
-        == 0
-    )
-
-
+@step("paru", arch_only=True)
 def install_paru() -> None:
-    log_banner("paru")
     if pacman_package_installed("paru"):
         log_info("paru already installed.")
         return
@@ -112,8 +66,7 @@ def install_packagelist(name: str) -> None:
         log_error(f"Packagelist file not found: {list_file}")
         return
 
-    with list_file.open() as f:
-        packages = yaml.safe_load(f) or []
+    packages = load_yaml(list_file) or []
 
     if not packages:
         return
@@ -136,8 +89,8 @@ def install_packagelist(name: str) -> None:
     )
 
 
+@step("packages", arch_only=True)
 def install_packages() -> None:
-    log_banner("packages")
     install_packagelist("base")
 
     if get_chezmoi_data_bool("isWorkstation"):
@@ -153,15 +106,14 @@ def install_packages() -> None:
 # ── uv tools ──────────────────────────────────────────────────────────────────
 
 
+@step("uv tools")
 def install_uv_tools() -> None:
-    log_banner("uv tools")
     if not get_chezmoi_data_bool("isWorkstation"):
         log_info("Not a workstation — skipping.")
         return
 
     tools_file = CHEZMOI_WORKING_TREE / "data" / "packagelists" / "uv-tools.yml"
-    with tools_file.open() as f:
-        tools = yaml.safe_load(f) or []
+    tools = load_yaml(tools_file) or []
 
     env = os.environ | {
         "PATH": f"{Path.home() / '.local' / 'bin'}:{os.environ['PATH']}"
@@ -180,8 +132,8 @@ def install_uv_tools() -> None:
 # ── default shell ─────────────────────────────────────────────────────────────
 
 
+@step("default shell")
 def set_default_shell() -> None:
-    log_banner("default shell")
     nu = Path("/usr/bin/nu")
 
     if not nu.is_file():
@@ -212,8 +164,8 @@ def set_default_shell() -> None:
 # ── GPG keys ──────────────────────────────────────────────────────────────────
 
 
+@step("GPG keys")
 def import_gpg_keys() -> None:
-    log_banner("GPG keys")
     key_file = CHEZMOI_WORKING_TREE / "data" / "gpg-keys.txt.age"
 
     decrypted = run(
@@ -228,13 +180,11 @@ def import_gpg_keys() -> None:
 # ── non-home files ────────────────────────────────────────────────────────────
 
 
+@step("non-home files")
 def deploy_non_home() -> None:
-    log_banner("non-home files")
     non_home_config_file = CHEZMOI_WORKING_TREE / "non-home" / "non-home.yaml"
 
-    with non_home_config_file.open() as f:
-        config = yaml.safe_load(f)
-
+    config = load_yaml(non_home_config_file)
     copies_dir = non_home_config_file.parent
 
     for copy in config["copies"]:
@@ -258,23 +208,19 @@ def deploy_non_home() -> None:
 
         log_info(f"{name}: copying to {dest}...")
         run(["sudo", "cp", str(source), dest], check=True)
-        console.print(
-            Panel(instructions.strip(), title=f"[bold]{name}[/bold] — next steps")
-        )
-        Prompt.ask("Press Enter to continue", default="")
+        log_panel(instructions.strip(), title=f"[bold]{name}[/bold] — next steps")
+        prompt_continue()
 
 
 def main() -> None:
-    log_banner("chezmoi — after apply")
-
-    if is_arch_linux():
+    with phase("chezmoi — after apply"):
         install_paru()
         install_packages()
 
-    install_uv_tools()
-    set_default_shell()
-    import_gpg_keys()
-    deploy_non_home()
+        install_uv_tools()
+        set_default_shell()
+        import_gpg_keys()
+        deploy_non_home()
 
 
 if __name__ == "__main__":

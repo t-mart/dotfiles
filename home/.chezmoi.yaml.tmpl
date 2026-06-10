@@ -31,9 +31,13 @@ gitHub:
 
 interpreters:
   py:
+    # run python with uv on the project in data/python-script-project
+    # for dependencies
     command: /usr/bin/uv
     args:
       - run
+      - --project
+      - "{{ .chezmoi.workingTree }}/data/python-script-project"
 
 cd:
   command: nu

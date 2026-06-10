@@ -1,0 +1,19 @@
+[project]
+name = "python-script-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "pyyaml>=6.0.3",
+    "rich>=15.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# The `lib` package is installed (editable) into the venv so the chezmoi scripts
+# can `import lib.*` regardless of where the script files themselves live.
+[tool.hatch.build.targets.wheel]
+packages = ["lib"]
