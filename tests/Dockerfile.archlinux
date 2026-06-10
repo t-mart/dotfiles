@@ -1,6 +1,9 @@
 # Start from the official Arch Linux base image
 FROM archlinux:latest
 
+# Prevent warnings while building packages
+ENV PACKAGER="Example Name <email@address.invalid>"
+
 # Update package database and install sudo
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm sudo
