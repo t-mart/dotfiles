@@ -41,7 +41,7 @@ def install_paru() -> None:
         return
 
     log_info("Installing build dependencies...")
-    run("sudo pacman -Syu --noconfirm --needed base-devel git gnupg", check=True)
+    run("sudo-rs pacman -Syu --noconfirm --needed base-devel git gnupg", check=True)
 
     with tempfile.TemporaryDirectory() as tmp:
         log_info("Cloning paru from AUR...")
@@ -53,6 +53,30 @@ def install_paru() -> None:
         run("makepkg -si --noconfirm", cwd=f"{tmp}/paru", check=True)
 
     log_info("paru installed.")
+
+
+
+# ── yay ───────────────────────────────────────────────────────────────────────
+
+@step("yay", arch_only=True)
+def install_yay() -> None:
+    if pacman_package_installed("yay"):
+        log_info("yay already installed.")
+        return
+
+    log_info("Installing build dependencies...")
+    run("sudo-rs pacman -Syu --noconfirm --needed base-devel git gnupg", check=True)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        log_info("Cloning yay-bin from AUR...")
+        run(
+            [f"git clone https://aur.archlinux.org/yay-bin.git {tmp}/yay"],
+            check=True,
+        )
+        log_info("Installing yay...")
+        run("makepkg -si --noconfirm", cwd=f"{tmp}/yay", check=True)
+
+    log_info("yay installed.")
 
 
 # ── packages ──────────────────────────────────────────────────────────────────
@@ -144,7 +168,7 @@ def set_default_shell() -> None:
     if shells.exists() and str(nu) not in shells.read_text().splitlines():
         log_info(f"Adding '{nu}' to /etc/shells...")
         run(
-            ["sudo", "tee", "--append", str(shells)],
+            ["sudo-rs", "tee", "--append", str(shells)],
             input=f"{nu}\n",
             text=True,
             capture_output=True,
@@ -207,7 +231,7 @@ def deploy_non_home() -> None:
             continue
 
         log_info(f"{name}: copying to {dest}...")
-        run(["sudo", "cp", str(source), dest], check=True)
+        run(["sudo-rs", "cp", str(source), dest], check=True)
         log_panel(instructions.strip(), title=f"[bold]{name}[/bold] — next steps")
         prompt_continue()
 
