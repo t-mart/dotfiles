@@ -1,9 +1,6 @@
 # Start from the official Arch Linux base image
 FROM archlinux:latest
 
-# Set a non-interactive frontend for pacman
-ENV PACKAGER="pacman"
-
 # Update package database and install sudo
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm sudo
