@@ -21,3 +21,9 @@
   me a commit log message that describes our unstaged changes in the form
   `[area]: [short line describing the main effect]`. Use conventions to dictate
   what the "area" is.
+
+- Don't install dependencies or tools for me. Instead, present them to me and
+  ask me to install them with commands.
+
+- Unless specifically requested, only interact with git read-only. Don't create
+  branches, commits, stage things, push, etc. I can do those things myself.
