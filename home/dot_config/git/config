@@ -43,8 +43,8 @@
   user = t-mart
 
 [alias]
-  logg = "log --graph --format=format:'%C(bold green)%h%C(reset) - %C(cyan)(%cr)%C(reset)%C(auto)%d%C(reset) %C(white)%s%C(reset) %C(dim white)- %an (%G?)%C(reset)'"
-  reflogg = "reflog --format=format:'%C(bold green)%h%C(reset) - %C(bold yellow)%gd%C(reset) %C(auto)%gs%C(reset) - %C(cyan)(%cr) %C(reset)%C(auto)%d%C(reset)%n  ↳ %C(white)%s%C(reset) %C(dim white)- %gn'"
+  logg = log --graph --format='%C(bold blue)%h%C(reset) %C(cyan)%>(12)%ar%C(reset)%C(auto)%d%C(reset) %<(80,trunc)%s %C(magenta)%aN%C(reset)'
+  reflogg = reflog --date=relative --format='%C(bold blue)%h%C(reset) %C(bold yellow)%gd%C(reset)%C(auto)%d%C(reset) %<(80,trunc)%gs%n  ↳  %s - %C(magenta)%aN%C(reset)'
 
 [rerere]
   enabled = true
