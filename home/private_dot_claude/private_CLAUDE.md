@@ -21,6 +21,13 @@
   me a commit log message that describes our unstaged changes in the form
   `[area]: [short line describing the main effect]`. Use conventions to dictate
   what the "area" is.
+  - Additionally, if I provide an issue number, include it in the commit message
+    in a way that GitHub will recognize such that that issue will be closed when
+    the commit is pushed to the default branch.
+  - If there's a CHANGELOG file, add an item in the "Unreleased" section that
+    describes the change in a way that a user would understand and that it
+    closes the provided issue (link to the issue using the github url for that
+    issue number.)
 
 - Don't install dependencies or tools for me. Instead, present them to me and
   ask me to install them with commands.
