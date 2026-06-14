@@ -2,17 +2,20 @@
 
 - Favor pure functions, immutability, and early returns.
 
+- When writing documentation or comments in code, avoid LLM tropes, especially
+  use of em/en-dashes, unicode arrows/symbols, smart/curly quotes, and other
+  special characters that can't be easily typed on a standard keyboard.
+
 - If you ever give me commands to run on the command line, use nushell
   paradigms, built-in commands, and syntax. There is no line continuation in
   nushell. For when you want to run code, use bash.
 
-- Whenever you modify a project, run quality tasks, such as configured linters,
-  formatters, and tests. Look in standard places for these tasks' definitions.
+- Whenever you modify a project's code, run quality tasks, such as configured
+  linters, formatters, and tests. Look in standard places for these tasks'
+  definitions.
 
 - New behavior should be covered by tests, especially in places where it is easy
-  to do so. For example, for the frontend (UIs/web/etc), if we don't have much
-  test infrastructure, you can skip tests. But if the interface is easier to
-  access and test (functions/backend server/cli/etc), then you should add tests.
+  to do so. If the project feels small/one-off/ad-hoc, then don't write tests.
 
 - Don't ever run commands that mutate data outside the project directory.
   Instead, present them to me and ask me to run them if they are essential.
@@ -34,3 +37,10 @@
 
 - Unless specifically requested, only interact with git read-only. Don't create
   branches, commits, stage things, push, etc. I can do those things myself.
+
+- Be judicious about comments in code. If the code is reasonably expressive and
+  without footguns, then don't add comments. Also, do not comment about
+  particulars of the conversation we are having. Only mention things a normal
+  reader (most likely me, who's very familiar) of the code would want to know.
+  And again, no special unicode characters, only plain text that can be easily
+  typed.
