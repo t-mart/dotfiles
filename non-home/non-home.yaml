@@ -4,8 +4,16 @@ copies:
   - name: reflector
     source: ./etc/xdg/reflector/reflector.conf
     dest: /etc/xdg/reflector/reflector.conf
+    when:
+      packages_installed:
+        - reflector
     instructions: |
-      Next, you need to enable and start the reflector service and timer.
+      Pacman mirror updater config installed.
+
+      Next steps:
+
+      sudo systemctl enable --now reflector.timer
+      sudo systemctl start reflector.service
 
       See https://wiki.archlinux.org/title/Reflector for details.
 
@@ -13,12 +21,15 @@ copies:
     source: ./etc/thinkfan.conf
     dest: /etc/thinkfan.conf
     when:
-      - isThinkpadZ13
+      packages_installed:
+        - thinkfan
     instructions: |
-      Next, you need to:
+      Thinkpad fan config installed.
+      
+      Next steps:
 
-      1. Run `sensors-detect`
-      2. Enable and start the thinkfan service
+      sensors-detect
+      sudo systemctl enable --now thinkfan.service
 
       See https://wiki.archlinux.org/title/Fan_speed_control for details.
 
@@ -26,8 +37,28 @@ copies:
     source: ./etc/conf.d/keyboard-backlightd
     dest: /etc/conf.d/keyboard-backlightd
     when:
-      - isThinkpadZ13
+      packages_installed:
+        - keyboard-backlightd
     instructions: |
-      Next, you need to enable and start the keyboard-backlightd service.
+      Thinkpad keyboard backlight control config installed.
+
+      Next steps:
+
+      sudo systemctl enable --now keyboard-backlightd.service
 
       See https://github.com/VorpalBlade/keyboard-backlightd for details.
+
+  - name: networkmanager-connectivity-url
+    source: ./etc/NetworkManager/conf.d/10-connectivity.conf
+    dest: /etc/NetworkManager/conf.d/10-connectivity.conf
+    when:
+      packages_installed:
+        - networkmanager
+    instructions: |
+      NetworkManager connectivity URL config installed.
+
+      Next steps:
+
+      sudo systemctl restart NetworkManager.service
+
+      See https://wiki.archlinux.org/title/NetworkManager for details.

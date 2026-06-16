@@ -15,7 +15,11 @@ import sys
 import tempfile
 from pathlib import Path
 
-from lib.arch_linux import pacman_package_installed
+from lib.arch_linux import (
+    is_package_installed,
+    get_missing_packages_from_list,
+    install_packages,
+)
 from lib.chezmoi import (
     CHEZMOI_EXECUTABLE,
     CHEZMOI_WORKING_TREE,
@@ -37,7 +41,7 @@ from lib.yaml import load_yaml
 
 @step("yay", arch_only=True)
 def install_yay() -> None:
-    if pacman_package_installed("yay"):
+    if is_package_installed(["yay"]):
         log_info("yay already installed.")
         return
 
@@ -63,49 +67,26 @@ def install_yay() -> None:
 # ── packages ──────────────────────────────────────────────────────────────────
 
 
-def install_packagelist(name: str) -> None:
-    list_file = (
-        CHEZMOI_WORKING_TREE / "data" / "packagelists" / "pacman" / f"{name}.yml"
-    )
-    if not list_file.exists():
-        log_error(f"Packagelist file not found: {list_file}")
-        return
+@step("packages", arch_only=True)
+def install_package_lists() -> None:
+    missing = get_missing_packages_from_list("base")
 
-    packages = load_yaml(list_file) or []
+    chezmoi_bool_package_list: dict[str, str] = {
+        "isWorkstation": "workstation",
+        "isGraphical": "graphical",
+        "usesBrotherPrinter": "brother-printer",
+        "isThinkpadZ13": "thinkpad-z13",
+    }
 
-    if not packages:
-        return
-
-    installed = set(
-        run("pacman -Qq", capture_output=True, text=True).stdout.splitlines()
-    )
-    missing = [p for p in packages if p not in installed]
+    for bool_key, package_list_name in chezmoi_bool_package_list.items():
+        if get_chezmoi_data_bool(bool_key):
+            missing |= get_missing_packages_from_list(package_list_name)
 
     if not missing:
-        log_info(f"All packages from '{name}' already installed.")
-        return
-
-    log_info(
-        f"Installing {len(missing)} missing package(s) from '{name}' via yay...",
-    )
-    run(
-        f"yay --sync --sysupgrade --refresh --needed --pgpfetch --noconfirm {' '.join(missing)}",
-        check=True,
-    )
-
-
-@step("packages", arch_only=True)
-def install_packages() -> None:
-    install_packagelist("base")
-
-    if get_chezmoi_data_bool("isWorkstation"):
-        install_packagelist("workstation")
-    if get_chezmoi_data_bool("isGraphical"):
-        install_packagelist("graphical")
-    if get_chezmoi_data_bool("usesBrotherPrinter"):
-        install_packagelist("brother-printer")
-    if get_chezmoi_data_bool("isThinkpadZ13"):
-        install_packagelist("thinkpad-z13")
+        log_info("All packages already installed.")
+    else:
+        log_info(f"Installing missing packages: {', '.join(missing)}")
+        install_packages(missing)
 
 
 # ── uv tools ──────────────────────────────────────────────────────────────────
@@ -198,9 +179,9 @@ def deploy_non_home() -> None:
         source = (copies_dir / copy["source"]).resolve()
         dest = copy["dest"]
         instructions = copy["instructions"]
-        conditions = copy.get("when", [])
 
-        if not all(get_chezmoi_data_bool(cond) for cond in conditions):
+        when = copy.get("when")
+        if when and not is_package_installed(when.get("packages_installed", [])):
             continue
 
         if not source.exists():
@@ -221,8 +202,7 @@ def deploy_non_home() -> None:
 def main() -> None:
     with phase("chezmoi — after apply"):
         install_yay()
-        install_packages()
-
+        install_package_lists()
         install_uv_tools()
         set_default_shell()
         import_gpg_keys()

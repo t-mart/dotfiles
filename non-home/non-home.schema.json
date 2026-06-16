@@ -28,11 +28,18 @@
             "pattern": "^/"
           },
           "when": {
-            "type": "array",
-            "description": "Chezmoi data boolean keys that must all be true for this entry to apply.",
-            "items": {
-              "type": "string",
-              "minLength": 1
+            "type": "object",
+            "description": "Conditions that must all hold (AND) for this entry to apply. Omitted keys impose no constraint.",
+            "additionalProperties": false,
+            "properties": {
+              "packages_installed": {
+                "type": "array",
+                "description": "Pacman packages that must all be installed.",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
             }
           },
           "instructions": {
