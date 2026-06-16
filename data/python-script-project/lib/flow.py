@@ -4,7 +4,7 @@ from contextlib import contextmanager
 from typing import ParamSpec, TypeVar
 
 from lib.arch_linux import is_arch_linux
-from lib.logging import log_phase, log_step
+from lib.logging import log_phase_start, log_phase_end, log_step
 
 P = ParamSpec("P")
 R = TypeVar("R")
@@ -15,9 +15,9 @@ __all__ = ["phase", "step"]
 @contextmanager
 def phase(name: str) -> Iterator[None]:
     """A top-level chezmoi phase (before/after apply). Logs, for now."""
-    log_phase(name)
+    log_phase_start(name)
     yield
-
+    log_phase_end(name)
 
 def step(
     name: str, *, arch_only: bool = False

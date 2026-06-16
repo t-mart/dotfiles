@@ -9,13 +9,18 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "source", "dest", "instructions"],
+        "required": ["name", "source", "dest"],
         "additionalProperties": false,
         "properties": {
           "name": {
             "type": "string",
             "description": "Display name for this config file.",
             "minLength": 1
+          },
+          "reference_url": {
+            "type": "string",
+            "description": "Documentation URL shown with the post-copy steps.",
+            "format": "uri"
           },
           "source": {
             "type": "string",
@@ -42,10 +47,13 @@
               }
             }
           },
-          "instructions": {
-            "type": "string",
-            "description": "Post-copy instructions displayed to the user.",
-            "minLength": 1
+          "after_commands": {
+            "type": "array",
+            "description": "Commands for the user to run after the file is copied.",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }

@@ -41,10 +41,11 @@ def is_arch_linux() -> bool:
 def get_installed_subset(check: Packages) -> set[str]:
     """Given a collection of package names, return the subset that is installed."""
     if not check:
-        # raw `yay -Qq` will list all installed packages, not what we want
+        # raw `pacman -Qq` will list all installed packages, not what we want
         return set()
     result = run(
-        f"yay -Qq {' '.join(check)}",
+        # MUST use pacman here because we use this command to check if yay is installed.
+        f"pacman -Qq {' '.join(check)}",
         capture_output=True,
         text=True,
     )

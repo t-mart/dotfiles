@@ -30,7 +30,7 @@ from lib.logging import (
     log_error,
     log_info,
     log_panel,
-    prompt_continue,
+    prompt_confirm,
 )
 from lib.proc import run
 from lib.yaml import load_yaml
@@ -41,7 +41,7 @@ from lib.yaml import load_yaml
 
 @step("yay", arch_only=True)
 def install_yay() -> None:
-    if is_package_installed(["yay"]):
+    if is_package_installed(["yay-bin"]):
         log_info("yay already installed.")
         return
 
@@ -167,6 +167,25 @@ def import_gpg_keys() -> None:
 # ── non-home files ────────────────────────────────────────────────────────────
 
 
+def run_after_commands(commands: list[str]) -> None:
+    listing = "\n".join(f"\t\t$ {cmd}" for cmd in commands)
+    log_info(f"\tfile wants to run the following commands:\n{listing}")
+
+    if not prompt_confirm("\tRun these now?"):
+        log_info("\tSkipped — run them yourself when ready.")
+        return
+
+    # Inherit the terminal so output streams live (and interleaved), interactive
+    # commands keep working, and sudo can prompt. Output is already on screen, so
+    # a failure only needs the command and its exit code reported.
+    for cmd in commands:
+        log_info(f"\tRunning: {cmd}")
+        result = run(cmd)
+        if result.returncode != 0:
+            log_error(f"\t`{cmd}` failed (exit {result.returncode}) — see output above.")
+            break
+
+
 @step("non-home files")
 def deploy_non_home() -> None:
     non_home_config_file = CHEZMOI_WORKING_TREE / "non-home" / "non-home.yaml"
@@ -175,12 +194,13 @@ def deploy_non_home() -> None:
     copies_dir = non_home_config_file.parent
 
     for copy in config["copies"]:
-        name = copy["name"]
-        source = (copies_dir / copy["source"]).resolve()
-        dest = copy["dest"]
-        instructions = copy["instructions"]
+        name: str = copy["name"]
+        source: Path = (copies_dir / copy["source"]).resolve()
+        dest: str = copy["dest"]
+        reference_url: str | None = copy.get("reference_url")
+        after_commands: list[str] = copy.get("after_commands", [])
 
-        when = copy.get("when")
+        when: dict | None = copy.get("when")
         if when and not is_package_installed(when.get("packages_installed", [])):
             continue
 
@@ -193,10 +213,16 @@ def deploy_non_home() -> None:
             log_info(f"{name}: already up to date.")
             continue
 
-        log_info(f"{name}: copying to {dest}...")
+        log_info(f"{name}")
+        log_info(f"\t→ {dest}")
+        if reference_url:
+            log_info(f"\tsee {reference_url} for details.")
+        log_info("\tcopying to dest (may see sudo prompt)...")
         run(["cp", str(source), dest], sudo=True, check=True)
-        log_panel(instructions.strip(), title=f"[bold]{name}[/bold] — next steps")
-        prompt_continue()
+        log_info("\tcopy complete.")
+
+        if after_commands:
+            run_after_commands(after_commands)
 
 
 def main() -> None:

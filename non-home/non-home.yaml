@@ -1,64 +1,44 @@
 # yaml-language-server: $schema=./non-home.schema.json
 
 copies:
-  - name: reflector
+  - name: Reflector config
+    reference_url: https://wiki.archlinux.org/title/Reflector
     source: ./etc/xdg/reflector/reflector.conf
     dest: /etc/xdg/reflector/reflector.conf
     when:
       packages_installed:
         - reflector
-    instructions: |
-      Pacman mirror updater config installed.
+    after_commands:
+      - "sudo systemctl enable --now reflector.timer"
+      - "sudo systemctl start reflector.service"
 
-      Next steps:
-
-      sudo systemctl enable --now reflector.timer
-      sudo systemctl start reflector.service
-
-      See https://wiki.archlinux.org/title/Reflector for details.
-
-  - name: thinkfan
+  - name: Thinkpad fan control config
+    reference_url: https://wiki.archlinux.org/title/Fan_speed_control
     source: ./etc/thinkfan.conf
     dest: /etc/thinkfan.conf
     when:
       packages_installed:
         - thinkfan
-    instructions: |
-      Thinkpad fan config installed.
-      
-      Next steps:
+    after_commands:
+      - "sudo sensors-detect"
+      - "sudo systemctl enable --now thinkfan.service"
 
-      sensors-detect
-      sudo systemctl enable --now thinkfan.service
-
-      See https://wiki.archlinux.org/title/Fan_speed_control for details.
-
-  - name: keyboard-backlightd
+  - name: Thinkpad keyboard backlight control config
+    reference_url: https://github.com/VorpalBlade/keyboard-backlightd
     source: ./etc/conf.d/keyboard-backlightd
     dest: /etc/conf.d/keyboard-backlightd
     when:
       packages_installed:
         - keyboard-backlightd
-    instructions: |
-      Thinkpad keyboard backlight control config installed.
+    after_commands:
+      - "sudo systemctl enable --now keyboard-backlightd.service"
 
-      Next steps:
-
-      sudo systemctl enable --now keyboard-backlightd.service
-
-      See https://github.com/VorpalBlade/keyboard-backlightd for details.
-
-  - name: networkmanager-connectivity-url
+  - name: NetworkManager connectivity URL config
+    reference_url: https://wiki.archlinux.org/title/NetworkManager
     source: ./etc/NetworkManager/conf.d/10-connectivity.conf
     dest: /etc/NetworkManager/conf.d/10-connectivity.conf
     when:
       packages_installed:
         - networkmanager
-    instructions: |
-      NetworkManager connectivity URL config installed.
-
-      Next steps:
-
-      sudo systemctl restart NetworkManager.service
-
-      See https://wiki.archlinux.org/title/NetworkManager for details.
+    after_commands:
+      - "sudo systemctl restart NetworkManager.service"

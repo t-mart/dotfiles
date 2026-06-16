@@ -1,36 +1,34 @@
 from rich import box
 from rich.console import Console
 from rich.panel import Panel
-from rich.prompt import Prompt
+from rich.prompt import Confirm
+from rich.align import Align
 from rich.text import Text
 
 __all__ = [
     "console",
     "log_info",
     "log_error",
-    "log_phase",
+    "log_phase_start",
+    "log_phase_end",
     "log_step",
     "log_panel",
-    "prompt_continue",
+    "prompt_confirm",
 ]
 
-console = Console()
+console = Console(width=80, tab_size=4)
 
 
-def log_phase(msg: str) -> None:
-    console.print()
-    console.print(
-        Panel(
-            Text(msg.upper(), justify="center", style="bold bright_white"),
-            box=box.DOUBLE,
-            border_style="bright_cyan",
-        )
-    )
-    console.print()
+def log_phase_start(msg: str) -> None:
+    console.rule(f"[bold cyan]{msg}[/bold cyan]", characters="=")
+
+
+def log_phase_end(msg: str) -> None:
+    console.rule(f"[bold cyan]{msg} complete[/bold cyan]", characters="=")
 
 
 def log_info(msg: str) -> None:
-    console.print(f"[cyan]•[/cyan] {msg}")
+    console.print(msg)
 
 
 def log_error(msg: str) -> None:
@@ -45,5 +43,5 @@ def log_panel(body: str, title: str) -> None:
     console.print(Panel(body, title=title))
 
 
-def prompt_continue(msg: str = "Press Enter to continue") -> None:
-    Prompt.ask(msg, default="")
+def prompt_confirm(msg: str, *, default: bool = False) -> bool:
+    return Confirm.ask(msg, default=default, console=console)
