@@ -10,7 +10,6 @@
 - "bat" # enhanced cat command
 - "btop" # resource monitor
 - "brotli" # file compression tool
-- "cadvisor-bin" # container monitoring tool
 - "carapace-bin" # shell completion tool
 - "cargo-update" # Rust crate updater
 - "curl" # HTTP tool
