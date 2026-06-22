@@ -164,11 +164,11 @@ export def "random password" [
 # and empty lines are ignored.
 export def upta [...servers: string] {
     let cmds = [
-        # upgrade packages
-        "yay --sync --sysupgrade --refresh --noconfirm --diffmenu=false --editmenu=false --cleanmenu=false"
-
         # chezmoi
         "~/.local/bin/chezmoi update --init --apply"
+
+        # upgrade packages
+        "yay --sync --sysupgrade --refresh --noconfirm --diffmenu=false --editmenu=false --cleanmenu=false"
 
         # uv
         "uv tool update --all"
