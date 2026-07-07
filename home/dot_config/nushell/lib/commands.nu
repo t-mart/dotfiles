@@ -259,25 +259,25 @@ export def "ext archive" []: nothing -> list<string> {
 # Return if a path is a video based on its extension. Check "ext video" for the 
 # list of extensions.
 export def "path is-video" []: string -> bool {
-    path extension | str downcase | $in in (ext video)
+    path extension | str lowercase | $in in (ext video)
 }
 
 # Return if a path is an image based on its extension. Check "ext image" for the
 # list of extensions.
 export def "path is-image" []: string -> bool {
-    path extension | str downcase | $in in (ext image)
+    path extension | str lowercase | $in in (ext image)
 }
 
 # Return if a path is an audio file based on its extension. Check "ext audio" for the
 # list of extensions.
 export def "path is-audio" []: string -> bool {
-    path extension | str downcase | $in in (ext audio)
+    path extension | str lowercase | $in in (ext audio)
 }
 
 # Return if a path is an archive based on its extension. Check "ext archive" for the
 # list of extensions.
 export def "path is-archive" []: string -> bool {
-    path extension | str downcase | $in in (ext archive)
+    path extension | str lowercase | $in in (ext archive)
 }
 
 # Parses an .env-formatted file and returns a table of key-value pairs. Relies
