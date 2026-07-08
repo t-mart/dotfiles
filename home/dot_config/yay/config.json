@@ -21,7 +21,7 @@
 	"searchby": "name-desc",
 	"gitflags": "",
 	"removemake": "ask",
-	"sudobin": "sudo",
+	"sudobin": "sudo-rs",
 	"sudoflags": "",
 	"version": "12.6.0",
 	"requestsplitn": 150,
