@@ -33,6 +33,7 @@
 - "gum" # CLI builder
 - "gzip" # file compression tool
 - "jq" # command-line JSON processor
+- "kitty-terminfo" # let programs know kitty's escape sequences
 - "lazydocker" # terminal UI for docker
 - "lnav" # log file navigator
 - "mkinitcpio-firmware" # firmware hooks for mkinitcpio (fixes warnings)
