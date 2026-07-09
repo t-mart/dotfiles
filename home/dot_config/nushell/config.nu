@@ -229,6 +229,8 @@ $env.config = {
       completer: $external_completer
     }
   }
+  # allow shells to integrate terminals (https://sw.kovidgoyal.net/kitty/shell-integration/)
+  shell_integration: true
   # applies color to executables found in PATH var
   highlight_resolved_externals: true
   filesize: {
