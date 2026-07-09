@@ -230,7 +230,13 @@ $env.config = {
     }
   }
   # allow shells to integrate terminals (https://sw.kovidgoyal.net/kitty/shell-integration/)
-  shell_integration: true
+  shell_integration: {
+    osc2: true # allow shell to set the window title
+    osc7: true # allow shell to set the current working directory
+    osc8: true # allow shell to set hyperlinks for paths (e.g., `ls` output)
+  }
+  # keyboard enhancement protocol for kitty
+  use_kitty_protocol: ("kitty" in $env.TERM?)
   # applies color to executables found in PATH var
   highlight_resolved_externals: true
   filesize: {
