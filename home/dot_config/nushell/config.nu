@@ -20,31 +20,10 @@ alias vim = nvim
 alias vi = nvim
 alias fd = fd --hidden # nu-lint-ignore: fd_to_glob
 alias syst = systemctl-tui
+alias sudo = sudo-rs
+alias visudo = visudo-rs
+alias su = su-rs
 
-# as close as we can get to conditional aliasing
-def --wrapped cmd-if-is-installed [
-  cmd: string
-  fallback_cmd: string
-  ...args: string
-]: nothing -> string {
-  if (is-installed $cmd) {
-    ^$cmd ...$args
-  } else {
-    ^$fallback_cmd ...$args
-  }
-}
-
-def --wrapped sudo [...args: string]: nothing -> string {
-  cmd-if-is-installed sudo-rs sudo ...$args
-}
-
-def --wrapped visudo [...args: string]: nothing -> string {
-  cmd-if-is-installed visudo-rs visudo ...$args
-}
-
-def --wrapped su [...args: string]: nothing -> string {
-  cmd-if-is-installed su-rs su ...$args
-}
 
 if (is-installed code) {
   {
@@ -153,17 +132,24 @@ let carapace_completer = {|spans: list<string>|
   }
 }
 
-let external_completer = {|spans|
-  let expanded_alias = scope aliases
-  | where name == $spans.0?
-  | get --optional 0.expansion
-
-  let spans = if $expanded_alias != null {
-    $spans
-    | skip 1
-    | prepend ($expanded_alias | split row ' ' | take 1)
+let external_completer = {|spans: list<string>|
+  # try to complete for `sudo <command>` (or sudo-rs). we don't attempt to parse
+  # any sudo flags; this just covers the common case.
+  let spans = if $spans.0? in [sudo sudo-rs] and ($spans | length) > 1 {
+    $spans | skip 1
   } else {
-    $spans
+    # replace the first span with the expansion of any alias that matches it.
+    let expanded_alias = scope aliases
+    | where name == $spans.0?
+    | get --optional 0.expansion
+
+    if $expanded_alias != null {
+      $spans
+      | skip 1
+      | prepend ($expanded_alias | split row ' ' | take 1)
+    } else {
+      $spans
+    }
   }
 
   match $spans.0? {
@@ -220,6 +206,7 @@ if $env.SHLVL == 1 {
   "
 }
 
+# running `config nu --doc | nu-highlight` provides helpful docs!
 $env.config = {
   show_banner: false
   edit_mode: vi
