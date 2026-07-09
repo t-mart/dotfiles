@@ -212,6 +212,8 @@ $env.config = {
   show_banner: false
   edit_mode: vi
   completions: {
+    algorithm: fuzzy
+    sort: smart
     external: {
       enable: true
       completer: $external_completer
