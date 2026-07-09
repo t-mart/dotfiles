@@ -125,7 +125,8 @@ $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 # from https://www.nushell.sh/cookbook/external_completers.html
 # let fish_completer = ...
 let carapace_completer = {|spans: list<string>|
-  carapace $spans.0? nushell ...$spans
+  let command = $spans.0?
+  carapace $command nushell ...$spans
   | try {
     from json
     | if ($in | default [] | where value =~ ERR$ | is-empty) { $in } else { null }
