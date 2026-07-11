@@ -226,7 +226,7 @@ $env.config = {
     osc8: true # allow shell to set hyperlinks for paths (e.g., `ls` output)
   }
   # keyboard enhancement protocol for kitty
-  use_kitty_protocol: ("kitty" in $env.TERM?)
+  use_kitty_protocol: ("kitty" in ($env.TERM? | default ""))
   # applies color to executables found in PATH var
   highlight_resolved_externals: true
   filesize: {
