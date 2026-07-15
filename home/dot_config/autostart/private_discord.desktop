@@ -1,3 +1,12 @@
+# Autostart entry for Discord
+#
+# Discord will overwrite this file if "Settings > System > General >
+# Automatically open Discord when your computer starts up" is enabled. However,
+# we reject this because we want to start Discord minimized. There is no in-app
+# setting to start minimized.
+#
+# Therefore, to not have conflicts, do not enable the above in-app setting and
+# let this file prevail.
 [Desktop Entry]
 Type=Application
 Name=Discord
