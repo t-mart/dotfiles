@@ -26,11 +26,14 @@
   what the "area" is.
   - Additionally, if I provide an issue number, include it in the commit message
     in a way that GitHub will recognize such that that issue will be closed when
-    the commit is pushed to the default branch.
-  - If there's a CHANGELOG file, add an item in the "Unreleased" section that
-    describes the change in a way that a user would understand and that it
-    closes the provided issue (link to the issue using the github url for that
-    issue number.)
+    the commit is pushed to the default branch. For example, in the extended
+    description part, end with "Closes #123" where 123 is the issue number.
+  - Do not add co-author trailers for yourself.
+
+- If there's a CHANGELOG file, add an item in the "Unreleased" section that
+  describes the change in a way that a user would understand and that it
+  closes the provided issue (link to the issue using the github url for that
+  issue number.)
 
 - Don't install dependencies or tools for me. Instead, present them to me and
   ask me to install them with commands.
