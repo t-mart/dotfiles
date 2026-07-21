@@ -1,4 +1,4 @@
-# Claude Instructions
+# Instructions
 
 - Favor pure functions, immutability, and early returns.
 
@@ -8,11 +8,14 @@
 
 - If you ever give me commands to run on the command line, use nushell
   paradigms, built-in commands, and syntax. There is no line continuation in
-  nushell. For when you want to run code, use bash.
+  nushell. (On the other hand, for commands you want to run yourself, you can
+  choose whatever shell you want.)
 
 - Whenever you modify a project's code, run quality tasks, such as configured
   linters, formatters, and tests. Look in standard places for these tasks'
-  definitions.
+  definitions. Try to bundle the invocation of such tools so that you get as
+  much feedback as possible in one run. (If we are deficient in this area,
+  suggest improvements.)
 
 - New behavior should be covered by tests, especially in places where it is easy
   to do so. If the project feels small/one-off/ad-hoc, then don't write tests.
@@ -24,16 +27,14 @@
   me a commit log message that describes our unstaged changes in the form
   `[area]: [short line describing the main effect]`. Use conventions to dictate
   what the "area" is.
-  - Additionally, if I provide an issue number, include it in the commit message
-    in a way that GitHub will recognize such that that issue will be closed when
-    the commit is pushed to the default branch. For example, in the extended
-    description part, end with "Closes #123" where 123 is the issue number.
+  - If I provided an issue number, include it in the commit message in a way
+    that GitHub will close it when the commit is pushed. For example, end with
+    "Closes #123" where 123 is the issue number.
   - Do not add co-author trailers for yourself.
 
-- If there's a CHANGELOG file, add an item in the "Unreleased" section that
-  describes the change in a way that a user would understand and that it
-  closes the provided issue (link to the issue using the github url for that
-  issue number.)
+- If there's a CHANGELOG file, in the "Unreleased" section (add one if it does
+  not exist), describe user-facing changes and if an issue number is provided,
+  link to the provided issue.
 
 - Don't install dependencies or tools for me. Instead, present them to me and
   ask me to install them with commands.
@@ -42,8 +43,5 @@
   branches, commits, stage things, push, etc. I can do those things myself.
 
 - Be judicious about comments in code. If the code is reasonably expressive and
-  without footguns, then don't add comments. Also, do not comment about
-  particulars of the conversation we are having. Only mention things a normal
-  reader (most likely me, who's very familiar) of the code would want to know.
-  And again, no special unicode characters, only plain text that can be easily
-  typed.
+  without footguns, then don't add comments. And again, no special unicode
+  characters, only plain text that can be easily typed.
