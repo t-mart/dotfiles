@@ -6,7 +6,7 @@ __all__ = ["run"]
 
 # Prefix used to run a command as root. Empty when we are already root (e.g. the
 # Arch install ISO or a container), where sudo may not even be installed;
-# otherwise sudo. Computed once — the effective uid can't change mid-process.
+# otherwise sudo. Computed once; the effective uid can't change mid-process.
 _SUDO_PREFIX = [] if os.geteuid() == 0 else ["sudo"]
 
 
