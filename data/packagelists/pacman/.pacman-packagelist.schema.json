@@ -3,10 +3,36 @@
   "title": "Arch Package List",
   "type": "array",
   "items": {
-    "type": "string",
-    "description": "The Arch Linux package name.",
-    "pattern": "^[a-z0-9@._+-]+$",
-    "minLength": 1
+    "oneOf": [
+      { "$ref": "#/definitions/packageName" },
+      {
+        "type": "object",
+        "description": "A package with a hint describing what its CLI tool is for.",
+        "properties": {
+          "package": { "$ref": "#/definitions/packageName" },
+          "command": {
+            "type": "string",
+            "description": "The command to run, when it differs from the package name.",
+            "minLength": 1
+          },
+          "hint": {
+            "type": "string",
+            "description": "A verb phrase completing \"Use <command> to ...\", with no trailing period.",
+            "minLength": 1
+          }
+        },
+        "required": ["package", "hint"],
+        "additionalProperties": false
+      }
+    ]
   },
-  "uniqueItems": true
+  "uniqueItems": true,
+  "definitions": {
+    "packageName": {
+      "type": "string",
+      "description": "The Arch Linux package name.",
+      "pattern": "^[a-z0-9@._+-]+$",
+      "minLength": 1
+    }
+  }
 }

@@ -4,59 +4,144 @@
 #
 # Placement rule: a package belongs here only if it is useful on a minimal,
 # headless box (no display, no development).
+#
+# An entry is either a bare package name, or a mapping. A mapping's `hint` is
+# surfaced by the shell MOTD as "Use <command> to <hint>.", so write it as a
+# verb phrase that completes that sentence, with no trailing period. Set
+# `command` only when the CLI name differs from the package name.
+#
+# Give a hint only to a CLI tool worth being reminded of. Libraries, daemons,
+# terminfo, and commands already in your fingers stay bare strings.
 
-- "age" # encryption tool
-- "atuin" # shell history manager
-- "bat" # enhanced cat command
-- "btop" # resource monitor
+- package: age
+  hint: encrypt or decrypt a file with a keypair
+
+- "atuin"
+
+- package: bat
+  hint: read a file with syntax highlighting
+
+- package: btop
+  hint: watch cpu, memory, and disk activity
+
 - "brotli" # file compression tool
 - "carapace-bin" # shell completion tool
-- "cargo-update" # Rust crate updater
+
+- cargo-update # update cargo-installed binaries
+
 - "curl" # HTTP tool
 - "docker" # containerization platform
 - "docker-buildx" # extended build capabilities for Docker
 - "docker-compose" # multi-container Docker applications
 - "python-dotenv" # load environment variables from .env files
-- "duf" # enhanced df utility
-- "dust" # enhanced du utility
-- "erdtree" # enhanced tree command
+
+- package: duf
+  hint: see free space across your filesystems
+
+- package: dust
+  hint: find what is eating space in a directory
+
+- package: erdtree
+  command: erd
+  hint: view a directory as a tree
+
 - "fastfetch" # system information tool
-- "fclones" # file deduplication tool (hardlinks)
-- "fd" # alternative to find
-- "fpart" # FS partitioner. makes rsync parallelizable
-- "fzf" # command-line fuzzy finder
+
+- package: fclones
+  hint: find duplicate files and replace them with hardlinks
+
+- package: fd
+  hint: find files and directories by name
+
+- package: fpart
+  hint: split a file tree into chunks so rsync can run in parallel
+
+- package: fzf
+  hint: filter any list interactively
+
 - "geoipupdate" # GeoIP database updater (requires setup of /etc/GeoIP.conf)
 - "git" # version control system
-- "git-delta" # syntax-highlighting pager for git and diff output
+
+- package: git-delta
+  command: delta
+  hint: diff two files with syntax highlighting outside of git
+
 - "gnupg" # encryption and signing tool
-- "gping" # ping with a graph
-- "gum" # CLI builder
+
+- package: gping
+  hint: ping a host and watch the latency as a graph
+
+- package: gum
+  hint: add prompts, spinners, and styling to a shell script
+
 - "gzip" # file compression tool
-- "jq" # command-line JSON processor
+
+- package: jq
+  hint: query and reshape json
+
 - "kitty-terminfo" # let programs know kitty's escape sequences
-- "lazydocker" # terminal UI for docker
-- "lnav" # log file navigator
+
+- package: lazydocker
+  hint: manage docker containers from a terminal ui
+
+- package: lnav
+  hint: explore and query log files
+
 - "mkinitcpio-firmware" # firmware hooks for mkinitcpio (fixes warnings)
-- "ncdu" # interactive disk usage analyzer
-- "neovim" # text editor
+
+- package: ncdu
+  hint: browse disk usage interactively and delete what you find
+
+- package: neovim
+  command: nvim
+  hint: edit a file without leaving the terminal
+
 - "nushell" # modern shell
 - "oh-my-posh-bin" # prompt theme engine
-- "ouch" # unified archive tool
-- "procs" # ps alternative written
+
+- package: ouch
+  hint: compress or extract an archive of any format
+
+- package: procs
+  hint: list processes as a readable table
+
 - "prometheus-node-exporter" # Prometheus exporter for hardware and OS metrics
-- "q-dns-bin" # DNS query tool
-- "ranger" # terminal file manager
-- "reflector" # retrieve and filter the latest Pacman mirror list
-- "ripgrep" # regex search tool
+
+- package: q-dns-bin
+  command: q
+  hint: query dns records
+
+- package: ranger
+  hint: browse the filesystem in a terminal ui
+
+- reflector # refresh your pacman mirror list, sorted by speed
+
+- package: ripgrep
+  command: rg
+  hint: search file contents with a regex
+
 - "sudo-rs" # modern sudo written in Rust
-- "systemctl-tui" # systemd services and logs TUI
-- "trippy" # network diagnostic tool (command is trip)
+
+- package: trippy
+  command: trip
+  hint: trace the network path to a host
+
 - "unrar" # decompression tool
 - "unzip" # file decompression tool
-- "uv" # make python gud
+
+- package: uv
+  hint: manage python versions, projects, and tools
+
 - "vivid" # terminal color scheme manager
 - "xz" # file compression tool
-- "yq" # YAML processor
+
+- package: yq
+  hint: query and reshape yaml
+
 - "zip" # file compression tool
-- "zoxide" # smarter cd command
+
+- package: zoxide
+  command: cdi
+  hint: jump to a directory you have visited before
+
 - "zstd" # file compression tool

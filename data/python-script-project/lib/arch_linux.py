@@ -11,9 +11,15 @@ __all__ = [
     "install_packages",
     "is_arch_linux",
     "is_package_installed",
+    "package_name",
 ]
 
 type Packages = list[str] | set[str] | tuple[str, ...]
+
+# A packagelist entry is either a bare package name, or a mapping carrying the
+# package name plus fields the shell MOTD uses. See the schema alongside the
+# lists in data/packagelists/pacman/.
+type PackageEntry = str | dict[str, str]
 
 OS_RELEASE = Path("/etc/os-release")
 
@@ -35,6 +41,13 @@ def _os_release() -> dict[str, str]:
 def is_arch_linux() -> bool:
     release = _os_release()
     return release.get("ID") == "arch" or "arch" in release.get("ID_LIKE", "").split()
+
+
+def package_name(entry: PackageEntry) -> str:
+    """Return the package name from a packagelist entry."""
+    if isinstance(entry, str):
+        return entry
+    return entry["package"]
 
 
 def get_installed_subset(check: Packages) -> set[str]:
@@ -68,7 +81,8 @@ def get_missing_packages_from_list(package_list_name: str) -> set[str]:
     if not list_file.exists():
         raise FileNotFoundError(f"Packagelist file not found: {list_file}")
 
-    packages = load_yaml(list_file) or []
+    entries: list[PackageEntry] = load_yaml(list_file) or []
+    packages = [package_name(entry) for entry in entries]
     installed = get_installed_subset(packages)
     return set(packages) - installed
 

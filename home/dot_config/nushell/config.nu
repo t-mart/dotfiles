@@ -10,6 +10,7 @@ use lib/colors.nu tw
 use lib/colors.nu gruvbox
 use lib/theme.nu tim-theme
 use lib/commands.nu *
+use lib/packages.nu *
 use std *
 
 alias cz = chezmoi
@@ -211,15 +212,6 @@ def fzf-pick-file []: nothing -> string {
 
 
 
-# MOTD stuff
-if $env.SHLVL == 1 {
-  if (is-installed fastfetch) {
-    fastfetch
-  }
-
-  print $"\nRun (ansi green_bold)keys(ansi reset) to see this config's keybindings.\n"
-}
-
 # running `config nu --doc | nu-highlight` provides helpful docs!
 $env.config = {
   show_banner: false
@@ -269,29 +261,61 @@ $env.config = {
   color_config: (tim-theme)
 }
 
+# MOTD stuff
+#
+# this has to sit below $env.config, because the keybinding lines are read back
+# out of it.
+
 # what each of our keybindings does, keyed by the binding's name. only the
 # description lives here: the key combination itself is read back out of
-# $env.config, so it can't drift from what is actually bound.
+# $env.config, so it can't drift from what is actually bound. write it as a verb
+# phrase completing "Press <keys> to ...", the same way a package hint completes
+# "Use <command> to ...".
 const KEYBINDING_DOCS = {
   fzf_insert_file: "insert a file path from the current directory (alt+a inside fzf widens the search to the home directory)"
 }
 
-# show the keybindings this config defines. a binding with no description falls
-# back to showing its name, so a new one is never silently blank.
-def keys []: nothing -> table {
-  $env.config.keybindings | each {|binding|
+# our keybindings as MOTD lines. a binding with no description is left out, the
+# same way a package without a hint is.
+def keybinding-hints []: nothing -> list<string> {
+  $env.config.keybindings
+  | where {|binding| ($KEYBINDING_DOCS | get --optional $binding.name) != null }
+  | each {|binding|
     let modifiers = $binding.modifier
     | str lowercase
     | split row '_'
     | str replace 'control' 'ctrl'
 
     let key = $binding.keycode | str lowercase | str replace --regex '^char_' ''
+    let combo = $modifiers | append $key | str join '+'
 
-    {
-      keys: ($modifiers | append $key | str join '+')
-      does: ($KEYBINDING_DOCS | get --optional $binding.name | default $binding.name)
-    }
+    $"Press (ansi green_bold)($combo)(ansi reset) to ($KEYBINDING_DOCS | get --optional $binding.name)."
   }
+}
+
+# One line to greet you with, chosen at random from our keybindings and from the
+# hints in the pacman package lists. Writing a hint in either place adds a line
+# here.
+def motd []: nothing -> string {
+  let lines = keybinding-hints
+  | append (package-hints | each {|pkg| $"Use (ansi green_bold)($pkg.command)(ansi reset) to ($pkg.hint)." })
+
+  if ($lines | is-empty) {
+    return ""
+  }
+
+  # `hint:` follows the lowercase diagnostic prefix that cargo and friends use.
+  # dark_gray is the terminal's color8, so it picks up the gruvbox palette from
+  # kitty rather than hardcoding a shade here.
+  $"(ansi dark_gray)hint:(ansi reset) ($lines | shuffle | first)"
+}
+
+if $env.SHLVL == 1 {
+  if (is-installed fastfetch) {
+    fastfetch
+  }
+
+  print $"\n(motd)\n"
 }
 
 # here, we create our own oh-my-posh block. we can't do this in omp directly
