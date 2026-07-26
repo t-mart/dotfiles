@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "deny": [
+      "Artifact",
+      "DesignSync",
+      "RemoteTrigger",
+      "CronCreate",
+      "CronList",
+      "CronDelete",
+      "PushNotification",
+      "Monitor",
+      "ScheduleWakeup",
+      "DesignSync",
+      "NotebookEdit",
+      "SendMessage",
+      "RemoteTrigger",
+      "ReportFindings",
+      "AskUserQuestion"
+    ]
+  },
+  "model": "opus",
+  "autoMemoryEnabled": false,
+  "disableArtifact": true,
+  "disableWorkflows": true,
+  "disableRemoteControl": true,
+  "disableClaudeAiConnectors": true
+}
