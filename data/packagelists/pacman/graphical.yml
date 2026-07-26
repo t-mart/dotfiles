@@ -22,6 +22,7 @@
 - "gnome-network-displays" # cast to network displays
 - "kdegraphics-thumbnailers" # image and video thumbnailers for KDE
 - "kimageformats" # additional image format plugins for KDE
+- "kitty" # terminal emulator
 - "libreoffice-fresh" # office suite
 - "mpv" # media player
 - "mpv-uosc" # feature-rich minimalist proximity-based UI for mpv
@@ -33,7 +34,6 @@
 - "system-config-printer" # printer configuration tool for kde plasma
 - "taglib" # audio metadata library
 - "visual-studio-code-bin" # code editor
-- "wezterm-nightly-bin" # terminal emulator
 - "wl-clipboard" # Wayland clipboard utilities
 
 # fonts (not tools for fonts, but actual font packages)
