@@ -62,14 +62,6 @@ def display-man []: string -> string {
   RIPGREP_CONFIG_PATH: ($nu.home-dir | path join .config/ripgrep.conf)
 } | load-env
 
-def "str quote-path" []: string -> string {
-  if (' ' in $in) {
-    $"`($in)`"
-  } else {
-    $in
-  }
-}
-
 add-path-if-exists ($nu.home-dir | path join .local/bin)
 add-path-if-exists ($nu.home-dir | path join .cargo/bin)
 add-path-if-exists ($nu.home-dir | path join .deno/bin)
@@ -165,46 +157,67 @@ let external_completer = {|spans: list<string>|
   } | do $in $spans
 }
 
-# fzf
+# fzf, a fuzzy finder
 # https://github.com/junegunn/fzf
 #
-# this fzf config calls out to a few other programs, which we expect to be
-# installed from our chezmoi scripts:
+# we bind ctrl+t (fzf's own convention) to insert a file path into the command
+# line. the search starts in the current directory; press alt+a inside fzf to
+# widen it to the whole home directory, which is slow enough to be worth making
+# opt-in rather than a keybinding of its own.
 #
-# - erdtree, a tree visualizer, which we use to preview directories
-# - fd, a file finder, which we use to find files and directories
+# this calls out to a couple of other programs, which we expect to be installed
+# from our chezmoi scripts:
+#
+# - fd, a file finder, which we use to find files
 # - bat, a cat replacement with syntax highlighting, which we use to preview
 #   files
+{FZF_DEFAULT_OPTS: "--style full"} | load-env
+
+# quote a path so that it survives being inserted into the command line.
+# ordinary paths are left alone so that things like `~` still expand. note that
+# `$` needs no escaping here: only `$"..."` interpolates, not `"..."`.
+def "str quote-path" []: string -> string {
+  if ($in =~ '^[\w./~+=@:,-]+$') {
+    return $in
+  }
+
+  let escaped = $in | str replace --all '\' '\\' | str replace --all '"' '\"'
+  $'"($escaped)"'
+}
+
+# run the fzf file picker, returning the chosen path, or an empty string if the
+# picker was cancelled.
+#
+# fzf wants a terminal that reedline isn't holding onto, so we run it in a child
+# nushell rather than inline. that child only needs the `fd` and `fzf` externals,
+# which it inherits on PATH, so it skips our config entirely.
 #
 # Nushell reference: https://github.com/junegunn/fzf/issues/4122#issuecomment-2607368316
-{
-  FZF_DEFAULT_OPTS: "--style full"
-  KB_FZF_CD_CWD_COMMAND: "fd --type directory --hidden"
-  KB_FZF_CD_ALL_COMMAND: "fd --type directory --hidden . /"
-  KB_FZF_CD_OPTS: "--preview 'erd --human --no-progress --suppress-size --level 3 --color force {}'"
-  KB_FZF_FIND_FILES_CWD_COMMAND: "fd --type file --hidden"
-  KB_FZF_FIND_FILES_ALL_COMMAND: "fd --hidden . /"
-  KB_FZF_FIND_FILES_OPTS: "--preview 'bat --color=always --style=full --line-range=:500 {}' "
-  KB_FZF_DEFAULT_OPTS: "--scheme=path"
-} | load-env
+def fzf-pick-file []: nothing -> string {
+  let picker = "
+    fd --type file --hidden
+    | fzf --scheme=path --preview 'bat --color=always --style=full --line-range=:500 {}' --bind 'alt-a:reload(fd --type file --hidden . ~)'
+  "
+
+  # fzf exits non-zero when the picker is cancelled, which nushell would
+  # otherwise raise as an error
+  let outcome = nu --no-config-file --commands $picker | complete # nu-lint-ignore: redundant_nu_subprocess
+  if $outcome.exit_code != 0 {
+    return ""
+  }
+
+  $outcome.stdout | str trim
+}
 
 
 
 # MOTD stuff
 if $env.SHLVL == 1 {
-  def key [name: string]: nothing -> string { $"(ansi green_bold)($name)(ansi reset)" }
-
   if (is-installed fastfetch) {
     fastfetch
   }
 
-  print $"Some keybindings. Turn this message off when you know them!
-  
-  (key Alt+C) to change directory to a directory under the current directory \(fzf)
-  (key Shift+Alt+C) to change directory to a directory anywhere \(from fzf)
-  (key Alt+N) to insert a file from the current directory \(from fzf)
-  (key Shift+Alt+N) to insert a file from anywhere \(from fzf)
-  "
+  print $"\nRun (ansi green_bold)keys(ansi reset) to see this config's keybindings.\n"
 }
 
 # running `config nu --doc | nu-highlight` provides helpful docs!
@@ -235,68 +248,20 @@ $env.config = {
   }
   keybindings: [
     {
-      name: fzf_dirs
-      modifier: alt
-      keycode: char_c
-      mode: [emacs vi_normal vi_insert]
-      event: [
-        {
-          send: executehostcommand
-          cmd: "
-            let fzf_cd_cwd_command = \$\"($env.KB_FZF_CD_CWD_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_CD_OPTS)\";
-            let result = nu -c $fzf_cd_cwd_command;
-            cd $result;
-          "
-        }
-      ]
-    }
-    {
-      name: fzf_dirs
-      modifier: Alt_Shift
-      keycode: char_c
-      mode: [emacs vi_normal vi_insert]
-      event: [
-        {
-          send: executehostcommand
-          cmd: "
-            let fzf_cd_all_command = \$\"($env.KB_FZF_CD_ALL_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_CD_OPTS)\";
-            let result = nu -c $fzf_cd_all_command;
-            cd $result;
-          "
-        }
-      ]
-    }
-    {
-      name: fzf_files
-      modifier: alt
-      keycode: char_n
+      name: fzf_insert_file
+      modifier: control
+      keycode: char_t
       mode: [emacs vi_normal vi_insert]
       event: [
         {
           send: executehostcommand
           cmd: '
-            let fzf_find_files_cwd_command = $"($env.KB_FZF_FIND_FILES_CWD_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_FIND_FILES_OPTS)";
-            let result = nu -l -i -c $fzf_find_files_cwd_command;
-            commandline edit --append ($result | str quote-path);
-            commandline set-cursor --end
+            let picked = (fzf-pick-file)
+            if ($picked | is-not-empty) {
+              commandline edit --append ($picked | str quote-path)
+              commandline set-cursor --end
+            }
           '
-        }
-      ]
-    }
-    {
-      name: fzf_files
-      modifier: Alt_Shift
-      keycode: char_n
-      mode: [emacs vi_normal vi_insert]
-      event: [
-        {
-          send: executehostcommand
-          cmd: "
-            let fzf_find_files_all_command = \$\"($env.KB_FZF_FIND_FILES_ALL_COMMAND) | fzf ($env.KB_FZF_DEFAULT_OPTS) ($env.KB_FZF_FIND_FILES_OPTS)\";
-            let result = nu -l -i -c $fzf_find_files_all_command;
-            commandline edit --append ($result | str quote-path);
-            commandline set-cursor --end
-          "
         }
       ]
     }
@@ -311,6 +276,32 @@ $env.config = {
     }
   ]
   color_config: (tim-theme)
+}
+
+# what each of our keybindings does, keyed by the binding's name. only the
+# description lives here: the key combination itself is read back out of
+# $env.config, so it can't drift from what is actually bound.
+const KEYBINDING_DOCS = {
+  fzf_insert_file: "insert a file path from the current directory (alt+a inside fzf widens the search to the home directory)"
+  exit_vi_insert_mode: "leave vi insert mode, like escape"
+}
+
+# show the keybindings this config defines. a binding with no description falls
+# back to showing its name, so a new one is never silently blank.
+def keys []: nothing -> table {
+  $env.config.keybindings | each {|binding|
+    let modifiers = $binding.modifier
+    | str lowercase
+    | split row '_'
+    | str replace 'control' 'ctrl'
+
+    let key = $binding.keycode | str lowercase | str replace --regex '^char_' ''
+
+    {
+      keys: ($modifiers | append $key | str join '+')
+      does: ($KEYBINDING_DOCS | get --optional $binding.name | default $binding.name)
+    }
+  }
 }
 
 # here, we create our own oh-my-posh block. we can't do this in omp directly
