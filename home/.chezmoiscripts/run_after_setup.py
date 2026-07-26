@@ -16,9 +16,9 @@ import tempfile
 from pathlib import Path
 
 from lib.arch_linux import (
-    is_package_installed,
     get_missing_packages_from_list,
     install_packages,
+    is_package_installed,
 )
 from lib.chezmoi import (
     CHEZMOI_EXECUTABLE,
@@ -29,12 +29,10 @@ from lib.flow import phase, step
 from lib.logging import (
     log_error,
     log_info,
-    log_panel,
     prompt_confirm,
 )
 from lib.proc import run
 from lib.yaml import load_yaml
-
 
 # ── yay ───────────────────────────────────────────────────────────────────────
 

@@ -24,6 +24,7 @@ def get_chezmoi_data_bool(key: str) -> bool:
         [CHEZMOI_EXECUTABLE, "execute-template", template],
         capture_output=True,
         text=True,
+        check=False,
     )
 
     if result.returncode != 0:

@@ -1,18 +1,18 @@
 from rich import box
+from rich.align import Align
 from rich.console import Console
 from rich.panel import Panel
 from rich.prompt import Confirm
-from rich.align import Align
 from rich.text import Text
 
 __all__ = [
     "console",
-    "log_info",
     "log_error",
-    "log_phase_start",
-    "log_phase_end",
-    "log_step",
+    "log_info",
     "log_panel",
+    "log_phase_end",
+    "log_phase_start",
+    "log_step",
     "prompt_confirm",
 ]
 

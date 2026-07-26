@@ -1,17 +1,16 @@
 from pathlib import Path
 
-from lib.proc import run
-
 from lib.chezmoi import (
     CHEZMOI_WORKING_TREE,
 )
+from lib.proc import run
 from lib.yaml import load_yaml
 
 __all__ = [
-    "is_arch_linux",
-    "is_package_installed",
     "get_missing_packages_from_list",
     "install_packages",
+    "is_arch_linux",
+    "is_package_installed",
 ]
 
 type Packages = list[str] | set[str] | tuple[str, ...]

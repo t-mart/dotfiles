@@ -4,7 +4,7 @@ from contextlib import contextmanager
 from typing import ParamSpec, TypeVar
 
 from lib.arch_linux import is_arch_linux
-from lib.logging import log_phase_start, log_phase_end, log_step
+from lib.logging import log_phase_end, log_phase_start, log_step
 
 P = ParamSpec("P")
 R = TypeVar("R")

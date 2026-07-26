@@ -17,4 +17,4 @@ def run(
         cmd = shlex.split(cmd)
     if sudo:
         cmd = _SUDO_PREFIX + cmd
-    return subprocess.run(cmd, **kwargs)
+    return subprocess.run(cmd, **kwargs)  # noqa: PLW1510
