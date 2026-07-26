@@ -274,7 +274,6 @@ $env.config = {
 # $env.config, so it can't drift from what is actually bound.
 const KEYBINDING_DOCS = {
   fzf_insert_file: "insert a file path from the current directory (alt+a inside fzf widens the search to the home directory)"
-  exit_vi_insert_mode: "leave vi insert mode, like escape"
 }
 
 # show the keybindings this config defines. a binding with no description falls
