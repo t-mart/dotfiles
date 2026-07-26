@@ -2,7 +2,7 @@
 
 Supplemental data files used by my chezmoi configuration.
 
-## `key.txt.age`
+## `chezmoi-age-key.txt.age`
 
 Some of my dotfiles are encrypted with
 [`age`](https://github.com/FiloSottile/age), which is integrated into chezmoi.
@@ -31,6 +31,8 @@ My GPG keys that will be imported, age-encrypted.
 ## `packagelists/`
 
 YAML files listing packages to be installed by my chezmoi scripts. See
-[the installation script](/home/.chezmoiscripts/run_after_script.py) for usage.
+[the installation script](/home/.chezmoiscripts/run_after_setup.py) for usage.
 
-Format is a YAML list of unique package names.
+`pacman/` holds one file per package group, each a YAML list of unique package
+names. `uv-tools.yml` lists uv tools instead, each with optional `extras`. Both
+formats have a JSON Schema alongside them.
