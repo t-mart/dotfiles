@@ -8,7 +8,6 @@
 .local/share/kio
 .local/share/kxmlgui5
 .local/share/applications
-.config/wezterm
 .config/mpv
 .config/plasma-workspace
 .config/qimgv
