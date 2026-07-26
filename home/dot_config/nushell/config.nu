@@ -265,15 +265,6 @@ $env.config = {
         }
       ]
     }
-    {
-      name: exit_vi_insert_mode
-      modifier: control
-      keycode: "char_["
-      mode: [vi_insert]
-      event: [
-       {send: Esc}
-      ]
-    }
   ]
   color_config: (tim-theme)
 }
