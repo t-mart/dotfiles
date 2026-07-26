@@ -38,5 +38,8 @@
 - Don't mutate git history, but you can interact with it in a read-only
   capacity.
 
+- If we're ever writing command line scripts, use long-form flags and options
+  because they self-document.
+
 - If you ever want me to run commands, use nushell paradigms, built-in commands,
   and syntax. There is no line continuation in nushell.
