@@ -1,0 +1,109 @@
+#!/usr/bin/env nu
+
+# Update this machine: chezmoi, system packages, uv tools, and cargo binaries.
+#
+# This is the recipe half of `upta`. It lives here, deployed by chezmoi, so
+# that every machine carries its own instructions instead of having them sent
+# over the wire as strings by whoever happens to be driving. That also means it
+# can be run by hand, on its own, with no ssh involved.
+#
+# Steps whose tool isn't installed are skipped rather than failed, so the same
+# script suits a workstation and a headless server. Exits non-zero if any step
+# that did run failed.
+
+# Directories to look in when a tool isn't on PATH.
+const FALLBACK_BIN_DIRS = [.local/bin .cargo/bin]
+
+# The update steps, in order.
+#
+# Held as data rather than closures so that `--list` can show the plan without
+# running any of it.
+const STEPS = [
+    {
+        name: chezmoi
+        tool: chezmoi
+        args: [update --init --apply]
+    }
+    {
+        name: packages
+        tool: yay
+        args: [
+            --sync --sysupgrade --refresh --noconfirm
+            --diffmenu=false --editmenu=false --cleanmenu=false
+        ]
+    }
+    {
+        name: uv-tools
+        tool: uv
+        args: [tool upgrade --all]
+    }
+    {
+        name: cargo
+        tool: cargo
+        args: [install-update --all]
+    }
+]
+
+# Absolute path to a tool, or null when this machine doesn't have it.
+#
+# ssh runs commands with a leaner environment than the one you get sitting at
+# the machine, so check the usual per-user bin directories before giving up.
+def resolve-tool [tool: string]: nothing -> path {
+    let on_path = which $tool | get --optional 0.path
+    if $on_path != null {
+        return $on_path
+    }
+
+    $FALLBACK_BIN_DIRS
+        | each {|dir| $nu.home-dir | path join $dir $tool }
+        | where {|candidate| $candidate | path exists }
+        | get --optional 0
+}
+
+# Run one step, returning how it went.
+def run-one [step: record]: nothing -> record {
+    let tool = resolve-tool $step.tool
+
+    if $tool == null {
+        print $"(ansi yellow)skip(ansi reset) ($step.name): ($step.tool) is not installed here"
+        return {name: $step.name, status: skipped, duration: 0sec}
+    }
+
+    print $"(ansi blue)run(ansi reset)  ($step.name): ($tool) ($step.args | str join ' ')"
+
+    let start = date now
+    let ok = try {
+        ^$tool ...$step.args
+        true
+    } catch {
+        false
+    }
+
+    {
+        name: $step.name
+        status: (if $ok { "ok" } else { "failed" })
+        duration: ((date now) - $start)
+    }
+}
+
+def main [
+    --skip-chezmoi  # leave out the chezmoi step, because the caller already ran it
+    --list          # print the steps that would run, and run none of them
+]: nothing -> nothing {
+    let plan = $STEPS | where {|step| not ($skip_chezmoi and $step.name == chezmoi) }
+
+    if $list {
+        print $plan
+        return
+    }
+
+    let results = $plan | each {|step| run-one $step }
+
+    print ""
+    print $"(ansi green)(sys host | get hostname)(ansi reset) update summary:"
+    print $results
+
+    if ($results | any {|result| $result.status == failed }) {
+        exit 1
+    }
+}

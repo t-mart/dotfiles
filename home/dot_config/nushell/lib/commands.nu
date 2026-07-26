@@ -157,55 +157,6 @@ export def "random password" [
     } | str join
 }
 
-# Update remote servers with paru, chezmoi, uv, and cargo.
-
-# If no servers are provided, read from config file at
-# $XDG_CONFIG_HOME/upta.txt for a line-separated list. Lines starting with #
-# and empty lines are ignored.
-export def upta [...servers: string] {
-    let cmds = [
-        # chezmoi
-        "~/.local/bin/chezmoi update --init --apply"
-
-        # upgrade packages
-        "yay --sync --sysupgrade --refresh --noconfirm --diffmenu=false --editmenu=false --cleanmenu=false"
-
-        # uv
-        "uv tool update --all"
-
-        # rust
-        "cargo install-update --all"
-    ]
-
-    let servers_path = xdg config | path join "upta.txt"
-
-    let servers = (if ($servers | is-not-empty) {
-        $servers
-    } else if ($servers_path | path exists) {
-        open $servers_path | lines | where not ($it | str starts-with "#") and ($it | str trim | is-not-empty)
-    } else {
-        []
-    }) | uniq
-
-    if ($servers | is-empty) {
-        error make $"No servers to update: provide servers as arguments or list them in ($servers_path)"
-    }
-
-    for server in $servers {
-        print $"\n(ansi g)--- STARTING UPDATE ON ($server) ---(ansi reset)"
-        for cmd in $cmds {
-            let ping_check = (ping -c 1 -W 1 $server | complete)
-            
-            if $ping_check.exit_code == 0 {
-                ssh -A -t $server $cmd
-            } else {
-                print $"⚠️  ($server) is offline or unreachable. Skipping."
-            }
-        }
-        print $"\n(ansi g)--- COMPLETED UPDATE ON ($server) ---(ansi reset)"
-    }
-}
-
 # Return the path of the specified XDG directory. Delegates to `systemd-path`,
 # which respects XDG environment variable overrides and the XDG Base Directory
 # specification at https://specifications.freedesktop.org/basedir/latest/.

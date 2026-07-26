@@ -11,6 +11,7 @@ use lib/colors.nu gruvbox
 use lib/theme.nu tim-theme
 use lib/commands.nu *
 use lib/packages.nu *
+use lib/upta.nu *
 use std *
 
 alias cz = chezmoi
