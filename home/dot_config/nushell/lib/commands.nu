@@ -28,6 +28,12 @@ export def --env mkcd [directory: path]: nothing -> nothing {
     cd $directory
 }
 
+# Concatenate multiple strings into a newline-separated string. This is a
+# convenience wrapper around `str join` that uses a newline as the separator.
+export def "str joinn" []: list<string> -> string {
+    str join "\n"
+}
+
 # Hardlink to files in <target_root> under <link_root>.
 #
 # The directory structure under <target_root> will be preserved under
