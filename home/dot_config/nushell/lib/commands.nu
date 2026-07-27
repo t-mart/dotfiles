@@ -10,11 +10,6 @@ export def --env add-path-if-exists [
   }
 }
 
-# Returns true if the current platform is Windows.
-export def on-windows []: nothing -> bool {
-  version | get build_os | str starts-with "windows"
-}
-
 # Returns whether an executable is available on the PATH.
 export def is-installed [cmd: string]: nothing -> bool {
     (which $cmd | length) > 0
