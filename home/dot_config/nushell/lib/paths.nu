@@ -4,12 +4,29 @@
 # These deliberately hang off `path` rather than standing alone, so that
 # `path stem` reads beside the built-in `path parse` and `path join`.
 
-# Return a path's extension. A convenience wrapper around `path parse | get extension`
-# that returns an empty string if there is no extension instead of null.
+# TODO: let these commands work on lists of paths, not just single paths. for ergonomics
+
+
+# Resolve a replacement that may be a literal string or a closure. A closure is
+# called with the current value, both as its argument and as its pipeline input.
+# A missing replacement (null) becomes an empty string.
+#
+# `update` cannot do this itself: given a closure it passes the whole record
+# being updated, not the field's current value.
+def resolve-replacement [current: string, replacement?: oneof<string, closure>]: nothing -> string {
+    if ($replacement | describe) == closure {
+        $current | do $replacement $current
+    } else {
+        $replacement | default ""
+    }
+}
+
+# Return a path's extension. A convenience wrapper around `path parse | get extension`.
+# Paths without an extension give an empty string.
 @example "Get extension" { "foo/bar.txt" | path extension } --result txt
 @example "Get extension with no extension" { "foo/bar" | path extension } --result ""
 export def "path extension" []: string -> string {
-    path parse | get extension | default ""
+    path parse | get extension
 }
 
 # Return a path with the provided extension.
@@ -19,15 +36,17 @@ export def "path extension" []: string -> string {
 export def "path with-extension" [
     extension?: oneof<string, closure> # the extension without the dot (can be empty to remove) or a closure that takes the current extension and returns the new extension
 ]: string -> string {
-    path parse | update extension ($extension | default "") | path join
+    let parsed = $in | path parse
+    $parsed | update extension (resolve-replacement $parsed.extension $extension) | path join
 }
 
-# Return a path's stem. A convenience wrapper around `path parse | get stem`
-# that returns an empty string if there is no stem instead of null.
+# Return a path's stem. A convenience wrapper around `path parse | get stem`.
+# Paths without a stem give an empty string.
 @example "Get stem" { "foo/bar.txt" | path stem } --result bar
-@example "Get stem with no stem" { "foo/.txt" | path stem } --result ""
+@example "Get stem of a dotfile" { "foo/.txt" | path stem } --result ".txt"
+@example "Get stem with no stem" { "/" | path stem } --result ""
 export def "path stem" []: string -> string {
-    path parse | get stem | default ""
+    path parse | get stem
 }
 
 # Return a path with the provided stem (i.e. filename without extension).
@@ -37,18 +56,20 @@ export def "path stem" []: string -> string {
 export def "path with-stem" [
     stem?: oneof<string, closure> # the stem string (can be empty to remove) or a closure that takes the current stem and returns the new stem
 ]: string -> string {
-    path parse | update stem ($stem | default "") | path join
+    let parsed = $in | path parse
+    $parsed | update stem (resolve-replacement $parsed.stem $stem) | path join
 }
 
 # Return a path with the provided basename (i.e. filename with extension).
 @example "Change basename" { "foo/bar.txt" | path with-basename baz.md } --result foo/baz.md
 @example "Change basename with closure" { "foo/bar.txt" | path with-basename {|basename| $"($basename).backup" } } --result foo/bar.txt.backup
-@example "Remove basename" { "foo/bar.txt" | path with-basename "" } --result foo/
+@example "Remove basename" { "foo/bar.txt" | path with-basename "" } --result foo
 export def "path with-basename" [
     basename?: oneof<string, closure> # the basename string (can be empty to remove) or a closure that takes the current basename and returns the new basename
 ]: string -> string {
-    let parse = $basename | default "" | path parse
-    $in | path parse | update stem ($parse.stem | default "") | update extension ($parse.extension | default "") | path join
+    let path = $in
+    let replacement = resolve-replacement ($path | path basename) $basename | path parse
+    $path | path parse | update stem $replacement.stem | update extension $replacement.extension | path join
 }
 
 # Return the input path relative to the provided base path. If the input path
