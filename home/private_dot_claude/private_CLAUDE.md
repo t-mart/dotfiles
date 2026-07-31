@@ -1,8 +1,41 @@
 # Instructions
 
-- Less is more. Adding code and documentation is a liability that must be
-  outweighed by the benefit of including it. Avoid unnecessary abstractions.
-  Avoid complicated explanations in documentation.
+- Less is more. Adding code is a liability that must be outweighed by the
+  benefit of including it.
+
+- When you write technical text (documentation, READMEs, runbooks, procedures,
+  error messages, release notes, reports), obey rules from ASD-STE100 Simplified
+  Technical English:
+  - For procedural text: imperative mood, maximum 20 words per sentence, one
+    instruction per sentence. For descriptive text: simple tenses, maximum 25
+    words per sentence, one topic per paragraph, maximum six sentences per
+    paragraph. Never mix the two in one passage.
+
+  - VERBS: Use only infinitive, imperative, simple present, simple past, simple
+    future, past participle as adjective. No present perfect ("has completed" →
+    "completed"). No "-ing" verb forms ("making it easy" → new sentence). Active
+    voice. Approved modals: can, will, must. Banned: should, would, may, might,
+    could. For "should": write "must" if required, delete if optional.
+
+  - SENTENCES: Keep complete grammar: no contractions, keep articles, keep
+    "that" ("make sure that the file exists"). Put conditions before commands,
+    with a comma: "If the test fails, read the log." No semicolons (instead,
+    write two sentences). Use a list for more than two items or steps.
+
+  - WORDS: One word, one meaning, for the whole document: pick one of
+    check/verify/confirm and keep it. Noun chains of maximum three words; break
+    longer ones with prepositions ("the timeout value for the connection pool").
+    Delete words that carry no fact: simply, seamlessly, robust, powerful,
+    comprehensive, leverage, "in order to", "it is worth noting". Replace:
+    - "Use", not "utilize"
+    - "Before", not "prior to"
+    - "If", not "in the event that"
+    - "For example", not "e.g."
+
+    American spelling.
+
+  - WARNINGS: Command or condition first, then the risk: "Do not run this
+    against production. The command deletes rows."
 
 - Favor pure functions, immutability, composition over inheritance, and early
   returns.
