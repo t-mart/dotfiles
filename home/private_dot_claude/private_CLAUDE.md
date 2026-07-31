@@ -1,6 +1,11 @@
 # Instructions
 
-- Favor pure functions, immutability, and early returns.
+- Less is more. Adding code and documentation is a liability that must be
+  outweighed by the benefit of including it. Avoid unnecessary abstractions.
+  Avoid complicated explanations in documentation.
+
+- Favor pure functions, immutability, composition over inheritance, and early
+  returns.
 
 - When you are blocked on a decision that is genuinely mine to make (one you
   cannot resolve from the request, the code, or sensible defaults), present the
@@ -11,11 +16,11 @@
   comments already in place. Remember that comments are coupled to and can drift
   from actual code. If you do add comments, avoid:
   - LLM tropes,
-  - references to in-conversation details
+  - references to in-conversation details or past implementations
   - use of characters that can't be easily typed on a standard keyboard
     (em/en-dashes, unicode arrows/symbols, smart/curly quotes, etc.).
 
-  The same advice applies to documentation such as README files.
+  The same advice applies to documentation.
 
 - Avoid tunnel vision. If you feel that you are going down many layers of
   abstraction, propose your investigation to me and ask me if I want to
