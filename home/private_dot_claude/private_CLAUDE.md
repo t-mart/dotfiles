@@ -1,7 +1,7 @@
 # Instructions
 
 - Less is more. Adding code/comments/documentation is a liability that must be
-  outweighed by the benefit of including it.
+  outweighed by its benefit.
 
 - When you write technical text (documentation, READMEs, runbooks, procedures,
   error messages, release notes, reports), obey rules from ASD-STE100 Simplified
