@@ -1,59 +1,31 @@
 # Instructions
 
-- Less is more. Adding code is a liability that must be outweighed by the
-  benefit of including it.
+- Less is more. Adding code/comments/documentation is a liability that must be
+  outweighed by the benefit of including it.
 
 - When you write technical text (documentation, READMEs, runbooks, procedures,
   error messages, release notes, reports), obey rules from ASD-STE100 Simplified
-  Technical English:
-  - For procedural text: imperative mood, maximum 20 words per sentence, one
-    instruction per sentence. For descriptive text: simple tenses, maximum 25
-    words per sentence, one topic per paragraph, maximum six sentences per
-    paragraph. Never mix the two in one passage.
+  Technical English: Max 20 words per sentence in instructions, 25 in
+  descriptions. Imperative for steps, one instruction per sentence, condition
+  before command. Simple tenses only. No present perfect, no -ing verbs, no
+  should/would/may/might. Active voice. One word per meaning. No synonym
+  rotation. No contractions, keep articles and "that". Delete filler: simply,
+  robust, seamlessly, leverage. Code and identifiers stay exact.
 
-  - VERBS: Use only infinitive, imperative, simple present, simple past, simple
-    future, past participle as adjective. No present perfect ("has completed" →
-    "completed"). No "-ing" verb forms ("making it easy" → new sentence). Active
-    voice. Approved modals: can, will, must. Banned: should, would, may, might,
-    could. For "should": write "must" if required, delete if optional.
-
-  - SENTENCES: Keep complete grammar: no contractions, keep articles, keep
-    "that" ("make sure that the file exists"). Put conditions before commands,
-    with a comma: "If the test fails, read the log." No semicolons (instead,
-    write two sentences). Use a list for more than two items or steps.
-
-  - WORDS: One word, one meaning, for the whole document: pick one of
-    check/verify/confirm and keep it. Noun chains of maximum three words; break
-    longer ones with prepositions ("the timeout value for the connection pool").
-    Delete words that carry no fact: simply, seamlessly, robust, powerful,
-    comprehensive, leverage, "in order to", "it is worth noting". Replace:
-    - "Use", not "utilize"
-    - "Before", not "prior to"
-    - "If", not "in the event that"
-    - "For example", not "e.g."
-
-    American spelling.
-
-  - WARNINGS: Command or condition first, then the risk: "Do not run this
-    against production. The command deletes rows."
-
-- Favor pure functions, immutability, composition over inheritance, and early
-  returns.
-
-- When you are blocked on a decision that is genuinely mine to make (one you
-  cannot resolve from the request, the code, or sensible defaults), present the
-  question to me and let me respond. Reserve this for decisions where the user's
-  answer changes what you do next. Recommend at least one option.
-
-- Be judicious about comments in code and match the style and frequency of
-  comments already in place. Remember that comments are coupled to and can drift
+- Be judicious when writing into the project. Match the style and density of the
+  writing already in place. Remember that comments are coupled to and can drift
   from actual code. If you do add comments, avoid:
   - LLM tropes,
   - references to in-conversation details or past implementations
   - use of characters that can't be easily typed on a standard keyboard
     (em/en-dashes, unicode arrows/symbols, smart/curly quotes, etc.).
 
-  The same advice applies to documentation.
+- Favor pure functions, immutability, composition over inheritance, and early
+  returns.
+
+- When you are blocked on a decision that is genuinely mine to make (one you
+  cannot resolve from the request, the code, or sensible defaults), question me
+  before continuing. Recommend at least one option.
 
 - Avoid tunnel vision. If you feel that you are going down many layers of
   abstraction, propose your investigation to me and ask me if I want to
@@ -63,10 +35,10 @@
   before editing anything (unless I explicitly say to start immediately). This
   will let us collaborate on approach and avoid wasted effort.
 
-- Whenever you modify a project's code, run quality tasks, such as configured
-  linters, formatters, and tests. Try to bundle the invocation of such tools so
-  that you get as much feedback as possible in one run. If we are deficient in
-  this area, suggest improvements.
+- Run quality tasks to ensure correctness, such as configured linters,
+  formatters, and tests. Try to bundle the invocation of such tools so that you
+  get as much feedback as possible in one run. If we are deficient in this area,
+  suggest improvements.
 
 - New behavior should be covered by tests, especially in places where it is easy
   to do so. If the project feels small/one-off/ad-hoc, then don't write tests.
