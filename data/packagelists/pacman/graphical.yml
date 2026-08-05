@@ -41,7 +41,6 @@
 - "noto-fonts" # Google Noto TTF fonts
 - "noto-fonts-cjk" # CJK characters for Noto
 - "noto-fonts-emoji" # emoji characters for Noto
-- "noto-fonts-extra" # additional variants (condensed, semi-bold, extra-light)
 - "tex-gyre-math-fonts" # math fonts, including a Century Schoolbook clone, Schola
 - "ttf-ibm-plex" # versatile typeface with mono, sans, and serif
 - "ttf-jetbrains-mono-nerd" # monospace programming font with nerd font icons
