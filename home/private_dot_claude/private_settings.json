@@ -10,10 +10,8 @@
       "PushNotification",
       "Monitor",
       "ScheduleWakeup",
-      "DesignSync",
       "NotebookEdit",
       "SendMessage",
-      "RemoteTrigger",
       "ReportFindings",
       "AskUserQuestion"
     ]
