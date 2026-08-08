@@ -28,7 +28,7 @@
 - "mpv-uosc" # feature-rich minimalist proximity-based UI for mpv
 - "plasma-meta" # KDE Plasma desktop environment
 - "qalculate-gtk" # advanced calculator
-- "qimgv" # image viewer and editor
+- "qimgv-git" # image viewer (git version has some extra features)
 - "qt6-imageformats" # additional image format plugins for Qt6
 - "signal-desktop" # secure messaging app
 - "system-config-printer" # printer configuration tool for kde plasma
