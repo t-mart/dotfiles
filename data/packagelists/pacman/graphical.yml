@@ -21,6 +21,7 @@
 - "font-manager" # manage installed fonts and preview font files
 - "gnome-network-displays" # cast to network displays
 - "kdegraphics-thumbnailers" # image and video thumbnailers for KDE
+- "kfind" # advanced searches in dolphin file explorer
 - "kimageformats" # additional image format plugins for KDE
 - "kitty" # terminal emulator
 - "libreoffice-fresh" # office suite
