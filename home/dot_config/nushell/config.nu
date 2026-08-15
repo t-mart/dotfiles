@@ -113,10 +113,12 @@ zoxide init nushell --cmd cd | try {
 # carapace, a shell completion
 # https://carapace.sh/
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+$env.CARAPACE_MATCH = 1 # allows case-insensitive matching of completions
 # NOTE: we don't use the default carapace init because:
 # - we it doesn't allow selective completion based on command
 # - it can throw these "ERR unknown shorthand flag" errors
 # carapace _carapace nushell | save --force ($local_vendor_autoload_path | path join "carapace.nu")
+# TODO: is this above comment still valid?
 
 # from https://www.nushell.sh/cookbook/external_completers.html
 # let fish_completer = ...
