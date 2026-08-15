@@ -12,18 +12,24 @@
 - "1password-cli" # password manager CLI
 - "atomicparsley" # media file tagger (yt-dlp dependency)
 - "bun" # JavaScript runtime
+- "carapace-ffmpeg-bin" # shell completion for ffmpeg
 - "deno" # JavaScript runtime
 - "ffmpeg" # media processing
 - "gallery-dl-bin" # image downloader
 - "github-cli" # GitHub CLI tool
 - "go" # programming language
-- "hyperfine" # command-line benchmarking tool
-- "imagemagick" # image manipulation
-- "jwt-cli" # decode and encode JWTs 
-- "lazygit" # terminal UI for git
+- package: "hyperfine"
+  hint: benchmark a command
+- package: "imagemagick"
+  hint: manipulate images
+- package: "jwt-cli"
+  hint: decode or encode a JWT
+- package: "lazygit"
+  hint: terminal UI for git
 - "nodejs" # JavaScript runtime
 - "pnpm" # JavaScript package manager
 - "rtmpdump" # RTMP streaming tool (yt-dlp dependency)
 - "rust" # programming language
 - "terraform" # infrastructure as code tool
-- "magic-wormhole" # secure file transfer tool
+- package: "magic-wormhole"
+  hint: secure file transfer tool
