@@ -44,8 +44,9 @@
   to do so. If the project feels small/one-off/ad-hoc, then don't write tests.
 
 - When we've done a chunk of work that would fit in a commit, give me a commit
-  log message in the form `[area]: [short line describing the main effect]`. I
-  tend not to use the extended descriptions in commit messages.
+  log message in the form `<area>: <short line describing the main effect>`,
+  where `<area>` is some meaningful area of the project. I tend not to use the
+  extended descriptions in commit messages.
   - If I provide an issue number, after the work is complete, add a trailer to
     the commit message in the form "Closes #123" where 123 is the issue number.
   - Do not add co-author trailers for yourself.
