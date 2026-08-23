@@ -83,6 +83,11 @@ if ($bun_install_path | path exists) {
     path add ($env.BUN_INSTALL | path join bin)
 }
 
+let kubeconfig_path = ($nu.home-dir | path join .kube/config)
+if ($kubeconfig_path | path exists) {
+    {KUBECONFIG: $kubeconfig_path} | load-env
+}
+
 let local_vendor_autoload_path = ($nu.data-dir | path join vendor autoload)
 try {
   mkdir $local_vendor_autoload_path
