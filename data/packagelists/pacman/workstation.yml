@@ -13,6 +13,7 @@
 - "atomicparsley" # media file tagger (yt-dlp dependency)
 - "bun" # JavaScript runtime
 - "carapace-ffmpeg-bin" # shell completion for ffmpeg
+- "claude-code" # Claude AI CLI
 - "deno" # JavaScript runtime
 - "ffmpeg" # media processing
 - "gallery-dl-bin" # image downloader
@@ -27,6 +28,7 @@
 - package: "lazygit"
   hint: terminal UI for git
 - "nodejs" # JavaScript runtime
+- "openai-codex" # OpenAI Codex CLI
 - "pnpm" # JavaScript package manager
 - "rtmpdump" # RTMP streaming tool (yt-dlp dependency)
 - "rust" # programming language
