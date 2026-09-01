@@ -84,10 +84,10 @@ do --env {
         path add ($env.BUN_INSTALL | path join bin)
     }
 
-    let kubeconfig_path = ($nu.home-dir | path join .kube/config)
-    if ($kubeconfig_path | path exists) {
-        {KUBECONFIG: $kubeconfig_path} | load-env
-    }
+    # let kubeconfig_path = ($nu.home-dir | path join .kube/config)
+    # if ($kubeconfig_path | path exists) {
+    #     {KUBECONFIG: $kubeconfig_path} | load-env
+    # }
 }
 
 do --env {
