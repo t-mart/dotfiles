@@ -105,8 +105,6 @@
 - package: procs
   hint: list processes as a readable table
 
-- "prometheus-node-exporter" # Prometheus exporter for hardware and OS metrics
-
 - package: q-dns-bin
   command: q
   hint: query dns records
