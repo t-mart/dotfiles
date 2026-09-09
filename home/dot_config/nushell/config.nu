@@ -27,6 +27,14 @@ alias syst = systemctl-tui
 alias sudo = sudo-rs
 alias visudo = visudo-rs
 alias su = su-rs
+alias kclip = kitten clipboard
+
+def --wrapped ssh [...args: string]: nothing -> nothing {
+  match $env.TERM? {
+    "xterm-kitty" => { ^kitten ssh ...$args }
+    _ => { ^ssh ...$args }
+  }
+}
 
 
 if (is-installed code) {
