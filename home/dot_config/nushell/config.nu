@@ -27,7 +27,8 @@ alias syst = systemctl-tui
 alias sudo = sudo-rs
 alias visudo = visudo-rs
 alias su = su-rs
-alias kclip = kitten clipboard
+alias k-copy = kitten clipboard
+alias k-paste = kitten clipboard --get-clipboard
 
 def --wrapped ssh [...args: string]: nothing -> nothing {
   match $env.TERM? {
