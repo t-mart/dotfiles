@@ -9,7 +9,6 @@ ShowOpenTerminal=false
 
 [DetailsMode]
 PreviewSize=22
-RightPadding=215
 ViewFont=IBM Plex Sans,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [General]

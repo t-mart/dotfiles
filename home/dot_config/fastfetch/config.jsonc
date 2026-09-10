@@ -6,10 +6,6 @@
   "modules": [
     "title",
     "os",
-    "bootmgr",
-    "board",
-    "kernel",
-    "initsystem",
     "uptime",
     {
       "type": "cpu",
@@ -23,9 +19,9 @@
       "temp": true
     },
     {
-      "type": "publicip",
-      "timeout": 5000,
-      "url": "http://api.ipify.org/"
+      "type": "command",
+      "key": "Public IP",
+      "text": "curl --fail --silent --show-error --max-time 5 https://ifconfig.co/json | jq --raw-output '[.ip, .city, .region_code, .country_iso] | .[0] + \" (\" + (.[1:] | map(select(. != null and . != \"\")) | join(\", \")) + \")\"'"
     },
     {
       "type": "localip",
@@ -33,6 +29,6 @@
       "showLoop": true,
       "showAllIps": true
     },
-    "locale"
+    "terminal"
   ]
 }
