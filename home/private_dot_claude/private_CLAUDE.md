@@ -3,18 +3,10 @@
 - Less is more. Adding code/comments/documentation is a liability that must be
   outweighed by its benefit.
 
-- When you write technical text (documentation, READMEs, runbooks, procedures,
-  error messages, release notes, reports), obey rules from ASD-STE100 Simplified
-  Technical English: Max 20 words per sentence in instructions, 25 in
-  descriptions. Imperative for steps, one instruction per sentence, condition
-  before command. Simple tenses only. No present perfect, no -ing verbs, no
-  should/would/may/might. Active voice. One word per meaning. No synonym
-  rotation. No contractions, keep articles and "that". Delete filler: simply,
-  robust, seamlessly, leverage. Code and identifiers stay exact.
-
 - Be judicious when writing into the project. Match the style and density of the
   writing already in place. Remember that comments are coupled to and can drift
-  from actual code. If you do add comments, avoid:
+  from actual code, and can also poison/narrow later thought. If you do add
+  comments, avoid:
   - LLM tropes,
   - references to in-conversation details or past implementations
   - use of characters that can't be easily typed on a standard keyboard
@@ -42,6 +34,8 @@
 
 - New behavior should be covered by tests, especially in places where it is easy
   to do so. If the project feels small/one-off/ad-hoc, then don't write tests.
+  If no testing framework exists in the project, do not add one unless
+  explicitly instructed to.
 
 - When we've done a chunk of work that would fit in a commit, give me a commit
   log message in the form `<area>: <short line describing the main effect>`,
